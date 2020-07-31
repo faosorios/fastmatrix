@@ -1,0 +1,24 @@
+Type: Package
+Package: fastmatrix
+Title: Fast computation of some matrices useful in statistics
+Version: 0.2
+Authors@R:
+    c(person(given = "Felipe",
+             family = "Osorio",
+             role = c("aut", "cre"),
+             email = "felipe.osorios@usm.cl",
+             comment = c(ORCID = "0000-0002-4675-5201")),
+      person(given = "Alonso",
+             family = "Ogueda",
+             role = "aut",
+             email = "alonso.ogueda@gmail.com"))
+Description: Fast computation of some matrices useful in statistics and operations
+  involving the duplication (until now) matrix.
+Author: Felipe Osorio [aut, cre] (<https://orcid.org/0000-0002-4675-5201>),
+  Alonso Ogueda [aut]
+Maintainer: Felipe Osorio <felipe.osorios@usm.cl>
+Depends: R (>= 2.10)
+Imports: stats, graphics
+License: GPL-3
+URL: https://faosorios.github.io/fastmatrix/
+LazyLoad: yes
