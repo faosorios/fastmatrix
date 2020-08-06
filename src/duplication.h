@@ -8,5 +8,6 @@
 extern void duplication_mat(int *, int *, int *, int *);
 extern void dupl_left_mult(double *, int *, int *, int *, int *, int *, double *, int *);
 extern void dupl_left_trans(double *, int *, int *, int *, int *, int *, int *, double *, int *);
+extern void dupl_right_trans(double *, int *, int *, int *, int *, int *, double *, int *);
 
 #endif /* FASTMAT_DUPLICATION_H */

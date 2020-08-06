@@ -46,11 +46,55 @@ dupl_left_trans(double *a, int *lda, int *arow, int *acol, int *col, int *n, int
         b[i + j * *ldb] = a[pos1 + j * *lda];
         k++;
       } else {
-        pos1 = col[k] - 1; /* index correction */
+        pos1 = col[k] - 1;     /* index correction */
         pos2 = col[k + 1] - 1; /* index correction */
         b[i + j * *ldb] = a[pos1 + j * *lda] + a[pos2 + j * *lda];
         k += 2;
       }
+    }
+  }
+}
+
+void
+dupl_right_mult(double *a, int *lda, int *arow, int *acol, int *col, int *n, int *counts, double *b, int *ldb)
+{
+  int nrow = SQR(*n), ncol = *n * (*n + 1) / 2, pos1, pos2, k;
+
+  if (*acol != nrow)
+    return;
+
+  k = 0;
+  for (int j = 0; j < ncol; j++) {
+    if (counts[j] < 2) {
+      pos1 = col[k] - 1; /* index correction */
+      k++;
+    } else {
+      pos1 = col[k] - 1;     /* index correction */
+      pos2 = col[k + 1] - 1; /* index correction */
+      k += 2;
+    }
+    for (int i = 0; i < *arow; i++) {
+      if (counts[j] < 2)
+        b[i + j * *ldb] = a[i + pos1 * *lda];
+      else
+        b[i + j * *ldb] = a[i + pos1 * *lda] + a[i + pos2 * *lda];
+    }
+  }
+}
+
+void
+dupl_right_trans(double *a, int *lda, int *arow, int *acol, int *col, int *n, double *b, int *ldb)
+{
+
+  int nrow = *n * (*n + 1) / 2, ncol = SQR(*n), pos;
+
+  if (*acol != nrow)
+    return;
+
+  for (int j = 0; j < ncol; j++) {
+    pos = col[j] - 1; /* index correction */
+    for (int i = 0; i < *arow; i++) {
+      b[i + j * *ldb] = a[i + pos * *lda];
     }
   }
 }
