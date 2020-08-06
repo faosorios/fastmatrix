@@ -93,9 +93,45 @@ dupl.prod <- function(n = 1, x, transposed = FALSE, side = "left")
          },
          "right" = {
            if (transposed) {
-             z <- NULL
+             rows <- n * (n + 1) / 2
+             cols <- n^2
+             if (xcol != rows)
+               stop("incompatible dimensions.")
+             y <- matrix(0, nrow = xrow, ncol = cols)
+             storage.mode(y) <- "double"
+             col <- dupl.info(n)$col
+             z <- .C("dupl_right_trans",
+                     x = x,
+                     ldx  = as.integer(xrow),
+                     xrow = as.integer(xrow),
+                     xcol = as.integer(xcol),
+                     col  = as.integer(col),
+                     order = as.integer(n),
+                     y = y,
+                     ldy  = as.integer(xrow))$y
+              z
            } else {
-             z <- NULL
+             rows <- n^2
+             cols <- n * (n + 1) / 2
+             if (xcol != rows)
+               stop("incompatible dimensions.")
+             y <- matrix(0, nrow = xrow, ncol = cols)
+             storage.mode(y) <- "double"
+             col <- dupl.info(n)$col
+             counts <- table(col)
+             oc <- order(col)
+             col <- seq(n^2)[oc]
+             z <- .C("dupl_right_mult",
+                     x = x,
+                     ldx  = as.integer(xrow),
+                     xrow = as.integer(xrow),
+                     xcol = as.integer(xcol),
+                     col  = as.integer(col),
+                     order = as.integer(n),
+                     counts = as.integer(counts),
+                     y = y,
+                     ldy  = as.integer(xrow))$y
+              z
            }
          })
   z
