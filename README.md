@@ -28,7 +28,7 @@ R package version 0.2. URL: [faosorios.github.io/fastmatrix](https://faosorios.g
 
 Felipe Osorio is an Assistant Professor at [Department of Mathematics](http://www.mat.utfsm.cl/), [Universidad Tecnica Federico Santa Maria](http://www.usm.cl/), Chile.
 * Webpage: [fosorios.mat.utfsm.cl](http://fosorios.mat.utfsm.cl/)
-* Email: [felipe.osorios AT usm.cl](mailto:felipe.osorios@usm.cl)
+* Email: [felipe.osorios [AT] usm.cl](mailto:felipe.osorios@usm.cl)
 
 Alonso Ogueda is a student of the Master of Mathematics offered by the [Department of Mathematics](http://www.mat.utfsm.cl/), [Universidad Tecnica Federico Santa Maria](http://www.usm.cl/), Chile.
 * Github: [github.com/aoguedao](https://github.com/aoguedao)
