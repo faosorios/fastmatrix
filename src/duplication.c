@@ -16,7 +16,7 @@ duplication_mat(int *x, int *ldx, int *n, int *col)
 
 void
 dupl_left_mult(double *a, int *lda, int *arow, int *acol, int *col, int *n, double *b, int *ldb)
-{
+{ /* computes: B <- Dn %*% A */
   int nrow = SQR(*n), ncol = *n * (*n + 1) / 2, pos;
 
   if (*arow != ncol)
@@ -32,7 +32,7 @@ dupl_left_mult(double *a, int *lda, int *arow, int *acol, int *col, int *n, doub
 
 void
 dupl_left_trans(double *a, int *lda, int *arow, int *acol, int *col, int *n, int *counts, double *b, int *ldb)
-{
+{ /* computes: B <- t(Dn) %*% A */
   int nrow = *n * (*n + 1) / 2, ncol = SQR(*n), pos1, pos2, k;
 
   if (*arow != ncol)
@@ -57,7 +57,7 @@ dupl_left_trans(double *a, int *lda, int *arow, int *acol, int *col, int *n, int
 
 void
 dupl_right_mult(double *a, int *lda, int *arow, int *acol, int *col, int *n, int *counts, double *b, int *ldb)
-{
+{ /* computes: B <- A %*% Dn */
   int nrow = SQR(*n), ncol = *n * (*n + 1) / 2, pos1, pos2, k;
 
   if (*acol != nrow)
@@ -84,8 +84,7 @@ dupl_right_mult(double *a, int *lda, int *arow, int *acol, int *col, int *n, int
 
 void
 dupl_right_trans(double *a, int *lda, int *arow, int *acol, int *col, int *n, double *b, int *ldb)
-{
-
+{ /* computes: B <- A %*% t(Dn) */
   int nrow = *n * (*n + 1) / 2, ncol = SQR(*n), pos;
 
   if (*acol != nrow)

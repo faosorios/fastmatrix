@@ -5,7 +5,7 @@
 
 void
 dupl_cols(int *order, int *cols)
-{
+{ /* compact information to build a duplication matrix */
   int n = *order, k = 0;
 
   for (int i = 0; i < n; i++) {
