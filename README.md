@@ -19,4 +19,18 @@ Our plan in the near future is the implementation of functions to handle:
 
 Please report any bugs/suggestions/improvements to [Felipe Osorio](mailto:felipe.osorios [AT] usm.cl), [Universidad Tecnica Federico Santa Maria](http://www.usm.cl). If you find these routines useful or not then please let me know. Also, acknowledgement of the use of the routines is appreciated.
 
+### To cite the fastmatrix package in publications use:
+
+Osorio, F., Ogueda, A. (2020). fastmatrix: Fast computation of some matrices useful in statistics. R package version 0.2.\
+URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
+
+## About the Authors
+
+Felipe Osorio is an Assistant Professor at [Department of Mathematics](http://www.mat.utfsm.cl/), [Universidad Tecnica Federico Santa Maria](http://www.usm.cl/), Chile.
+* Webpage: [fosorios.mat.utfsm.cl](http://fosorios.mat.utfsm.cl/)
+* Email: [felipe.osorios AT usm.cl](mailto:felipe.osorios [AT] usm.cl)
+
+Alonso Ogueda is a student of the Master of Mathematics offered by the [Department of Mathematics](http://www.mat.utfsm.cl/), [Universidad Tecnica Federico Santa Maria](http://www.usm.cl/), Chile.
+* Github: [github.com/aoguedao](https://github.com/aoguedao)
+
 
