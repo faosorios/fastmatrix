@@ -21,7 +21,7 @@ Please report any bugs/suggestions/improvements to [Felipe Osorio](mailto:felipe
 
 ### To cite the fastmatrix package in publications use:
 
-Osorio, F., Ogueda, A. (2020). fastmatrix: Fast computation of some matrices useful in statistics.\ 
+Osorio, F., Ogueda, A. (2020). fastmatrix: Fast computation of some matrices useful in statistics./ 
 R package version 0.2. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
 
 ## About the Authors
