@@ -1,3 +1,5 @@
+/* $ID: init.c, last updated 2020-08-10, F.Osorio */
+
 #include <R_ext/Rdynload.h>
 #include "duplication.h"
 #include "matrix.h"
@@ -18,6 +20,7 @@ static const R_CMethodDef CEntries[]  = {
 
 static const R_FortranMethodDef FortEntries[] = {
   {"hadamard",          (DL_FUNC) &F77_NAME(hadamard),  4},
+  {"sweepop",           (DL_FUNC) &F77_NAME(sweepop),   7},
   {"vech",              (DL_FUNC) &F77_NAME(vech),      4},
   {NULL, NULL, 0}
 };

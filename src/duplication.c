@@ -1,4 +1,4 @@
-/* $ID: duplication.c, last updated 2020-08-03, F.Osorio */
+/* $ID: duplication.c, last updated 2020-08-10, F.Osorio */
 
 #include "base.h"
 #include "duplication.h"
@@ -33,7 +33,7 @@ dupl_left_mult(double *a, int *lda, int *arow, int *acol, int *col, int *n, doub
 void
 dupl_left_trans(double *a, int *lda, int *arow, int *acol, int *col, int *n, int *counts, double *b, int *ldb)
 { /* computes: B <- t(Dn) %*% A */
-  int nrow = *n * (*n + 1) / 2, ncol = SQR(*n), pos1, pos2, k;
+  int nrow = *n * (*n + 1) / 2, ncol = SQR(*n), pos1 = 0, pos2 = 0, k;
 
   if (*arow != ncol)
     return;
@@ -58,7 +58,7 @@ dupl_left_trans(double *a, int *lda, int *arow, int *acol, int *col, int *n, int
 void
 dupl_right_mult(double *a, int *lda, int *arow, int *acol, int *col, int *n, int *counts, double *b, int *ldb)
 { /* computes: B <- A %*% Dn */
-  int nrow = SQR(*n), ncol = *n * (*n + 1) / 2, pos1, pos2, k;
+  int nrow = SQR(*n), ncol = *n * (*n + 1) / 2, pos1 = 0, pos2 = 0, k;
 
   if (*acol != nrow)
     return;
