@@ -56,7 +56,7 @@ c             lda is the leading dimension of the array a. lda >= max(1,p).
 c     p       (input) INTEGER
 c             p is the order of the matrix. k > 0.
 c     k       (input) INTEGER
-c             k element of the diagonal wich will be sweeped, k > 0.
+c             k element of the diagonal which will be sweeped, k > 0.
 c     work    (workspace) DOUBLE PRECISION array, dimension (p)
 c             working array.
 c     reverse (input) INTEGER
