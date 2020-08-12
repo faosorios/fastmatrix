@@ -1,4 +1,4 @@
-/* $ID: matrix.c, last updated 2020-08-08, F.Osorio */
+/* $ID: matrix.h, last updated 2020-08-08, F.Osorio */
 
 #ifndef FASTMAT_MATRIX_H
 #define FASTMAT_MATRIX_H
