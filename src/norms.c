@@ -18,10 +18,7 @@ norm_two(double *x, int *inc, int *n, double *value)
 void
 norm_inf(double *x, int *inc, int *n, double *value)
 { /* infinity norm */
-  int index;
-
-  index  = F77_CALL(idamax)(n, x, inc);
-  *value = fabs(x[index--]);
+  *value = F77_CALL(dnrminf)(n, x, inc);
 }
 
 void

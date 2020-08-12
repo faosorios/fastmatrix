@@ -38,7 +38,26 @@ c
      *  + dabs(x(i + 2))**p + dabs(x(i + 3))**p + dabs(x(i + 4))**p
      *  + dabs(x(i + 5))**p + dabs(x(i + 6))**p + dabs(x(i + 7))**p
       end do
-   22 minkowski = accum
+   22 minkowski = accum**(1.0 / p)
+c
+      return
+      END
+
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+      DOUBLE PRECISION FUNCTION dnrminf(n, x, inc)
+      INTEGER          n, inc
+      DOUBLE PRECISION x(*)
+c
+c     computes the infinity-norm of x
+c
+c     .. BLAS functions ..
+      INTEGER idamax
+c
+      INTEGER idx
+c
+      dnrminf = 0.0d0
+      idx = idamax(n, x, inc)
+      dnrminf = dabs(x(idx))
 c
       return
       END
