@@ -1,37 +1,6 @@
 c ID: matrix_norms.f, last updated 2020-08-11, F.Osorio
 
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-      SUBROUTINE frobenius_norm(a, lda, n, p, value)
-      INTEGER          lda, n, p
-      DOUBLE PRECISION a(lda,*), value
-c
-c     computes Frobenius norm of matrix 'a'
-c
-c     .. parameters ..
-      INTEGER          ONE
-      PARAMETER       (ONE = 1)
-c     .. BLAS functions ..
-      DOUBLE PRECISION dnrm2
-c     .. local scalars ..
-      INTEGER          j
-      DOUBLE PRECISION accum
-c
-      value = 0.0d0
-      accum = 0.0d0
-c
-      if (n .LE. 0) return
-      if (p .LE. 0) return
-      if (lda .LT. max(1,n)) return
-c
-      do j = 1, p
-        accum = accum + dnrm2(n, a(1,j), ONE)
-      end do
-      value = accum
-c
-      return
-      END
-
-cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       SUBROUTINE maxcol_norm(a, lda, n, p, value)
       INTEGER          lda, n, p
       DOUBLE PRECISION a(lda,*), value

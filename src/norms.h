@@ -13,7 +13,6 @@ extern void norm_minkowski(double *, int *, int *, double *, double *);
 extern double F77_NAME(minkowski)(int *, double *, int *, double *);
 
 /* matrix norms */
-extern void F77_NAME(frobenius_norm)(double *, int *, int *, int *, double *);
 extern void F77_NAME(maxcol_norm)(double *, int *, int *, int *, double *);
 extern void F77_NAME(maxrow_norm)(double *, int *, int *, int *, double *);
 
