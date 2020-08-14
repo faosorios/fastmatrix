@@ -1,5 +1,8 @@
 # Fast computation of some matrices useful in statistics
 
+[![CRAN status](http://www.r-pkg.org/badges/version/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
+
 Yet another R package for matrices. It contains a small set of functions to fast computation of some matrices and operations useful in statistics.
 
 ## Features
@@ -14,6 +17,29 @@ Our plan in the near future is the implementation of functions to handle:
 * Intern products and norms for matrices.
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
 * Some special matrices arising in numerical analysis.
+
+## Resources
+
+Latest binaries and sources for **fastmatrix** are availables from [CRAN package repository](https://cran.r-project.org/package=fastmatrix)
+
+* [fastmatrix_0.2.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.2.tar.gz) - Package sources
+* [fastmatrix_0.2.zip]() - Windows binaries (R-release)
+* [fastmatrix_0.2.tgz]() - Mac OS binaries (R-release)
+* [fastmatrix.pdf](https://cran.r-project.org/web/packages/fastmatrix/fastmatrix.pdf) - Reference Manual
+
+## Installation instructions
+
+To install this package, start R and enter:
+```
+install.packages("fastmatrix")
+```
+
+Alternatively, you can download the source as a tarball or as a zip file. Unpack this file (thereby creating a directory named, fastmatrix) and install the package source by executing (at the console prompt)
+```
+R CMD INSTALL fastmatrix
+```
+
+Next, you can load the package by using the command: `library(fastmatrix)`
 
 ## Providing Feedback
 
