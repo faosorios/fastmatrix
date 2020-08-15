@@ -16,6 +16,7 @@ static const R_CMethodDef CEntries[]  = {
   {"duplication_mat",   (DL_FUNC) &duplication_mat,     4},
   {"hadamard_prod",     (DL_FUNC) &hadamard_prod,       4},
   {"mat2vech",          (DL_FUNC) &mat2vech,            4},
+  {"matrix_norm",       (DL_FUNC) &matrix_norm,         6},
   {"norm_one",          (DL_FUNC) &norm_one,            4},
   {"norm_two",          (DL_FUNC) &norm_two,            4},
   {"norm_inf",          (DL_FUNC) &norm_inf,            4},
