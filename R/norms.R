@@ -9,13 +9,23 @@ matrix.norm <- function(x, type = "Frobenius")
   if (!is.numeric(x))
     stop("argument x is not a numeric matrix.")
 
-  job <- switch(type, "Frobenius" = "F",
-                      "1"         = "1",
-                      "inf"       = "I",
-                      "maximum"   = "M")
+  job <- switch(type,
+                "inf"       = 0,
+                "1"         = 1,
+                "Frobenius" = 2,
+                "maximum"   = 3,
+                stop("type not implemented."))
 
+  dx <- dim(x)
   storage.mode(x) <- "double"
-  z <- norm(x, type = job)
+
+  z <- .C("matrix_norm",
+          x = x,
+          ldx  = as.integer(dx[1]),
+          nrow = as.integer(dx[1]),
+          ncol = as.integer(dx[2]),
+          job  = as.integer(job),
+          val  = as.double(0))$val
   z
 }
 
