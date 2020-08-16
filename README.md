@@ -10,12 +10,12 @@ Yet another R package for matrices. It contains a small set of functions to fast
 Currently we have implemented the following functions:
 * Operations envolving the duplication matrix, with minimum requeriments of storage.
 * Fast computation of Hadamard product using unrolled loops.
+* Intern products and norms for matrices.
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
 * vec and vech operators to handle rectangular and square matrices.
 
 Our plan in the near future is the implementation of functions to handle:
 * Commutation, elimination and symmetrizer matrices.
-* Intern products and norms for matrices.
 * Some special matrices arising in numerical analysis.
 
 ## Resources
