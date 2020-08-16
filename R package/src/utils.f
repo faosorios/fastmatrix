@@ -1,4 +1,35 @@
-c ID: utils.f, last updated 2020-08-10, F.Osorio
+c ID: utils.f, last updated 2020-08-16, F.Osorio
+
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+      SUBROUTINE inner_frobenius(a, lda, b, ldb, n, p, value)
+      INTEGER          lda, ldb, n, p
+      DOUBLE PRECISION a(lda,*), b(ldb,*), value
+c
+c     computes the Frobenius inner product
+c
+c     .. parameters ..
+      INTEGER          ONE
+      PARAMETER       (ONE = 1)
+c     .. BLAS functions ..
+      DOUBLE PRECISION ddot
+c     .. local scalars ..
+      INTEGER          j
+      DOUBLE PRECISION temp
+c
+      value = 0.0d0
+c
+      if (n .LE. 0) return
+      if (p .LE. 0) return
+      if (lda .LT. max(1,n)) return
+      if (ldb .LT. max(1,n)) return
+c
+      do j = 1, p
+        temp  = ddot(n, a(1,j), ONE, b(1,j), ONE)
+        value = value + temp
+      end do
+c
+      return
+      END
 
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       SUBROUTINE hadamard(x, y, n, prod)

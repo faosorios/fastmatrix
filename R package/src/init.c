@@ -1,4 +1,4 @@
-/* $ID: init.c, last updated 2020-08-10, F.Osorio */
+/* $ID: init.c, last updated 2020-08-16, F.Osorio */
 
 #include <R_ext/Rdynload.h>
 #include "array.h"
