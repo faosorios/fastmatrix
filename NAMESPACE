@@ -1,5 +1,5 @@
 useDynLib(fastmatrix, .registration = TRUE)
 
 ## our exports:
-export(dupl.cross, dupl.info, dupl.prod, duplication, hadamard, matrix.norm,
-       minkowski, sweep.operator, vec, vech)
+export(array.mult, braket.prod, dupl.cross, dupl.info, dupl.prod, duplication,
+       hadamard, matrix.norm, minkowski, sweep.operator, vec, vech)
