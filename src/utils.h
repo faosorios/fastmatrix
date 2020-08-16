@@ -1,4 +1,4 @@
-/* $ID: utils.c, last updated 2020-08-10, F.Osorio */
+/* $ID: utils.h, last updated 2020-08-10, F.Osorio */
 
 #ifndef FASTMAT_UTILS_H
 #define FASTMAT_UTILS_H

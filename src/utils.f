@@ -79,7 +79,7 @@ c
       if (info .NE. 0) return
 c
       if (a(k,k) .EQ. 0.d0) then
-        info = 4
+        info = -4
         return
       end if
 c

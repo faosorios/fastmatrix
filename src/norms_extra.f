@@ -52,7 +52,7 @@ c     computes the infinity-norm of x
 c
 c     .. BLAS functions ..
       INTEGER idamax
-c
+c     .. local scalars ..
       INTEGER idx
 c
       dnrminf = 0.0d0
