@@ -1,4 +1,4 @@
-## ID: norms.R, last updated 2020-08-07, F.Osorio
+## ID: norms.R, last updated 2020-08-16, F.Osorio
 
 matrix.norm <- function(x, type = "Frobenius")
 { ## Computes a matrix norm
@@ -26,6 +26,45 @@ matrix.norm <- function(x, type = "Frobenius")
           ncol = as.integer(dx[2]),
           job  = as.integer(job),
           val  = as.double(0))$val
+  z
+}
+
+matrix.inner <- function(x, y)
+{ ## Computes the Frobenius inner product
+  if (is.data.frame(x))
+    x <- as.matrix(x)
+  if (!is.matrix(x))
+    stop("supply a matrix-like 'x'.")
+  if (!is.numeric(x))
+    stop("argument x is not a numeric matrix.")
+  if (is.vector(x))
+    x <- as.matrix(x)
+
+  if (is.data.frame(y))
+    y <- as.matrix(y)
+  if (!is.matrix(y))
+    stop("supply a matrix-like 'x'.")
+  if (!is.numeric(y))
+    stop("argument y is not a numeric matrix.")
+  if (is.vector(y))
+    y <- as.matrix(y)
+
+  dx <- dim(x)
+  dy <- dim(y)
+  if (!all(dx == dy))
+    stop( "arguments x and y do not have the same order.")
+
+  storage.mode(x) <- "double"
+  storage.mode(y) <- "double"
+
+  z <- .Fortran("inner_frobenius",
+                x = x,
+                ldx  = as.integer(dx[1]),
+                y = y,
+                ldy  = as.integer(dy[1]),
+                nrow = as.integer(dy[1]),
+                ncol = as.integer(dy[2]),
+                val  = as.double(0))$val
   z
 }
 
