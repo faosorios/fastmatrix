@@ -1,6 +1,6 @@
 ## ID: norms.R, last updated 2020-08-16, F.Osorio
 
-matrix.norm <- function(x, type = "Frobenius")
+matrix.norm <- function(x, type = "Frobenius", maxiter = 50, tol = 1e-10)
 { ## Computes a matrix norm
   if (is.data.frame(x))
     x <- as.matrix(x)
@@ -14,18 +14,42 @@ matrix.norm <- function(x, type = "Frobenius")
                 "1"         = 1,
                 "Frobenius" = 2,
                 "maximum"   = 3,
+                "spectral"  = 4,
                 stop("type not implemented."))
 
   dx <- dim(x)
+  n <- dx[1]
+  p <- dx[2]
   storage.mode(x) <- "double"
 
-  z <- .C("matrix_norm",
-          x = x,
-          ldx  = as.integer(dx[1]),
-          nrow = as.integer(dx[1]),
-          ncol = as.integer(dx[2]),
-          job  = as.integer(job),
-          val  = as.double(0))$val
+  if (job != 4) {
+    z <- .C("matrix_norm",
+            x = x,
+            ldx  = as.integer(n),
+            nrow = as.integer(n),
+            ncol = as.integer(p),
+            job  = as.integer(job),
+            val  = as.double(0))$val
+  } else {
+    # this option is not fast..
+    x <- crossprod(x)
+    storage.mode(x) <- "double"
+    n <- p <- nrow(x)
+    y <- rep(1, p)
+    z <- .C("power_method",
+            x = x,
+            ldx  = as.integer(n),
+            nrow = as.integer(n),
+            ncol = as.integer(p),
+            y = as.double(y),
+            lambda = as.double(0),
+            maxiter = as.integer(maxiter),
+            tol = as.double(tol),
+            iterations = as.integer(0))[c("lambda", "iterations")]
+    iter <- z$iterations
+    z <- sqrt(z$lambda)
+    attr(z, 'iterations') <- iter
+  }
   z
 }
 
