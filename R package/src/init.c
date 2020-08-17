@@ -21,6 +21,7 @@ static const R_CMethodDef CEntries[]  = {
   {"norm_two",          (DL_FUNC) &norm_two,                     4},
   {"norm_inf",          (DL_FUNC) &norm_inf,                     4},
   {"norm_minkowski",    (DL_FUNC) &norm_minkowski,               5},
+  {"power_method",      (DL_FUNC) &power_method,                 9},
   {NULL, NULL, 0}
 };
 
