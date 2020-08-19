@@ -7,12 +7,15 @@ Yet another R package for matrices. It contains a small set of functions to fast
 
 ## Features
 
-Currently we have implemented the following functions:
+Initial release (2020-08-14) of **fastmatrix** package have implemented the following functions:
 * Operations envolving the duplication matrix, with minimum requeriments of storage.
 * Fast computation of Hadamard product using unrolled loops.
+* vec and vech operators to handle rectangular and square matrices.
+
+Currently we are working in the implementation of the following procedures:
 * Intern products and norms for matrices.
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
-* vec and vech operators to handle rectangular and square matrices.
+* Sweep operator for symmetric matrices.
 
 Our plan in the near future is the implementation of functions to handle:
 * Commutation, elimination and symmetrizer matrices.
