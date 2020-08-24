@@ -1,6 +1,6 @@
 ## ID: norms.R, last updated 2020-08-16, F.Osorio
 
-matrix.norm <- function(x, type = "Frobenius", maxiter = 50, tol = 1e-10)
+matrix.norm <- function(x, type = "Frobenius")
 { ## Computes a matrix norm
   if (is.data.frame(x))
     x <- as.matrix(x)
@@ -14,7 +14,6 @@ matrix.norm <- function(x, type = "Frobenius", maxiter = 50, tol = 1e-10)
                 "1"         = 1,
                 "Frobenius" = 2,
                 "maximum"   = 3,
-                "spectral"  = 4,
                 stop("type not implemented."))
 
   dx <- dim(x)
@@ -22,38 +21,17 @@ matrix.norm <- function(x, type = "Frobenius", maxiter = 50, tol = 1e-10)
   p <- dx[2]
   storage.mode(x) <- "double"
 
-  if (job != 4) {
-    z <- .C("matrix_norm",
-            x = x,
-            ldx  = as.integer(n),
-            nrow = as.integer(n),
-            ncol = as.integer(p),
-            job  = as.integer(job),
-            val  = as.double(0))$val
-  } else {
-    # this option is not fast..
-    x <- crossprod(x)
-    storage.mode(x) <- "double"
-    n <- p <- nrow(x)
-    y <- rep(1, p)
-    z <- .C("power_method",
-            x = x,
-            ldx  = as.integer(n),
-            nrow = as.integer(n),
-            ncol = as.integer(p),
-            y = as.double(y),
-            lambda = as.double(0),
-            maxiter = as.integer(maxiter),
-            tol = as.double(tol),
-            iterations = as.integer(0))[c("lambda", "iterations")]
-    iter <- z$iterations
-    z <- sqrt(z$lambda)
-    attr(z, 'iterations') <- iter
-  }
+  z <- .C("matrix_norm",
+          x = x,
+          ldx  = as.integer(n),
+          nrow = as.integer(n),
+          ncol = as.integer(p),
+          job  = as.integer(job),
+          val  = as.double(0))$val
   z
 }
 
-matrix.inner <- function(x, y)
+matrix.inner <- function(x, y = x)
 { ## Computes the Frobenius inner product
   if (is.data.frame(x))
     x <- as.matrix(x)
