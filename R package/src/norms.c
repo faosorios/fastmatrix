@@ -1,4 +1,4 @@
-/* $ID: matrix.c, last updated 2020-08-08, F.Osorio */
+/* $ID: matrix.c, last updated 2020-08-12, F.Osorio */
 
 #include "base.h"
 #include "norms.h"

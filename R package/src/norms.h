@@ -12,7 +12,7 @@ extern void norm_inf(double *, int *, int *, double *);
 extern void norm_minkowski(double *, int *, int *, double *, double *);
 extern void matrix_norm(double *, int *, int *, int *, int *, double *);
 
-/* to be called for C wrappers */
+/* to be called by C wrappers */
 extern double F77_NAME(minkowski)(int *, double *, int *, double *);
 extern double F77_NAME(dnrminf)(int *, double *, int *);
 

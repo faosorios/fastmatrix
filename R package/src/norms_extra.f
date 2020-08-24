@@ -1,18 +1,22 @@
-c ID: norms_extra.f, last updated 2020-08-11, F.Osorio
+c ID: norms_extra.f, last updated 2020-08-12, F.Osorio
 
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       DOUBLE PRECISION FUNCTION minkowski(n, x, inc, p)
       INTEGER          n, inc
       DOUBLE PRECISION x(*), p
 c
-c     computes the p-norm of x using an unrolled loop
+c     computes the p-norm of vector 'x' using an unrolled loop
 c
       DOUBLE PRECISION accum
       INTEGER i, m, mp1, ninc
 c
       minkowski = 0.0d0
-      accum = 0.0d0
+c
+c     quick return if possible
+c
       if ((n .LE. 0) .OR. (inc .LE. 0)) return
+c
+      accum = 0.0d0
       if (inc .EQ. 1) goto 20
 c
 c     code for increment not equal to 1

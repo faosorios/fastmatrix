@@ -6,34 +6,67 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       INTEGER          lda, r, p, ldb, q, s, ldx, n, ldy, info
       DOUBLE PRECISION a(lda,*), b(ldb,*), x(ldx,p,*), y(ldy,r,*)
 c
+c     array multiplication: y = a * x * b, with x a 3D array
+c
+c     parameters:
+c     a       (input) DOUBLE PRECISION array, dimension (lda, p)
+c             a rectangular matrix.
+c     lda     (input) INTEGER
+c             lda is the leading dimension of the array a. lda >= max(1,r).
+c     r       (input) INTEGER
+c             the number of rows of the matrix a. r > 0.
+c     p       (input) INTEGER
+c             the number of columns of the matrix a. p > 0.
+c     b       (input) DOUBLE PRECISION array, dimension (lda, p)
+c             a rectangular matrix.
+c     ldb     (input) INTEGER
+c             ldb is the leading dimension of the array b. ldb >= max(1,q).
+c     q       (input) INTEGER
+c             the number of rows of the matrix b. q > 0.
+c     s       (input) INTEGER
+c             the number of columns of the matrix b. s > 0.
+c     x       (input) DOUBLE PRECISION array, dimension (ldx, p, q)
+c             an 3D array.
+c     ldx     (input) INTEGER
+c             ldx is the leading dimension of array x. ldx >= max(1,n).
+c     n       (input) INTEGER
+c             the number of 'faces' of array x. n > 0.
+c     y       (output) DOUBLE PRECISION array, dimension (ldy, r, s)
+c             an 3D array.
+c     ldy     (input) INTEGER
+c             ldy is the leading dimension of array y. ldy >= max(1,n).
+c     info    (output) INTEGER
+c             = 0: successful exit
+c             < 0: if info = -i, the i-th argument had an illegal value
+c
 c     .. local scalars ..
       INTEGER          i, j, k, l, t
       DOUBLE PRECISION accum, temp
 c     .. parameters ..
       DOUBLE PRECISION ZERO
       PARAMETER       (ZERO = 0.0d0)
-c     ..
-c     .. executable statements ..
 c
 c     test the input parameters
 c
       info = 0
       if (r .LT. 0) then
-        info = 3
+        info = -3
       else if (p .LT. 0) then
-        info = 4
+        info = -4
       else if (q .LT. 0) then
-        info = 7
+        info = -7
       else if (s .LT. 0) then
-        info = 8
+        info = -8
+      else if (n .LT. 0) then
+        info = -11
       else if (lda .LT. max(1, r)) then
-        info = 2
+        info = -2
       else if (ldb .LT. max(1, q)) then
-        info = 6
+        info = -6
       else if (ldx .LT. max(1, n)) then
-        info = 10
+        info = -10
       else if (ldy .LT. max(1, n)) then
-        info = 13
+        info = -13
       end if
       if (info .NE. 0) return
 c
@@ -60,9 +93,6 @@ c
       end do
 c
       return
-c
-c     end of arraymult
-c
       END
 
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
@@ -70,32 +100,57 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       INTEGER          lda, m, n, ldx, p, q, ldy, info
       DOUBLE PRECISION a(lda,*), x(ldx,p,*), y(ldy,p,*)
 c
+c     bracket product: y = [a][x], with x a 3D array
+c
+c     parameters:
+c     a       (input) DOUBLE PRECISION array, dimension (lda, n)
+c             a rectangular matrix.
+c     lda     (input) INTEGER
+c             lda is the leading dimension of the array a. lda >= max(1,m).
+c     m       (input) INTEGER
+c             the number of rows of the matrix a. m > 0.
+c     n       (input) INTEGER
+c             the number of columns of the matrix a. n > 0.
+c     x       (input) DOUBLE PRECISION array, dimension (ldx, p, q)
+c             an 3D array.
+c     ldx     (input) INTEGER
+c             ldx is the leading dimension of array x. ldx >= max(1,n).
+c     p       (input) INTEGER
+c             the number of 'rows' of array x. p > 0.
+c     q       (input) INTEGER
+c             the number of 'columns' of array x. q > 0.
+c     y       (output) DOUBLE PRECISION array, dimension (ldy, p, q)
+c             an 3D array.
+c     ldy     (input) INTEGER
+c             ldy is the leading dimension of array y. ldy >= max(1,m).
+c     info    (output) INTEGER
+c             = 0: successful exit
+c             < 0: if info = -i, the i-th argument had an illegal value
+c
 c     .. local scalars ..
       INTEGER          i, j, k, t
       DOUBLE PRECISION accum
 c     .. parameters ..
       DOUBLE PRECISION ZERO
       PARAMETER       (ZERO = 0.0d0)
-c     ..
-c     .. executable statements ..
 c
 c     test the input parameters
 c
       info = 0
       if (m .LT. 0) then
-        info = 3
+        info = -3
       else if (n .LT. 0) then
-        info = 4
+        info = -4
       else if (p .LT. 0) then
-        info = 7
+        info = -7
       else if (q .LT. 0) then
-        info = 8
+        info = -8
       else if (lda .LT. max(1, m)) then
-        info = 2
+        info = -2
       else if (ldx .LT. max(1, n)) then
-        info = 6
+        info = -6
       else if (ldy .LT. max(1, m)) then
-        info = 10
+        info = -10
       end if
       if (info .NE. 0) return
 c
@@ -119,7 +174,4 @@ c
       end do
 c
       return
-c
-c     end of bracketprod
-c
       END
