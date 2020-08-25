@@ -31,6 +31,8 @@ array.mult <- function(a, b, x)
   bcol <- db[2]
 
   dx <- dim(x)
+  if (length(dx) != 3)
+    stop("argument x is not a 3D array")
   m <- dx[1]
   n <- dx[2]
   p <- dx[3]
@@ -68,7 +70,7 @@ array.mult <- function(a, b, x)
   z$y
 }
 
-braket.prod <- function(a, x)
+bracket.prod <- function(a, x)
 { ## returns the bracket product between matrix 'a' and array 'x'
   if (is.data.frame(a))
     a <- as.matrix(a)
@@ -87,6 +89,8 @@ braket.prod <- function(a, x)
   acol <- da[2]
 
   dx <- dim(x)
+  if (length(dx) != 3)
+    stop("argument x is not a 3D array")
   m <- dx[1]
   n <- dx[2]
   p <- dx[3]

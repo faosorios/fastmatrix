@@ -1,7 +1,7 @@
 ## ID: sherman_morrison.R, last updated 2020-08-23, F.Osorio
 
 sherman.morrison <- function(a, b, d = b, inverted = FALSE)
-{ ## Sherman–Morrison rank-1 update
+{ ## Sherman–Morrison formula
   if (is.data.frame(a))
     a <- as.matrix(a)
   if (!is.matrix(a))

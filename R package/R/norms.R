@@ -10,7 +10,7 @@ matrix.norm <- function(x, type = "Frobenius")
     stop("argument x is not a numeric matrix.")
 
   job <- switch(type,
-                "inf"       = 0,
+                "Inf"       = 0,
                 "1"         = 1,
                 "Frobenius" = 2,
                 "maximum"   = 3,
@@ -32,7 +32,7 @@ matrix.norm <- function(x, type = "Frobenius")
 }
 
 matrix.inner <- function(x, y = x)
-{ ## Computes the Frobenius inner product
+{ ## Computes the inner product between x and y
   if (is.data.frame(x))
     x <- as.matrix(x)
   if (!is.matrix(x))

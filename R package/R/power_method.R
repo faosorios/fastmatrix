@@ -1,6 +1,6 @@
 ## ID: power_method.R, last updated 2020-08-22, F.Osorio
 
-power.method <- function(x, only.value = FALSE, maxiter = 50, tol = 1e-8)
+power.method <- function(x, only.value = FALSE, maxiter = 100, tol = 1e-8)
 { ## power method to approximate dominant eigenvalue and eigenvector
   if (is.data.frame(x))
     x <- as.matrix(x)
@@ -14,14 +14,14 @@ power.method <- function(x, only.value = FALSE, maxiter = 50, tol = 1e-8)
   p <- dx[2]
   if (n != p)
     stop("argument x is not a square matrix")
+  if (!isSymmetric(x))
+    stop("only implemented for symmetric matrices.")
+
   storage.mode(x) <- "double"
 
   # initial estimate of 1st eigenvector
   vector <- double(p)
   vector[1] <- 1.0
-
-  if (p > 250)
-    maxiter <- maxiter * p / 100
 
   z <- .C("power_method",
           x = x,
