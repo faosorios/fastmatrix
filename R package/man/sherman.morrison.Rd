@@ -1,6 +1,6 @@
 \name{sherman.morrison}
 \alias{sherman.morrison}
-\title{Sherman–Morrison formula}
+\title{Sherman-Morrison formula}
 \description{
   The Sherman-Morrison formula gives a convenient expression for the inverse of the
   rank 1 update \eqn{({\bf{A}} + {\bf{bd}}^T)} where \eqn{{\bf{A}}} is a \eqn{n\times n}
