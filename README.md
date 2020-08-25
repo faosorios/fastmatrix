@@ -7,14 +7,16 @@ Yet another R package for matrices. It contains a small set of functions to fast
 
 ## Features
 
-Initial release (2020-08-14) of **fastmatrix** package have implemented the following functions:
+Initial release (August 14, 2020) of **fastmatrix** package have implemented the following functions:
 * Operations envolving the duplication matrix, with minimum requeriments of storage.
 * Fast computation of Hadamard product using unrolled loops.
 * vec and vech operators to handle rectangular and square matrices.
 
-Currently we are working in the implementation of the following procedures:
+The next release (planned for August 31, 2020) includes the following additions:
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
+* Column-equilibration to rectangular matrices.
 * Inner products and norms for matrices.
+* Lp norms for vectors.
 * Power method to compute the dominant eigenvalue and its associated eigenvector.
 * Sweep operator for symmetric matrices.
 * Sherman-Morrison formula.
