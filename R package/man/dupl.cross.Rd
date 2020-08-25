@@ -4,8 +4,8 @@
 \title{Matrix crossproduct envolving the duplication matrix}
 \description{
   Given the order of two duplication matrices and matrix \code{x}, this function performs
-  the operation: \code{y <- t(Dn) \%*\% x \%*\% Dk}, where \code{Dn} and \code{Dk} are
-  duplication matrices of order \eqn{n} and \eqn{k}, respectively.
+  the operation: \eqn{{\bf{Y}} = {\bf{D}}_n^T{\bf{X}}{\bf{D}}_k}, where \eqn{{\bf{D}}_n}
+  and \eqn{{\bf{D}}_k} are duplication matrices of order \eqn{n} and \eqn{k}, respectively.
 }
 \usage{
   dupl.cross(n = 1, k = n, x = NULL)
@@ -18,7 +18,7 @@
 }
 \details{
   This function calls \code{\link{dupl.prod}} to performs the matrix multiplications required
-  but without forming any duplication matrices.
+  but \bold{without forming} any duplication matrices.
 }
 \seealso{
   \code{\link{dupl.prod}}

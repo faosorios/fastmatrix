@@ -6,14 +6,14 @@
   Given the order of a duplication and matrix \code{x}, performs one of the matrix-matrix
   operations:
   \itemize{
-    \item \code{y <- D \%*\% x}, or
-    \item \code{y <- t(D) \%*\% x}, or
-    \item \code{y <- x \%*\% D}, or
-    \item \code{y <- x \%*\% t(D)},
+    \item \eqn{{\bf{Y}} = {\bf{DX}}}, or
+    \item \eqn{{\bf{Y}} = {\bf{D}}^T{\bf{X}}}, or
+    \item \eqn{{\bf{Y}} = {\bf{XD}}}, or
+    \item \eqn{{\bf{Y}} = {\bf{DX}}^T},
   }
-  where \code{D <- duplication(n, matrix = TRUE)} is the duplication matrix of order \eqn{n}.
-  The main aim of \code{dupl.prod} is to do this matrix multiplication \bold{without forming}
-  the duplication matrix.
+  where \eqn{{\bf{D}}} is the duplication matrix of order \eqn{n}. The main aim of
+  \code{dupl.prod} is to do this matrix multiplication \bold{without forming} the
+  duplication matrix.
 }
 \usage{
   dupl.prod(n = 1, x, transposed = FALSE, side = "left")

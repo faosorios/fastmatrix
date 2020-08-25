@@ -49,13 +49,14 @@ object.size(z) # 80.6 Kb of storage
 D100 <- duplication(n = 100, matrix = TRUE)
 object.size(D100) # 202 Mb of storage, do not request this matrix!
 
-D3 <- duplication(3, matrix = TRUE)
+# a small example
+D3 <- duplication(n = 3, matrix = TRUE)
 a <- matrix(c( 1, 2, 3,
                2, 3, 4,
                3, 4, 5), nrow = 3)
-upper <- a[upper.tri(a, diag = TRUE)]
+upper <- vech(a)
 v <- D3 \%*\% upper
-as.vector(v)
+all(vec(a) == as.vector(v)) # vectors are equal!
 }
 \keyword{array}
 \keyword{algebra}
