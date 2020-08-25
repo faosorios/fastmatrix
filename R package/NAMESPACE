@@ -1,6 +1,6 @@
 useDynLib(fastmatrix, .registration = TRUE)
 
 ## our exports:
-export(array.mult, braket.prod, dupl.cross, dupl.info, dupl.prod, duplication,
+export(array.mult, bracket.prod, dupl.cross, dupl.info, dupl.prod, duplication,
        equilibrate, hadamard, matrix.inner, matrix.norm, minkowski, power.method,
        sherman.morrison, sweep.operator, vec, vech)
