@@ -5,7 +5,7 @@
 
 void
 sherman_morrison(double *a, int *lda, int *n, double *b, double *d)
-{ /* Sherman–Morrison rank-1 update */
+{ /* Sherman–Morrison formula */
   char *notrans = "N", *trans = "T";
   int inc = 1, p = *n;
   double alpha = -1.0, dot, one = 1.0, zero = 0.0, *u = NULL, *v = NULL;
