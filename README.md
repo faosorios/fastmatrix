@@ -13,9 +13,11 @@ Initial release (2020-08-14) of **fastmatrix** package have implemented the foll
 * vec and vech operators to handle rectangular and square matrices.
 
 Currently we are working in the implementation of the following procedures:
-* Inner products and norms for matrices.
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
+* Inner products and norms for matrices.
+* Power method to compute the dominant eigenvalue and its associated eigenvector.
 * Sweep operator for symmetric matrices.
+* Sherman-Morrison formula.
 
 Our plan in the near future is the implementation of functions to handle:
 * Commutation, elimination and symmetrizer matrices.
