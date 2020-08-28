@@ -7,20 +7,18 @@ Yet another R package for matrices. It contains a small set of functions to fast
 
 ## Features
 
-Initial release (August 14, 2020) of **fastmatrix** package have implemented the following functions:
-* Operations envolving the duplication matrix, with minimum requeriments of storage.
-* Fast computation of Hadamard product using unrolled loops.
-* vec and vech operators to handle rectangular and square matrices.
-
-The next release (planned for August 31, 2020) includes the following additions:
+Latest release (August 28, 2020) of **fastmatrix** package have implemented the following functions:
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
-* Operations envolving the commutation matrix, with minimum requeriments of storage.
 * Column-equilibration to rectangular matrices.
+* Fast computation of Hadamard product using unrolled loops.
 * Inner products and norms for matrices.
 * Lp norms for vectors.
+* Operations envolving the commutation matrix, with minimum requeriments of storage.
+* Operations envolving the duplication matrix, with minimum requeriments of storage.
 * Power method to compute the dominant eigenvalue and its associated eigenvector.
-* Sweep operator for symmetric matrices.
 * Sherman-Morrison formula.
+* Sweep operator for symmetric matrices.
+* vec and vech operators to handle rectangular and square matrices.
 
 Our plan in the near future is the implementation of functions to handle:
 * Elimination and symmetrizer matrices.
@@ -30,12 +28,10 @@ Our plan in the near future is the implementation of functions to handle:
 
 Latest binaries and sources for **fastmatrix** are availables from [CRAN package repository](https://cran.r-project.org/package=fastmatrix)
 
-* [fastmatrix_0.2.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.2.tar.gz) - Package sources
+* [fastmatrix_0.2-3.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.2-3.tar.gz) - Package sources
 * [fastmatrix_0.2.zip](https://cran.r-project.org/bin/windows/contrib/4.0/fastmatrix_0.2.zip) - Windows binaries (R-release)
 * [fastmatrix_0.2.tgz](https://cran.r-project.org/bin/macosx/contrib/4.0/fastmatrix_0.2.tgz) - Mac OS binaries (R-release)
 * [fastmatrix.pdf](https://cran.r-project.org/web/packages/fastmatrix/fastmatrix.pdf) - Reference Manual
-
-Unpublished sources package of the next version is available: [fastmatrix_0.2-3.tar.gz](https://github.com/faosorios/fastmatrix/raw/master/fastmatrix_0.2-3.tar.gz)
 
 ## Installation instructions
 
@@ -58,7 +54,7 @@ Please report any bugs/suggestions/improvements to [Felipe Osorio](mailto:felipe
 ### To cite the fastmatrix package in publications use:
 
 Osorio, F., Ogueda, A. (2020). fastmatrix: Fast computation of some matrices useful in statistics. 
-R package version 0.2. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
+R package version 0.2-3. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
 
 ## About the Authors
 
