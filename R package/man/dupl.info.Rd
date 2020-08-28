@@ -28,8 +28,7 @@
   obtained using function \code{\link{duplication}}
 }
 \seealso{
-  \code{\link{duplication}}
-  \code{\link{dupl.prod}}
+  \code{\link{duplication}}, \code{\link{dupl.prod}}
 }
 \examples{
 z <- dupl.info(n = 3, condensed = FALSE)

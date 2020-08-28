@@ -1,6 +1,5 @@
 \name{dupl.prod}
 \alias{dupl.prod}
-
 \title{Matrix multiplication envolving the duplication matrix}
 \description{
   Given the order of a duplication and matrix \code{x}, performs one of the matrix-matrix
@@ -9,7 +8,7 @@
     \item \eqn{{\bf{Y}} = {\bf{DX}}}, or
     \item \eqn{{\bf{Y}} = {\bf{D}}^T{\bf{X}}}, or
     \item \eqn{{\bf{Y}} = {\bf{XD}}}, or
-    \item \eqn{{\bf{Y}} = {\bf{DX}}^T},
+    \item \eqn{{\bf{Y}} = {\bf{XD}}^T},
   }
   where \eqn{{\bf{D}}} is the duplication matrix of order \eqn{n}. The main aim of
   \code{dupl.prod} is to do this matrix multiplication \bold{without forming} the

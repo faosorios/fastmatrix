@@ -3,8 +3,8 @@
 
 \title{Duplication matrix}
 \description{
-  This function returns the duplication matrix of order \code{n} which transforms,
-  for a symmetric matrix \code{x}, \code{vech(x)} into \code{vec(x)}.
+  This function returns the duplication matrix of order \eqn{n} which transforms,
+  for a symmetric matrix \eqn{{\bf{A}}}, \code{vech}\eqn{({\bf{A}})} into \code{vec}\eqn{({\bf{A}})}.
 }
 \usage{
   duplication(n = 1, matrix = FALSE, condensed = FALSE)
@@ -25,14 +25,14 @@
   be small. This matrix can require a huge amount of storage.
 }
 \value{
-  Returns an \eqn{n^2} by \eqn{n(n + 1)/2} matrix.
+  Returns an \eqn{n^2} by \eqn{n(n + 1)/2} matrix (if requested).
 }
 \references{
-  Magnus, J.R., and Neudecker, H. (1980).
+  Magnus, J.R., Neudecker, H. (1980).
   The elimination matrix, some lemmas and applications.
   \emph{SIAM Journal on Algebraic Discrete Methods} \bold{1}, 422-449.
 
-  Magnus, J.R., and Neudecker, H. (2007).
+  Magnus, J.R., Neudecker, H. (2007).
   \emph{Matrix Differential Calculus with Applications in Statistics and Econometrics}, 3rd Edition.
   Wiley, New York.
 }
