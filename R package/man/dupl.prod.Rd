@@ -5,10 +5,10 @@
   Given the order of a duplication and matrix \code{x}, performs one of the matrix-matrix
   operations:
   \itemize{
-    \item \eqn{{\bf{Y}} = {\bf{DX}}}, or
-    \item \eqn{{\bf{Y}} = {\bf{D}}^T{\bf{X}}}, or
-    \item \eqn{{\bf{Y}} = {\bf{XD}}}, or
-    \item \eqn{{\bf{Y}} = {\bf{XD}}^T},
+    \item \eqn{{\bf{Y}} = {\bf{DX}}}, if \code{side = "left"} and \code{transposed = FALSE}, or
+    \item \eqn{{\bf{Y}} = {\bf{D}}^T{\bf{X}}}, if \code{side = "left"} and \code{transposed = TRUE}, or
+    \item \eqn{{\bf{Y}} = {\bf{XD}}}, if \code{side = "right"} and \code{transposed = FALSE}, or
+    \item \eqn{{\bf{Y}} = {\bf{XD}}^T}, if \code{side = "right"} and \code{transposed = TRUE},
   }
   where \eqn{{\bf{D}}} is the duplication matrix of order \eqn{n}. The main aim of
   \code{dupl.prod} is to do this matrix multiplication \bold{without forming} the

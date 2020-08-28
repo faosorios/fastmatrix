@@ -5,7 +5,7 @@
 \description{
   This function provides the minimum information required to create the commutation matrix.
 
-  The commutation matrix is a square matrix of order \eqn{p = mn} that, for an \eqn{m\times n}
+  The commutation matrix is a square matrix of order \eqn{mn} that, for an \eqn{m\times n}
   matrix \eqn{{\bf{A}}}, transform \code{vec}\eqn{({\bf{A}})} to \code{vec}\eqn{({\bf{A}}^T)}.
 }
 \usage{

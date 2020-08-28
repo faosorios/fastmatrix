@@ -5,12 +5,12 @@
   Given the row and column dimension of a commutation and matrix \code{x}, performs
   one of the matrix-matrix operations:
   \itemize{
-    \item \eqn{{\bf{Y}} = {\bf{KX}}}, or
-    \item \eqn{{\bf{Y}} = {\bf{K}}^T{\bf{X}}}, or
-    \item \eqn{{\bf{Y}} = {\bf{XK}}}, or
-    \item \eqn{{\bf{Y}} = {\bf{XK}}^T},
+    \item \eqn{{\bf{Y}} = {\bf{KX}}}, if \code{side = "left"} and \code{transposed = FALSE}, or
+    \item \eqn{{\bf{Y}} = {\bf{K}}^T{\bf{X}}}, if \code{side = "left"} and \code{transposed = TRUE}, or
+    \item \eqn{{\bf{Y}} = {\bf{XK}}}, if \code{side = "right"} and \code{transposed = FALSE}, or
+    \item \eqn{{\bf{Y}} = {\bf{XK}}^T}, if \code{side = "right"} and \code{transposed = TRUE},
   }
-  where \eqn{{\bf{K}}} is the duplication matrix of order \eqn{mn}. The main aim of
+  where \eqn{{\bf{K}}} is the commutation matrix of order \eqn{mn}. The main aim of
   \code{comm.prod} is to do this matrix multiplication \bold{without forming} the
   commutation matrix.
 }
