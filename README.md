@@ -14,6 +14,7 @@ Initial release (August 14, 2020) of **fastmatrix** package have implemented the
 
 The next release (planned for August 31, 2020) includes the following additions:
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
+* Operations envolving the commutation matrix, with minimum requeriments of storage.
 * Column-equilibration to rectangular matrices.
 * Inner products and norms for matrices.
 * Lp norms for vectors.
@@ -22,7 +23,7 @@ The next release (planned for August 31, 2020) includes the following additions:
 * Sherman-Morrison formula.
 
 Our plan in the near future is the implementation of functions to handle:
-* Commutation, elimination and symmetrizer matrices.
+* Elimination and symmetrizer matrices.
 * Some special matrices arising in numerical analysis.
 
 ## Resources
