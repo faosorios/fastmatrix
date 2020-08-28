@@ -2,6 +2,7 @@
 
 #include <R_ext/Rdynload.h>
 #include "array.h"
+#include "commutation.h"
 #include "duplication.h"
 #include "matrix.h"
 #include "norms.h"
@@ -33,6 +34,10 @@ static const R_CMethodDef CEntries[]  = {
 static const R_FortranMethodDef FortEntries[] = {
   {"arraymult",         (DL_FUNC) &F77_NAME(arraymult),         14},
   {"bracketprod",       (DL_FUNC) &F77_NAME(bracketprod),       11},
+  {"comm_rows",         (DL_FUNC) &F77_NAME(comm_rows),          3},
+  {"comm_left_mult",    (DL_FUNC) &F77_NAME(comm_left_mult),    10},
+  {"comm_right_mult",   (DL_FUNC) &F77_NAME(comm_right_mult),   10},
+  {"commutation_mat",   (DL_FUNC) &F77_NAME(commutation_mat),    6},
   {"hadamard",          (DL_FUNC) &F77_NAME(hadamard),           4},
   {"inner_frobenius",   (DL_FUNC) &F77_NAME(inner_frobenius),    7},
   {NULL, NULL, 0}
