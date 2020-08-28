@@ -1,5 +1,6 @@
 0.2-3 (Aug 31, 2020)
 	* Added functions for array multiplication and bracket product.
+	* Added functions to do operations envolving the commutation matrix.
 	* Functions for inner products and norms for matrices were included.
 	* Added 'minkowski' function to Lp-norm computation on vectors.
 	* Added function to do column-equilibration on rectangular matrices with the
