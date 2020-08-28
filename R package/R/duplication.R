@@ -60,7 +60,7 @@ dupl.prod <- function(n = 1, x = NULL, transposed = FALSE, side = "left")
 
   switch(side,
          "left" = {
-           if (transposed) { # y[,] <- t(Dn) %*% x
+           if (transposed) { # y[,] <- t(D) %*% x
              rows <- n * (n + 1) / 2
              cols <- n^2
              if (xrow != cols)
@@ -82,7 +82,7 @@ dupl.prod <- function(n = 1, x = NULL, transposed = FALSE, side = "left")
                      y = y,
                      ldy  = as.integer(rows))$y
               z
-           } else { # y[,] <- Dn %*% x
+           } else { # y[,] <- D %*% x
              rows <- n^2
              cols <- n * (n + 1) / 2
              if (xrow != cols)
@@ -103,7 +103,7 @@ dupl.prod <- function(n = 1, x = NULL, transposed = FALSE, side = "left")
            }
          },
          "right" = {
-           if (transposed) { # y[,] <- x %*% t(Dn)
+           if (transposed) { # y[,] <- x %*% t(D)
              rows <- n * (n + 1) / 2
              cols <- n^2
              if (xcol != rows)
@@ -121,7 +121,7 @@ dupl.prod <- function(n = 1, x = NULL, transposed = FALSE, side = "left")
                      y = y,
                      ldy  = as.integer(xrow))$y
               z
-           } else { # y[,] <- x %*% Dn
+           } else { # y[,] <- x %*% D
              rows <- n^2
              cols <- n * (n + 1) / 2
              if (xcol != rows)
