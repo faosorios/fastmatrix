@@ -12,7 +12,7 @@ Latest release (September 5, 2020) of **fastmatrix** package have implemented th
 * Column-equilibration to rectangular matrices.
 * Fast computation of Hadamard product using unrolled loops.
 * Inner products and norms for matrices.
-* Interface to C code callable by another C code from other packages.
+* Interface to C code callable by another C code from other R packages.
 * Lp norms for vectors.
 * Operations envolving the commutation matrix, with minimum requeriments of storage.
 * Operations envolving the duplication matrix, with minimum requeriments of storage.
