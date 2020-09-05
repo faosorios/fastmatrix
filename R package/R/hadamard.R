@@ -26,7 +26,7 @@ hadamard <- function(x, y = x)
     stop( "arguments x and y do not have the same order.")
 
   n <- prod(dx)
-  z <- .Fortran("hadamard",
+  z <- .Fortran("hadamard_prod",
                 x = as.double(x),
                 y = as.double(y),
                 n = as.integer(n),

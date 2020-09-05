@@ -14,14 +14,18 @@ equilibrate <- function(x, scale = TRUE)
   xcol <- dx[2]
   storage.mode(x) <- "double"
 
-  z <- .C("equilibrate",
-          x = x,
-          ldx  = as.integer(xrow),
-          nrow = as.integer(xrow),
-          ncol = as.integer(xcol),
-          scales = double(xcol),
-          condition = as.double(0),
-          job = as.integer(scale))[c("x","scales","condition")]
+  z <- .Fortran("equilibrate_cols",
+                x = x,
+                ldx = as.integer(xrow),
+                nrow = as.integer(xrow),
+                ncol = as.integer(xcol),
+                scales = double(xcol),
+                condition = as.double(0),
+                job = as.integer(scale),
+                info = as.integer(0))[c("x","scales","condition","info")]
+
+  if (z$info)
+    stop(paste("equilibrate_cols gave error code", z$info))
   attr(z$x, 'scales') <- z$scales
   attr(z$x, 'condition') <- z$condition
   z$x
