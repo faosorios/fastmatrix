@@ -7,11 +7,12 @@ Yet another R package for matrices. It contains a small set of functions to fast
 
 ## Features
 
-Latest release (August 28, 2020) of **fastmatrix** package have implemented the following functions:
+Latest release (September 5, 2020) of **fastmatrix** package have implemented the following functions:
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
 * Column-equilibration to rectangular matrices.
 * Fast computation of Hadamard product using unrolled loops.
 * Inner products and norms for matrices.
+* Interface to C code callable by another C code from other packages.
 * Lp norms for vectors.
 * Operations envolving the commutation matrix, with minimum requeriments of storage.
 * Operations envolving the duplication matrix, with minimum requeriments of storage.
@@ -28,7 +29,7 @@ Our plan in the near future is the implementation of functions to handle:
 
 Latest binaries and sources for **fastmatrix** are availables from [CRAN package repository](https://cran.r-project.org/package=fastmatrix)
 
-* [fastmatrix_0.2-3.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.2-3.tar.gz) - Package sources
+* [fastmatrix_0.2-35.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.2-35.tar.gz) - Package sources
 * [fastmatrix_0.2-3.zip](https://cran.r-project.org/bin/windows/contrib/4.0/fastmatrix_0.2-3.zip) - Windows binaries (R-release)
 * [fastmatrix_0.2-3.tgz](https://cran.r-project.org/bin/macosx/contrib/4.0/fastmatrix_0.2-3.tgz) - Mac OS binaries (R-release)
 * [fastmatrix.pdf](https://cran.r-project.org/web/packages/fastmatrix/fastmatrix.pdf) - Reference Manual
@@ -54,7 +55,7 @@ Please report any bugs/suggestions/improvements to [Felipe Osorio](mailto:felipe
 ### To cite the fastmatrix package in publications use:
 
 Osorio, F., Ogueda, A. (2020). fastmatrix: Fast computation of some matrices useful in statistics. 
-R package version 0.2-3. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
+R package version 0.2-35. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
 
 ## About the Authors
 
