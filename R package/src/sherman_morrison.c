@@ -1,27 +1,26 @@
-/* $ID: sherman_morrison.c, last updated 2020-08-23, F.Osorio */
+/* $ID: sherman_morrison.c, last updated 2020-09-04, F.Osorio */
 
-#include "base.h"
-#include "sherman_morrison.h"
+#include "fastmatrix.h"
 
 void
 sherman_morrison(double *a, int *lda, int *n, double *b, double *d)
 { /* Sherman–Morrison formula */
   char *notrans = "N", *trans = "T";
-  int inc = 1, p = *n;
-  double alpha = -1.0, dot, one = 1.0, zero = 0.0, *u = NULL, *v = NULL;
+  int p = *n;
+  double alpha = -1.0, dot, *u = NULL, *v = NULL;
 
   /* initializing */
   u = (double *) Calloc(p, double);
   v = (double *) Calloc(p, double);
 
   /* updating b and d */
-  F77_CALL(dgemv)(notrans, &p, &p, &one, a, lda, b, &inc, &zero, u, &inc);
-  dot = F77_CALL(ddot)(&p, d, &inc, u, &inc);
-  F77_CALL(dgemv)(trans, &p, &p, &one, a, lda, d, &inc, &zero, v, &inc);
+  BLAS2_gemv(1.0, a, *lda, p, p, notrans, b, 1, 0.0, u, 1);
+  dot = BLAS1_dot_product(d, 1, u, 1, p);
+  BLAS2_gemv(1.0, a, *lda, p, p, trans, d, 1, 0.0, v, 1);
 
   /* applying rank-1 update */
   alpha /= 1.0 + dot;
-  F77_CALL(dger)(&p, &p, &alpha, u, &inc, v, &inc, a, lda);
+  BLAS2_ger(alpha, a, *lda, p, p, u, 1, v, 1);
 
   Free(u); Free(v);
 }

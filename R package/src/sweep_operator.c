@@ -1,7 +1,6 @@
 /* $ID: sweep_operator.c, last updated 2020-08-21, F.Osorio */
 
-#include "base.h"
-#include "sweep_operator.h"
+#include "fastmatrix.h"
 
 void
 sweep_operator(double *a, int *lda, int *p, int *which, int *r, int *job)

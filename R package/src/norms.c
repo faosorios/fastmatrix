@@ -1,29 +1,32 @@
-/* $ID: matrix.c, last updated 2020-08-12, F.Osorio */
+/* $ID: norms.c, last updated 2020-08-31, F.Osorio */
 
-#include "base.h"
-#include "norms.h"
+#include "fastmatrix.h"
 
 void
 norm_one(double *x, int *inc, int *n, double *value)
 { /* absolute-value norm */
-  *value = F77_CALL(dasum)(n, x, inc);
+  *value = BLAS1_sum_abs(x, *inc, *n);
 }
 
 void
 norm_two(double *x, int *inc, int *n, double *value)
 { /* Euclidean norm */
-  *value = F77_CALL(dnrm2)(n, x, inc);
+  *value = BLAS1_norm_two(x, *inc, *n);
 }
 
 void
 norm_inf(double *x, int *inc, int *n, double *value)
 { /* infinity norm */
-  *value = F77_CALL(dnrminf)(n, x, inc);
+  int idx = 0;
+
+  idx = BLAS1_index_max(x, *inc, *n);
+  idx--; /* index correction */
+  *value = fabs(x[idx]);
 }
 
 void
 norm_minkowski(double *x, int *inc, int *n, double *p, double *value)
-{ /* Minkowski norm */
+{ /* Minkowski p-norm */
   *value = F77_CALL(minkowski)(n, x, inc, p);
 }
 

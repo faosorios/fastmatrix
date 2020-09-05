@@ -1,7 +1,6 @@
 /* $ID: duplication.c, last updated 2020-08-10, F.Osorio */
 
-#include "base.h"
-#include "duplication.h"
+#include "fastmatrix.h"
 
 void
 dupl_cols(int *order, int *cols)
@@ -29,7 +28,7 @@ duplication_mat(int *x, int *ldx, int *n, int *col)
 
 void
 dupl_left_mult(double *a, int *lda, int *arow, int *acol, int *col, int *n, double *b, int *ldb)
-{ /* computes: B <- Dn %*% A */
+{ /* computes: B <- D %*% A */
   int nrow = SQR(*n), ncol = *n * (*n + 1) / 2, pos;
 
   if (*arow != ncol)
@@ -45,7 +44,7 @@ dupl_left_mult(double *a, int *lda, int *arow, int *acol, int *col, int *n, doub
 
 void
 dupl_left_trans(double *a, int *lda, int *arow, int *acol, int *col, int *n, int *counts, double *b, int *ldb)
-{ /* computes: B <- t(Dn) %*% A */
+{ /* computes: B <- t(D) %*% A */
   int nrow = *n * (*n + 1) / 2, ncol = SQR(*n), pos1 = 0, pos2 = 0, k;
 
   if (*arow != ncol)
@@ -70,7 +69,7 @@ dupl_left_trans(double *a, int *lda, int *arow, int *acol, int *col, int *n, int
 
 void
 dupl_right_mult(double *a, int *lda, int *arow, int *acol, int *col, int *n, int *counts, double *b, int *ldb)
-{ /* computes: B <- A %*% Dn */
+{ /* computes: B <- A %*% D */
   int nrow = SQR(*n), ncol = *n * (*n + 1) / 2, pos1 = 0, pos2 = 0, k;
 
   if (*acol != nrow)
@@ -97,7 +96,7 @@ dupl_right_mult(double *a, int *lda, int *arow, int *acol, int *col, int *n, int
 
 void
 dupl_right_trans(double *a, int *lda, int *arow, int *acol, int *col, int *n, double *b, int *ldb)
-{ /* computes: B <- A %*% t(Dn) */
+{ /* computes: B <- A %*% t(D) */
   int nrow = *n * (*n + 1) / 2, ncol = SQR(*n), pos;
 
   if (*acol != nrow)
