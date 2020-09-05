@@ -1,4 +1,11 @@
-0.2-3 (Aug 31, 2020)
+0.2-35 (Sep 05, 2020)
+	* src/minkowski.f: An error was fixed in Fortran function underlying to Lp-norm
+	  (minkowski) for vectors with increments not equal to one.
+	* Clean-ups in C, R code and documentation.
+	* Minor issue in R_init_fastmatrix.c file was corrected.
+	* Interface to C code callable by another C code from other packages is provided.
+
+0.2-3 (Aug 28, 2020)
 	* Added functions for array multiplication and bracket product.
 	* Added functions to do operations envolving the commutation matrix.
 	* Functions for inner products and norms for matrices were included.
