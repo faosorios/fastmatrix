@@ -9,7 +9,7 @@ Yet another R package for matrices. It contains a small set of functions to fast
 
 Latest release (September 5, 2020) of **fastmatrix** package have implemented the following functions:
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
-* Column-equilibration to rectangular matrices.
+* Column-equilibration for rectangular matrices.
 * Fast computation of Hadamard product using unrolled loops.
 * Inner products and norms for matrices.
 * Interface to C code callable by another C code from other R packages.
