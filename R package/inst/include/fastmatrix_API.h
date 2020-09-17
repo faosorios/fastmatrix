@@ -20,7 +20,7 @@
 typedef int (*INT_FUNC)();      /* pointer to a function which returns an int */
 typedef double (*DBL_FUNC)();   /* pointer to a function which returns a double */
 
-/* External API */
+/* BLAS-1: external API */
 
 void BLAS1_axpy(double alpha, double *x, int incx, double *y, int incy, int n) {
   static void (*fun)() = NULL;
@@ -86,6 +86,8 @@ void BLAS1_swap(double *x, int incx, double *y, int incy, int n) {
   fun(x, incx, y, incy, n);
 }
 
+/* BLAS-2: external API */
+
 void BLAS2_gemv(double alpha, double *a, int lda, int nrow, int ncol, char *trans,
   double *x, int incx, double beta, double *y, int incy) {
   static void (*fun)() = NULL;
@@ -141,18 +143,80 @@ void BLAS2_syr2(double alpha, double *a, int lda, int n, char *uplo, double *x,
   fun(alpha, a, lda, n, uplo, x, incx, y, incy);
 }
 
-void center_and_Scatter(double *x, int n, int p, double *weights, double *center, double *Scatter) {
+/* BLAS-3: external API */
+
+void BLAS3_gemm(double alpha, double *a, int lda, double *b, int ldb, int m, int n, int k, char *transa, char *transb, double beta, double *y, int ldy) {
   static void (*fun)() = NULL;
   if (fun == NULL)
-    fun = (void (*)) R_GetCCallable("fastmatrix", "center_and_Scatter");
+    fun = (void (*)) R_GetCCallable("fastmatrix", "BLAS3_gemm");
+  fun(alpha, a, lda, b, ldb, m, n, k, transa, transb, beta, y, ldy);
+}
+
+void BLAS3_symm(double alpha, double *a, int lda, double *b, int ldb, int nrow, int ncol, char *side, char *uplo, double beta, double *y, int ldy) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "BLAS3_symm");
+  fun(alpha, a, lda, b, ldb, nrow, ncol, side, uplo, beta, y, ldy);
+}
+
+void BLAS3_syrk(double alpha, double *a, int lda, int n, int k, char *uplo, char *trans, double beta, double *y, int ldy) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "BLAS3_syrk");
+  fun(alpha, a, lda, n, k, uplo, trans, beta, y, ldy);
+}
+
+void BLAS3_trmm(double alpha, double *a, int lda, int nrow, int ncol, char *side, char *uplo, char *trans, char *diag, double *y, int ldy) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "BLAS3_trmm");
+  fun(alpha, a, lda, nrow, ncol, side, uplo, trans, diag, y, ldy);
+}
+
+void BLAS3_trsm(double alpha, double *a, int lda, int nrow, int ncol, char *side, char *uplo, char *trans, char *diag, double *y, int ldy) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "BLAS3_trsm");
+  fun(alpha, a, lda, nrow, ncol, side, uplo, trans, diag, y, ldy);
+}
+
+/* Descriptive statistics: external API */
+
+void FM_mean_and_var(double *x, int nobs, double *mean, double *var) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_mean_and_var");
+  fun(x, nobs, mean, var);
+}
+
+void FM_online_covariance(double *x, double *y, int nobs, double *xbar, double *ybar, double *xvar, double *yvar, double *cov) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_online_covariance");
+  fun(x, y, nobs, xbar, ybar, xvar, yvar, cov);
+}
+
+void FM_center_and_Scatter(double *x, int n, int p, double *weights, double *center, double *Scatter) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_center_and_Scatter");
   fun(x, n, p, weights, center, Scatter);
 }
 
-void MSSD(double *x, int n, int p, double *center, double *Scatter) {
+void FM_MSSD(double *x, int n, int p, double *center, double *Scatter) {
   static void (*fun)() = NULL;
   if (fun == NULL)
-    fun = (void (*)) R_GetCCallable("fastmatrix", "MSSD");
+    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_MSSD");
   fun(x, n, p, center, Scatter);
+}
+
+double FM_find_quantile(double *a, int n, int k) {
+  static DBL_FUNC fun = NULL;
+  if (fun == NULL) {
+    fun = (DBL_FUNC) R_GetCCallable("fastmatrix", "FM_find_quantile");
+    if (fun == NULL) Rf_error("cannot find function 'FM_find_quantile'");
+  }
+  return(fun(a, n, k));
 }
 
 #endif /* FASTMATRIX_API_H */
