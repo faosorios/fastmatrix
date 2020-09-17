@@ -16,13 +16,14 @@ Latest release (September 5, 2020) of **fastmatrix** package have implemented th
 * Lp norms for vectors.
 * Operations envolving the commutation matrix, with minimum requeriments of storage.
 * Operations envolving the duplication matrix, with minimum requeriments of storage.
+* Operations envolving the symmetrizer matrix, with minimum requeriments of storage.
 * Power method to compute the dominant eigenvalue and its associated eigenvector.
 * Sherman-Morrison formula.
 * Sweep operator for symmetric matrices.
 * vec and vech operators to handle rectangular and square matrices.
 
 Our plan in the near future is the implementation of functions to handle:
-* Elimination and symmetrizer matrices.
+* Elimination matrices.
 * Some special matrices arising in numerical analysis.
 
 ## Resources
