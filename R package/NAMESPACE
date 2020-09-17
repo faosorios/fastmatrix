@@ -1,7 +1,15 @@
 useDynLib(fastmatrix, .registration = TRUE)
 
-## our exports:
-export(array.mult, bracket.prod, comm.info, comm.prod, commutation, dupl.cross,
-       dupl.info, dupl.prod, duplication, equilibrate, hadamard, matrix.inner,
-       matrix.norm, minkowski, power.method, sherman.morrison, sweep.operator,
-       vec, vech)
+## Our exports:
+export(array.mult, bracket.prod, comm.info, comm.prod, commutation, constructX,
+       dupl.cross, dupl.info, dupl.prod, duplication, equilibrate, extractL,
+       extractU, hadamard, is.lu, lu, lu2inv, matrix.inner, matrix.norm, minkowski,
+       power.method, sherman.morrison, sweep.operator, symm.info, symm.prod,
+       symmetrizer, vec, vech)
+
+# Exported S3 methods
+export(lu.default, solve.lu)
+
+## Register S3 methods
+S3method(lu, default)
+S3method(solve, lu)

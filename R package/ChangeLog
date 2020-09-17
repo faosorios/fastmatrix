@@ -1,3 +1,9 @@
+0.2-357 (Sep 17, 2020)
+	* Added routines to support SpatialPack R package.
+	* Set of routines for LU factorization was added.
+	* Matrix inversion inside 'sherman.morrison' now use 'lu2inv' function.
+	* Added functions to do operations envolving the symmetrizer matrix.
+
 0.2-35 (Sep 05, 2020)
 	* src/minkowski.f: An error was fixed in Fortran function underlying to Lp-norm
 	  (minkowski) for vectors with increments not equal to one.
