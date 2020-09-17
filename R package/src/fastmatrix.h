@@ -43,6 +43,13 @@ void BLAS2_ger(double, double *, int, int, int, double *, int, double *, int);
 void BLAS2_syr(double, double *, int, int, char *, double *, int);
 void BLAS2_syr2(double, double *, int, int, char *, double *, int, double *, int);
 
+/* BLAS-3 wrappers */
+void BLAS3_gemm(double, double *, int, double *, int, int, int, int, char *, char *, double, double *, int);
+void BLAS3_symm(double, double *, int, double *, int, int, int, char *, char *, double, double *, int);
+void BLAS3_syrk(double, double *, int, int, int , char *, char *, double, double *, int);
+void BLAS3_trmm(double, double *, int, int, int, char *, char *, char *, char *, double *, int);
+void BLAS3_trsm(double, double *, int, int, int, char *, char *, char *, char *, double *, int);
+
 /* routines for operations on commutation matrices */
 void F77_NAME(comm_rows)(int *, int *, int *);
 void F77_NAME(commutation_mat)(int *, int *, int *, int *, int *, int *);
@@ -56,6 +63,10 @@ void dupl_left_mult(double *, int *, int *, int *, int *, int *, double *, int *
 void dupl_left_trans(double *, int *, int *, int *, int *, int *, int *, double *, int *);
 void dupl_right_mult(double *, int *, int *, int *, int *, int *, int *, double *, int *);
 void dupl_right_trans(double *, int *, int *, int *, int *, int *, double *, int *);
+
+/* routines for operations on symmetrizer matrices */
+void F77_NAME(symmetrizer_mat)(double *, int *, int *, int *, int *, double *, int *, int *);
+void symmetrizer_prod(double *, int *, int *, int *, double *, int *);
 
 /* basic matrix manipulations */
 void add_mat(double *, int, double, double *, int, int, int);
@@ -78,9 +89,17 @@ void power_method(double *, int *, int *, int *, double *, double *, int *, doub
 /* Sherman-Morrison formula */
 void sherman_morrison(double *, int *, int *, double *, double *);
 
-/* center and Scatter estimation */
-void center_and_Scatter(double *, int, int, double *, double *, double *);
-void MSSD(double *, int, int, double *, double *);
+/* matrix factorizations */
+void lu_decomp(double *, int *, int *, int *, int *);
+void lu_inverse(double *, int *, int *, int *);
+void lu_solve(double *, int *, int *, int *, double *, int *, int *);
+
+/* descriptive statistics */
+void FM_mean_and_var(double *, int, double *, double *);
+void FM_online_covariance(double *, double *, int, double *, double *, double *, double *, double *);
+void FM_center_and_Scatter(double *, int, int, double *, double *, double *);
+void FM_MSSD(double *, int, int, double *, double *);
+double FM_find_quantile(double *, int, int);
 
 /* sweep operator for symmetric matrices */
 void sweep_operator(double *, int *, int *, int *, int *, int *);
@@ -96,5 +115,6 @@ void F77_NAME(equilibrate_cols)(double *, int *, int *, int *, double *, double 
 void F77_NAME(hadamard_prod)(double *, double *, int *, double *);
 void F77_NAME(inner_frobenius)(double *, int *, double *, int *, int *, int *, double *);
 void mat2vech(double *, int *, int *, double *);
+void F77_NAME(pivot_mat)(double *, int *, int *, int *);
 
 #endif /* FASTMATRIX_H */

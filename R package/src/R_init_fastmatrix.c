@@ -3,42 +3,51 @@
 #include "fastmatrix.h"
 #include <R_ext/Rdynload.h>
 
+#define CALLDEF(name, nargs)  {#name, (DL_FUNC) &name, nargs}
+#define F77DEF(name, nargs)   {#name, (DL_FUNC) &F77_NAME(name), nargs}
+
 static const R_CMethodDef CEntries[]  = {
-  {"dupl_cols",         (DL_FUNC) &dupl_cols,                    2},
-  {"dupl_left_mult",    (DL_FUNC) &dupl_left_mult,               8},
-  {"dupl_left_trans",   (DL_FUNC) &dupl_left_trans,              9},
-  {"dupl_right_mult",   (DL_FUNC) &dupl_right_mult,              9},
-  {"dupl_right_trans",  (DL_FUNC) &dupl_right_trans,             8},
-  {"duplication_mat",   (DL_FUNC) &duplication_mat,              4},
-  {"mat2vech",          (DL_FUNC) &mat2vech,                     4},
-  {"matrix_norm",       (DL_FUNC) &matrix_norm,                  6},
-  {"norm_one",          (DL_FUNC) &norm_one,                     4},
-  {"norm_two",          (DL_FUNC) &norm_two,                     4},
-  {"norm_inf",          (DL_FUNC) &norm_inf,                     4},
-  {"norm_minkowski",    (DL_FUNC) &norm_minkowski,               5},
-  {"power_method",      (DL_FUNC) &power_method,                 9},
-  {"sherman_morrison",  (DL_FUNC) &sherman_morrison,             5},
-  {"sweep_operator",    (DL_FUNC) &sweep_operator,               6},
+  CALLDEF(dupl_cols,        2),
+  CALLDEF(dupl_left_mult,   8),
+  CALLDEF(dupl_left_trans,  9),
+  CALLDEF(dupl_right_mult,  9),
+  CALLDEF(dupl_right_trans, 8),
+  CALLDEF(duplication_mat,  4),
+  CALLDEF(lu_decomp,        5),
+  CALLDEF(lu_inverse,       4),
+  CALLDEF(lu_solve,         7),
+  CALLDEF(mat2vech,         4),
+  CALLDEF(matrix_norm,      6),
+  CALLDEF(norm_one,         4),
+  CALLDEF(norm_two,         4),
+  CALLDEF(norm_inf,         4),
+  CALLDEF(norm_minkowski,   5),
+  CALLDEF(power_method,     9),
+  CALLDEF(sherman_morrison, 5),
+  CALLDEF(sweep_operator,   6),
+  CALLDEF(symmetrizer_prod, 6),
   {NULL, NULL, 0}
 };
 
-static const R_FortranMethodDef FortEntries[] = {
-  {"arraymult",         (DL_FUNC) &F77_NAME(arraymult),         14},
-  {"bracketprod",       (DL_FUNC) &F77_NAME(bracketprod),       11},
-  {"comm_rows",         (DL_FUNC) &F77_NAME(comm_rows),          3},
-  {"comm_left_mult",    (DL_FUNC) &F77_NAME(comm_left_mult),    10},
-  {"comm_right_mult",   (DL_FUNC) &F77_NAME(comm_right_mult),   10},
-  {"commutation_mat",   (DL_FUNC) &F77_NAME(commutation_mat),    6},
-  {"equilibrate_cols",  (DL_FUNC) &F77_NAME(equilibrate_cols),   8},
-  {"hadamard_prod",     (DL_FUNC) &F77_NAME(hadamard_prod),      4},
-  {"inner_frobenius",   (DL_FUNC) &F77_NAME(inner_frobenius),    7},
+static const R_FortranMethodDef F77Entries[] = {
+  F77DEF(arraymult,         14),
+  F77DEF(bracketprod,       11),
+  F77DEF(comm_rows,          3),
+  F77DEF(comm_left_mult,    10),
+  F77DEF(comm_right_mult,   10),
+  F77DEF(commutation_mat,    6),
+  F77DEF(equilibrate_cols,   8),
+  F77DEF(hadamard_prod,      4),
+  F77DEF(inner_frobenius,    7),
+  F77DEF(pivot_mat,          4),
+  F77DEF(symmetrizer_mat,    8),
   {NULL, NULL, 0}
 };
 
 void R_init_fastmatrix(DllInfo *dll)
 {
   /* Register the internal routines. We have no .Call or .External calls */
-  R_registerRoutines(dll, CEntries, NULL, FortEntries, NULL);
+  R_registerRoutines(dll, CEntries, NULL, F77Entries, NULL);
   R_useDynamicSymbols(dll, FALSE);
 
   /* BLAS-1 wrappers callable from other packages */
@@ -60,7 +69,10 @@ void R_init_fastmatrix(DllInfo *dll)
   R_RegisterCCallable("fastmatrix", "BLAS2_syr",    (DL_FUNC) &BLAS2_syr);
   R_RegisterCCallable("fastmatrix", "BLAS2_syr2",   (DL_FUNC) &BLAS2_syr2);
 
-  /* C code callable from other packages */
-  R_RegisterCCallable("fastmatrix", "center_and_Scatter", (DL_FUNC) &center_and_Scatter);
-  R_RegisterCCallable("fastmatrix", "MSSD",               (DL_FUNC) &MSSD);
+  /* descriptive statistics code callable from other packages */
+  R_RegisterCCallable("fastmatrix", "FM_mean_and_var",       (DL_FUNC) &FM_mean_and_var);
+  R_RegisterCCallable("fastmatrix", "FM_online_covariance",  (DL_FUNC) &FM_online_covariance);
+  R_RegisterCCallable("fastmatrix", "FM_center_and_Scatter", (DL_FUNC) &FM_center_and_Scatter);
+  R_RegisterCCallable("fastmatrix", "FM_MSSD",               (DL_FUNC) &FM_MSSD);
+  R_RegisterCCallable("fastmatrix", "FM_find_quantile",      (DL_FUNC) &FM_find_quantile);
 }
