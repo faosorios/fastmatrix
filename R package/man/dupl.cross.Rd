@@ -4,11 +4,11 @@
 \title{Matrix crossproduct envolving the duplication matrix}
 \description{
   Given the order of two duplication matrices and matrix \code{x}, this function performs
-  the operation: \eqn{{\bf{Y}} = {\bf{D}}_n^T{\bf{X}}{\bf{D}}_k}, where \eqn{{\bf{D}}_n}
-  and \eqn{{\bf{D}}_k} are duplication matrices of order \eqn{n} and \eqn{k}, respectively.
+  the operation: \eqn{\bold{Y} = \bold{D}_n^T\bold{X}\bold{D}_k}, where \eqn{\bold{D}_n}
+  and \eqn{\bold{D}_k} are duplication matrices of order \eqn{n} and \eqn{k}, respectively.
 }
 \usage{
-  dupl.cross(n = 1, k = n, x = NULL)
+dupl.cross(n = 1, k = n, x = NULL)
 }
 \arguments{
   \item{n}{ order of the duplication matrix used pre-multiplying \code{x}.}

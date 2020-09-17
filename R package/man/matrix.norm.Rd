@@ -7,7 +7,7 @@
   (\code{"maximum"}) among elements of a matrix, as determined by the value of \code{type}.
 }
 \usage{
-  matrix.norm(x, type = "Frobenius")
+matrix.norm(x, type = "Frobenius")
 }
 \arguments{
   \item{x}{ a numeric matrix.}
@@ -24,7 +24,7 @@
 }}
 \details{
   As function \code{norm} in package \pkg{base}, method of \code{matrix.norm} calls
-  the LAPACK function \code{dlange}.
+  the LAPACK function \code{DLANGE}.
 
   Note that the 1-, Inf- and maximum norm is faster to calculate than the Frobenius one.
 }

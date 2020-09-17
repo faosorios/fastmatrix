@@ -6,7 +6,7 @@
   and \code{y}, that have the same dimensions.
 }
 \usage{
-  hadamard(x, y = x)
+hadamard(x, y = x)
 }
 \arguments{
   \item{x}{ a numeric matrix or vector.}

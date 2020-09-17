@@ -5,16 +5,16 @@
   Bracket product of a matrix and a 3-dimensional array.
 }
 \usage{
-  bracket.prod(a, x)
+bracket.prod(a, x)
 }
 \arguments{
   \item{a}{ a numeric matrix.}
   \item{x}{ a three-dimensional array.}
 }
 \details{
-  Let \eqn{{\bf{X}} = (x_{tij})} be a 3-dimensional \eqn{n\times p\times q} array and
-  \eqn{{\bf{A}}} an \eqn{m\times n} matrix, then \eqn{{\bf{Y}} = [{\bf{A}}][{\bf{X}}]}
-  is called the bracket product of \eqn{{\bf{A}}} and \eqn{{\bf{X}}}, that is an \eqn{m
+  Let \eqn{\bold{X} = (x_{tij})} be a 3-dimensional \eqn{n\times p\times q} array and
+  \eqn{\bold{A}} an \eqn{m\times n} matrix, then \eqn{\bold{Y} = [\bold{A}][\bold{X}]}
+  is called the bracket product of \eqn{\bold{A}} and \eqn{\bold{X}}, that is an \eqn{m
   \times p\times q} with elements
   \deqn{y_{tij} = \sum\limits_{k=1}^n a_{tk}x_{kij}}
 }

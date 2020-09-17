@@ -4,10 +4,10 @@
 \title{Duplication matrix}
 \description{
   This function returns the duplication matrix of order \eqn{n} which transforms,
-  for a symmetric matrix \eqn{{\bf{A}}}, \code{vech}\eqn{({\bf{A}})} into \code{vec}\eqn{({\bf{A}})}.
+  for a symmetric matrix \eqn{\bold{A}}, \code{vech}\eqn{(\bold{A})} into \code{vec}\eqn{(\bold{A})}.
 }
 \usage{
-  duplication(n = 1, matrix = FALSE, condensed = FALSE)
+duplication(n = 1, matrix = FALSE, condensed = FALSE)
 }
 \arguments{
   \item{n}{ order of the duplication matrix.}

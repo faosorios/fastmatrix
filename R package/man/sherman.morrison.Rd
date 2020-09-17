@@ -3,13 +3,13 @@
 \title{Sherman-Morrison formula}
 \description{
   The Sherman-Morrison formula gives a convenient expression for the inverse of the
-  rank 1 update \eqn{({\bf{A}} + {\bf{bd}}^T)} where \eqn{{\bf{A}}} is a \eqn{n\times n}
-  matrix and \eqn{{\bf{b}}}, \eqn{{\bf{d}}} are \eqn{n}-dimensional vectors. Thus
-  \deqn{({\bf{A}} + {\bf{bd}}^T)^{-1} = {\bf{A}}^{-1} - \frac{{\bf{A}}^{-1}{\bf{bd}}^T
-  {\bf{A}}^{-1}}{1 + {\bf{d}}^T{\bf{A}}^{-1}{\bf{b}}}.}
+  rank 1 update \eqn{(\bold{A} + \bold{bd}^T)} where \eqn{\bold{A}} is a \eqn{n\times n}
+  matrix and \eqn{\bold{b}}, \eqn{\bold{d}} are \eqn{n}-dimensional vectors. Thus
+  \deqn{(\bold{A} + \bold{bd}^T)^{-1} = \bold{A}^{-1} - \frac{\bold{A}^{-1}\bold{bd}^T
+  \bold{A}^{-1}}{1 + \bold{d}^T\bold{A}^{-1}\bold{b}}.}
 }
 \usage{
-  sherman.morrison(a, b, d = b, inverted = FALSE)
+sherman.morrison(a, b, d = b, inverted = FALSE)
 }
 \arguments{
   \item{a}{ a numeric matrix.}
@@ -18,8 +18,8 @@
   \item{inverted}{ logical. If \code{TRUE}, \code{a} is supposed to contain its \emph{inverse}.}
 }
 \details{
-  Method of \code{sherman.morrison} calls BLAS level 2 subroutines \code{dgemv} and
-  \code{dger} for computational efficiency.
+  Method of \code{sherman.morrison} calls BLAS level 2 subroutines \code{DGEMV} and
+  \code{DGER} for computational efficiency.
 }
 \value{
   a square matrix of the same order as \code{a}.

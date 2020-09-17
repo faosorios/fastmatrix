@@ -6,7 +6,7 @@
   eigenvector.
 }
 \usage{
-  power.method(x, only.value = FALSE, maxiter = 100, tol = 1e-8)
+power.method(x, only.value = FALSE, maxiter = 100, tol = 1e-8)
 }
 \arguments{
   \item{x}{ a symmetric matrix.}

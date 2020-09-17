@@ -3,11 +3,11 @@
 \title{Commutation matrix}
 \description{
   This function returns the commutation matrix of order \eqn{mn} which transforms,
-  for an \eqn{m\times n}  matrix \eqn{{\bf{A}}}, \code{vec}\eqn{({\bf{A}})} to
-  \code{vec}\eqn{({\bf{A}}^T)}.
+  for an \eqn{m\times n}  matrix \eqn{\bold{A}}, \code{vec}\eqn{(\bold{A})} to
+  \code{vec}\eqn{(\bold{A}^T)}.
 }
 \usage{
-  commutation(m = 1, n = m, matrix = FALSE, condensed = FALSE)
+commutation(m = 1, n = m, matrix = FALSE, condensed = FALSE)
 }
 \arguments{
   \item{m}{ a positive integer row dimension.}

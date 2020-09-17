@@ -5,7 +5,7 @@
   Computes the inner product between two rectangular matrices calling BLAS.
 }
 \usage{
-  matrix.inner(x, y = x)
+matrix.inner(x, y = x)
 }
 \arguments{
   \item{x}{ a numeric matrix.}

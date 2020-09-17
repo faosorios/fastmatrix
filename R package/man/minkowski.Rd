@@ -4,10 +4,10 @@
 \description{
   Computes a p-norm of vector \code{x} using BLAS.  The norm can be the one (\code{p = 1})
   norm, Euclidean (\code{p = 2}) norm, the infinity (\code{p = Inf}) norm. For other
-  values \code{p >= 1} the underlying Fortran code is based on ideas of BLAS Level 1.
+  values \code{p >= 1} the underlying \code{Fortran} code is based on ideas of BLAS Level 1.
 }
 \usage{
-  minkowski(x, p = 2)
+minkowski(x, p = 2)
 }
 \arguments{
   \item{x}{ a numeric vector.}
@@ -16,8 +16,8 @@
 }
 \details{
   Method of \code{minkowski} calls BLAS functions \code{dasum} (\code{p = 1}), \code{dnrm2}
-  (\code{p = 2}), \code{idamax} (\code{p = Inf}). For other values, a Fortran subroutine using
-  unrolled cycles is called.
+  (\code{p = 2}), \code{idamax} (\code{p = Inf}). For other values, a \code{Fortran} subroutine
+  using unrolled cycles is called.
 }
 \value{
   The vector p-norm, a non-negative number.

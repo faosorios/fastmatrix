@@ -6,7 +6,7 @@
   More extensions and technical details can be found in Wei (1998).
 }
 \usage{
-  array.mult(a, b, x)
+array.mult(a, b, x)
 }
 \arguments{
   \item{a}{ a numeric matrix.}
@@ -14,11 +14,11 @@
   \item{x}{ a three-dimensional array.}
 }
 \details{
-  Let \eqn{{\bf{X}} = (x_{tij})} be a 3-dimensional \eqn{n\times p\times q} where
+  Let \eqn{\bold{X} = (x_{tij})} be a 3-dimensional \eqn{n\times p\times q} where
   indices \eqn{t, i} and \eqn{j} indicate face, row and column, respectively. The
-  product \eqn{{\bf{Y}} = {\bf{AXB}}} is an \eqn{n\times r\times s} array, with
-  \eqn{{\bf{A}}} and \eqn{{\bf{B}}} are \eqn{r\times p} and \eqn{q\times s} matrices
-  respectively. The elements of \eqn{{\bf{Y}}} are defined as:
+  product \eqn{\bold{Y} = \bold{AXB}} is an \eqn{n\times r\times s} array, with
+  \eqn{\bold{A}} and \eqn{\bold{B}} are \eqn{r\times p} and \eqn{q\times s} matrices
+  respectively. The elements of \eqn{\bold{Y}} are defined as:
   \deqn{y_{tkl} = \sum\limits_{i=1}^p\sum\limits_{j=1}^q a_{ki}x_{tij}b_{jl}}
 }
 \value{

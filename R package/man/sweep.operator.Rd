@@ -6,7 +6,7 @@
   symmetric matrix.
 }
 \usage{
-  sweep.operator(x, k = 1, reverse = FALSE)
+sweep.operator(x, k = 1, reverse = FALSE)
 }
 \arguments{
   \item{x}{ a symmetric matrix.}

@@ -1,6 +1,6 @@
 \name{vec}
 \alias{vec}
-\title{vectorization of a matrix}
+\title{Vectorization of a matrix}
 \description{
   This function returns a vector obtained by stacking the columns of x
 }

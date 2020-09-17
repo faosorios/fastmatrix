@@ -6,10 +6,10 @@
   This function provides the minimum information required to create the commutation matrix.
 
   The commutation matrix is a square matrix of order \eqn{mn} that, for an \eqn{m\times n}
-  matrix \eqn{{\bf{A}}}, transform \code{vec}\eqn{({\bf{A}})} to \code{vec}\eqn{({\bf{A}}^T)}.
+  matrix \eqn{\bold{A}}, transform \code{vec}\eqn{(\bold{A}}) to \code{vec}\eqn{(\bold{A}^T)}.
 }
 \usage{
-  comm.info(m = 1, n = m, condensed = TRUE)
+comm.info(m = 1, n = m, condensed = TRUE)
 }
 \arguments{
   \item{m}{ a positive integer row dimension.}

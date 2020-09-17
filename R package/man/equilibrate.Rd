@@ -6,7 +6,7 @@
   scales the columns of a numeric matrix.
 }
 \usage{
-  equilibrate(x, scale = TRUE)
+equilibrate(x, scale = TRUE)
 }
 \arguments{
   \item{x}{ a numeric matrix.}

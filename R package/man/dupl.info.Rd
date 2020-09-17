@@ -6,7 +6,7 @@
   This function provides the minimum information required to create the duplication matrix.
 }
 \usage{
-  dupl.info(n = 1, condensed = TRUE)
+dupl.info(n = 1, condensed = TRUE)
 }
 \arguments{
   \item{n}{ order of the duplication matrix.}

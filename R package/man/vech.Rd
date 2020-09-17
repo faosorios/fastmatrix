@@ -1,6 +1,6 @@
 \name{vech}
 \alias{vech}
-\title{vectorization the lower triangular part of a square matrix}
+\title{Vectorization the lower triangular part of a square matrix}
 \description{
   This function returns a vector obtained by stacking the lower triangular part of a
   square matrix.
