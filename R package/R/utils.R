@@ -1,4 +1,4 @@
-## ID: utils.R, last updated 2020-08-10, F.Osorio
+## ID: utils.R, last updated 2020-09-15, F.Osorio
 
 vec <- function(x)
 { ## returns a vector obtained by stacking the columns of x

@@ -86,7 +86,7 @@ comm.prod <- function(m = 1, n = m, x = NULL, transposed = FALSE, side = "left")
                            xcol = as.integer(xcol),
                            y = y,
                            ldy  = as.integer(rows),
-                           info = as.integer(0))
+                           info = as.integer(0))[c("y","info")]
               if (z$info)
                 stop(paste("comm_left_mult gave error code", z$info))
               z <- z$y
@@ -109,7 +109,7 @@ comm.prod <- function(m = 1, n = m, x = NULL, transposed = FALSE, side = "left")
                            xcol = as.integer(xcol),
                            y = y,
                            ldy  = as.integer(rows),
-                           info = as.integer(0))
+                           info = as.integer(0))[c("y","info")]
               if (z$info)
                 stop(paste("comm_left_mult gave error code", z$info))
               z <- z$y
@@ -134,7 +134,7 @@ comm.prod <- function(m = 1, n = m, x = NULL, transposed = FALSE, side = "left")
                            xcol = as.integer(xcol),
                            y = y,
                            ldy  = as.integer(xrow),
-                           info = as.integer(0))
+                           info = as.integer(0))[c("y","info")]
               if (z$info)
                 stop(paste("comm_right_mult gave error code", z$info))
               z <- z$y
@@ -156,7 +156,7 @@ comm.prod <- function(m = 1, n = m, x = NULL, transposed = FALSE, side = "left")
                            xcol = as.integer(xcol),
                            y = y,
                            ldy  = as.integer(xrow),
-                           info = as.integer(0))
+                           info = as.integer(0))[c("y","info")]
               if (z$info)
                 stop(paste("comm_right_mult gave error code", z$info))
               z <- z$y

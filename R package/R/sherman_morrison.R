@@ -1,4 +1,4 @@
-## ID: sherman_morrison.R, last updated 2020-08-23, F.Osorio
+## ID: sherman_morrison.R, last updated 2020-09-15, F.Osorio
 
 sherman.morrison <- function(a, b, d = b, inverted = FALSE)
 { ## Sherman-Morrison formula
@@ -15,7 +15,8 @@ sherman.morrison <- function(a, b, d = b, inverted = FALSE)
   if (n != p)
     stop("argument x is not a square matrix")
   if (!inverted) {
-    a <- solve(a)
+    z <- lu(a)
+    a <- lu2inv(z)
   }
   storage.mode(a) <- "double"
 
