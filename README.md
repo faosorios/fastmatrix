@@ -7,7 +7,7 @@ Yet another R package for matrices. It contains a small set of functions to fast
 
 ## Features
 
-Latest release (September 5, 2020) of **fastmatrix** package have implemented the following functions:
+Latest release (September 18, 2020) of **fastmatrix** package have implemented the following functions:
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
 * Column-equilibration for rectangular matrices.
 * Fast computation of Hadamard product using unrolled loops.
@@ -18,19 +18,20 @@ Latest release (September 5, 2020) of **fastmatrix** package have implemented th
 * Operations envolving the duplication matrix, with minimum requeriments of storage.
 * Operations envolving the symmetrizer matrix, with minimum requeriments of storage.
 * Power method to compute the dominant eigenvalue and its associated eigenvector.
+* Procedures for the LU factorization of square matrices.
 * Sherman-Morrison formula.
 * Sweep operator for symmetric matrices.
 * vec and vech operators to handle rectangular and square matrices.
 
 Our plan in the near future is the implementation of functions to handle:
 * Elimination matrices.
-* Some special matrices arising in numerical analysis.
+* Some special matrices and operations arising in numerical analysis.
 
 ## Resources
 
 Latest binaries and sources for **fastmatrix** are availables from [CRAN package repository](https://cran.r-project.org/package=fastmatrix)
 
-* [fastmatrix_0.2-35.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.2-35.tar.gz) - Package sources
+* [fastmatrix_0.2-357.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.2-357.tar.gz) - Package sources
 * [fastmatrix_0.2-35.zip](https://cran.r-project.org/bin/windows/contrib/4.0/fastmatrix_0.2-35.zip) - Windows binaries (R-release)
 * [fastmatrix_0.2-35.tgz](https://cran.r-project.org/bin/macosx/contrib/4.0/fastmatrix_0.2-35.tgz) - Mac OS binaries (R-release)
 * [fastmatrix.pdf](https://cran.r-project.org/web/packages/fastmatrix/fastmatrix.pdf) - Reference Manual
