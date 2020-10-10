@@ -9,7 +9,10 @@ Yet another R package for matrices. It contains a small set of functions to fast
 
 Latest release (September 18, 2020) of **fastmatrix** package have implemented the following functions:
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
+* C version of the Kronecker product which is slightly faster than the built in R base.
 * Column-equilibration for rectangular matrices.
+* Covariance matrix estimation using the Mean Square Successive (MSSD) method.
+* Estimation of the weighted mean and covariance matrix using an online algorithm (Clarke, 1971).
 * Fast computation of Hadamard product using unrolled loops.
 * Inner products and norms for matrices.
 * Interface to C code callable by another C code from other R packages.
@@ -17,6 +20,7 @@ Latest release (September 18, 2020) of **fastmatrix** package have implemented t
 * Operations envolving the commutation matrix, with minimum requeriments of storage.
 * Operations envolving the duplication matrix, with minimum requeriments of storage.
 * Operations envolving the symmetrizer matrix, with minimum requeriments of storage.
+* Ordinary least-squares (OLS) using several methods: Cholesky, QR decomposition, singular value decomposition, and the Sweep operator. This provides an alternative to extend the procedures available in OLS.
 * Power method to compute the dominant eigenvalue and its associated eigenvector.
 * Procedures for the LU factorization of square matrices.
 * Sherman-Morrison formula.
@@ -31,7 +35,7 @@ Our plan in the near future is the implementation of functions to handle:
 
 Latest binaries and sources for **fastmatrix** are availables from [CRAN package repository](https://cran.r-project.org/package=fastmatrix)
 
-* [fastmatrix_0.2-357.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.2-357.tar.gz) - Package sources
+* [fastmatrix_0.2-3571.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.2-3571.tar.gz) - Package sources
 * [fastmatrix_0.2-357.zip](https://cran.r-project.org/bin/windows/contrib/4.0/fastmatrix_0.2-357.zip) - Windows binaries (R-release)
 * [fastmatrix_0.2-357.tgz](https://cran.r-project.org/bin/macosx/contrib/4.0/fastmatrix_0.2-357.tgz) - Mac OS binaries (R-release)
 * [fastmatrix.pdf](https://cran.r-project.org/web/packages/fastmatrix/fastmatrix.pdf) - Reference Manual
@@ -57,7 +61,7 @@ Please report any bugs/suggestions/improvements to [Felipe Osorio](mailto:felipe
 ### To cite the fastmatrix package in publications use:
 
 Osorio, F., Ogueda, A. (2020). fastmatrix: Fast computation of some matrices useful in statistics. 
-R package version 0.2-357. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
+R package version 0.2-3571. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
 
 ## About the Authors
 
