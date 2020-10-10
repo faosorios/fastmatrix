@@ -1,11 +1,17 @@
 useDynLib(fastmatrix, .registration = TRUE)
 
+## from "stats" package:
+importFrom("stats",
+           .getXlevels, coef, logLik, model.matrix, model.response, pt, quantile,
+           var)
+
 ## Our exports:
 export(array.mult, bracket.prod, comm.info, comm.prod, commutation, constructX,
-       dupl.cross, dupl.info, dupl.prod, duplication, equilibrate, extractL,
-       extractU, hadamard, is.lu, lu, lu2inv, matrix.inner, matrix.norm, minkowski,
-       power.method, sherman.morrison, sweep.operator, symm.info, symm.prod,
-       symmetrizer, vec, vech)
+       cov.MSSD, cov.weighted, dupl.cross, dupl.info, dupl.prod, duplication,
+       equilibrate, extractL, extractU, hadamard, is.lu, kronecker.prod, lu,
+       lu2inv, matrix.inner, matrix.norm, minkowski, ols, ols.fit, ols.fit.chol,
+       ols.fit.qr, ols.fit.svd, ols.fit.sweep, power.method, sherman.morrison,
+       sweep.operator, symm.info, symm.prod, symmetrizer, vec, vech)
 
 # Exported S3 methods
 export(lu.default, solve.lu)
@@ -13,3 +19,8 @@ export(lu.default, solve.lu)
 ## Register S3 methods
 S3method(lu, default)
 S3method(solve, lu)
+S3method(deviance, ols)
+S3method(logLik, ols)
+S3method(print, ols)
+S3method(print, summary.ols)
+S3method(summary, ols)

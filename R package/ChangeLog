@@ -1,3 +1,16 @@
+0.2-3571 (Oct 10, 2020)
+  * Added routines for ordinary least-squares (OLS) using several methods: Cholesky
+	  (chol), QR decomposition (qr), singular value decomposition (svd), and the
+		Sweep operator (sweep). This provides an alternative to extend the procedures
+		available in OLS.
+	* Routine for estimation of the covariance matrix using the Mean Square Successive
+	  Method (MSSD) was included.
+	* Added routine to estimation of the weighted mean and covariance matrix.
+	* Wrapper to a C version of the Kronecker product.
+	* Several new addtions to the Interface to C code callable by another packages.
+	* Underlying code to estimation of the covariance matrix were slightly recrafted
+	  to avoid data movement.
+
 0.2-357 (Sep 17, 2020)
 	* Added routines to support SpatialPack R package.
 	* Set of routines for LU factorization was added.
