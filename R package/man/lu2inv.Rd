@@ -20,7 +20,7 @@ lu2inv(x)
 }
 \source{
   This is an interface to the LAPACK routine \code{DGETRI}. LAPACK is from
-  \url{http://www.netlib.org/lapack} and its guide is listed in the references.
+  \url{http://www.netlib.org/lapack/} and its guide is listed in the references.
 }
 \references{
   Anderson. E., Bai, Z., Bischof, C., Blackford, S., Demmel, J., Dongarra, J.,
