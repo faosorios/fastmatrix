@@ -3,7 +3,7 @@
 #include "fastmatrix.h"
 
 void
-lu_decomp(double *a, int *lda, int *n, int *p, int *pivot)
+lu_dcmp(double *a, int *lda, int *n, int *p, int *pivot)
 { /* LU factorization of a real square matrix,
    * matrix 'a' is overwritten with the result */
   int info = 0;

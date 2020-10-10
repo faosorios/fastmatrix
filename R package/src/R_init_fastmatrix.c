@@ -7,13 +7,17 @@
 #define F77DEF(name, nargs)   {#name, (DL_FUNC) &F77_NAME(name), nargs}
 
 static const R_CMethodDef CEntries[]  = {
+  CALLDEF(chol_dcmp,        5),
+  CALLDEF(cov_MSSD,         5),
+  CALLDEF(cov_weighted,     6),
   CALLDEF(dupl_cols,        2),
   CALLDEF(dupl_left_mult,   8),
   CALLDEF(dupl_left_trans,  9),
   CALLDEF(dupl_right_mult,  9),
   CALLDEF(dupl_right_trans, 8),
   CALLDEF(duplication_mat,  4),
-  CALLDEF(lu_decomp,        5),
+  CALLDEF(kronecker_prod,   7),
+  CALLDEF(lu_dcmp,          5),
   CALLDEF(lu_inverse,       4),
   CALLDEF(lu_solve,         7),
   CALLDEF(mat2vech,         4),
@@ -22,8 +26,10 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(norm_two,         4),
   CALLDEF(norm_inf,         4),
   CALLDEF(norm_minkowski,   5),
+  CALLDEF(OLS_qr,          10),
   CALLDEF(power_method,     9),
   CALLDEF(sherman_morrison, 5),
+  CALLDEF(svd_dcmp,        11),
   CALLDEF(sweep_operator,   6),
   CALLDEF(symmetrizer_prod, 6),
   {NULL, NULL, 0}
@@ -61,18 +67,64 @@ void R_init_fastmatrix(DllInfo *dll)
   R_RegisterCCallable("fastmatrix", "BLAS1_swap",         (DL_FUNC) &BLAS1_swap);
 
   /* BLAS-2 wrappers callable from other packages */
-  R_RegisterCCallable("fastmatrix", "BLAS2_gemv",   (DL_FUNC) &BLAS2_gemv);
-  R_RegisterCCallable("fastmatrix", "BLAS2_symv",   (DL_FUNC) &BLAS2_symv);
-  R_RegisterCCallable("fastmatrix", "BLAS2_trmv",   (DL_FUNC) &BLAS2_trmv);
-  R_RegisterCCallable("fastmatrix", "BLAS2_trsv",   (DL_FUNC) &BLAS2_trsv);
-  R_RegisterCCallable("fastmatrix", "BLAS2_ger",    (DL_FUNC) &BLAS2_ger);
-  R_RegisterCCallable("fastmatrix", "BLAS2_syr",    (DL_FUNC) &BLAS2_syr);
-  R_RegisterCCallable("fastmatrix", "BLAS2_syr2",   (DL_FUNC) &BLAS2_syr2);
+  R_RegisterCCallable("fastmatrix", "BLAS2_gemv",         (DL_FUNC) &BLAS2_gemv);
+  R_RegisterCCallable("fastmatrix", "BLAS2_symv",         (DL_FUNC) &BLAS2_symv);
+  R_RegisterCCallable("fastmatrix", "BLAS2_trmv",         (DL_FUNC) &BLAS2_trmv);
+  R_RegisterCCallable("fastmatrix", "BLAS2_trsv",         (DL_FUNC) &BLAS2_trsv);
+  R_RegisterCCallable("fastmatrix", "BLAS2_ger",          (DL_FUNC) &BLAS2_ger);
+  R_RegisterCCallable("fastmatrix", "BLAS2_syr",          (DL_FUNC) &BLAS2_syr);
+  R_RegisterCCallable("fastmatrix", "BLAS2_syr2",         (DL_FUNC) &BLAS2_syr2);
+
+  /* BLAS-3 wrappers callable from other packages */
+  R_RegisterCCallable("fastmatrix", "BLAS3_gemm",         (DL_FUNC) &BLAS3_gemm);
+  R_RegisterCCallable("fastmatrix", "BLAS3_symm",         (DL_FUNC) &BLAS3_symm);
+  R_RegisterCCallable("fastmatrix", "BLAS3_syrk",         (DL_FUNC) &BLAS3_syrk);
+  R_RegisterCCallable("fastmatrix", "BLAS3_trmm",         (DL_FUNC) &BLAS3_trmm);
+  R_RegisterCCallable("fastmatrix", "BLAS3_trsm",         (DL_FUNC) &BLAS3_trsm);
+
+  /* basic matrix manipulations */
+  R_RegisterCCallable("fastmatrix", "FM_add_mat",             (DL_FUNC) &FM_add_mat);
+  R_RegisterCCallable("fastmatrix", "FM_copy_mat",            (DL_FUNC) &FM_copy_mat);
+  R_RegisterCCallable("fastmatrix", "FM_copy_trans",          (DL_FUNC) &FM_copy_trans);
+  R_RegisterCCallable("fastmatrix", "FM_crossprod",           (DL_FUNC) &FM_crossprod);
+  R_RegisterCCallable("fastmatrix", "FM_GAXPY",               (DL_FUNC) &FM_GAXPY);
+  R_RegisterCCallable("fastmatrix", "FM_logAbsDet",           (DL_FUNC) &FM_logAbsDet);
+  R_RegisterCCallable("fastmatrix", "FM_mult_mat",            (DL_FUNC) &FM_mult_mat);
+  R_RegisterCCallable("fastmatrix", "FM_mult_triangular",     (DL_FUNC) &FM_mult_triangular);
+  R_RegisterCCallable("fastmatrix", "FM_rank1_update",        (DL_FUNC) &FM_rank1_update);
+  R_RegisterCCallable("fastmatrix", "FM_scale_mat",           (DL_FUNC) &FM_scale_mat);
+  R_RegisterCCallable("fastmatrix", "FM_setzero",             (DL_FUNC) &FM_setzero);
+  R_RegisterCCallable("fastmatrix", "FM_trace",               (DL_FUNC) &FM_trace);
+  R_RegisterCCallable("fastmatrix", "FM_tcrossprod",          (DL_FUNC) &FM_tcrossprod);
+
+  /* matrix factorizations */
+  R_RegisterCCallable("fastmatrix", "FM_chol_decomp",         (DL_FUNC) &FM_chol_decomp);
+  R_RegisterCCallable("fastmatrix", "FM_QR_decomp",           (DL_FUNC) &FM_QR_decomp);
+  R_RegisterCCallable("fastmatrix", "FM_svd_decomp",          (DL_FUNC) &FM_svd_decomp);
+
+  /* QR operations */
+  R_RegisterCCallable("fastmatrix", "FM_QR_qy",               (DL_FUNC) &FM_QR_qy);
+  R_RegisterCCallable("fastmatrix", "FM_QR_qty",              (DL_FUNC) &FM_QR_qty);
+  R_RegisterCCallable("fastmatrix", "FM_QR_fitted",           (DL_FUNC) &FM_QR_fitted);
+  R_RegisterCCallable("fastmatrix", "FM_QR_store_R",          (DL_FUNC) &FM_QR_store_R);
+
+  /* matrix inversion and linear solvers */
+  R_RegisterCCallable("fastmatrix", "FM_backsolve",           (DL_FUNC) &FM_backsolve);
+  R_RegisterCCallable("fastmatrix", "FM_forwardsolve",        (DL_FUNC) &FM_forwardsolve);
+  R_RegisterCCallable("fastmatrix", "FM_chol_inverse",        (DL_FUNC) &FM_chol_inverse);
+  R_RegisterCCallable("fastmatrix", "FM_invert_mat",          (DL_FUNC) &FM_invert_mat);
+  R_RegisterCCallable("fastmatrix", "FM_invert_triangular",   (DL_FUNC) &FM_invert_triangular);
 
   /* descriptive statistics code callable from other packages */
-  R_RegisterCCallable("fastmatrix", "FM_mean_and_var",       (DL_FUNC) &FM_mean_and_var);
-  R_RegisterCCallable("fastmatrix", "FM_online_covariance",  (DL_FUNC) &FM_online_covariance);
-  R_RegisterCCallable("fastmatrix", "FM_center_and_Scatter", (DL_FUNC) &FM_center_and_Scatter);
-  R_RegisterCCallable("fastmatrix", "FM_MSSD",               (DL_FUNC) &FM_MSSD);
-  R_RegisterCCallable("fastmatrix", "FM_find_quantile",      (DL_FUNC) &FM_find_quantile);
+  R_RegisterCCallable("fastmatrix", "FM_mean_and_var",        (DL_FUNC) &FM_mean_and_var);
+  R_RegisterCCallable("fastmatrix", "FM_online_covariance",   (DL_FUNC) &FM_online_covariance);
+  R_RegisterCCallable("fastmatrix", "FM_center_and_Scatter",  (DL_FUNC) &FM_center_and_Scatter);
+  R_RegisterCCallable("fastmatrix", "FM_cov_MSSD",            (DL_FUNC) &FM_cov_MSSD);
+  R_RegisterCCallable("fastmatrix", "FM_find_quantile",       (DL_FUNC) &FM_find_quantile);
+
+  /* misc code callable from other packages */
+  R_RegisterCCallable("fastmatrix", "FM_cov2cor",             (DL_FUNC) &FM_cov2cor);
+
+  /* 'DEBUG' routine */
+  R_RegisterCCallable("fastmatrix", "FM_print_mat",           (DL_FUNC) &FM_print_mat);
 }
