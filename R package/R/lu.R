@@ -20,7 +20,7 @@ lu.default <- function(x)
     stop("argument x is not a square matrix")
   storage.mode(x) <- "double"
 
-  z <- .C("lu_decomp",
+  z <- .C("lu_dcmp",
           lu = x,
           ldx = as.integer(n),
           n = as.integer(n),
