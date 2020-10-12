@@ -37,7 +37,7 @@ Latest binaries and sources for **fastmatrix** are availables from [CRAN package
 
 * [fastmatrix_0.2-3571.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.2-3571.tar.gz) - Package sources
 * [fastmatrix_0.2-357.zip](https://cran.r-project.org/bin/windows/contrib/4.0/fastmatrix_0.2-357.zip) - Windows binaries (R-release)
-* [fastmatrix_0.2-357.tgz](https://cran.r-project.org/bin/macosx/contrib/4.0/fastmatrix_0.2-357.tgz) - Mac OS binaries (R-release)
+* [fastmatrix_0.2-3571.tgz](https://cran.r-project.org/bin/macosx/contrib/4.0/fastmatrix_0.2-3571.tgz) - Mac OS binaries (R-release)
 * [fastmatrix.pdf](https://cran.r-project.org/web/packages/fastmatrix/fastmatrix.pdf) - Reference Manual
 
 ## Installation instructions
