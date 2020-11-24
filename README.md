@@ -15,7 +15,7 @@ Latest release (September 18, 2020) of **fastmatrix** package have implemented t
 * Estimation of the weighted mean and covariance matrix using an online algorithm (Clarke, 1971).
 * Fast computation of Hadamard product using unrolled loops.
 * Inner products and norms for matrices.
-* Interface to C code callable by another C code from other R packages.
+* Interface to **C code callable by another C code** from other R packages.
 * Lp norms for vectors.
 * Operations envolving the commutation matrix, with minimum requeriments of storage.
 * Operations envolving the duplication matrix, with minimum requeriments of storage.
