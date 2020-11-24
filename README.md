@@ -17,12 +17,14 @@ Latest release (September 18, 2020) of **fastmatrix** package have implemented t
 * Inner products and norms for matrices.
 * Interface to **C code callable by another C code** from other R packages.
 * Lp norms for vectors.
+* Mahalanobis distances, checking if the covariance is a positive definite matrix.
 * Operations envolving the commutation matrix, with minimum requeriments of storage.
 * Operations envolving the duplication matrix, with minimum requeriments of storage.
 * Operations envolving the symmetrizer matrix, with minimum requeriments of storage.
 * Ordinary least-squares (OLS) using several methods: Cholesky, QR decomposition, singular value decomposition, and the Sweep operator. This provides an alternative to extend the procedures available in OLS.
 * Power method to compute the dominant eigenvalue and its associated eigenvector.
 * Procedures for the LU factorization of square matrices.
+* Routines to compute measures of multivariate skewness and kurtosis proposed by Mardia (1970).
 * Sherman-Morrison formula.
 * Sweep operator for symmetric matrices.
 * vec and vech operators to handle rectangular and square matrices.
