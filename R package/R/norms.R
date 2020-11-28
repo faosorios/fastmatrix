@@ -1,7 +1,7 @@
 ## ID: norms.R, last updated 2020-08-16, F.Osorio
 
 matrix.norm <- function(x, type = "Frobenius")
-{ ## Computes a matrix norm
+{ ## computes a matrix norm
   if (is.data.frame(x))
     x <- as.matrix(x)
   if (!is.matrix(x))
@@ -32,7 +32,7 @@ matrix.norm <- function(x, type = "Frobenius")
 }
 
 matrix.inner <- function(x, y = x)
-{ ## Computes the inner product between x and y
+{ ## computes the inner product between x and y
   if (is.data.frame(x))
     x <- as.matrix(x)
   if (is.vector(x))

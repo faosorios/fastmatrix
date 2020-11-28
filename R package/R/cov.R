@@ -1,7 +1,7 @@
 ## ID: cov.weighted.R, last updated 2020-09-23, F.Osorio
 
 cov.weighted <- function(x, weights = rep(1, nrow(x)))
-{ # compute weighted mean and covariance using an online algorithm
+{ ## computes weighted mean and covariance using an online algorithm
   if (is.data.frame(x))
     x <- as.matrix(x)
   else if (!is.matrix(x))
@@ -30,7 +30,7 @@ cov.weighted <- function(x, weights = rep(1, nrow(x)))
 }
 
 cov.MSSD <- function(x)
-{ # covariance estimation using the Mean Square Successive Method (MSSD)
+{ ## covariance estimation using the Mean Square Successive Method (MSSD)
   if (is.data.frame(x))
     x <- as.matrix(x)
   else if (!is.matrix(x))

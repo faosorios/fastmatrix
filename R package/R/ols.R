@@ -3,7 +3,7 @@
 ols <-
 function(formula, data, subset, na.action, method = "qr", model = FALSE, x = FALSE,
   y = FALSE, contrasts = NULL, ...)
-{ # ordinary least-squares fit
+{ ## ordinary least-squares fit
   ret.x <- x
   ret.y <- y
   Call <- match.call()
@@ -37,7 +37,7 @@ function(formula, data, subset, na.action, method = "qr", model = FALSE, x = FAL
 
 ols.fit <-
 function(x, y, method = "qr", ...)
-{ # dispatcher among various fitting functions
+{ ## dispatcher among various fitting functions
   if (!is.numeric(x))
     stop("model matrix must be numeric.")
   if (!is.numeric(y))
@@ -228,7 +228,7 @@ function(x, y)
 	z
 }
 
-# extractors
+## extractors
 deviance.ols <- function(object, ...) object$RSS
 residuals.ols <- function(object, ...) object$residuals
 

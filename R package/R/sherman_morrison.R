@@ -1,4 +1,4 @@
-## ID: sherman_morrison.R, last updated 2020-09-15, F.Osorio
+## ID: sherman_morrison.R, last updated 2020-11-18, F.Osorio
 
 sherman.morrison <- function(a, b, d = b, inverted = FALSE)
 { ## Sherman-Morrison formula
@@ -13,11 +13,7 @@ sherman.morrison <- function(a, b, d = b, inverted = FALSE)
   n <- da[1]
   p <- da[2]
   if (n != p)
-    stop("argument x is not a square matrix")
-  if (!inverted) {
-    z <- lu(a)
-    a <- lu2inv(z)
-  }
+    stop("argument 'a' is not a square matrix")
   storage.mode(a) <- "double"
 
   z <- .C("sherman_morrison",
@@ -25,6 +21,7 @@ sherman.morrison <- function(a, b, d = b, inverted = FALSE)
           lda  = as.integer(n),
           p = as.integer(p),
           b = as.double(b),
-          d = as.double(d))$a
+          d = as.double(d),
+          inverted = as.integer(inverted))$a
   z
 }

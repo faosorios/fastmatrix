@@ -31,7 +31,7 @@ lu.default <- function(x)
 }
 
 extractL <- function(x)
-{ # get L matrix from its LU factorization
+{ ## get L matrix from its LU factorization
   if (!is.lu(x)) stop("argument is not an LU factorization")
   L <- x$lu
   L[row(L) <= col(L)] <- 0
@@ -40,7 +40,7 @@ extractL <- function(x)
 }
 
 extractU <- function(x)
-{ # get U matrix from its LU factorization
+{ ## get U matrix from its LU factorization
   if (!is.lu(x)) stop("argument is not an LU factorization")
   U <- x$lu
   U[row(U) > col(U)] <- 0
@@ -48,7 +48,7 @@ extractU <- function(x)
 }
 
 constructX <- function(x)
-{ # returns the original matrix from the 'LU' object
+{ ## returns the original matrix from the 'LU' object
   if (!is.lu(x)) stop("argument is not an LU factorization")
   L <- extractL(x)
   ldx <- p <- nrow(L)
@@ -64,7 +64,7 @@ constructX <- function(x)
 }
 
 lu2inv <- function(x)
-{ # computes the inverse of a matrix from its LU factorization
+{ ## computes the inverse of a matrix from its LU factorization
   if (!is.lu(x)) stop("argument is not an LU factorization")
   pivot <- x$pivot
   x <- x$lu
