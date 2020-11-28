@@ -1,40 +1,50 @@
+0.3 (Nov 24, 2020)
+ * Added routines is.lower.tri and is.upper.tri for checking if a matrix is lower
+   or upper triangular.
+ * Routine for computation of the Mahalanobis distances was added, this function
+   checks if the covariance is a positive definite matrix.
+ * Added routines to compute measures of multivariate skewness and kurtosis proposed
+   by Mardia (Biometrika 57, 519-530).
+ * Several C symbols callable by another packages were added.
+
 0.2-3571 (Oct 10, 2020)
-  * Added routines for ordinary least-squares (OLS) using several methods: Cholesky
-	  (chol), QR decomposition (qr), singular value decomposition (svd), and the
-		Sweep operator (sweep). This provides an alternative to extend the procedures
-		available in OLS.
-	* Routine for estimation of the covariance matrix using the Mean Square Successive
-	  Method (MSSD) was included.
-	* Added routine to estimation of the weighted mean and covariance matrix.
-	* Wrapper to a C version of the Kronecker product.
-	* Several new addtions to the Interface to C code callable by another packages.
-	* Underlying code to estimation of the covariance matrix were slightly recrafted
-	  to avoid data movement.
+ * Added routines to support L1pack R package.
+ * Added routines for ordinary least-squares (OLS) using several methods: Cholesky
+   (chol), QR decomposition (qr), singular value decomposition (svd), and the
+   Sweep operator (sweep). This provides an alternative to extend the procedures
+   available in OLS.
+ * Routine for estimation of the covariance matrix using the Mean Square Successive
+   Method (MSSD) was included.
+ * Added routine to estimation of the weighted mean and covariance matrix.
+ * Wrapper to a C version of the Kronecker product.
+ * Several new addtions to the Interface to C code callable by another packages.
+ * Underlying code to estimation of the covariance matrix were slightly recrafted
+   to avoid data movement.
 
 0.2-357 (Sep 17, 2020)
-	* Added routines to support SpatialPack R package.
-	* Set of routines for LU factorization was added.
-	* Matrix inversion inside 'sherman.morrison' now use 'lu2inv' function.
-	* Added functions to do operations envolving the symmetrizer matrix.
+ * Added routines to support SpatialPack R package.
+ * Set of routines for LU factorization was added.
+ * Matrix inversion inside 'sherman.morrison' now use 'lu2inv' function.
+ * Added functions to do operations envolving the symmetrizer matrix.
 
 0.2-35 (Sep 05, 2020)
-	* src/minkowski.f: An error was fixed in Fortran function underlying to Lp-norm
-	  (minkowski) for vectors with increments not equal to one.
-	* Clean-ups in C, R code and documentation.
-	* Minor issue in R_init_fastmatrix.c file was corrected.
-	* Interface to C code callable by another C code from other packages is provided.
+ * src/minkowski.f: An error was fixed in Fortran function underlying to Lp-norm
+   (minkowski) for vectors with increments not equal to one.
+ * Clean-ups in C, R code and documentation.
+ * Minor issue in R_init_fastmatrix.c file was corrected.
+ * Interface to C code callable by another C code from other packages is provided.
 
 0.2-3 (Aug 28, 2020)
-	* Added functions for array multiplication and bracket product.
-	* Added functions to do operations envolving the commutation matrix.
-	* Functions for inner products and norms for matrices were included.
-	* Added 'minkowski' function to Lp-norm computation on vectors.
-	* Added function to do column-equilibration on rectangular matrices with the
-	  aim of reduce its condition number.
-	* A routine for computation of the dominant eigenvalue and its associated eigenvector
-	  using the power method was included.
-	* Added a function to carry out the sweep operator on symmetric matrices.
-	* An implementation of Sherman-Morrison formula was added.
+ * Added functions for array multiplication and bracket product.
+ * Added functions to do operations envolving the commutation matrix.
+ * Functions for inner products and norms for matrices were included.
+ * Added 'minkowski' function to Lp-norm computation on vectors.
+ * Added function to do column-equilibration on rectangular matrices with the
+   aim of reduce its condition number.
+ * A routine for computation of the dominant eigenvalue and its associated eigenvector
+   using the power method was included.
+ * Added a function to carry out the sweep operator on symmetric matrices.
+ * An implementation of Sherman-Morrison formula was added.
 
 0.2 (Aug 14, 2020)
-	* Initial release of the fastmatrix package on CRAN
+ * Initial release of the fastmatrix package on CRAN
