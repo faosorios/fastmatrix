@@ -13,18 +13,18 @@ power_method(double *a, int *lda, int *nrow, int *ncol, double *x, double *lambd
   z = (double *) Calloc(n, double);
 
   /* normalizing initial vector */
-  normalize_vec(x, 1, n);
+  FM_normalize(x, 1, n);
 
   /* initial estimate */
   BLAS2_gemv(1.0, a, *lda, n, p, notrans, x, 1, 0.0, z, 1);
-  normalize_vec(z, 1, n);
+  FM_normalize(z, 1, n);
   *lambda = BLAS1_dot_product(x, 1, z, 1, n);
   Memcpy(x, z, p); /* x <- z */
 
   /* main loop */
   repeat {
     BLAS2_gemv(1.0, a, *lda, n, p, notrans, x, 1, 0.0, z, 1);
-    normalize_vec(z, 1, n);
+    FM_normalize(z, 1, n);
     BLAS2_gemv(1.0, a, *lda, n, p, notrans, z, 1, 0.0, x, 1);
     newLambda = BLAS1_dot_product(x, 1, z, 1, n);
 

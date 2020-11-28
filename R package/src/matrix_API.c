@@ -2,6 +2,40 @@
 
 #include "fastmatrix.h"
 
+/* operations on vectors */
+
+double
+FM_norm_sqr(double *x, int inc, int n)
+{ /* sum(x * x) */
+  double length;
+
+  length = BLAS1_norm_two(x, inc, n);
+  return R_pow_di(length, 2);
+}
+
+void
+FM_normalize(double *x, int inc, int n)
+{ /* x <- x / sqrt(sum(x * x)) */
+  double div = 1.0, length;
+
+  length = BLAS1_norm_two(x, inc, n);
+  div /= length;
+  BLAS1_scale(div, x, inc, n);
+}
+
+double
+FM_vecsum(double *x, int inc, int n)
+{ /* sum(x) with increments 'inc' */
+  int ix = 0;
+  double accum = 0.0;
+
+  for (int i = 0; i < n; i++) {
+    accum += x[ix];
+    ix += inc;
+  }
+  return accum;
+}
+
 /* basic matrix manipulations */
 
 void
@@ -77,12 +111,12 @@ FM_mult_triangular(double *y, double *a, int lda, int n, double *x, int job)
 void
 FM_mult_mat(double *z, double *x, int ldx, int xrows, int xcols, double *y, int ldy, int yrows, int ycols)
 { /* matrix multiplication of two conformable matrices. z <- x %*% y */
-  char *notransx = "N", *notransy = "N";
+  char *notrans = "N";
   double one = 1.0, zero = 0.0, *tmp = NULL;
 
   /* use tmp so z can be either x or y */
   tmp = (double *) Calloc(xrows * ycols, double);
-  F77_CALL(dgemm)(notransx, notransy, &xrows, &ycols, &xcols, &one, x, &ldx, y, &ldy, &zero, tmp, &xrows);
+  F77_CALL(dgemm)(notrans, notrans, &xrows, &ycols, &xcols, &one, x, &ldx, y, &ldy, &zero, tmp, &xrows);
   Memcpy(z, tmp, xrows * ycols);
   Free(tmp);
 }
@@ -90,12 +124,12 @@ FM_mult_mat(double *z, double *x, int ldx, int xrows, int xcols, double *y, int 
 void
 FM_crossprod(double *z, double *x, int ldx, int xrows, int xcols, double *y, int ldy, int yrows, int ycols)
 { /* cross product of two given matrices. z <- t(x) %*% y */
-  char *transx = "T", *notransy = "N";
+  char *trans = "T", *notrans = "N";
   double one = 1.0, zero = 0.0, *tmp = NULL;
 
   /* use tmp so z can be either x or y */
   tmp = (double *) Calloc(xcols * ycols, double);
-  F77_CALL(dgemm)(transx, notransy, &xcols, &ycols, &xrows, &one, x, &ldx, y, &ldy, &zero, tmp, &xcols);
+  F77_CALL(dgemm)(trans, notrans, &xcols, &ycols, &xrows, &one, x, &ldx, y, &ldy, &zero, tmp, &xcols);
   Memcpy(z, tmp, xcols * ycols);
   Free(tmp);
 }
@@ -103,12 +137,12 @@ FM_crossprod(double *z, double *x, int ldx, int xrows, int xcols, double *y, int
 void
 FM_tcrossprod(double *z, double *x, int ldx, int xrows, int xcols, double *y, int ldy, int yrows, int ycols)
 { /* outer product of two given matrices. z <- x %*% t(y) */
-  char *notransx = "N", *transy = "T";
+  char *notrans = "N", *trans = "T";
   double one = 1.0, zero = 0.0, *tmp = NULL;
 
   /* use tmp so z can be either x or y */
   tmp = (double *) Calloc(xrows * yrows, double);
-  F77_CALL(dgemm)(notransx, transy, &xrows, &yrows, &xcols, &one, x, &ldx, y, &ldy, &zero, tmp, &xrows);
+  F77_CALL(dgemm)(notrans, trans, &xrows, &yrows, &xcols, &one, x, &ldx, y, &ldy, &zero, tmp, &xrows);
   Memcpy(z, tmp, xrows * yrows);
   Free(tmp);
 }
@@ -136,6 +170,88 @@ FM_trace(double *a, int lda, int n)
 
   for (int i = 0; i < n; i++)
     accum += a[i * (lda + 1)];
+  return accum;
+}
+
+/* operations on triangular matrices */
+
+void
+FM_cpy_upper(double *x, int ldx, int p, double *y, int ldy)
+{ /* upper.tri(y) <- upper.tri(x) */
+  for (int j = 0; j < p; j++) {
+    for (int i = j; i < p; i++)
+      y[j + i * ldy] = x[j + i * ldx];
+  }
+}
+
+void
+FM_cpy_lower(double *x, int ldx, int p, double *y, int ldy)
+{ /* lower.tri(y) <- lower.tri(x) */
+  for (int j = 0; j < p; j++) {
+    for (int i = j; i < p; i++)
+      y[i + j * ldy] = x[i + j * ldx];
+  }
+}
+
+void
+FM_cpy_upper2lower(double *x, int ldx, int p, double *y)
+{ /* lower.tri(y) <- upper.tri(x), only the strictly upper triangular
+   * part is copied to the strictlty lower triangular part of 'y',
+   * 'x' and 'y' must be square matrices, 'y' can be 'x' */
+  for (int j = 0; j < p; j++) {
+    for (int i = j; i < p; i++)
+      y[i + j * ldx] = x[j + i * ldx];
+  }
+}
+
+void
+FM_cpy_lower2upper(double *x, int ldx, int p, double *y)
+{ /* upper.tri(y) <- lower.tri(x), only the strictly lower triangular
+   * part is copied to the strictlty upper triangular part of 'y',
+   * 'x' and 'y' must be square matrices, 'y' can be 'x' */
+  for (int j = 0; j < p; j++) {
+    for (int i = j; i < p; i++)
+      y[j + i * ldx] = x[i + j * ldx];
+  }
+}
+
+double
+FM_sum_upper_tri(double *x, int ldx, int p, int job)
+{ /* sum(upper.tri(x)) */
+  double accum = 0.0;
+
+  if (job) {
+    for (int j = 0; j < p; j++) {
+      for (int i = j; i < p; i++)
+        accum += x[j + i * ldx];
+    }
+  } else { /* strictly upper part */
+    for (int j = 0; j < p; j++) {
+      for (int i = j + 1; i < p; i++)
+        accum += x[j + i * ldx];
+    }
+  }
+
+  return accum;
+}
+
+double
+FM_sum_lower_tri(double *x, int ldx, int p, int job)
+{ /* sum(lower.tri(x)) */
+  double accum = 0.0;
+
+  if (job) {
+    for (int j = 0; j < p; j++) {
+      for (int i = j; i < p; i++)
+        accum += x[i + j * ldx];
+    }
+  } else { /* strictly lower part */
+    for (int j = 0; j < p; j++) {
+      for (int i = j + 1; i < p; i++)
+        accum += x[i + j * ldx];
+    }
+  }
+
   return accum;
 }
 
@@ -185,6 +301,46 @@ FM_QR_decomp(double *mat, int ldmat, int nrow, int ncol, double *qraux, int *inf
 }
 
 void
+FM_QL_decomp(double *mat, int ldmat, int nrow, int ncol, double *qlaux, int *info)
+{ /* return the QL decomposition of a rectangular matrix */
+  int errcode = 0, lwork;
+  double opt, *work;
+
+  /* ask for optimal size of work array */
+  lwork = -1;
+  F77_CALL(dgeqlf)(&nrow, &ncol, mat, &ldmat, qlaux, &opt, &lwork, &errcode);
+  if (errcode != 0)
+    error("DGEQLF in QL decomposition gave error code %d", errcode);
+
+  /* calling DGEQLF with optimal size of working array */
+  lwork = (int) opt;
+  work = (double *) Calloc(lwork, double);
+  F77_CALL(dgeqlf)(&nrow, &ncol, mat, &ldmat, qlaux, work, &lwork, info);
+  Free(work);
+}
+
+void
+FM_LQ_decomp(double *mat, int ldmat, int nrow, int ncol, double *lqaux, int *info)
+{ /* return the LQ decomposition of a rectangular matrix */
+  int errcode = 0, lwork;
+  double opt, *work;
+
+  /* ask for optimal size of work array */
+  lwork = -1;
+  F77_CALL(dgelqf)(&nrow, &ncol, mat, &ldmat, lqaux, &opt, &lwork, &errcode);
+  if (errcode != 0)
+    error("DGELQF in LQ decomposition gave error code %d", errcode);
+
+  /* calling DGEQRF with optimal size of working array */
+  lwork = (int) opt;
+  work = (double *) Calloc(lwork, double);
+  F77_CALL(dgelqf)(&nrow, &ncol, mat, &ldmat, lqaux, work, &lwork, info);
+  Free(work);
+}
+
+/* routines for QR, QL and LQ operations */
+
+void
 FM_QR_qy(double *qr, int ldq, int nrow, int ncol, double *qraux, double *ymat, int ldy, int yrow, int ycol, int *info)
 { /* ymat <- qr.qy(qr, ymat) */
   char *side = "L", *notrans = "N";
@@ -198,7 +354,7 @@ FM_QR_qy(double *qr, int ldq, int nrow, int ncol, double *qraux, double *ymat, i
   lwork = -1;
   F77_CALL(dormqr)(side, notrans, &yrow, &nrhs, &nrflc, qr, &ldq, qraux, ymat, &ldy, &opt, &lwork, &errcode);
   if (errcode != 0)
-    error("DORMQR in QR_qy gave error code %d", info);
+    error("DORMQR in QR_qy gave error code %d", errcode);
 
   /* calling DORMQR with optimal size of working array */
   lwork = (int) opt;
@@ -221,7 +377,7 @@ FM_QR_qty(double *qr, int ldq, int nrow, int ncol, double *qraux, double *ymat, 
   lwork = -1;
   F77_CALL(dormqr)(side, trans, &yrow, &nrhs, &nrflc, qr, &ldq, qraux, ymat, &ldy, &opt, &lwork, &errcode);
   if (errcode != 0)
-    error("DORMQR in QR_qty gave error code %d", info);
+    error("DORMQR in QR_qty gave error code %d", errcode);
 
   /* calling DORMQR with optimal size of working array */
   lwork = (int) opt;
@@ -248,14 +404,107 @@ FM_QR_fitted(double *qr, int ldq, int nrow, int ncol, double *qraux, double *yma
 }
 
 void
-FM_QR_store_R(double *qr, int ldq, int nrow, int ncol, double *Dest, int ldDest)
-{ /* copy the R part into Dest */
-  int rows;
+FM_QR_store_R(double *qr, int ldq, int ncol, double *Dest, int ldDest)
+{ /* copy the R part into Dest, it is assumed that nrow >= ncol */
+  FM_cpy_upper(qr, ldq, ncol, Dest, ldDest);
+}
 
-  for (int j = 0; j < ncol; j++) {
-    rows = MIN(j + 1, nrow);
-    Memcpy(Dest + j * ldDest, qr + j * ldq, rows);
-  }
+void
+FM_QL_qy(double *ql, int ldq, int nrow, int ncol, double *qlaux, double *ymat, int ldy, int yrow, int ycol, int *info)
+{ /* ymat <- ql.qy(ql, ymat) */
+  char *side = "L", *notrans = "N";
+  int errcode = 0, lwork, nrflc, nrhs;
+  double opt, *work;
+
+  nrhs  = ycol;
+  nrflc = ncol; /* length of 'qlaux' */
+
+  /* ask for optimal size of work array */
+  lwork = -1;
+  F77_CALL(dormql)(side, notrans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, &opt, &lwork, &errcode);
+  if (errcode != 0)
+    error("DORMQL in QL_qy gave error code %d", errcode);
+
+  /* calling DORMQL with optimal size of working array */
+  lwork = (int) opt;
+  work = (double *) Calloc(lwork, double);
+  F77_CALL(dormql)(side, notrans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, work, &lwork, info);
+  Free(work);
+}
+
+void
+FM_QL_qty(double *ql, int ldq, int nrow, int ncol, double *qlaux, double *ymat, int ldy, int yrow, int ycol, int *info)
+{ /* ymat <- ql.qty(ql, ymat) */
+  char *side = "L", *trans = "T";
+  int errcode = 0, lwork, nrflc, nrhs;
+  double opt, *work;
+
+  nrhs  = ycol;
+  nrflc = ncol; /* length of 'qlaux' */
+
+  /* ask for optimal size of work array */
+  lwork = -1;
+  F77_CALL(dormql)(side, trans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, &opt, &lwork, &errcode);
+  if (errcode != 0)
+    error("DORMQL in QL_qty gave error code %d", errcode);
+
+  /* calling DORMQL with optimal size of working array */
+  lwork = (int) opt;
+  work = (double *) Calloc(lwork, double);
+  F77_CALL(dormql)(side, trans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, work, &lwork, info);
+  Free(work);
+}
+
+void
+FM_LQ_yq(double *lq, int ldl, int nrow, int ncol, double *lqaux, double *ymat, int ldy, int yrow, int ycol, int *info)
+{ /* ymat <- lq.yq(lq, ymat) */
+  char *side = "R", *notrans = "T";
+  int errcode = 0, lwork, nrflc, nrhs;
+  double opt, *work;
+
+  nrhs  = ycol;
+  nrflc = MIN(nrow, ncol); /* length of 'lqaux' */
+
+  /* ask for optimal size of work array */
+  lwork = -1;
+  F77_CALL(dormlq)(side, notrans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, &opt, &lwork, &errcode);
+  if (errcode != 0)
+    error("DORMLQ in LQ_yq gave error code %d", errcode);
+
+  /* calling DORMLQ with optimal size of working array */
+  lwork = (int) opt;
+  work = (double *) Calloc(lwork, double);
+  F77_CALL(dormlq)(side, notrans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, work, &lwork, info);
+  Free(work);
+}
+
+void
+FM_LQ_yqt(double *lq, int ldl, int nrow, int ncol, double *lqaux, double *ymat, int ldy, int yrow, int ycol, int *info)
+{ /* ymat <- lq.yqt(lq, ymat) */
+  char *side = "R", *trans = "T";
+  int errcode = 0, lwork, nrflc, nrhs;
+  double opt, *work;
+
+  nrhs  = ycol;
+  nrflc = MIN(nrow, ncol); /* length of 'lqaux' */
+
+  /* ask for optimal size of work array */
+  lwork = -1;
+  F77_CALL(dormlq)(side, trans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, &opt, &lwork, &errcode);
+  if (errcode != 0)
+    error("DORMLQ in LQ_yqt gave error code %d", info);
+
+  /* calling DORMLQ with optimal size of working array */
+  lwork = (int) opt;
+  work = (double *) Calloc(lwork, double);
+  F77_CALL(dormlq)(side, trans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, work, &lwork, info);
+  Free(work);
+}
+
+void
+FM_LQ_store_L(double *lq, int ldl, int nrow, double *Dest, int ldDest)
+{ /* copy the L part into Dest, it is assumed that nrow <= ncol */
+  FM_cpy_lower(lq, ldl, nrow, Dest, ldDest);
 }
 
 /* matrix inversion and linear solvers */
@@ -303,6 +552,11 @@ FM_chol_inverse(double *a, int lda, int p, int job, int *info)
 
   uplo = (job) ? "U" : "L";
   F77_CALL(dpotri)(uplo, &p, a, &lda, info);
+  /* copying triangular (lower/upper) part */
+  if (job)
+    FM_cpy_upper2lower(a, lda, p, a);
+  else
+    FM_cpy_lower2upper(a, lda, p, a);
 }
 
 void

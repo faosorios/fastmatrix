@@ -32,5 +32,5 @@ OLS_qr(double *x, int *ldx, int *nrow, int *ncol, double *y, double *qraux, doub
 
   /* residual sum of squares */
   rdf  = n - p;
-  *RSS = norm_sqr(y + p, 1, rdf);
+  *RSS = FM_norm_sqr(y + p, 1, rdf);
 }

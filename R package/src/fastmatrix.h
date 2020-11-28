@@ -14,12 +14,14 @@
 #include <R_ext/Applic.h>
 
 /* some definitions */
-#define DNULLP    (double *) 0
-#define MAX(a,b)  (((a)>(b)) ? (a) : (b))
-#define MIN(a,b)  (((a)<(b)) ? (a) : (b))
-#define SQR(x)    R_pow_di(x, 2)
-#define SGN(x)    (((x) >= 0) ? 1.0 : -1.0)
-#define repeat    for(;;)
+#define DNULLP     (double *) 0
+#define EPS_CONV   1.0e-2
+#define GOLDEN     0.3819660112501051
+#define MAX(a,b)   (((a)>(b)) ? (a) : (b))
+#define MIN(a,b)   (((a)<(b)) ? (a) : (b))
+#define repeat     for(;;)
+#define SGN(x)     (((x) >= 0) ? 1.0 : -1.0)
+#define SQR(x)     R_pow_di(x, 2)
 
 /* operations on arrays */
 void F77_NAME(arraymult)(double *, int *, int *, int *, double *, int *, int *, int *, double *, int *, int *, double *, int *, int *);
@@ -58,7 +60,7 @@ void kronecker_prod(double *, int *, int *, double *, int *, int *, double *);
 void power_method(double *, int *, int *, int *, double *, double *, int *, double *, int *);
 
 /* Sherman-Morrison formula */
-void sherman_morrison(double *, int *, int *, double *, double *);
+void sherman_morrison(double *, int *, int *, double *, double *, int *);
 
 /* LU factorization */
 void lu_dcmp(double *, int *, int *, int *, int *);
@@ -75,14 +77,14 @@ void OLS_qr(double *, int *, int *, int *, double *, double *, double *, double 
 /* descriptive statistics */
 void cov_weighted(double *, int *, int *, double *, double *, double *);
 void cov_MSSD(double *, int *, int *, double *, double *);
+void geometric_mean(double *, int *, double *);
+void mahal_distances(double *, int *, int *, double *, double *, int *, double *);
+void skewness_and_kurtosis(double *, int *, int *, double *, double *, double *, int *);
+void wilson_hilferty_chisq(double *, int *, int *, double *);
 
 /* sweep operator for symmetric matrices */
 void sweep_operator(double *, int *, int *, int *, int *, int *);
 void F77_NAME(sweepop)(double *, int *, int *, int *, int *, int *);
-
-/* utils on vectors */
-double norm_sqr(double *, int, int);
-void normalize_vec(double *, int, int);
 
 /* utils on matrices */
 void equilibrate_mat(double *, int *, int *, int *, double *, double *, int *);
@@ -122,6 +124,11 @@ void BLAS3_syrk(double, double *, int, int, int , char *, char *, double, double
 void BLAS3_trmm(double, double *, int, int, int, char *, char *, char *, char *, double *, int);
 void BLAS3_trsm(double, double *, int, int, int, char *, char *, char *, char *, double *, int);
 
+/*  operations on vectors */
+double FM_norm_sqr(double *, int, int);
+void FM_normalize(double *, int, int);
+double FM_vecsum(double *, int, int);
+
 /* basic matrix manipulations */
 void FM_add_mat(double *, int, double, double *, int, int, int);
 void FM_copy_mat(double *, int, double *, int, int, int);
@@ -137,16 +144,31 @@ void FM_setzero(double *, int, int, int);
 double FM_trace(double *, int, int);
 void FM_tcrossprod(double *, double *, int, int, int, double *, int, int, int);
 
+/* operations on triangular matrices */
+void FM_cpy_lower(double *, int, int, double *, int);
+void FM_cpy_upper(double *, int, int, double *, int);
+void FM_cpy_lower2upper(double *, int, int, double *);
+void FM_cpy_upper2lower(double *, int, int, double *);
+double FM_sum_lower_tri(double *, int, int, int);
+double FM_sum_upper_tri(double *, int, int, int);
+
 /* matrix factorizations */
 void FM_chol_decomp(double *, int, int, int, int *);
 void FM_QR_decomp(double *, int, int, int, double *, int *);
+void FM_QL_decomp(double *, int, int, int, double *, int *);
+void FM_LQ_decomp(double *, int, int, int, double *, int *);
 void FM_svd_decomp(double *, int, int, int, double *, int, double *, double *, int, int, int *);
 
-/* QR operations */
+/* QR, QL and LQ operations */
 void FM_QR_qy(double *, int, int, int, double *, double *, int, int, int, int *);
 void FM_QR_qty(double *, int, int, int, double *, double *, int, int, int, int *);
 void FM_QR_fitted(double *, int, int, int, double *, double *, int, int, int, int, double *);
-void FM_QR_store_R(double *, int, int, int, double *, int);
+void FM_QR_store_R(double *, int, int, double *, int);
+void FM_QL_qy(double *, int, int, int, double *, double *, int, int, int, int *);
+void FM_QL_qty(double *, int, int, int, double *, double *, int, int, int, int *);
+void FM_LQ_yq(double *, int, int, int, double *, double *, int, int, int, int *);
+void FM_LQ_yqt(double *, int, int, int, double *, double *, int, int, int, int *);
+void FM_LQ_store_L(double *, int, int, double *, int);
 
 /* matrix inversion and linear solvers */
 void FM_backsolve(double *, int, int, double *, int, int, int *);
@@ -155,15 +177,37 @@ void FM_chol_inverse(double *, int, int, int, int *);
 void FM_invert_mat(double *, int, int, int *);
 void FM_invert_triangular(double *, int, int, int, int *);
 
+/* least square procedures */
+void FM_lsfit(double *, int, int, int, double *, int, int, double *, int *);
+void FM_gls_GQR(double *, int, int, int, double *, double *, double *, int *);
+
+/* distances */
+double FM_pythag(double, double);
+double FM_mahalanobis(double *, int, double *, double *);
+void FM_mahal_distances(double *, int, int, double *, double *, int, double *);
+void FM_WH_chisq(double *, int, int, double *);
+void FM_WH_F(double *, int, int, double, double *);
+
+/* products */
+void FM_two_product_FMA(double, double, double *, double *);
+void FM_compensated_product(double *, int, double *);
+
 /* descriptive statistics */
 void FM_mean_and_var(double *, int, double *, double *);
 void FM_online_covariance(double *, double *, int, double *, double *, double *, double *, double *);
+void FM_geometric_mean(double *, int, double *);
 void FM_center_and_Scatter(double *, int, int, double *, double *, double *);
+void FM_skewness_and_kurtosis(double *, int, int, double *, double *, double *, int);
 void FM_cov_MSSD(double *, int, int, double *, double *);
 double FM_find_quantile(double *, int, int);
 
+/* Brent's method for unidimensional optimization */
+double FM_brent(double, double, double (*f)(double, void *), void *, double);
+
 /* misc */
+void FM_centering(double *, int, int, double *);
 void FM_cov2cor(double *, int);
+void FM_sherman_morrison(double *, int, int, double *, double *, int);
 
 /* 'DEBUG' routine */
 void FM_print_mat(double *, int, int, int, char *);

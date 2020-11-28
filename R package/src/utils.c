@@ -2,28 +2,14 @@
 
 #include "fastmatrix.h"
 
-/* operations on vectors */
-
-double
-norm_sqr(double *x, int inc, int n)
-{ /* sum(x * x) */
-  double length;
-
-  length = BLAS1_norm_two(x, inc, n);
-  return R_pow_di(length, 2);
-}
+/* matrix operations */
 
 void
-normalize_vec(double *x, int inc, int n)
-{ /* x <- x / sqrt(sum(x * x)) */
-  double div = 1.0, length;
-
-  length = BLAS1_norm_two(x, inc, n);
-  div /= length;
-  BLAS1_scale(div, x, inc, n);
+FM_centering(double *x, int n, int p, double *center)
+{ /* 'x' matrix is overwritten with its centered version */
+  for (int i = 0; i < n; i++)
+    BLAS1_axpy(-1.0, center, 1, x + i, n, p);
 }
-
-/* matrix operations */
 
 void
 FM_cov2cor(double *cov, int p)

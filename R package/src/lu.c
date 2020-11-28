@@ -10,7 +10,7 @@ lu_dcmp(double *a, int *lda, int *n, int *p, int *pivot)
 
   F77_CALL(dgetrf)(n, p, a, lda, pivot, &info);
   if (info)
-    error("lu_decomp gave code %d", info);
+    error("lu_dcmp gave code %d", info);
 }
 
 void
