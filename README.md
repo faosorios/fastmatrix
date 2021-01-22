@@ -24,6 +24,7 @@ Latest release (September 18, 2020) of **fastmatrix** package have implemented t
 * Ordinary least-squares (OLS) using several methods: Cholesky, QR decomposition, singular value decomposition, and the Sweep operator. This provides an alternative to extend the procedures available in R built-in function 'lm'.
 * Power method to compute the dominant eigenvalue and its associated eigenvector.
 * Procedures for the LU factorization of square matrices.
+* Ridge estimation for linear regression.
 * Routines to compute measures of multivariate skewness and kurtosis proposed by Mardia (1970).
 * Sherman-Morrison formula.
 * Sweep operator for symmetric matrices.
