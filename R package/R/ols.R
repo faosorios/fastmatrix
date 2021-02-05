@@ -1,14 +1,15 @@
-## ID: ols.R, last updated 2020-09-28, F.Osorio
+## ID: ols.R, last updated 2021-02-04, F.Osorio
 
 ols <-
-function(formula, data, subset, na.action, method = "qr", model = FALSE, x = FALSE,
-  y = FALSE, contrasts = NULL, ...)
+function(formula, data, subset, na.action, method = "qr", tol = 1e-7, maxiter = 100,
+  model = FALSE, x = FALSE, y = FALSE, contrasts = NULL, ...)
 { ## ordinary least-squares fit
   ret.x <- x
   ret.y <- y
   Call <- match.call()
   mf <- match.call(expand.dots = FALSE)
-  mf$method <- mf$model <- mf$x <- mf$y <- mf$contrasts <- mf$... <- NULL
+  mf$method <- mf$tol <- mf$maxiter <- mf$model <- mf$x <- mf$y <- NULL
+  mf$contrasts <- mf$... <- NULL
   mf$drop.unused.levels <- TRUE
   mf[[1]] <- as.name("model.frame")
   mf <- eval(mf, parent.frame())
@@ -17,7 +18,7 @@ function(formula, data, subset, na.action, method = "qr", model = FALSE, x = FAL
   x <- model.matrix(Terms, mf, contrasts)
 
   # call fitter
-  z <- ols.fit(x, y, method, ...)
+  z <- ols.fit(x, y, method, tol, maxiter)
 
   # output
   z$call <- Call
@@ -36,7 +37,7 @@ function(formula, data, subset, na.action, method = "qr", model = FALSE, x = FAL
 }
 
 ols.fit <-
-function(x, y, method = "qr", ...)
+function(x, y, method = "qr", tol = 1e-7, maxiter = 100)
 { ## dispatcher among various fitting functions
   if (!is.numeric(x))
     stop("model matrix must be numeric.")
@@ -46,6 +47,7 @@ function(x, y, method = "qr", ...)
     method <- "null"
   contr <- attr(x, 'contrast')
   fit <- switch(method,
+                cg    = ols.fit.cg(x, y, tol, maxiter),
                 chol  = ols.fit.chol(x, y),
                 qr    = ols.fit.qr(x, y),
                 svd   = ols.fit.svd(x, y),
@@ -93,6 +95,47 @@ function(x, y)
     RSS = minkowski(residuals)^2, cov.unscaled = chol2inv(R), dims = dx)
   names(z$coefficients) <- xn
   dimnames(z$cov.unscaled) <- list(xn, xn)
+  class(z) <- "ols"
+	z
+}
+
+ols.fit.cg <-
+function(x, y, tol = 1e-7, maxiter = 100)
+{
+  if (is.matrix(y))
+    stop("'ols.fit.gc' does not support multiple responses")
+  storage.mode(x) <- "double"
+  storage.mode(y) <- "double"
+	ny <- length(y)
+	dx <- dim(x)
+	n <- dx[1]
+	xn <- dimnames(x)[[2]]
+	if (n != ny)
+		stop("Number of observations in x and y not equal")
+	p <- dx[2]
+  now <- proc.time()
+
+  z <- .C("OLS_cg",
+          x = x,
+          ldx = as.integer(n),
+          n = as.integer(n),
+          p = as.integer(p),
+          y = y,
+          coef = double(p),
+          tol = as.double(tol),
+          maxiter = as.integer(maxiter),
+          info = as.integer(0))[c("coef","info")]
+
+  speed <- proc.time() - now
+  xx <- crossprod(x)
+  R <- chol(xx)
+  fitted <- x %*% z$coef
+	fitted <- fitted[,]
+  residuals <- y - fitted
+	z <- list(coefficients = z$coef, residuals = residuals, fitted.values = fitted,
+    RSS = minkowski(residuals)^2, cov.unscaled = chol2inv(R), dims = dx, iter = z$info,
+    speed = speed)
+  names(z$coefficients) <- xn
   class(z) <- "ols"
 	z
 }
