@@ -28,7 +28,9 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(norm_two,               4),
   CALLDEF(norm_inf,               4),
   CALLDEF(norm_minkowski,         5),
+  CALLDEF(OLS_cg,                 9),
   CALLDEF(OLS_qr,                10),
+  CALLDEF(OLS_ridge,             20),
   CALLDEF(power_method,           9),
   CALLDEF(sherman_morrison,       6),
   CALLDEF(skewness_and_kurtosis,  7),
@@ -159,6 +161,7 @@ void R_init_fastmatrix(DllInfo *dll)
   R_RegisterCCallable("fastmatrix", "FM_find_quantile",         (DL_FUNC) &FM_find_quantile);
   R_RegisterCCallable("fastmatrix", "FM_geometric_mean",        (DL_FUNC) &FM_geometric_mean);
   R_RegisterCCallable("fastmatrix", "FM_mean_and_var",          (DL_FUNC) &FM_mean_and_var);
+  R_RegisterCCallable("fastmatrix", "FM_online_center",         (DL_FUNC) &FM_online_center);
   R_RegisterCCallable("fastmatrix", "FM_online_covariance",     (DL_FUNC) &FM_online_covariance);
   R_RegisterCCallable("fastmatrix", "FM_skewness_and_kurtosis", (DL_FUNC) &FM_skewness_and_kurtosis);
 

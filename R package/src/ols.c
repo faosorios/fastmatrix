@@ -3,6 +3,48 @@
 #include "fastmatrix.h"
 
 void
+OLS_cg(double *x, int *ldx, int *nrow, int *ncol, double *y, double *coef, double *tol, int *maxiter, int *info)
+{ /* ordinary least-squares fit using conjugate gradients */
+  int iter = 0, n = *nrow, p = *ncol;
+  double delta, gamma, lambda, u, v, *d, *g, *h, *work;
+
+  /* initialization */
+  d    = (double *) Calloc(p, double);
+  g    = (double *) Calloc(p, double);
+  h    = (double *) Calloc(p, double);
+  work = (double *) Calloc(n, double);
+
+  /* warming-up */
+  FM_crossprod(g, x, *ldx, n, p, y, n, n, 1);
+  BLAS1_scale(-1.0, g, 1, p);
+  Memcpy(d, g, p);
+  gamma = FM_norm_sqr(g, 1, p);
+
+  /* iteration */
+  while (gamma > *tol) {
+    FM_mult_mat(work, x, *ldx, n, p, d, p, p, 1);
+    FM_crossprod(h, x, *ldx, n, p, work, n, n, 1);
+    u = BLAS1_dot_product(d, 1, h, 1, p);
+    v = FM_norm_sqr(g, 1, p);
+    lambda = -v / u;
+    BLAS1_axpy(lambda, d, 1, coef, 1, p);
+    BLAS1_axpy(lambda, h, 1, g, 1, p);
+    delta = FM_norm_sqr(g, 1, p) / v;
+    FM_norm_sqr(g, 1, p);
+    BLAS1_scale(delta, d, 1, p);
+    BLAS1_axpy(1.0, g, 1, d, 1, p);
+
+    gamma = FM_norm_sqr(g, 1, p);
+    iter++;
+    if (iter > *maxiter)
+      break; /* maximum of iterations exceeded */
+  }
+  *info = iter;
+
+  Free(d); Free(g); Free(h); Free(work);
+}
+
+void
 OLS_qr(double *x, int *ldx, int *nrow, int *ncol, double *y, double *qraux, double *coef, double *fitted, double *resid, double *RSS)
 { /* ordinary least-squares fit using the QR decomposition */
   int info = 0, job = 0, n = *nrow, p = *ncol, rdf;

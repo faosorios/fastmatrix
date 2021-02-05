@@ -1,4 +1,4 @@
-/* ID: stats_API.c, last updated 2020-09-03, F.Osorio */
+/* ID: stats_API.c, last updated 2021-02-02, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -51,16 +51,39 @@ FM_geometric_mean(double *x, int nobs, double *mean)
 }
 
 void
+FM_online_center(double *x, int n, int p, double *weights, double *center)
+{ /* compute center estimate using an online algorithm
+   * based on AS 41: Applied Statistics 20, 1971, 206-209.
+   * doi: 10.2307/2346477 */
+  double accum = 0.0, factor = 1.0, wts, *diff;
+
+  /* initialization */
+  diff = (double *) Calloc(p, double);
+  BLAS1_copy(center, 1, x, n, p);
+  accum += weights[0];
+
+  /* updating stage */
+  for (int i = 1; i < n; i++) {
+    wts = weights[i];
+    accum += wts;
+    factor = wts / accum;
+    BLAS1_copy(diff, 1, x + i, n, p);
+    BLAS1_axpy(-1.0, center, 1, diff, 1, p);
+  }
+
+  Free(diff);
+}
+
+void
 FM_center_and_Scatter(double *x, int n, int p, double *weights, double *center, double *Scatter)
 { /* compute center and Scatter estimates using an online algorithm
-   * based on AS 41: Applied Statistics 20, 1971, 206-209. doi: 10.2307/2346477 */
+   * based on AS 41: Applied Statistics 20, 1971, 206-209.
+   * doi: 10.2307/2346477 */
   double accum = 0.0, factor = 1.0, wts, *diff;
 
   /* initialization */
   diff = (double *) Calloc(p, double);
   BLAS1_copy(center, 1, x, n, p); /* copying 1st observation */
-  factor /= (double) n;
-  BLAS1_scale(factor, weights, 1, n); /* to avoid scaling the Scatter matrix */
   accum += weights[0];
 
   /* updating stage */
@@ -74,6 +97,10 @@ FM_center_and_Scatter(double *x, int n, int p, double *weights, double *center, 
     factor = wts - factor * wts;
     BLAS2_ger(factor, Scatter, p, p, p, diff, 1, diff, 1);
   }
+
+  /* scaling the Scatter matrix */
+  factor = 1.0 / (double) n;
+  BLAS1_scale(factor, Scatter, 1, p * p);
 
   Free(diff);
 }

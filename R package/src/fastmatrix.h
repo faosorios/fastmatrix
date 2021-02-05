@@ -71,8 +71,12 @@ void lu_solve(double *, int *, int *, int *, double *, int *, int *);
 void chol_dcmp(double *, int *, int *, int *, int *);
 void svd_dcmp(double *, int *, int *, int *, double *, int *, double *, double *, int *, int *, int *);
 
-/* OLS using QR decomposition */
+/* OLS methods */
+void OLS_cg(double *, int *, int *, int *, double *, double *, double *, int *, int *);
 void OLS_qr(double *, int *, int *, int *, double *, double *, double *, double *, double *, double *);
+
+/* ridge regression */
+void OLS_ridge(double *, int *, int *, int *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, int *, int *, double *);
 
 /* descriptive statistics */
 void cov_weighted(double *, int *, int *, double *, double *, double *);
@@ -196,6 +200,7 @@ void FM_compensated_product(double *, int, double *);
 void FM_mean_and_var(double *, int, double *, double *);
 void FM_online_covariance(double *, double *, int, double *, double *, double *, double *, double *);
 void FM_geometric_mean(double *, int, double *);
+void FM_online_center(double *, int, int, double *, double *);
 void FM_center_and_Scatter(double *, int, int, double *, double *, double *);
 void FM_skewness_and_kurtosis(double *, int, int, double *, double *, double *, int);
 void FM_cov_MSSD(double *, int, int, double *, double *);
