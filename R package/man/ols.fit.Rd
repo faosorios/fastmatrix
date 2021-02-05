@@ -2,21 +2,24 @@
 \alias{ols.fit}
 \title{Fitter Functions for Linear Models}
 \usage{
-ols.fit(x, y, method = "qr", \dots)
+ols.fit(x, y, method = "qr", tol = 1e-7, maxiter = 100)
 }
 \description{
   This function is a \emph{switcher} among various numerical fitting functions
-  (\code{\link{ols.fit.chol}}, \code{\link{ols.fit.qr}}, \code{\link{ols.fit.svd}}
-  and \code{\link{ols.fit.sweep}}). The argument \code{method} does the switching:
-  \code{"qr"} for \code{\link{ols.fit.qr}}, etc. This should usually \emph{not} be
-  used directly unless by experienced users.
+  (\code{\link{ols.fit.cg}}, \code{\link{ols.fit.chol}}, \code{\link{ols.fit.qr}},
+  \code{\link{ols.fit.svd}} and \code{\link{ols.fit.sweep}}). The argument \code{method}
+  does the switching: \code{"qr"} for \code{\link{ols.fit.qr}}, etc. This should usually
+  \emph{not} be used directly unless by experienced users.
 }
 \arguments{
-  \item{x}{ design matrix of dimension \code{n * p}.}
-  \item{y}{ vector of observations of length \code{n}.}
-  \item{method}{ currently, methods \code{"chol"}, \code{"qr"} (default), \code{"svd"}
-  and \code{"sweep"} are supported.}
-  \item{\dots}{ currently disregarded.}
+  \item{x}{ design matrix of dimension \eqn{n\times q}.}
+  \item{y}{ vector of observations of length \eqn{n}.}
+  \item{method}{ currently, methods \code{"cg"}, \code{"chol"}, \code{"qr"} (default),
+  \code{"svd"} and \code{"sweep"} are supported.}
+  \item{tol}{ tolerance for the conjugate gradients (\code{gc}) method. Default is
+  \code{tol = 1e-7}.}
+  \item{maxiter}{ The maximum number of iterations for the conjugate gradients (\code{gc})
+  method. Defaults to 100.}
 }
 \value{
   a \code{\link{list}} with components:
@@ -28,8 +31,8 @@ ols.fit(x, y, method = "qr", \dots)
     covariances of the \eqn{\hat\beta_j}{coef[j]}, \eqn{j=1, \dots, p}.}
 }
 \seealso{
-  \code{\link{ols.fit.chol}}, \code{\link{ols.fit.qr}}, \code{\link{ols.fit.svd}},
-  and \code{\link{ols.fit.sweep}}.
+  \code{\link{ols.fit.cg}}, \code{\link{ols.fit.chol}}, \code{\link{ols.fit.qr}},
+  \code{\link{ols.fit.svd}}, \code{\link{ols.fit.sweep}}.
 }
 \examples{
 set.seed(151)

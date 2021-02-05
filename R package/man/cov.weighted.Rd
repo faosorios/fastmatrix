@@ -33,12 +33,12 @@ cov.weighted(x, weights = rep(1, nrow(x)))
   \emph{Applied Statistics} \bold{20}, 206-209.
 }
 \examples{
-xy <- cbind(x = 1:10, y = c(1:3, 8:5, 8:10))
-z0 <- cov.weighted(xy) # all weights are 1
-d2 <- mahalanobis(xy, center = z0$mean, cov = z0$cov)
-p <- ncol(xy)
-wts <- (p + 1) / (1 + d2) # nice weights!
-z1 <- cov.weighted(xy, weights = wts)
+x <- cbind(1:10, c(1:3, 8:5, 8:10))
+z0 <- cov.weighted(x) # all weights are 1
+D2 <- Mahalanobis(x, center = z0$mean, cov = z0$cov)
+p <- ncol(x)
+wts <- (p + 1) / (1 + D2) # nice weights!
+z1 <- cov.weighted(x, weights = wts)
 z1
 }
 \keyword{multivariate}

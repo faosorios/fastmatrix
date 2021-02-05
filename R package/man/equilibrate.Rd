@@ -2,15 +2,14 @@
 \alias{equilibrate}
 \title{Column equilibration of a rectangular matrix}
 \description{
-  \code{scale} is generic function whose default method centers and/or
-  scales the columns of a numeric matrix.
+  Equilibrate the columns of a rectangular matrix using 2-norm.
 }
 \usage{
 equilibrate(x, scale = TRUE)
 }
 \arguments{
   \item{x}{ a numeric matrix.}
-  \item{scale}{ a logical value, the columns of \code{x} must be scaled to norm unity?.}
+  \item{scale}{ a logical value, the columns of \code{x} must be scaled to norm unity?}
 }
 \value{
   For \code{scale = TRUE}, the equilibrated (each column scaled to norm one) matrix.

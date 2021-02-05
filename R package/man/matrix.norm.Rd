@@ -2,7 +2,7 @@
 \alias{matrix.norm}
 \title{Compute the norm of a rectangular matrix}
 \description{
-  Computes a matrix norm of \code{x} using LAPACK.  The norm can be the one (\code{"1"})
+  Computes a matrix norm of \code{x} using LAPACK. The norm can be the one (\code{"1"})
   norm, the infinity (\code{"inf"}) norm, the Frobenius norm, the maximum modulus
   (\code{"maximum"}) among elements of a matrix, as determined by the value of \code{type}.
 }
@@ -26,7 +26,7 @@ matrix.norm(x, type = "Frobenius")
   As function \code{norm} in package \pkg{base}, method of \code{matrix.norm} calls
   the LAPACK function \code{DLANGE}.
 
-  Note that the 1-, Inf- and maximum norm is faster to calculate than the Frobenius one.
+  Note that the 1-, \code{Inf}- and maximum norm is faster to calculate than the Frobenius one.
 }
 \value{
   The matrix norm, a non-negative number.

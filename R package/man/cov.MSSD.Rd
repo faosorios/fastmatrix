@@ -30,10 +30,10 @@ cov.MSSD(x)
   \emph{Quality Engineering} \bold{5}, 619-625.
 }
 \examples{
-xy <- cbind(x = 1:10, y = c(1:3, 8:5, 8:10))
-z0 <- cov(xy)
+x <- cbind(1:10, c(1:3, 8:5, 8:10))
+z0 <- cov(x)
 z0
-z1 <- cov.MSSD(xy)
+z1 <- cov.MSSD(x)
 z1
 }
 \keyword{multivariate}

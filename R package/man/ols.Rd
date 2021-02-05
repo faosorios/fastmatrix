@@ -5,8 +5,8 @@
   Returns an object of class \code{"ols"} that represents a linear model fit.
 }
 \usage{
-ols(formula, data, subset, na.action, method = "qr", model = FALSE,
-  x = FALSE, y = FALSE, contrasts = NULL, ...)
+ols(formula, data, subset, na.action, method = "qr", tol = 1e-7, maxiter = 100,
+  model = FALSE, x = FALSE, y = FALSE, contrasts = NULL, ...)
 }
 \arguments{
   \item{formula}{ an object of class \code{"\link{formula}"} (or one that
@@ -22,14 +22,18 @@ ols(formula, data, subset, na.action, method = "qr", model = FALSE,
   \item{na.action}{ a function which indicates what should happen when the data
     contain \code{NA}s. The default is set by the \code{na.action} setting of
     \code{\link{options}}, and is \code{\link{na.fail}} if that is unset.}
-  \item{method}{the least squares fitting method to be used; the options are \code{"chol"},
-  \code{"qr"} (the default), \code{"svd"} and \code{"sweep"}.}
+  \item{method}{the least squares fitting method to be used; the options are \code{"cg"}
+    (conjugate gradients), \code{"chol"}, \code{"qr"} (the default), \code{"svd"} and
+    \code{"sweep"}.}
+  \item{tol}{ tolerance for the conjugate gradients (\code{gc}) method. Default is
+    \code{tol = 1e-7}.}
+  \item{maxiter}{ The maximum number of iterations for the conjugate gradients (\code{gc})
+    method. Defaults to 100.}
   \item{model, x, y}{ logicals.  If \code{TRUE} the corresponding components of
     the fit (the model frame, the model matrix, the response) are returned.}
   \item{contrasts}{ an optional list. See the \code{contrasts.arg} of
     \code{\link{model.matrix.default}}.}
-  \item{\dots}{ additional arguments to be passed to the low level regression
-    fitting functions (see below).}
+  \item{\dots}{ additional arguments (currently disregarded).}
 }
 \value{
   \code{ols} returns an object of \code{\link{class}} \code{"ols"}.
@@ -55,7 +59,7 @@ ols(formula, data, subset, na.action, method = "qr", model = FALSE,
   \item{model}{if requested (the default), the model frame used.}
 }
 \seealso{
-  \code{\link{lm}}, \code{\link{lsfit}}
+  \code{\link{ols.fit}}, \code{\link{lm}}, \code{\link{lsfit}}
 }
 \examples{
 # tiny example of regression
