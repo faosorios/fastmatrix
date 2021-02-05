@@ -1,3 +1,16 @@
+0.3-81 (Feb 05, 2021)
+ * ols function now has a method for conjugate gradients (cg) to fits a linear regression.
+ * Now cov.weighted is slightly faster.
+
+0.3-8 (Jan 21, 2021)
+ * Added function to fit a linear model by ridge regression. This routine has options
+   to choose the ridge parameter by minimizing the generalized cross-validation criterion
+   as well as selecting an optimal value from a grid of specified values.
+ * Added function to compute the geometric mean using a Fused-Multiply-and-Add (FMA)
+   compensated scheme for accurate computation of floating-point product.
+ * Added function to compute the Wilson-Hilferty transformation for chi-squared random
+   variables.
+
 0.3 (Nov 24, 2020)
  * Added routines is.lower.tri and is.upper.tri for checking if a matrix is lower
    or upper triangular.

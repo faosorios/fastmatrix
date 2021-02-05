@@ -1,8 +1,8 @@
 Package: fastmatrix
 Type: Package
 Title: Fast Computation of some Matrices Useful in Statistics
-Version: 0.3
-Date: 2020-11-24
+Version: 0.3-81
+Date: 2021-02-04
 Authors@R:
     c(person(given = "Felipe",
              family = "Osorio",
