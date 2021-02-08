@@ -42,7 +42,7 @@ Latest binaries and sources for **fastmatrix** are availables from [CRAN package
 
 * [fastmatrix_0.3-81.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.3-81.tar.gz) - Package sources
 * [fastmatrix_0.3-8.zip](https://cran.r-project.org/bin/windows/contrib/4.0/fastmatrix_0.3-8.zip) - Windows binaries (R-release)
-* [fastmatrix_0.3-8.tgz](https://cran.r-project.org/bin/macosx/contrib/4.0/fastmatrix_0.3-8.tgz) - Mac OS binaries (R-release)
+* [fastmatrix_0.3-81.tgz](https://cran.r-project.org/bin/macosx/contrib/4.0/fastmatrix_0.3-81.tgz) - Mac OS binaries (R-release)
 * [fastmatrix.pdf](https://cran.r-project.org/web/packages/fastmatrix/fastmatrix.pdf) - Reference Manual
 
 ## Installation instructions
@@ -66,7 +66,7 @@ Please report any bugs/suggestions/improvements to [Felipe Osorio](mailto:felipe
 ### To cite the fastmatrix package in publications use:
 
 Osorio, F., Ogueda, A. (2021). fastmatrix: Fast computation of some matrices useful in statistics. 
-R package version 0.3-8. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
+R package version 0.3-81. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
 
 ## About the Authors
 
