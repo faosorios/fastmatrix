@@ -22,7 +22,7 @@ Latest release (September 18, 2020) of **fastmatrix** package have implemented t
 * Operations envolving the commutation matrix, with minimum requeriments of storage.
 * Operations envolving the duplication matrix, with minimum requeriments of storage.
 * Operations envolving the symmetrizer matrix, with minimum requeriments of storage.
-* Ordinary least-squares (OLS) using several methods: Cholesky, QR decomposition, singular value decomposition, and the Sweep operator. This provides an alternative to extend the procedures available in R built-in function 'lm'.
+* Ordinary least-squares (OLS) using several methods: conjugated gradients, Cholesky, QR decomposition, singular value decomposition, and the Sweep operator. This provides an alternative to extend the procedures available in R built-in function 'lm'.
 * Power method to compute the dominant eigenvalue and its associated eigenvector.
 * Procedures for the LU factorization of square matrices.
 * Ridge estimation for linear regression.
