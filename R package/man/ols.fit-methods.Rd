@@ -29,7 +29,7 @@ ols.fit.sweep(x, y)
   and some information used by \code{summary.ols}.
 }
 \seealso{
-  \code{\link{ols}}, code{\link{ols.fit}}, \code{\link{lm}}
+  \code{\link{ols}}, \code{\link{ols.fit}}, \code{\link{lm}}
 }
 \examples{
 set.seed(151)

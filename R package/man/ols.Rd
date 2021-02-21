@@ -70,10 +70,10 @@ x <- matrix(c(1, 1,
               1,-1,
               2,-1,
               3,-1), ncol = 2, byrow = TRUE)
-f0 <- lm(y ~ x) # intercept is included by default
+f0 <- ols(y ~ x) # intercept is included by default
 f0 # printing results (QR method was used)
 
-f1 <- lm(y ~ x, method = "svd") # using SVD method instead
+f1 <- ols(y ~ x, method = "svd") # using SVD method instead
 f1
 }
 \keyword{regression}

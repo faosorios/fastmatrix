@@ -19,8 +19,8 @@ lu2inv(x)
   detailed study of the \code{Fortran} code.
 }
 \source{
-  This is an interface to the LAPACK routine \code{DGETRI}. LAPACK is from
-  \url{http://www.netlib.org/lapack} and its guide is listed in the references.
+  This is an interface to the LAPACK routine \code{DGETRI}. LAPACK is from 
+  \url{https://www.netlib.org/lapack/} and its guide is listed in the references.
 }
 \references{
   Anderson. E., Bai, Z., Bischof, C., Blackford, S., Demmel, J., Dongarra, J.,
