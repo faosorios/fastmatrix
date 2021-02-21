@@ -14,7 +14,7 @@ Latest release (September 18, 2020) of **fastmatrix** package have implemented t
 * Covariance matrix estimation using the Mean Square Successive (MSSD) method.
 * Estimation of the weighted mean and covariance matrix using an online algorithm (Clarke, 1971).
 * Fast computation of Hadamard product using unrolled loops.
-* Gauss-Seidel, Jacobi and conjugate gradients (CG) methods for solving linear systems.
+* Gauss-Seidel, Jacobi and conjugate gradients (CG) iterative methods for solving linear systems.
 * Geometric mean using a Fused-Multiply-and-Add (FMA) compensated scheme for accurate computation of floating-point product.
 * Inner products and norms for matrices.
 * Interface to **C code callable by another C code** from other R packages.
