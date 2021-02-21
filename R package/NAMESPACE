@@ -6,12 +6,13 @@ importFrom("stats",
            var)
 
 ## Our exports:
-export(array.mult, bracket.prod, comm.info, comm.prod, commutation, constructX, cov.MSSD,
-       cov.weighted, dupl.cross, dupl.info, dupl.prod, duplication, equilibrate, extractL,
-       extractU, geomean, hadamard, kurtosis, is.lu, is.lower.tri, is.upper.tri, kronecker.prod,
-       lu, lu2inv, Mahalanobis, matrix.inner, matrix.norm, minkowski, ols, ols.fit, ols.fit.cg,
-       ols.fit.chol, ols.fit.qr, ols.fit.svd, ols.fit.sweep, power.method, ridge, sherman.morrison,
-       skewness, sweep.operator, symm.info, symm.prod, symmetrizer, vec, vech, wilson.hilferty)
+export(array.mult, bracket.prod, cg, comm.info, comm.prod, commutation, constructX,
+       cov.MSSD, cov.weighted, dupl.cross, dupl.info, dupl.prod, duplication, equilibrate,
+       extractL, extractU, geomean, hadamard, kurtosis, is.lu, is.lower.tri, is.upper.tri,
+       jacobi, kronecker.prod, ldl, lu, lu2inv, Mahalanobis, matrix.inner, matrix.norm,
+       minkowski, ols, ols.fit, ols.fit.cg, ols.fit.chol, ols.fit.qr, ols.fit.svd,
+       ols.fit.sweep, power.method, ridge, seidel, sherman.morrison, skewness, sweep.operator,
+       symm.info, symm.prod, symmetrizer, vec, vech, wilson.hilferty)
 
 # Exported S3 methods
 export(lu.default, solve.lu)
