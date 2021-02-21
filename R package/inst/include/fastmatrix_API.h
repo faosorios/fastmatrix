@@ -602,17 +602,6 @@ double FM_find_quantile(double *a, int n, int k) {
   return(fun(a, n, k));
 }
 
-/* Brent's method for unidimensional optimization: external API */
-
-double FM_brent(double ax, double bx, double (*f)(double, void *), void *info, double tolerance) {
-  static DBL_FUNC fun = NULL;
-  if (fun == NULL) {
-    fun = (DBL_FUNC) R_GetCCallable("fastmatrix", "FM_brent");
-    if (fun == NULL) Rf_error("cannot find function 'FM_brent'");
-  }
-  return(fun(ax, bx, f, info, tolerance));
-}
-
 /* Misc: external API */
 
 void FM_centering(double *x, int n, int p, double *center) {

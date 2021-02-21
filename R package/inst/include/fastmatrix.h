@@ -105,9 +105,6 @@ void FM_online_center(double *x, int n, int p, double *weights, double *center);
 void FM_online_covariance(double *x, double *y, int nobs, double *xbar, double *ybar, double *xvar, double *yvar, double *cov);
 void FM_skewness_and_kurtosis(double *x, int n, int p, double *center, double *Scatter, double *stats, int do_skewness);
 
-/* Brent's method for unidimensional optimization */
-double FM_brent(double ax, double bx, double (*f)(double, void *), void *info, double tolerance);
-
 /* misc */
 void FM_centering(double *x, int n, int p, double *center);
 void FM_cov2cor(double *cov, int p);
