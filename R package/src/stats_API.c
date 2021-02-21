@@ -81,7 +81,7 @@ FM_center_and_Scatter(double *x, int n, int p, double *weights, double *center, 
    * doi: 10.2307/2346477 */
   double accum = 0.0, factor = 1.0, wts, *diff;
 
-  /* initialization */
+  /* initialization (warning: center and Scatter must be zeroed before calling) */
   diff = (double *) Calloc(p, double);
   BLAS1_copy(center, 1, x, n, p); /* copying 1st observation */
   accum += weights[0];

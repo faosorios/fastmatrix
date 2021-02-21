@@ -7,6 +7,7 @@ OLS_cg(double *x, int *ldx, int *nrow, int *ncol, double *y, double *coef, doubl
 { /* ordinary least-squares fit using conjugate gradients */
   int iter = 0, n = *nrow, p = *ncol;
   double delta, gamma, lambda, u, v, *d, *g, *h, *work;
+  double az, z, accum, scale, ssq;
 
   /* initialization */
   d    = (double *) Calloc(p, double);
@@ -16,28 +17,74 @@ OLS_cg(double *x, int *ldx, int *nrow, int *ncol, double *y, double *coef, doubl
 
   /* warming-up */
   FM_crossprod(g, x, *ldx, n, p, y, n, n, 1);
-  BLAS1_scale(-1.0, g, 1, p);
-  Memcpy(d, g, p);
-  gamma = FM_norm_sqr(g, 1, p);
+  /* computing the gradient, search direction and convergence criterion (gamma) */
+  scale = 0.0; ssq = 1.0;
+  for (int i = 0; i < p; i++) {
+    z = -g[i];
+    d[i] = g[i] = z;
+
+    if (z != 0.0) {
+      az = fabs(z);
+
+      if (scale < az) {
+        ssq = 1.0 + ssq * (scale / az) * (scale / az);
+        scale = az;
+      } else
+        ssq += (az / scale) * (az / scale);
+    }
+  }
+  gamma = SQR(scale * sqrt(ssq));
 
   /* iteration */
   while (gamma > *tol) {
     FM_mult_mat(work, x, *ldx, n, p, d, p, p, 1);
     FM_crossprod(h, x, *ldx, n, p, work, n, n, 1);
-    u = BLAS1_dot_product(d, 1, h, 1, p);
-    v = FM_norm_sqr(g, 1, p);
-    lambda = -v / u;
-    BLAS1_axpy(lambda, d, 1, coef, 1, p);
-    BLAS1_axpy(lambda, h, 1, g, 1, p);
-    delta = FM_norm_sqr(g, 1, p) / v;
-    FM_norm_sqr(g, 1, p);
-    BLAS1_scale(delta, d, 1, p);
-    BLAS1_axpy(1.0, g, 1, d, 1, p);
+    /* computing dot product and step-length (lambda) */
+    accum = 0.0; scale = 0.0; ssq = 1.0;
+    for (int i = 0; i < p; i++) { /* code re-use! */
+      accum += d[i] * h[i];
+      z = g[i];
 
-    gamma = FM_norm_sqr(g, 1, p);
+      if (z != 0.0) {
+        az = fabs(z);
+
+        if (scale < az) {
+          ssq = 1.0 + ssq * (scale / az) * (scale / az);
+          scale = az;
+        } else
+          ssq += (az / scale) * (az / scale);
+      }
+    }
+    u = accum;
+    v = SQR(scale * sqrt(ssq));
+    lambda = -v / u;
+    /* updating coefficients and gradient */
+    for (int i = 0; i < p; i++) {
+      coef[i] += lambda * d[i];
+      g[i] += lambda * h[i];
+    }
+    delta = FM_norm_sqr(g, 1, p) / v;
+    /* updating search direction and convergence criterion (gamma) */
+    scale = 0.0; ssq = 1.0;
+    for (int i = 0; i < p; i++) {
+      z = g[i];
+      d[i] = z + delta * d[i];
+
+      if (z != 0.0) {
+        az = fabs(z);
+
+        if (scale < az) {
+          ssq = 1.0 + ssq * (scale / az) * (scale / az);
+          scale = az;
+        } else
+          ssq += (az / scale) * (az / scale);
+      }
+    }
+    gamma = SQR(scale * sqrt(ssq));
+
     iter++;
     if (iter > *maxiter)
-      break; /* maximum of iterations exceeded */
+      break; /* maximum number of iterations exceeded */
   }
   *info = iter;
 

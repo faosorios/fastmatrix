@@ -1,4 +1,4 @@
-/* ID: cholesky.c, last updated 2020-09-29, F.Osorio */
+/* ID: cholesky.c, last updated 2021-02-17, F.Osorio */
 
 #include "fastmatrix.h"
 

@@ -1,4 +1,4 @@
-/* $ID: norms.c, last updated 2020-08-31, F.Osorio */
+/* $ID: norms.c, last updated 2021-02-14, F.Osorio */
 
 #include "fastmatrix.h"
 

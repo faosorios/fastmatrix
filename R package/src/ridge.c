@@ -149,7 +149,7 @@ ridge_GCV(double *lambda, GCVinfo st, double tol)
   /* call optimizer */
   upper_lambda = *lambda;
   do {
-    *lambda = FM_brent(0., upper_lambda, log_GCV, st, tol);
+    *lambda = brent(0., upper_lambda, log_GCV, st, tol);
     conv = fabs(*lambda - upper_lambda);
     upper_lambda *= phi;
   } while (conv < tol);

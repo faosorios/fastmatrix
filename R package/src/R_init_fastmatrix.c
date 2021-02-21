@@ -1,4 +1,4 @@
-/* $ID: init.c, last updated 2020-09-05, F.Osorio */
+/* $ID: init.c, last updated 2021-02-19, F.Osorio */
 
 #include "fastmatrix.h"
 #include <R_ext/Rdynload.h>
@@ -7,6 +7,7 @@
 #define F77DEF(name, nargs)   {#name, (DL_FUNC) &F77_NAME(name), nargs}
 
 static const R_CMethodDef CEntries[]  = {
+  CALLDEF(cg_solver,              9),
   CALLDEF(chol_dcmp,              5),
   CALLDEF(cov_MSSD,               5),
   CALLDEF(cov_weighted,           6),
@@ -17,6 +18,8 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(dupl_right_trans,       8),
   CALLDEF(duplication_mat,        4),
   CALLDEF(geometric_mean,         3),
+  CALLDEF(hadamard_prod,          4),
+  CALLDEF(jacobi_solver,          9),
   CALLDEF(kronecker_prod,         7),
   CALLDEF(lu_dcmp,                5),
   CALLDEF(lu_inverse,             4),
@@ -32,6 +35,7 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(OLS_qr,                10),
   CALLDEF(OLS_ridge,             20),
   CALLDEF(power_method,           9),
+  CALLDEF(seidel_solver,          9),
   CALLDEF(sherman_morrison,       6),
   CALLDEF(skewness_and_kurtosis,  7),
   CALLDEF(svd_dcmp,              11),
@@ -49,8 +53,8 @@ static const R_FortranMethodDef F77Entries[] = {
   F77DEF(comm_right_mult,        10),
   F77DEF(commutation_mat,         6),
   F77DEF(equilibrate_cols,        8),
-  F77DEF(hadamard_prod,           4),
   F77DEF(inner_frobenius,         7),
+  F77DEF(ldl_dcmp,                5),
   F77DEF(pivot_mat,               4),
   F77DEF(symmetrizer_mat,         8),
   {NULL, NULL, 0}
@@ -164,9 +168,6 @@ void R_init_fastmatrix(DllInfo *dll)
   R_RegisterCCallable("fastmatrix", "FM_online_center",         (DL_FUNC) &FM_online_center);
   R_RegisterCCallable("fastmatrix", "FM_online_covariance",     (DL_FUNC) &FM_online_covariance);
   R_RegisterCCallable("fastmatrix", "FM_skewness_and_kurtosis", (DL_FUNC) &FM_skewness_and_kurtosis);
-
-  /* Brent's method for unidimensional optimization */
-  R_RegisterCCallable("fastmatrix", "FM_brent",                 (DL_FUNC) &FM_brent);
 
   /* misc code callable from other packages */
   R_RegisterCCallable("fastmatrix", "FM_centering",             (DL_FUNC) &FM_centering);

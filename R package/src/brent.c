@@ -1,8 +1,8 @@
-/* $ID: brent.c, last updated 2020-11-26, F.Osorio */
+/* $ID: brent.c, last updated 2021-02-06, F.Osorio */
 
 #include "fastmatrix.h"
 
-double FM_brent(double ax, double bx, double (*f)(double, void *), void *info, double tolerance)
+double brent(double ax, double bx, double (*f)(double, void *), void *info, double tolerance)
 { /* Brent's method for unidimensional minimization.
    * This is a recoded version of fmin.f extracted from netlib.org which is
    * a slightly modified version of the 'localmin' procedure described in
