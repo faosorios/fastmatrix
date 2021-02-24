@@ -7,7 +7,7 @@ Yet another R package for matrices. It contains a small set of functions to fast
 
 ## Features
 
-Latest release (September 18, 2020) of **fastmatrix** package have implemented the following functions:
+Latest release (February 05, 2021) of **fastmatrix** package have implemented the following functions:
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
 * C version of the Kronecker product which is slightly faster than the built in R base.
 * Column-equilibration for rectangular matrices.
