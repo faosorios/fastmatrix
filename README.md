@@ -20,13 +20,13 @@ Latest release (February 05, 2021) of **fastmatrix** package have implemented th
 * Interface to **C code callable by another C code** from other R packages.
 * LDL decomposition for symmetric real matrices.
 * Lp norms for vectors.
+* LU factorization for square matrices.
 * Mahalanobis distances, checking if the covariance is a positive definite matrix.
 * Operations envolving the commutation matrix, with minimum requeriments of storage.
 * Operations envolving the duplication matrix, with minimum requeriments of storage.
 * Operations envolving the symmetrizer matrix, with minimum requeriments of storage.
 * Ordinary least-squares (OLS) using several methods: conjugate gradients, Cholesky, QR decomposition, singular value decomposition, and the Sweep operator. This provides an alternative to extend the procedures available in R built-in function 'lm'.
 * Power method to compute the dominant eigenvalue and its associated eigenvector.
-* Procedures for the LU factorization of square matrices.
 * Ridge estimation for linear regression.
 * Routines to compute measures of multivariate skewness and kurtosis proposed by Mardia (1970).
 * Sherman-Morrison formula.
