@@ -73,9 +73,10 @@ Or install it from its [GitHub repository](https://github.com/faosorios/fastmatr
 install.packages("devtools")
 ```
 
-To install this package, start R and enter:
-```
-install.packages("fastmatrix")
+Then install `fastmatrix` using the install_github function in [devtools](https://devtools.r-lib.org/)
+```r
+library(devtools)
+install_github("faosorios/fastmatrix", subdir = "pkg")
 ```
 
 Alternatively, you can download the source as a tarball (.tar.gz file). Unpack this file (thereby creating a directory named, fastmatrix) and install the package source by executing (at the console prompt)
