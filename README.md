@@ -44,7 +44,7 @@ Our plan in the near future is the implementation of functions to handle:
 
 ## Resources
 
-Latest binaries and sources (development version) for **fastmatrix** are available here:
+Latest binaries and sources (development version) for [**fastmatrix**](https://github.com/faosorios/fastmatrix) are available here:
 
 * [fastmatrix_0.3-819.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.3-819.tar.gz) - Package sources
 * [fastmatrix_0.3-819.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.3-819.zip) - Windows binaries
