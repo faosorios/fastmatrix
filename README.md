@@ -38,6 +38,10 @@ Our plan in the near future is the implementation of functions to handle:
 * Elimination matrices.
 * Some special matrices and operations arising in numerical analysis.
 
+## Reference Manual
+
+<a href="https://github.com/faosorios/fastmatrix/blob/master/man/fastmatrix-manual.pdf"><img src="https://github.com/faosorios/fastmatrix/blob/master/man/fastmatrix.png" height="250"/></a>
+
 ## Resources
 
 Latest binaries and sources for **fastmatrix** are availables from [CRAN package repository](https://cran.r-project.org/package=fastmatrix)
