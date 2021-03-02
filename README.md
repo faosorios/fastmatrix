@@ -60,12 +60,7 @@ Version 0.3-81 of [**fastmatrix**](https://github.com/faosorios/fastmatrix) can 
 
 To install [**fastmatrix**](https://github.com/faosorios/fastmatrix) from CRAN, start R and enter:
 ```r
-# Install fastmatrix from CRAN
 install.packages("fastmatrix")
-
-# Or the development version from GitHub:
-# install.packages("devtools")
-install_github("faosorios/fastmatrix", subdir = "pkg")
 ```
 
 Or install it from its [GitHub repository](https://github.com/faosorios/fastmatrix). First install the [devtools](https://devtools.r-lib.org/) package.
