@@ -46,6 +46,7 @@ Our plan in the near future is the implementation of functions to handle:
 
 Latest binaries and sources for **fastmatrix** are available here:
 
+* [fastmatrix_0.3-819.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.3-819.tar.gz) - Package sources
 * [fastmatrix_0.3-819.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.3-819.zip) - Windows binaries
 * [fastmatrix_0.3-819.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.3-819.tgz) - Mac OS binaries
 
@@ -62,7 +63,7 @@ To install this package, start R and enter:
 install.packages("fastmatrix")
 ```
 
-Alternatively, you can download the source as a tarball or as a zip file. Unpack this file (thereby creating a directory named, fastmatrix) and install the package source by executing (at the console prompt)
+Alternatively, you can download the source as a tarball (.tar.gz file). Unpack this file (thereby creating a directory named, fastmatrix) and install the package source by executing (at the console prompt)
 ```
 R CMD INSTALL fastmatrix
 ```
