@@ -1,6 +1,7 @@
 # Fast computation of some matrices useful in statistics
 
 [![CRAN status](http://www.r-pkg.org/badges/version/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
+[![R-CMD-check](https://github.com/faosorios/fastmatrix/workflows/R-CMD-check/badge.svg)](https://github.com/faosorios/fastmatrix/actions)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
 
 Yet another R package for matrices. It contains a small set of functions to fast computation of some matrices and operations useful in statistics.
