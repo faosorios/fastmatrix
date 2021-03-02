@@ -69,8 +69,6 @@ install_github("faosorios/fastmatrix", subdir = "pkg")
 ```
 
 Or install it from its [GitHub repository](https://github.com/faosorios/fastmatrix). First install the [devtools](https://devtools.r-lib.org/) package.
-
-Or for installing the development version from GitHub:
 ```r
 install.packages("devtools")
 ```
