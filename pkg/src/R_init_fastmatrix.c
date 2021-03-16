@@ -1,4 +1,4 @@
-/* $ID: init.c, last updated 2021-02-19, F.Osorio */
+/* $ID: init.c, last updated 2021-03-03, F.Osorio */
 
 #include "fastmatrix.h"
 #include <R_ext/Rdynload.h>
@@ -7,6 +7,7 @@
 #define F77DEF(name, nargs)   {#name, (DL_FUNC) &F77_NAME(name), nargs}
 
 static const R_CMethodDef CEntries[]  = {
+  CALLDEF(central_moments,        6),
   CALLDEF(cg_solver,              9),
   CALLDEF(chol_dcmp,              5),
   CALLDEF(cov_MSSD,               5),
@@ -165,6 +166,7 @@ void R_init_fastmatrix(DllInfo *dll)
   R_RegisterCCallable("fastmatrix", "FM_find_quantile",         (DL_FUNC) &FM_find_quantile);
   R_RegisterCCallable("fastmatrix", "FM_geometric_mean",        (DL_FUNC) &FM_geometric_mean);
   R_RegisterCCallable("fastmatrix", "FM_mean_and_var",          (DL_FUNC) &FM_mean_and_var);
+  R_RegisterCCallable("fastmatrix", "FM_moments",               (DL_FUNC) &FM_moments);
   R_RegisterCCallable("fastmatrix", "FM_online_center",         (DL_FUNC) &FM_online_center);
   R_RegisterCCallable("fastmatrix", "FM_online_covariance",     (DL_FUNC) &FM_online_covariance);
   R_RegisterCCallable("fastmatrix", "FM_skewness_and_kurtosis", (DL_FUNC) &FM_skewness_and_kurtosis);

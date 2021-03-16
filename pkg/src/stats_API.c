@@ -1,4 +1,4 @@
-/* ID: stats_API.c, last updated 2021-02-02, F.Osorio */
+/* ID: stats_API.c, last updated 2021-03-03, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -16,6 +16,37 @@ FM_mean_and_var(double *x, int nobs, double *mean, double *var)
     accum += diff * (x[i] - *mean);
   }
   *var = accum / n;
+}
+
+void
+FM_moments(double *x, int nobs, double *mean, double *s2, double *s3, double *s4)
+{ /* compute sample mean and sums of powers of deviations, this is a slight
+   * modification of AS 52: Applied Statistics 21, 1972, 226-227.
+   * doi: 10.2307/2346507 */
+  double accum1, accum2, accum3, accum4, m1, m2, n = 1.0, diff, term;
+
+  /* initialization */
+  accum1 = x[0];
+  accum2 = accum3 = accum4 = 0.0;
+
+  /* updating stage */
+  for (int i = 1; i < nobs; i++) {
+    n++;
+    diff = x[i] - accum1;
+    term = diff / n;
+    m1 = n - 1.;
+    m2 = n - 2.;
+    accum4 -= term * (4. * accum3 - term * (6. * accum2 + m1 * (1. + CUBE(m1)) * SQR(term)));
+    accum3 -= term * (3. * accum2 - n * m1 * m2 * SQR(term));
+    accum2 += n * m1 * SQR(term);
+    accum1 += term;
+  }
+
+  /* saving results */
+  *mean = accum1;
+  *s2   = accum2 / n;
+  *s3   = accum3 / n;
+  *s4   = accum4 / n;
 }
 
 void
@@ -44,10 +75,7 @@ FM_online_covariance(double *x, double *y, int nobs, double *xbar, double *ybar,
 void
 FM_geometric_mean(double *x, int nobs, double *mean)
 { /* computes the geometric mean using a compensated product scheme */
-  double prod;
-
-  FM_compensated_product(x, nobs, &prod);
-  *mean = R_pow(prod, 1.0 / nobs);
+  FM_compensated_product(x, nobs, mean);
 }
 
 void
@@ -55,11 +83,12 @@ FM_online_center(double *x, int n, int p, double *weights, double *center)
 { /* compute center estimate using an online algorithm
    * based on AS 41: Applied Statistics 20, 1971, 206-209.
    * doi: 10.2307/2346477 */
-  double accum = 0.0, factor = 1.0, wts, *diff;
+  double accum = 0.0, factor = 1.0, wts, *diff, *mean;
 
   /* initialization */
   diff = (double *) Calloc(p, double);
-  BLAS1_copy(center, 1, x, n, p);
+  mean = (double *) Calloc(p, double);
+  BLAS1_copy(mean, 1, x, n, p);
   accum += weights[0];
 
   /* updating stage */
@@ -68,10 +97,13 @@ FM_online_center(double *x, int n, int p, double *weights, double *center)
     accum += wts;
     factor = wts / accum;
     BLAS1_copy(diff, 1, x + i, n, p);
-    BLAS1_axpy(-1.0, center, 1, diff, 1, p);
+    BLAS1_axpy(-1.0, mean, 1, diff, 1, p);
   }
 
-  Free(diff);
+  /* saving results */
+  BLAS1_copy(center, 1, mean, 1, p);
+
+  Free(diff); Free(mean);
 }
 
 void
@@ -79,11 +111,13 @@ FM_center_and_Scatter(double *x, int n, int p, double *weights, double *center, 
 { /* compute center and Scatter estimates using an online algorithm
    * based on AS 41: Applied Statistics 20, 1971, 206-209.
    * doi: 10.2307/2346477 */
-  double accum = 0.0, factor = 1.0, wts, *diff;
+  double accum = 0.0, factor = 1.0, wts, *diff, *mean, *cov;
 
-  /* initialization (warning: center and Scatter must be zeroed before calling) */
+  /* initialization */
   diff = (double *) Calloc(p, double);
-  BLAS1_copy(center, 1, x, n, p); /* copying 1st observation */
+  mean = (double *) Calloc(p, double);
+  cov  = (double *) Calloc(p * p, double);
+  BLAS1_copy(mean, 1, x, n, p); /* copying 1st observation */
   accum += weights[0];
 
   /* updating stage */
@@ -92,17 +126,18 @@ FM_center_and_Scatter(double *x, int n, int p, double *weights, double *center, 
     accum += wts;
     factor = wts / accum;
     BLAS1_copy(diff, 1, x + i, n, p);
-    BLAS1_axpy(-1.0, center, 1, diff, 1, p);
-    BLAS1_axpy(factor, diff, 1, center, 1, p);
+    BLAS1_axpy(-1.0, mean, 1, diff, 1, p);
+    BLAS1_axpy(factor, diff, 1, mean, 1, p);
     factor = wts - factor * wts;
-    BLAS2_ger(factor, Scatter, p, p, p, diff, 1, diff, 1);
+    BLAS2_ger(factor, cov, p, p, p, diff, 1, diff, 1);
   }
 
-  /* scaling the Scatter matrix */
+  /* saving results */
+  BLAS1_copy(center, 1, mean, 1, p);
   factor = 1.0 / (double) n;
-  BLAS1_scale(factor, Scatter, 1, p * p);
+  FM_scale_mat(Scatter, p, factor, cov, p, p, p);
 
-  Free(diff);
+  Free(diff); Free(mean); Free(cov);
 }
 
 void

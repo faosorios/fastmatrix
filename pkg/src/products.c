@@ -31,8 +31,6 @@ FM_compensated_product(double *x, int nobs, double *prod)
 
 void
 geometric_mean(double *x, int *nobs, double *mean)
-{ /* wrapper for 'FM_geometric_mean' */
-  int n = *nobs;
-
-  FM_geometric_mean(x, n, mean);
+{ /* wrapper for 'FM_compensated_product' */
+  FM_compensated_product(x, *nobs, mean);
 }

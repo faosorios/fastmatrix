@@ -1,4 +1,4 @@
-/* ID: cov_weighted.c, last updated 2020-09-23, F.Osorio */
+/* ID: cov_weighted.c, last updated 2021-03-03, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -16,4 +16,12 @@ cov_MSSD(double *x, int *nobs, int *vars, double *mean, double *cov)
   int n = *nobs, p = *vars;
 
   FM_cov_MSSD(x, n, p, mean, cov);
+}
+
+void
+central_moments(double *x, int *nobs, double *mean, double *var, double *m3, double *m4)
+{ /* wrapper for 'FM_moments' */
+  int n = *nobs;
+
+  FM_moments(x, n, mean, var, m3, m4);
 }

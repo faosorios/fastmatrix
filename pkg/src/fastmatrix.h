@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2021-02-19, F.Osorio */
+/* ID: fastmatrix.h, last updated 2021-03-03, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -14,6 +14,7 @@
 #include <R_ext/Applic.h>
 
 /* some definitions */
+#define CUBE(x)         R_pow_di(x, 3)
 #define DNULLP          (double *) 0
 #define EPS_CONV        1.0e-2
 #define GOLDEN          0.3819660112501051
@@ -86,6 +87,7 @@ void OLS_qr(double *, int *, int *, int *, double *, double *, double *, double 
 void OLS_ridge(double *, int *, int *, int *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, int *, int *, double *);
 
 /* descriptive statistics */
+void central_moments(double *, int *, double *, double *, double *, double *);
 void cov_weighted(double *, int *, int *, double *, double *, double *);
 void cov_MSSD(double *, int *, int *, double *, double *);
 void geometric_mean(double *, int *, double *);
@@ -208,6 +210,7 @@ void FM_compensated_product(double *, int, double *);
 
 /* descriptive statistics */
 void FM_mean_and_var(double *, int, double *, double *);
+void FM_moments(double *, int, double *, double *, double *, double *);
 void FM_online_covariance(double *, double *, int, double *, double *, double *, double *, double *);
 void FM_geometric_mean(double *, int, double *);
 void FM_online_center(double *, int, int, double *, double *);
