@@ -13,6 +13,7 @@ Latest release (February 21, 2021) of [fastmatrix](https://github.com/faosorios/
 * Column-equilibration for rectangular matrices.
 * Covariance matrix estimation using the Mean Square Successive (MSSD) method.
 * Estimation of the weighted mean and covariance matrix using an online algorithm (Clarke, 1971).
+* Computation of central moments up to fourth order using an online algorithm (Spicer, 1972).
 * Fast computation of Hadamard product using unrolled loops.
 * Gauss-Seidel, Jacobi and conjugate gradients (CG) iterative methods for solving linear systems.
 * Geometric mean using a Fused-Multiply-and-Add (FMA) compensated scheme for accurate computation of floating-point product.
