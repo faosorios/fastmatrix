@@ -1,8 +1,10 @@
-0.3-819 (Feb 21, 2021)
- * Now some BLAS level 1 functions provided by fastmatrix are slightly faster.
- * Routine for computation of the Hadamard product now is slightly faster.
+0.3-819 (Mar 16, 2021)
  * Added functions for solving linear systems using Jacobi, Gauss-Seidel and conjugate
    gradients iterative methods.
+ * Function for calculation of central moments up to fourth order was included.
+ * Minor issue in the computation of the geometric mean was corrected.
+ * Now some BLAS level 1 functions provided by fastmatrix are slightly faster.
+ * Routine for computation of the Hadamard product now is slightly faster.
  * Routine for the LDL decomposition of symmetric real matrices was included.
 
 0.3-81 (Feb 05, 2021)
