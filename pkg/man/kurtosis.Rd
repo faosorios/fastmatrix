@@ -8,15 +8,15 @@ kurtosis(x)
 skewness(x)
 }
 \arguments{
- \item{x}{ vector or matrix of data with, say, \eqn{p} columns.}
+ \item{x}{ matrix of data with, say, \eqn{p} columns.}
 }
 \description{
-  Functions to compute measures of multivariate skewness \eqn{(b_1)} and kurtosis \eqn{(b_2)}
-  proposed by Mardia (1970),
-  \deqn{b_1 = \frac{1}{n^2}\sum\limits_{i=1}^n\sum\limits_{j=1}^n ((\bold{x}_i -
+  Functions to compute measures of multivariate skewness \eqn{(b_{1p})} and kurtosis
+  \eqn{(b_{2p})} proposed by Mardia (1970),
+  \deqn{b_{1p} = \frac{1}{n^2}\sum\limits_{i=1}^n\sum\limits_{j=1}^n ((\bold{x}_i -
   \overline{\bold{x}})^T\bold{S}^{-1}(\bold{x}_j - \overline{\bold{x}}))^3,}
   and
-  \deqn{b_2 = \frac{1}{n}\sum\limits_{i=1}^n ((\bold{x}_i - \overline{\bold{x}})^T
+  \deqn{b_{2p} = \frac{1}{n}\sum\limits_{i=1}^n ((\bold{x}_i - \overline{\bold{x}})^T
   \bold{S}^{-1}(\bold{x}_j - \overline{\bold{x}}))^2.}
 }
 \references{
