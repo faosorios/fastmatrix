@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2020-09-10, F.Osorio */
+/* ID: fastmatrix.h, last updated 2021-03-04, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -96,11 +96,17 @@ void FM_mahal_distances(double *x, int n, int p, double *center, double *cov, in
 void FM_WH_chisq(double *distances, int n, int p, double *z);
 void FM_WH_F(double *distances, int n, int p, double eta, double *z);
 
+/* products */
+void FM_two_product_FMA(double a, double b, double *x, double *y);
+void FM_compensated_product(double *x, int nobs, double *prod);
+
 /* descriptive statistics */
 void FM_center_and_Scatter(double *x, int n, int p, double *weights, double *center, double *Scatter);
 void FM_cov_MSSD(double *x, int n, int p, double *center, double *Scatter);
 double FM_find_quantile(double *a, int n, int k);
+void FM_geometric_mean(double *x, int nobs, double *mean);
 void FM_mean_and_var(double *x, int nobs, double *mean, double *var);
+void FM_moments(double *x, int nobs, double *mean, double *s2, double *s3, double *s4);
 void FM_online_center(double *x, int n, int p, double *weights, double *center);
 void FM_online_covariance(double *x, double *y, int nobs, double *xbar, double *ybar, double *xvar, double *yvar, double *cov);
 void FM_skewness_and_kurtosis(double *x, int n, int p, double *center, double *Scatter, double *stats, int do_skewness);

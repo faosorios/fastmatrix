@@ -1,4 +1,4 @@
-/* $ID: fastmatrix_API.h, last updated 2020-09-05, F.Osorio */
+/* $ID: fastmatrix_API.h, last updated 2021-03-04, F.Osorio */
 
 #ifndef FASTMATRIX_API_H
 #define FASTMATRIX_API_H
@@ -19,9 +19,10 @@
  * for almost all the routines that return void. We add two more */
 typedef int (*INT_FUNC)();           /* pointer to a function which returns an int */
 typedef double (*DBL_FUNC)();        /* pointer to a function which returns a double */
-typedef double (*f)(double, void *); /* pointer to a function, used by 'FM_brent' */
 
-/* BLAS-1: external API */
+/* ========================================================================== *
+ * BLAS-1: external API
+ * ========================================================================== */
 
 void BLAS1_axpy(double alpha, double *x, int incx, double *y, int incy, int n) {
   static void (*fun)() = NULL;
@@ -87,7 +88,9 @@ void BLAS1_swap(double *x, int incx, double *y, int incy, int n) {
   fun(x, incx, y, incy, n);
 }
 
-/* BLAS-2: external API */
+/* ========================================================================== *
+ * BLAS-2: external API
+ * ========================================================================== */
 
 void BLAS2_gemv(double alpha, double *a, int lda, int nrow, int ncol, char *trans,
   double *x, int incx, double beta, double *y, int incy) {
@@ -144,7 +147,9 @@ void BLAS2_syr2(double alpha, double *a, int lda, int n, char *uplo, double *x,
   fun(alpha, a, lda, n, uplo, x, incx, y, incy);
 }
 
-/* BLAS-3: external API */
+/* ========================================================================== *
+ * BLAS-3: external API
+ * ========================================================================== */
 
 void BLAS3_gemm(double alpha, double *a, int lda, double *b, int ldb, int m, int n, int k, char *transa, char *transb, double beta, double *y, int ldy) {
   static void (*fun)() = NULL;
@@ -181,7 +186,9 @@ void BLAS3_trsm(double alpha, double *a, int lda, int nrow, int ncol, char *side
   fun(alpha, a, lda, nrow, ncol, side, uplo, trans, diag, y, ldy);
 }
 
-/*  operations on vectors: external API */
+/* ========================================================================== *
+ * operations on vectors: external API
+ * ========================================================================== */
 
 double FM_norm_sqr(double *x, int inc, int n) {
   static DBL_FUNC fun = NULL;
@@ -208,7 +215,9 @@ double FM_vecsum(double *x, int inc, int n) {
   return(fun(x, inc, n));
 }
 
-/* basic matrix manipulations: external API */
+/* ========================================================================== *
+ * basic matrix manipulations: external API
+ * ========================================================================== */
 
 void FM_add_mat(double *y, int ldy, double alpha, double *x, int ldx, int nrow, int ncol) {
   static void (*fun)() = NULL;
@@ -305,7 +314,9 @@ void FM_tcrossprod(double *z, double *x, int ldx, int xrows, int xcols, double *
   fun(z, x, ldx, xrows, xcols, y, ldy, yrows, ycols);
 }
 
-/* operations on triangular matrices: external API */
+/* ========================================================================== *
+ * operations on triangular matrices: external API
+ * ========================================================================== */
 
 void FM_cpy_lower(double *x, int ldx, int p, double *y, int ldy) {
   static void (*fun)() = NULL;
@@ -353,7 +364,9 @@ double FM_sum_upper_tri(double *x, int ldx, int p, int job) {
   return(fun(x, ldx, p, job));
 }
 
-/* matrix factorizations: external API */
+/* ========================================================================== *
+ * matrix factorizations: external API
+ * ========================================================================== */
 
 void FM_chol_decomp(double *a, int lda, int p, int job, int *info) {
   static void (*fun)() = NULL;
@@ -390,7 +403,9 @@ void FM_svd_decomp(double *mat, int ldmat, int nrow, int ncol, double *u, int ld
   fun(mat, ldmat, nrow, ncol, u, ldu, d, v, ldv, job, info);
 }
 
-/* QR operations: external API */
+/* ========================================================================== *
+ * QR, QL and LQ operations: external API
+ * ========================================================================== */
 
 void FM_QR_qy(double *qr, int ldq, int nrow, int ncol, double *qraux, double *ymat, int ldy, int yrow, int ycol, int *info) {
   static void (*fun)() = NULL;
@@ -455,7 +470,9 @@ void FM_LQ_store_L(double *lq, int ldq, int nrow, double *Dest, int ldDest) {
   fun(lq, ldq, nrow, Dest, ldDest);
 }
 
-/* matrix inversion and linear solvers: external API */
+/* ========================================================================== *
+ * matrix inversion and linear solvers: external API
+ * ========================================================================== */
 
 void FM_backsolve(double *r, int ldr, int n, double *b, int ldb, int nrhs, int *info) {
   static void (*fun)() = NULL;
@@ -492,7 +509,9 @@ void FM_invert_triangular(double *a, int lda, int n, int job, int *info) {
   fun(a, lda, n, job, info);
 }
 
-/* least square procedures: external API */
+/* ========================================================================== *
+ * least square procedures: external API
+ * ========================================================================== */
 
 void FM_lsfit(double *x, int ldx, int nrow, int ncol, double *y, int ldy, int nrhs, double *coef, int *info) {
   static void (*fun)() = NULL;
@@ -508,7 +527,9 @@ void FM_gls_GQR(double *x, int ldx, int nrow, int ncol, double *y, double *cov, 
   fun(x, ldx, nrow, ncol, y, cov, coef, info);
 }
 
-/* Distances: external API */
+/* ========================================================================== *
+ * Distances: external API
+ * ========================================================================== */
 
 double FM_pythag(double a, double b) {
   static DBL_FUNC fun = NULL;
@@ -549,41 +570,33 @@ void FM_WH_F(double *distances, int n, int p, double eta, double *z) {
   fun(distances, n, p, eta, z);
 }
 
-/* Descriptive statistics: external API */
+/* ========================================================================== *
+ * Products: external API
+ * ========================================================================== */
 
-void FM_mean_and_var(double *x, int nobs, double *mean, double *var) {
+void FM_two_product_FMA(double a, double b, double *x, double *y) {
   static void (*fun)() = NULL;
   if (fun == NULL)
-    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_mean_and_var");
-  fun(x, nobs, mean, var);
+    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_two_product_FMA");
+  fun(a, b, x, y);
 }
 
-void FM_online_covariance(double *x, double *y, int nobs, double *xbar, double *ybar, double *xvar, double *yvar, double *cov) {
+void FM_compensated_product(double *x, int nobs, double *prod) {
   static void (*fun)() = NULL;
   if (fun == NULL)
-    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_online_covariance");
-  fun(x, y, nobs, xbar, ybar, xvar, yvar, cov);
+    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_compensated_product");
+  fun(x, nobs, prod);
 }
 
-void FM_online_center(double *x, int n, int p, double *weights, double *center) {
-  static void (*fun)() = NULL;
-  if (fun == NULL)
-    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_online_center");
-  fun(x, n, p, weights, center);
-}
+/* ========================================================================== *
+ * Descriptive statistics: external API
+ * ========================================================================== */
 
 void FM_center_and_Scatter(double *x, int n, int p, double *weights, double *center, double *Scatter) {
   static void (*fun)() = NULL;
   if (fun == NULL)
     fun = (void (*)) R_GetCCallable("fastmatrix", "FM_center_and_Scatter");
   fun(x, n, p, weights, center, Scatter);
-}
-
-void FM_skewness_and_kurtosis(double *x, int n, int p, double *center, double *Scatter, double *stats, int do_skewness) {
-  static void (*fun)() = NULL;
-  if (fun == NULL)
-    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_skewness_and_kurtosis");
-  fun(x, n, p, center, Scatter, stats, do_skewness);
 }
 
 void FM_cov_MSSD(double *x, int n, int p, double *center, double *Scatter) {
@@ -602,7 +615,51 @@ double FM_find_quantile(double *a, int n, int k) {
   return(fun(a, n, k));
 }
 
-/* Misc: external API */
+void FM_geometric_mean(double *x, int nobs, double *mean) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_geometric_mean");
+  fun(x, nobs, mean);
+}
+
+void FM_mean_and_var(double *x, int nobs, double *mean, double *var) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_mean_and_var");
+  fun(x, nobs, mean, var);
+}
+
+void FM_moments(double *x, int nobs, double *mean, double *s2, double *s3, double *s4) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_moments");
+  fun(x, nobs, mean, s2, s3, s4);
+}
+
+void FM_online_center(double *x, int n, int p, double *weights, double *center) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_online_center");
+  fun(x, n, p, weights, center);
+}
+
+void FM_online_covariance(double *x, double *y, int nobs, double *xbar, double *ybar, double *xvar, double *yvar, double *cov) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_online_covariance");
+  fun(x, y, nobs, xbar, ybar, xvar, yvar, cov);
+}
+
+void FM_skewness_and_kurtosis(double *x, int n, int p, double *center, double *Scatter, double *stats, int do_skewness) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_skewness_and_kurtosis");
+  fun(x, n, p, center, Scatter, stats, do_skewness);
+}
+
+/* ========================================================================== *
+ * Misc: external API
+ * ========================================================================== */
 
 void FM_centering(double *x, int n, int p, double *center) {
   static void (*fun)() = NULL;
@@ -625,7 +682,9 @@ void FM_sherman_morrison(double *a, int lda, int n, double *b, double *d, int in
   fun(a, lda, n, b, d, inverted);
 }
 
-/* 'DEBUG' routine: external API */
+/* ========================================================================== *
+ * 'DEBUG' routine: external API
+ * ========================================================================== */
 
 void FM_print_mat(double *x, int ldx, int nrow, int ncol, char *msg) {
   static void (*fun)() = NULL;
