@@ -2,7 +2,7 @@ Package: fastmatrix
 Type: Package
 Title: Fast Computation of some Matrices Useful in Statistics
 Version: 0.3-819
-Date: 2021-03-16
+Date: 2021-04-04
 Authors@R:
     c(person(given = "Felipe",
              family = "Osorio",
