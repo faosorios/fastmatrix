@@ -43,6 +43,7 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(sweep_operator,         6),
   CALLDEF(symmetrizer_prod,       6),
   CALLDEF(wilson_hilferty_chisq,  4),
+  CALLDEF(whitening_chol,         4),
   {NULL, NULL, 0}
 };
 

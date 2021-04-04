@@ -109,6 +109,7 @@ void hadamard_prod(double *, double *, int *, double *);
 void F77_NAME(inner_frobenius)(double *, int *, double *, int *, int *, int *, double *);
 void mat2vech(double *, int *, int *, double *);
 void F77_NAME(pivot_mat)(double *, int *, int *, int *);
+void whitening_chol(double *, int *, int *, double *);
 
 /* ========================================================================== *
  * symbols callable from other packages
