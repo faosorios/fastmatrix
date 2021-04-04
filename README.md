@@ -33,6 +33,7 @@ Latest release (February 21, 2021) of [fastmatrix](https://github.com/faosorios/
 * Sherman-Morrison formula.
 * Sweep operator for symmetric matrices.
 * vec and vech operators to handle rectangular and square matrices.
+* Whitening transformation.
 * Wilson-Hilferty transformation for chi-squared random variables.
 
 Our plan in the near future is the implementation of functions to handle:
