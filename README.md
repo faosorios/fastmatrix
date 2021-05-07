@@ -41,7 +41,6 @@ Latest release (February 21, 2021) of [fastmatrix](https://github.com/faosorios/
 * Wilson-Hilferty transformation for chi-squared random variables.
 
 Our plan in the near future is the implementation of functions to handle:
-* Elimination matrices.
 * Some special matrices and operations arising in numerical analysis.
 
 ## Reference Manual
