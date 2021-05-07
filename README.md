@@ -2,7 +2,8 @@
 
 [![CRAN status](http://www.r-pkg.org/badges/version/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
 ![CRAN/METACRAN](https://img.shields.io/cran/l/fastmatrix?color=important)
-[![L1pack](https://img.shields.io/badge/Linked%20To-L1pack-orange)](https://cran.r-project.org/package=L1pack)
+[![L1pack](https://img.shields.io/badge/Support-L1pack-orange)](https://cran.r-project.org/package=L1pack)
+[![SpatialPack](https://img.shields.io/badge/Support-SpatialPack-orange)](https://cran.r-project.org/package=SpatialPack)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
 ![GitHub last commit](https://img.shields.io/github/last-commit/faosorios/fastmatrix)
 
