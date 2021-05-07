@@ -27,9 +27,9 @@ Latest release (February 21, 2021) of [fastmatrix](https://github.com/faosorios/
 * Lp norms for vectors.
 * LU factorization for square matrices.
 * Mahalanobis distances, checking if the covariance is a positive definite matrix.
-* Operations envolving the commutation matrix, with minimum requeriments of storage.
-* Operations envolving the duplication matrix, with minimum requeriments of storage.
-* Operations envolving the symmetrizer matrix, with minimum requeriments of storage.
+* Operations envolving the commutation matrix, with minimum requirements of storage.
+* Operations envolving the duplication matrix, with minimum requirements of storage.
+* Operations envolving the symmetrizer matrix, with minimum requirements of storage.
 * Ordinary least-squares (OLS) using several methods: conjugate gradients, Cholesky, QR decomposition, singular value decomposition, and the Sweep operator. This provides an alternative to extend the procedures available in R built-in function 'lm'.
 * Power method to compute the dominant eigenvalue and its associated eigenvector.
 * Ridge estimation for linear regression.
