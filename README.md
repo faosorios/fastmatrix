@@ -57,7 +57,7 @@ Latest binaries and sources (development version) for [fastmatrix](https://githu
 
 Version 0.3-81 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
-* [fastmatrix_0.3-81.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.3-81.tar.gz) - Package sources
+* [fastmatrix_0.3-81.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.3-819.tar.gz) - Package sources
 * [fastmatrix_0.3-81.zip](https://cran.r-project.org/bin/windows/contrib/4.0/fastmatrix_0.3-81.zip) - Windows binaries (R-release)
 * [fastmatrix_0.3-81.tgz](https://cran.r-project.org/bin/macosx/contrib/4.0/fastmatrix_0.3-81.tgz) - Mac OS binaries (R-release)
 
@@ -100,7 +100,7 @@ R package version 0.3-819. URL: [faosorios.github.io/fastmatrix](https://faosori
 Felipe Osorio is an Assistant Professor at [Department of Mathematics](http://www.mat.utfsm.cl/), [Universidad Tecnica Federico Santa Maria](http://www.usm.cl/), Chile.
 * Webpage: [fosorios.mat.utfsm.cl](http://fosorios.mat.utfsm.cl/)
 
-Alonso Ogueda is a student of the Master of Mathematics offered by the [Department of Mathematics](http://www.mat.utfsm.cl/), [Universidad Tecnica Federico Santa Maria](http://www.usm.cl/), Chile.
+Alonso Ogueda is Master of Mathematics from the [Department of Mathematics](http://www.mat.utfsm.cl/), [Universidad Tecnica Federico Santa Maria](http://www.usm.cl/), Chile.
 * Github: [github.com/aoguedao](https://github.com/aoguedao)
 
 
