@@ -59,7 +59,7 @@ Version 0.3-819 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be 
 
 * [fastmatrix_0.3-819.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.3-819.tar.gz) - Package sources
 * [fastmatrix_0.3-81.zip](https://cran.r-project.org/bin/windows/contrib/4.0/fastmatrix_0.3-81.zip) - Windows binaries (R-release)
-* [fastmatrix_0.3-81.tgz](https://cran.r-project.org/bin/macosx/contrib/4.0/fastmatrix_0.3-81.tgz) - Mac OS binaries (R-release)
+* [fastmatrix_0.3-819.tgz](https://cran.r-project.org/bin/macosx/contrib/4.0/fastmatrix_0.3-819.tgz) - Mac OS binaries (R-release)
 
 ## Installation instructions
 
