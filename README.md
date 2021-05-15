@@ -63,7 +63,7 @@ Version 0.3-819 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be 
 
 ## Installation instructions
 
-To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.3-81)** from CRAN, start R and enter:
+To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.3-819)** from CRAN, start R and enter:
 ```r
 install.packages("fastmatrix")
 ```
