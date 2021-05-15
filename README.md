@@ -45,7 +45,7 @@ Our plan in the near future is the implementation of functions to handle:
 
 ## Reference Manual
 
-* [fastmatrix-manual.pdf](https://github.com/faosorios/fastmatrix/blob/master/man/fastmatrix-manual.pdf)
+* [fastmatrix-manual.pdf](https://cran.r-project.org/web/packages/fastmatrix/fastmatrix.pdf)
 
 ## Resources
 
@@ -58,7 +58,7 @@ Latest binaries and sources (development version) for [fastmatrix](https://githu
 Version 0.3-819 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
 * [fastmatrix_0.3-819.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.3-819.tar.gz) - Package sources
-* [fastmatrix_0.3-81.zip](https://cran.r-project.org/bin/windows/contrib/4.0/fastmatrix_0.3-81.zip) - Windows binaries (R-release)
+* [fastmatrix_0.3-819.zip](https://cran.r-project.org/bin/windows/contrib/4.0/fastmatrix_0.3-819.zip) - Windows binaries (R-release)
 * [fastmatrix_0.3-819.tgz](https://cran.r-project.org/bin/macosx/contrib/4.0/fastmatrix_0.3-819.tgz) - Mac OS binaries (R-release)
 
 ## Installation instructions
