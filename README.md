@@ -100,7 +100,7 @@ R package version 0.3-819. URL: [faosorios.github.io/fastmatrix](https://faosori
 Felipe Osorio is an Assistant Professor at [Department of Mathematics](http://www.mat.utfsm.cl/), [Universidad Tecnica Federico Santa Maria](http://www.usm.cl/), Chile.
 * Webpage: [fosorios.mat.utfsm.cl](http://fosorios.mat.utfsm.cl/)
 
-Alonso Ogueda is Master of Mathematics from the [Department of Mathematics](http://www.mat.utfsm.cl/), [Universidad Tecnica Federico Santa Maria](http://www.usm.cl/), Chile.
+Alonso Ogueda is a doctorate student of mathematics from the [Mathematical Sciences Department](https://catalog.gmu.edu/colleges-schools/science/mathematical-sciences/), [George Mason University](https://www2.gmu.edu/), USA.
 * Github: [github.com/aoguedao](https://github.com/aoguedao)
 
 
