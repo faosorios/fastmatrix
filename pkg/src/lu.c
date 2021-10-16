@@ -1,4 +1,4 @@
-/* $ID: lu.c, last updated 2020-09-13, F.Osorio */
+/* $ID: lu.c, last updated 10-14-2021, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -32,7 +32,7 @@ lu_solve(double *a, int *lda, int *p, int *pivot, double *b, int *ldb, int *nrhs
   char *notrans = "N";
   int info = 0;
 
-  F77_CALL(dgetrs)(notrans, p, nrhs, a, lda, pivot, b, ldb, &info);
+  F77_CALL(dgetrs)(notrans, p, nrhs, a, lda, pivot, b, ldb, &info FCONE);
   if (info)
     error("lu_solve gave code %d", info);
 }

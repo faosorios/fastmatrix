@@ -1,4 +1,4 @@
-/* $ID: linear_iterative.c, last updated 2021-02-19, F.Osorio */
+/* $ID: linear_iterative.c, last updated 10-14-2021, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -255,7 +255,7 @@ seidel_iter(double *a, int lda, int n, double *b, double *x, int maxiter, double
 
   /* main loop */
   repeat {
-    /* perfom Jacobi iteration */
+    /* perfom Gauss-Seidel iteration */
     for (int i = 0; i < n; i++) {
       accum = 0.0;
       for (int j = 0; j < n; j++) {

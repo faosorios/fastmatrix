@@ -1,4 +1,4 @@
-/* $ID: blas_1.c, last updated 2021-02-14, F.Osorio */
+/* $ID: blas_1.c, last updated 02-14-2021, F.Osorio */
 
 #include "fastmatrix.h"
 

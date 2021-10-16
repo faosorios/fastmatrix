@@ -1,4 +1,4 @@
-/* $ID: ls_API.c, last updated 2020-11-20, F.Osorio */
+/* $ID: ls_API.c, last updated 10-14-2021, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -11,14 +11,14 @@ FM_lsfit(double *x, int ldx, int nrow, int ncol, double *y, int ldy, int nrhs, d
 
   /* ask for optimal size of work array */
   lwork = -1;
-  F77_CALL(dgels)(notrans, &nrow, &ncol, &nrhs, x, &ldx, y, &ldy, &opt, &lwork, &errcode);
+  F77_CALL(dgels)(notrans, &nrow, &ncol, &nrhs, x, &ldx, y, &ldy, &opt, &lwork, &errcode FCONE);
   if (errcode != 0)
     error("DGELS in ordinary least squares gave error code %d", errcode);
 
   /* calling DGELS with optimal size of working array */
   lwork = (int) opt;
   work = (double *) Calloc(lwork, double);
-  F77_CALL(dgels)(notrans, &nrow, &ncol, &nrhs, x, &ldx, y, &ldy, work, &lwork, info);
+  F77_CALL(dgels)(notrans, &nrow, &ncol, &nrhs, x, &ldx, y, &ldy, work, &lwork, info FCONE);
   FM_copy_mat(coef, ncol, y, ldy, ncol, nrhs);
   Free(work);
 }

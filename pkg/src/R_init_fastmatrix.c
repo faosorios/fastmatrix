@@ -1,4 +1,4 @@
-/* $ID: init.c, last updated 2021-03-03, F.Osorio */
+/* $ID: init.c, last updated 10-15-2021, F.Osorio */
 
 #include "fastmatrix.h"
 #include <R_ext/Rdynload.h>
@@ -55,8 +55,10 @@ static const R_FortranMethodDef F77Entries[] = {
   F77DEF(comm_right_mult,        10),
   F77DEF(commutation_mat,         6),
   F77DEF(equilibrate_cols,        8),
+  F77DEF(helmert_mat,             4),
   F77DEF(inner_frobenius,         7),
   F77DEF(ldl_dcmp,                5),
+  F77DEF(median_center,           7),
   F77DEF(pivot_mat,               4),
   F77DEF(symmetrizer_mat,         8),
   {NULL, NULL, 0}

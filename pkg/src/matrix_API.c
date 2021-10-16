@@ -1,4 +1,4 @@
-/* ID: matrix_API.c, last updated 2020-10-08, F.Osorio */
+/* ID: matrix_API.c, last updated 10-14-2021, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -93,7 +93,7 @@ FM_GAXPY(double *y, double alpha, double *a, int lda, int nrow, int ncol, double
   int inc = 1;
 
   trans = (job) ? "T" : "N";
-  F77_CALL(dgemv)(trans, &nrow, &ncol, &alpha, a, &lda, x, &inc, &beta, y, &inc);
+  F77_CALL(dgemv)(trans, &nrow, &ncol, &alpha, a, &lda, x, &inc, &beta, y, &inc FCONE);
 }
 
 void
@@ -105,7 +105,7 @@ FM_mult_triangular(double *y, double *a, int lda, int n, double *x, int job)
 
   uplo = (job) ? "U" : "L";
   Memcpy(y, x, n);
-  F77_CALL(dtrmv)(uplo, trans, diag, &n, a, &lda, y, &inc);
+  F77_CALL(dtrmv)(uplo, trans, diag, &n, a, &lda, y, &inc FCONE FCONE FCONE);
 }
 
 void
@@ -116,7 +116,7 @@ FM_mult_mat(double *z, double *x, int ldx, int xrows, int xcols, double *y, int 
 
   /* use tmp so z can be either x or y */
   tmp = (double *) Calloc(xrows * ycols, double);
-  F77_CALL(dgemm)(notrans, notrans, &xrows, &ycols, &xcols, &one, x, &ldx, y, &ldy, &zero, tmp, &xrows);
+  F77_CALL(dgemm)(notrans, notrans, &xrows, &ycols, &xcols, &one, x, &ldx, y, &ldy, &zero, tmp, &xrows FCONE FCONE);
   Memcpy(z, tmp, xrows * ycols);
   Free(tmp);
 }
@@ -129,7 +129,7 @@ FM_crossprod(double *z, double *x, int ldx, int xrows, int xcols, double *y, int
 
   /* use tmp so z can be either x or y */
   tmp = (double *) Calloc(xcols * ycols, double);
-  F77_CALL(dgemm)(trans, notrans, &xcols, &ycols, &xrows, &one, x, &ldx, y, &ldy, &zero, tmp, &xcols);
+  F77_CALL(dgemm)(trans, notrans, &xcols, &ycols, &xrows, &one, x, &ldx, y, &ldy, &zero, tmp, &xcols FCONE FCONE);
   Memcpy(z, tmp, xcols * ycols);
   Free(tmp);
 }
@@ -142,7 +142,7 @@ FM_tcrossprod(double *z, double *x, int ldx, int xrows, int xcols, double *y, in
 
   /* use tmp so z can be either x or y */
   tmp = (double *) Calloc(xrows * yrows, double);
-  F77_CALL(dgemm)(notrans, trans, &xrows, &yrows, &xcols, &one, x, &ldx, y, &ldy, &zero, tmp, &xrows);
+  F77_CALL(dgemm)(notrans, trans, &xrows, &yrows, &xcols, &one, x, &ldx, y, &ldy, &zero, tmp, &xrows FCONE FCONE);
   Memcpy(z, tmp, xrows * yrows);
   Free(tmp);
 }
@@ -267,7 +267,7 @@ FM_chol_decomp(double *a, int lda, int p, int job, int *info)
   char *uplo;
 
   uplo = (job) ? "U" : "L";
-  F77_CALL(dpotrf)(uplo, &p, a, &lda, info);
+  F77_CALL(dpotrf)(uplo, &p, a, &lda, info FCONE);
 }
 
 void
@@ -352,14 +352,14 @@ FM_QR_qy(double *qr, int ldq, int nrow, int ncol, double *qraux, double *ymat, i
 
   /* ask for optimal size of work array */
   lwork = -1;
-  F77_CALL(dormqr)(side, notrans, &yrow, &nrhs, &nrflc, qr, &ldq, qraux, ymat, &ldy, &opt, &lwork, &errcode);
+  F77_CALL(dormqr)(side, notrans, &yrow, &nrhs, &nrflc, qr, &ldq, qraux, ymat, &ldy, &opt, &lwork, &errcode FCONE FCONE);
   if (errcode != 0)
     error("DORMQR in QR_qy gave error code %d", errcode);
 
   /* calling DORMQR with optimal size of working array */
   lwork = (int) opt;
   work = (double *) Calloc(lwork, double);
-  F77_CALL(dormqr)(side, notrans, &yrow, &nrhs, &nrflc, qr, &ldq, qraux, ymat, &ldy, work, &lwork, info);
+  F77_CALL(dormqr)(side, notrans, &yrow, &nrhs, &nrflc, qr, &ldq, qraux, ymat, &ldy, work, &lwork, info FCONE FCONE);
   Free(work);
 }
 
@@ -375,14 +375,14 @@ FM_QR_qty(double *qr, int ldq, int nrow, int ncol, double *qraux, double *ymat, 
 
   /* ask for optimal size of work array */
   lwork = -1;
-  F77_CALL(dormqr)(side, trans, &yrow, &nrhs, &nrflc, qr, &ldq, qraux, ymat, &ldy, &opt, &lwork, &errcode);
+  F77_CALL(dormqr)(side, trans, &yrow, &nrhs, &nrflc, qr, &ldq, qraux, ymat, &ldy, &opt, &lwork, &errcode FCONE FCONE);
   if (errcode != 0)
     error("DORMQR in QR_qty gave error code %d", errcode);
 
   /* calling DORMQR with optimal size of working array */
   lwork = (int) opt;
   work = (double *) Calloc(lwork, double);
-  F77_CALL(dormqr)(side, trans, &yrow, &nrhs, &nrflc, qr, &ldq, qraux, ymat, &ldy, work, &lwork, info);
+  F77_CALL(dormqr)(side, trans, &yrow, &nrhs, &nrflc, qr, &ldq, qraux, ymat, &ldy, work, &lwork, info FCONE FCONE);
   Free(work);
 }
 
@@ -421,14 +421,14 @@ FM_QL_qy(double *ql, int ldq, int nrow, int ncol, double *qlaux, double *ymat, i
 
   /* ask for optimal size of work array */
   lwork = -1;
-  F77_CALL(dormql)(side, notrans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, &opt, &lwork, &errcode);
+  F77_CALL(dormql)(side, notrans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, &opt, &lwork, &errcode FCONE FCONE);
   if (errcode != 0)
     error("DORMQL in QL_qy gave error code %d", errcode);
 
   /* calling DORMQL with optimal size of working array */
   lwork = (int) opt;
   work = (double *) Calloc(lwork, double);
-  F77_CALL(dormql)(side, notrans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, work, &lwork, info);
+  F77_CALL(dormql)(side, notrans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, work, &lwork, info FCONE FCONE);
   Free(work);
 }
 
@@ -444,14 +444,14 @@ FM_QL_qty(double *ql, int ldq, int nrow, int ncol, double *qlaux, double *ymat, 
 
   /* ask for optimal size of work array */
   lwork = -1;
-  F77_CALL(dormql)(side, trans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, &opt, &lwork, &errcode);
+  F77_CALL(dormql)(side, trans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, &opt, &lwork, &errcode FCONE FCONE);
   if (errcode != 0)
     error("DORMQL in QL_qty gave error code %d", errcode);
 
   /* calling DORMQL with optimal size of working array */
   lwork = (int) opt;
   work = (double *) Calloc(lwork, double);
-  F77_CALL(dormql)(side, trans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, work, &lwork, info);
+  F77_CALL(dormql)(side, trans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, work, &lwork, info FCONE FCONE);
   Free(work);
 }
 
@@ -467,14 +467,14 @@ FM_LQ_yq(double *lq, int ldl, int nrow, int ncol, double *lqaux, double *ymat, i
 
   /* ask for optimal size of work array */
   lwork = -1;
-  F77_CALL(dormlq)(side, notrans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, &opt, &lwork, &errcode);
+  F77_CALL(dormlq)(side, notrans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, &opt, &lwork, &errcode FCONE FCONE);
   if (errcode != 0)
     error("DORMLQ in LQ_yq gave error code %d", errcode);
 
   /* calling DORMLQ with optimal size of working array */
   lwork = (int) opt;
   work = (double *) Calloc(lwork, double);
-  F77_CALL(dormlq)(side, notrans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, work, &lwork, info);
+  F77_CALL(dormlq)(side, notrans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, work, &lwork, info FCONE FCONE);
   Free(work);
 }
 
@@ -490,14 +490,14 @@ FM_LQ_yqt(double *lq, int ldl, int nrow, int ncol, double *lqaux, double *ymat, 
 
   /* ask for optimal size of work array */
   lwork = -1;
-  F77_CALL(dormlq)(side, trans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, &opt, &lwork, &errcode);
+  F77_CALL(dormlq)(side, trans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, &opt, &lwork, &errcode FCONE FCONE);
   if (errcode != 0)
     error("DORMLQ in LQ_yqt gave error code %d", info);
 
   /* calling DORMLQ with optimal size of working array */
   lwork = (int) opt;
   work = (double *) Calloc(lwork, double);
-  F77_CALL(dormlq)(side, trans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, work, &lwork, info);
+  F77_CALL(dormlq)(side, trans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, work, &lwork, info FCONE FCONE);
   Free(work);
 }
 
@@ -518,7 +518,7 @@ FM_invert_mat(double *a, int lda, int n, int *info)
 
   /* ask for optimal size of work array */
   lwork = -1;
-  F77_CALL(dgels)(notrans, &n, &n, &n, a, &lda, dummy, &n, &opt, &lwork, &errcode);
+  F77_CALL(dgels)(notrans, &n, &n, &n, a, &lda, dummy, &n, &opt, &lwork, &errcode FCONE);
   if (errcode != 0)
     error("DGELS in invert_mat gave error code %d", errcode);
 
@@ -528,7 +528,7 @@ FM_invert_mat(double *a, int lda, int n, int *info)
   b     = (double *) Calloc(n * n, double);
   for (int j = 0; j < n; j++)
     b[j * (n + 1)] = 1.0;
-  F77_CALL(dgels)(notrans, &n, &n, &n, a, &lda, b, &n, work, &lwork, info);
+  F77_CALL(dgels)(notrans, &n, &n, &n, a, &lda, b, &n, work, &lwork, info FCONE);
   Memcpy(a, b, n * n);
   Free(b); Free(work);
 }
@@ -540,7 +540,7 @@ FM_invert_triangular(double *a, int lda, int n, int job, int *info)
   char *diag = "N", *uplo;
 
   uplo = (job) ? "U" : "L";
-  F77_CALL(dtrtri)(uplo, diag, &n, a, &lda, info);
+  F77_CALL(dtrtri)(uplo, diag, &n, a, &lda, info FCONE FCONE);
 }
 
 void
@@ -551,7 +551,7 @@ FM_chol_inverse(double *a, int lda, int p, int job, int *info)
   char *uplo;
 
   uplo = (job) ? "U" : "L";
-  F77_CALL(dpotri)(uplo, &p, a, &lda, info);
+  F77_CALL(dpotri)(uplo, &p, a, &lda, info FCONE);
   /* copying triangular (lower/upper) part */
   if (job)
     FM_cpy_upper2lower(a, lda, p, a);
@@ -566,7 +566,7 @@ FM_backsolve(double *r, int ldr, int n, double *b, int ldb, int nrhs, int *info)
    * sides to equations */
   char *diag = "N", *uplo = "U", *notrans = "N";
 
-  F77_CALL(dtrtrs)(uplo, notrans, diag, &n, &nrhs, r, &ldr, b, &ldb, info);
+  F77_CALL(dtrtrs)(uplo, notrans, diag, &n, &nrhs, r, &ldr, b, &ldb, info FCONE FCONE FCONE);
 }
 
 void
@@ -576,7 +576,7 @@ FM_forwardsolve(double *l, int ldl, int n, double *b, int ldb, int nrhs, int *in
    * sides to equations */
   char *diag = "N", *uplo = "L", *notrans = "N";
 
-  F77_CALL(dtrtrs)(uplo, notrans, diag, &n, &nrhs, l, &ldl, b, &ldb, info);
+  F77_CALL(dtrtrs)(uplo, notrans, diag, &n, &nrhs, l, &ldl, b, &ldb, info FCONE FCONE FCONE);
 }
 
 /* DEBUG routine */

@@ -1,4 +1,4 @@
-/* $ID: norms.c, last updated 2021-02-14, F.Osorio */
+/* $ID: norms.c, last updated 10-14-2021, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -52,7 +52,7 @@ matrix_norm(double *a, int *lda, int *nrow, int *ncol, int *job, double *value)
       break;
   }
 
-  *value = F77_CALL(dlange)(task, nrow, ncol, a, lda, work);
+  *value = F77_CALL(dlange)(task, nrow, ncol, a, lda, work FCONE);
   if (*job == 0)
     Free(work);
 }

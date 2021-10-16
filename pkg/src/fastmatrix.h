@@ -1,8 +1,11 @@
-/* ID: fastmatrix.h, last updated 2021-03-03, F.Osorio */
+/* ID: fastmatrix.h, last updated 10-15-2021, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
 
+#ifndef  USE_FC_LEN_T
+# define USE_FC_LEN_T
+#endif
 #include <R.h>
 #include <Rconfig.h>
 #include <Rinternals.h>
@@ -14,6 +17,9 @@
 #include <R_ext/Applic.h>
 
 /* some definitions */
+#ifndef FCONE
+# define FCONE
+#endif
 #define CUBE(x)         R_pow_di(x, 3)
 #define DNULLP          (double *) 0
 #define EPS_CONV        1.0e-2
@@ -46,6 +52,9 @@ void dupl_right_trans(double *, int *, int *, int *, int *, int *, double *, int
 /* routines for operations on symmetrizer matrices */
 void F77_NAME(symmetrizer_mat)(double *, int *, int *, int *, int *, double *, int *, int *);
 void symmetrizer_prod(double *, int *, int *, int *, double *, int *);
+
+/* routines for operations on helmert matrices */
+void F77_NAME(helmert_mat)(double *, int *, int *, int *);
 
 /* vector norms */
 void norm_one(double *, int *, int *, double *);
@@ -90,6 +99,7 @@ void OLS_ridge(double *, int *, int *, int *, double *, double *, double *, doub
 void central_moments(double *, int *, double *, double *, double *, double *);
 void cov_weighted(double *, int *, int *, double *, double *, double *);
 void cov_MSSD(double *, int *, int *, double *, double *);
+void F77_NAME(median_center)(double *, int *, int *, int *, double *, int *, int *);
 void geometric_mean(double *, int *, double *);
 void mahal_distances(double *, int *, int *, double *, double *, int *, double *);
 void skewness_and_kurtosis(double *, int *, int *, double *, double *, double *, int *);
