@@ -1,6 +1,6 @@
 \name{cov.MSSD}
 \alias{cov.MSSD}
-\title{Variance and covariance matrices}
+\title{Mean Square Successive Difference (MSSD) estimator of the covariance matrix}
 \description{
   Returns a list containing the mean and covariance matrix of the data.
 }
