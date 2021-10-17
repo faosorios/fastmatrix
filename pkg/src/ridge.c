@@ -16,7 +16,7 @@ OLS_ridge(double *x, int *ldx, int *nrow, int *ncol, double *y, double *coef, do
   double *hkb, double *lw, double *lambda, double *lambda_opt, int *ngrid, int *task,
   double *tolerance)
 { /* ridge regression */
-  int errcode, job, n = *nrow, p = *ncol;
+  int errcode = 0, job, n = *nrow, p = *ncol;
   double *a, *d, *v, *rhs, s2;
   double HKB, LW, PEN;
   GCVinfo pars;
@@ -124,7 +124,7 @@ ridge_default(double lambda, GCVinfo st)
 static void
 ridge_grid(double *lambda, int ngrid, double *gcv, GCVinfo st, double *lambda_opt)
 {
-  double GCV_min, opt;
+  double GCV_min, opt = 0.0;
 
   /* compute GCV criterion over a grid */
   ridge_default(lambda[0], st);

@@ -33,7 +33,7 @@ norm_minkowski(double *x, int *inc, int *n, double *p, double *value)
 void
 matrix_norm(double *a, int *lda, int *nrow, int *ncol, int *job, double *value)
 { /* wrapper to LAPACK DLANGE */
-  char *task;
+  char *task = NULL;
   double *work = NULL;
 
   switch (*job) {

@@ -35,10 +35,12 @@ c     .. parameters ..
       PARAMETER       (ICOUNT = 200, LCOUNT = 100)
 c     .. local scalars ..
       INTEGER          i, j, k, ii, l, lc, ll
-      DOUBLE PRECISION accum, comp, corner, d, dd, delta, epsr, epsd,
-     *                 lambda, slam, u1, u2
+      DOUBLE PRECISION accum, comp, corner, d, dd, diam, delta, epsd,
+     *                 epsi, epsr, lambda, slam, u1, u2, xx
 c     .. local arrays ..
       DOUBLE PRECISION c(p), z(p)
+*     .. intrinsic functions ..
+      INTRINSIC        max
 c
 c     test the input parameters
 c
