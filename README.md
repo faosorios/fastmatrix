@@ -34,6 +34,7 @@ Latest release (May 8, 2021) of [fastmatrix](https://github.com/faosorios/fastma
 * Power method to compute the dominant eigenvalue and its associated eigenvector.
 * Ridge estimation for linear regression.
 * Routines to compute measures of multivariate skewness and kurtosis proposed by Mardia (1970).
+* Routine for the computation of the mediancenter (or geometric median) of multivariate data.
 * Sherman-Morrison formula.
 * Sweep operator for symmetric matrices.
 * vec and vech operators to handle rectangular and square matrices.
@@ -51,8 +52,8 @@ Our plan in the near future is the implementation of functions to handle:
 
 Latest binaries and sources (development version) for [fastmatrix](https://github.com/faosorios/fastmatrix) are available here:
 
-* [fastmatrix_0.3-819.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.3-819.tar.gz) - Package sources
-* [fastmatrix_0.3-819.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.3-819.zip) - Windows binaries
+* [fastmatrix_0.3-819.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.3-8196.tar.gz) - Package sources
+* [fastmatrix_0.3-819.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.3-8196.zip) - Windows binaries
 * [fastmatrix_0.3-819.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.3-819.tgz) - Mac OS binaries
 
 Version 0.3-819 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
@@ -63,7 +64,7 @@ Version 0.3-819 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be 
 
 ## Installation instructions
 
-To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.3-819)** from CRAN, start R and enter:
+To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.3-8196)** from CRAN, start R and enter:
 ```r
 install.packages("fastmatrix")
 ```
@@ -93,7 +94,7 @@ Please report any bugs/suggestions/improvements to [Felipe Osorio](http://fosori
 ### To cite the fastmatrix package in publications use:
 
 Osorio, F., Ogueda, A. (2021). fastmatrix: Fast computation of some matrices useful in statistics. 
-R package version 0.3-819. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
+R package version 0.3-8196. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
 
 ## About the Authors
 
