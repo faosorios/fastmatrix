@@ -33,7 +33,10 @@ mediancenter(x)
 }
 \examples{
 x <- cbind(1:10, c(1:3, 8:5, 8:10))
-z <- mediancenter(x)
-z
+z <- mediancenter(x)$median # degenerate solution
+xbar <- colMeans(x)
+plot(x, xlab = "", ylab = "")
+points(x = xbar[1], y = xbar[2], pch = 16, col = "red")
+points(x = z[1], y = z[2], pch = 3, col = "blue", lwd = 2)
 }
 \keyword{multivariate}
