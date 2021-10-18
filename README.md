@@ -50,15 +50,15 @@ Our plan in the near future is the implementation of functions to handle:
 
 ## Resources
 
-Latest binaries and sources (development version) for [fastmatrix](https://github.com/faosorios/fastmatrix) are available here:
+Latest binaries and sources (development version) for [fastmatrix](https://github.com/faosorios/fastmatrix) are available here (these are local files):
 
 * [fastmatrix_0.3-8196.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.3-8196.tar.gz) - Package sources
 * [fastmatrix_0.3-8196.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.3-8196.zip) - Windows binaries
-* [fastmatrix_0.3-819.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.3-819.tgz) - Mac OS binaries
+* [fastmatrix_0.3-8196.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.3-8196.tgz) - Mac OS binaries
 
 Version 0.3-8196 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
-* [fastmatrix_0.3-819.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.3-819.tar.gz) - Package sources
+* [fastmatrix_0.3-8196.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.3-8196.tar.gz) - Package sources
 * [fastmatrix_0.3-819.zip](https://cran.r-project.org/bin/windows/contrib/4.0/fastmatrix_0.3-819.zip) - Windows binaries (R-release)
 * [fastmatrix_0.3-819.tgz](https://cran.r-project.org/bin/macosx/contrib/4.0/fastmatrix_0.3-819.tgz) - Mac OS binaries (R-release)
 
