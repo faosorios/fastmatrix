@@ -1,4 +1,7 @@
-0.3-8196 (Oct 16, 2021)
+0.4 (Nov 11, 2021 - in progress)
+ * Added procedure to equilibrate symmetric matrices
+
+0.3-8196 (Oct 18, 2021)
  * Added function to build the Helmert matrix of order 'n'.
  * Function for calculation of the mediancenter was added.
  * Character strings in C wrappers to BLAS and LAPACK functions now are portable
