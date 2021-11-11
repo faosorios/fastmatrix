@@ -14,7 +14,7 @@ sweep.operator <- function(x, k = 1, reverse = FALSE)
   p <- dx[2]
   if (n != p)
     stop("argument x is not a square matrix")
-  if (!isSymmetric(x))
+  if (!isSymmetric(unname(x)))
     stop("only implemented for symmetric matrices.")
   k <- as.vector(k)
   r <- length(k)
