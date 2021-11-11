@@ -64,6 +64,12 @@ void norm_minkowski(double *, int *, int *, double *, double *);
 void matrix_norm(double *, int *, int *, int *, int *, double *);
 double F77_NAME(minkowski)(int *, double *, int *, double *);
 
+/* equilibration of matrices */
+void F77_NAME(equilibrate_cols)(double *, int *, int *, int *, double *, double *, int *, int *);
+void equilibrate_pd(double *, int *, int *, double *, double *, double *, int *);
+void equilibrate_sym(double *, int *, int *, double *, double *, double *, int *);
+void equilibrating_sym(double *, int *, double *);
+
 /* kronecker product */
 void kronecker_prod(double *, int *, int *, double *, int *, int *, double *);
 
@@ -113,13 +119,22 @@ void F77_NAME(sweepop)(double *, int *, int *, int *, int *, int *);
 double brent(double, double, double (*f)(double, void *), void *, double);
 
 /* utils on matrices */
-void equilibrate_mat(double *, int *, int *, int *, double *, double *, int *);
-void F77_NAME(equilibrate_cols)(double *, int *, int *, int *, double *, double *, int *, int *);
 void hadamard_prod(double *, double *, int *, double *);
 void F77_NAME(inner_frobenius)(double *, int *, double *, int *, int *, int *, double *);
 void mat2vech(double *, int *, int *, double *);
 void F77_NAME(pivot_mat)(double *, int *, int *, int *);
 void whitening_chol(double *, int *, int *, double *);
+
+/* ========================================================================== *
+ * additional symbols from LAPACK
+ * ========================================================================== */
+
+/* DSYEQUB - compute row and column scalings intended to equilibrate
+ * a symmetric matrix A (with respect to the two-norm) and reduce
+ * its condition number */
+extern void
+F77_NAME(dsyequb)(const char *uplo, const int *n, const double *a, const int *lda,
+    double *s, double *scond, double *amax, double *work, int *info FCLEN);
 
 /* ========================================================================== *
  * symbols callable from other packages
