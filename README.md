@@ -11,7 +11,7 @@ Yet another R package for matrices. It contains a small set of functions to fast
 
 ## Features
 
-Latest release (Oct 17, 2021) of [fastmatrix](https://github.com/faosorios/fastmatrix) package have implemented the following functions:
+Latest release (Oct 18, 2021, on CRAN) of [fastmatrix](https://github.com/faosorios/fastmatrix) package have implemented the following functions:
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
 * C version of the Kronecker product which is slightly faster than the built in R base.
 * Column-equilibration for rectangular matrices.
@@ -46,15 +46,15 @@ Our plan in the near future is the implementation of functions to handle:
 
 ## Reference Manual
 
-* [fastmatrix-manual.pdf](https://cran.r-project.org/web/packages/fastmatrix/fastmatrix.pdf)
+* [fastmatrix-manual.pdf](https://github.com/faosorios/fastmatrix/blob/master/man/fastmatrix-manual.pdf)
 
 ## Resources
 
 Latest binaries and sources (development version) for [fastmatrix](https://github.com/faosorios/fastmatrix) are available here (these are local files):
 
-* [fastmatrix_0.3-8196.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.3-8196.tar.gz) - Package sources
-* [fastmatrix_0.3-8196.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.3-8196.zip) - Windows binaries
-* [fastmatrix_0.3-8196.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.3-8196.tgz) - Mac OS binaries
+* [fastmatrix_0.4.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.4.tar.gz) - Package sources
+* [fastmatrix_0.4.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.4.zip) - Windows binaries
+# [fastmatrix_0.3-8196.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.3-8196.tgz) - Mac OS binaries
 
 Version 0.3-8196 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
@@ -94,7 +94,7 @@ Please report any bugs/suggestions/improvements to [Felipe Osorio](http://fosori
 ### To cite the fastmatrix package in publications use:
 
 Osorio, F., Ogueda, A. (2021). fastmatrix: Fast computation of some matrices useful in statistics. 
-R package version 0.3-8196. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
+R package version 0.4. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
 
 ## About the Authors
 
