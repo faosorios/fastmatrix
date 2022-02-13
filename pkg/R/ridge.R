@@ -1,14 +1,14 @@
-## ID: ridge.R, last updated 2021-01-20, F.Osorio
+## ID: ridge.R, last updated 2022-02-07, F.Osorio
 
 ridge <-
 function(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol = 1e-07,
-  na.action, model = FALSE, x = FALSE, y = FALSE, contrasts = NULL, ...)
+  maxiter = 50, na.action, model = FALSE, x = FALSE, y = FALSE, contrasts = NULL, ...)
 { ## ordinary ridge regression
   ret.x <- x
   ret.y <- y
   Call <- match.call()
   mf <- match.call(expand.dots = FALSE)
-  mf$lambda <- mf$method <- mf$ngrid <- mf$tol <- NULL
+  mf$lambda <- mf$method <- mf$ngrid <- mf$tol <- mf$maxiter <- NULL
   mf$model <- mf$x <- mf$y <- mf$contrasts <- mf$... <- NULL
   mf$drop.unused.levels <- TRUE
   mf[[1]] <- as.name("model.frame")
@@ -22,7 +22,7 @@ function(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol =
   p <- dx[2]
   storage.mode(x) <- "double"
   storage.mode(y) <- "double"
-  method <- pmatch(method, c("none", "grid", "GCV"))
+  method <- pmatch(method, c("none", "grid", "GCV", "MSE"))
 
   grid <- length(lambda)
   default <- lambda[1]
@@ -48,6 +48,12 @@ function(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol =
            lambda <- 1.0
            ngrid <- 1
            gcv <- 0.0
+         },
+         "MSE" = {
+           task <- 3
+           lambda <- default
+           ngrid <- 1
+           gcv <- 0.0
          })
 
   # call fitter
@@ -71,12 +77,13 @@ function(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol =
           opt = as.double(0),
           ngrid = as.integer(ngrid),
           task = as.integer(task),
-          tolerance = as.double(tol))
+          tolerance = as.double(tol),
+          maxiter = as.integer(maxiter))
 
   # output
   z <- list(dims = c(n,p), coefficients = z$coef, scale = z$scale, fitted.values = z$fitted,
             residuals = z$resid, RSS = z$RSS, edf = z$edf, pen = z$pen, GCV = z$gcv, HKB = z$hkb,
-            LW = z$lw, lambda = z$lambda, optimal = z$opt)
+            LW = z$lw, lambda = z$lambda, optimal = z$opt, iterations = z$maxiter)
   names(z$coefficients) <- xn
   z$call <- Call
   z$method <- method
@@ -110,6 +117,14 @@ print.ridge <- function(x, digits = max(3L, getOption("digits") - 3L), ...)
          },
          "GCV" = {
            cat("Estimated ridge parameter:", format(round(x$lambda, 4)), "\n")
+         },
+         "MSE" = {
+           cat("Optimal ridge parameter:", format(round(x$lambda, 4)))
+           cat(" (converged in", x$iterations, "iterations)\n")
+         },
+         "MSP" = {
+           cat("Optimal ridge parameter:", format(round(x$lambda, 4)))
+           cat(" (converged in", x$iterations, "iterations)\n")
          })
   cat("\nNumber of observations:", x$dims[1], "\n")
   cat("Effective number of parameters:", format(round(x$edf, 4)), "\n")
