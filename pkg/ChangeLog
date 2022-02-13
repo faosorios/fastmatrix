@@ -1,5 +1,9 @@
-0.4 (Nov 11, 2021 - in progress)
- * Added procedure to equilibrate symmetric matrices
+0.4 (Feb 12, 2022)
+ * Added function for rank-1 update to Cholesky factorization.
+ * Method "MSE" for optimal selection of ridge parameter was added.
+ * Added procedure to equilibrate symmetric matrices.
+ * Routine to computation of Bezier curve based on n+1 control points was included.
+ * Symbols for BLAS level 1 for plane and givens rotations were included.
 
 0.3-8196 (Oct 18, 2021)
  * Added function to build the Helmert matrix of order 'n'.
