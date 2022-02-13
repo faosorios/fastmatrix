@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2021-03-04, F.Osorio */
+/* ID: fastmatrix.h, last updated 2022-02-10, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -12,6 +12,8 @@ void BLAS1_copy(double *y, int incy, double *x, int incx, int n);
 double BLAS1_dot_product(double *x, int incx, double *y, int incy, int n);
 int BLAS1_index_max(double *x, int inc, int n);
 double BLAS1_norm_two(double *x, int inc, int n);
+void BLAS1_rot(double *x, int incx, double *y, int incy, int n, double c, double s);
+void BLAS1_rotg(double *a, double *b, double *c, double *s);
 void BLAS1_scale(double alpha, double *x, int inc, int n);
 double BLAS1_sum_abs(double *x, int inc, int n);
 void BLAS1_swap(double *x, int incx, double *y, int incy, int n);

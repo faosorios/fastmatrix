@@ -1,4 +1,4 @@
-/* $ID: fastmatrix_API.h, last updated 2021-03-04, F.Osorio */
+/* $ID: fastmatrix_API.h, last updated 2022-02-10, F.Osorio */
 
 #ifndef FASTMATRIX_API_H
 #define FASTMATRIX_API_H
@@ -63,6 +63,20 @@ double BLAS1_norm_two(double *x, int inc, int n) {
     if (fun == NULL) Rf_error("cannot find function 'BLAS1_norm_two'");
   }
   return(fun(x, inc, n));
+}
+
+void BLAS1_rot(double *x, int incx, double *y, int incy, int n, double c, double s) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "BLAS1_rot");
+  fun(x, incx, y, incy, n, c, s);
+}
+
+void BLAS1_rotg(double *a, double *b, double *c, double *s) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "BLAS1_rotg");
+  fun(a, b, c, s);
 }
 
 void BLAS1_scale(double alpha, double *x, int inc, int n) {
