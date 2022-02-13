@@ -3,11 +3,11 @@ citHeader("To cite fastmatrix in publications use:")
 citEntry(entry="Manual",
   title = "Fast computation of some matrices useful in statistics",
   author = personList(as.person("F. Osorio"), as.person("A. Ogueda")),
-  year = "2021",
+  year = "2022",
   note = "R package version 0.4",
   url  = "https://faosorios.github.io/fastmatrix/",
   textVersion =
-    paste("Osorio, F., Ogueda, A. (2021).",
+    paste("Osorio, F., Ogueda, A. (2022).",
       "Fast computation of some matrices useful in statistics.",
       "R package version 0.4.", "URL: https://faosorios.github.io/fastmatrix/")
 )
