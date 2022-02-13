@@ -6,7 +6,7 @@
 }
 \usage{
 ridge(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol = 1e-07,
-  na.action, model = FALSE, x = FALSE, y = FALSE, contrasts = NULL, ...)
+  maxiter = 50, na.action, model = FALSE, x = FALSE, y = FALSE, contrasts = NULL, ...)
 }
 \arguments{
   \item{formula}{ an object of class \code{"\link{formula}"} (or one that
@@ -28,10 +28,13 @@ ridge(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol = 1e
   then lambda is 'fixed'. If \code{method = "GCV"} (the default) then the ridge
   parameter is chosen automatically using the generalized cross validation (GCV) criterion.
   For \code{method = "grid"}, optimal value of lambda is selected computing the GCV
-  criterion over a grid.}
+  criterion over a grid. If \code{method = "MSE"} the optimal ridge parameter is selected
+  minimizing the mean squared estimation error criterion, this is the \code{ORPS1}
+  subroutine by Lee (1987).}
   \item{ngrid}{number of elements in the grid used to compute the GCV criterion.
   Only required if \code{method = "grid"} and \code{lambda} is a scalar.}
   \item{tol}{ tolerance for the optimization of the GCV criterion. Default is \code{1e-7}.}
+  \item{maxiter}{ maximum number of iterations. The default is 50.}
   \item{model, x, y}{ logicals.  If \code{TRUE} the corresponding components of
     the fit (the model frame, the model matrix, the response) are returned.}
   \item{contrasts}{ an optional list. See the \code{contrasts.arg} of
@@ -56,8 +59,11 @@ ridge(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol = 1e
   \item{GCV}{ vector (if \code{method = "grid"}) of GCV values.}
   \item{HKB}{ HKB estimate of the ridge constant.}
   \item{LW}{ LW estimate of the ridge constant.}
-  \item{lambda}{ vector (if \code{method = "grid"}) of lambda values.}
+  \item{lambda}{ vector (if \code{method = "grid"}) of lambda values; otherwise, for
+  methods \code{method = "none"}, \code{"GCV"} or \code{"MSE"}, the value of ridge
+  parameter used by the algorithm.}
   \item{optimal}{ value of lambda with the minimum GCV (only relevant if \code{method = "grid"}).}
+  \item{iterations}{ number of iterations performed by the algorithm (only relevant if \code{method = "MSE"}).}
   \item{call}{ the matched call.}
   \item{terms}{ the \code{\link{terms}} object used.}
   \item{contrasts}{ (only where relevant) the contrasts used.}
@@ -81,6 +87,10 @@ ridge(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol = 1e
   Lawless, J.F., Wang, P. (1976).
   A simulation study of ridge and other regression estimators.
   \emph{Communications in Statistics} \bold{5}, 307-323.
+
+  Lee, T.S (1987).
+  Algorithm AS 223: Optimum ridge parameter selection.
+  \emph{Applied Statistics} \bold{36}, 112-118.
 }
 \seealso{
   \code{\link{lm}}, \code{\link{ols}}

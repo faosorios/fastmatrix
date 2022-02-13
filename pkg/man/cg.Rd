@@ -38,7 +38,7 @@ cg(a, b, maxiter = 200, tol = 1e-7)
 a <- matrix(c(4,3,0,3,4,-1,0,-1,4), ncol = 3)
 b <- c(24,30,-24)
 z <- cg(a, b)
-z # 3 iterations
+z # converged in 3 iterations
 }
 \keyword{algebra}
 \keyword{array}
