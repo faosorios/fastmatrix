@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 10-15-2021, F.Osorio */
+/* ID: fastmatrix.h, last updated 2022-02-10, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -89,8 +89,9 @@ void cg_solver(double *, int *, int *, double *, double *, int *, double *, int 
 void jacobi_solver(double *, int *, int *, double *, double *, int *, double *, int *, int *);
 void seidel_solver(double *, int *, int *, double *, double *, int *, double *, int *, int *);
 
-/* matrix decompositions */
+/* matrix decompositions and operations */
 void chol_dcmp(double *, int *, int *, int *, int *);
+void chol_update(double *, int *, int *, double *);
 void F77_NAME(ldl_dcmp)(double *, int *, int *, double *, int *);
 void svd_dcmp(double *, int *, int *, int *, double *, int *, double *, double *, int *, int *, int *);
 
@@ -99,7 +100,7 @@ void OLS_cg(double *, int *, int *, int *, double *, double *, double *, int *, 
 void OLS_qr(double *, int *, int *, int *, double *, double *, double *, double *, double *, double *);
 
 /* ridge regression */
-void OLS_ridge(double *, int *, int *, int *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, int *, int *, double *);
+void OLS_ridge(double *, int *, int *, int *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, int *, int *, double *, int *);
 
 /* descriptive statistics */
 void central_moments(double *, int *, double *, double *, double *, double *);
@@ -117,6 +118,10 @@ void F77_NAME(sweepop)(double *, int *, int *, int *, int *, int *);
 
 /* Brent's method for unidimensional optimization */
 double brent(double, double, double (*f)(double, void *), void *, double);
+
+/* Bezier curve smoother */
+void bezier_smoother(double *, double *, int *, double *, int *, double *, double *);
+void F77_NAME(decasteljau)(double *, double *, int *, double *, double *);
 
 /* utils on matrices */
 void hadamard_prod(double *, double *, int *, double *);
@@ -146,6 +151,8 @@ void BLAS1_copy(double *, int, double *, int, int);
 double BLAS1_dot_product(double *, int, double *, int, int);
 int BLAS1_index_max(double *, int, int);
 double BLAS1_norm_two(double *, int, int);
+void BLAS1_rot(double *, int, double *, int, int, double, double);
+void BLAS1_rotg(double *, double *, double *, double *);
 void BLAS1_scale(double, double *, int, int);
 double BLAS1_sum_abs(double *, int, int);
 void BLAS1_swap(double *, int, double *, int, int);

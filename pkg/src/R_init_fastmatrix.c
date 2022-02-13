@@ -1,4 +1,4 @@
-/* $ID: init.c, last updated 10-15-2021, F.Osorio */
+/* $ID: init.c, last updated 2022-02-10, F.Osorio */
 
 #include "fastmatrix.h"
 #include <R_ext/Rdynload.h>
@@ -7,9 +7,11 @@
 #define F77DEF(name, nargs)   {#name, (DL_FUNC) &F77_NAME(name), nargs}
 
 static const R_CMethodDef CEntries[]  = {
+  CALLDEF(bezier_smoother,        7),
   CALLDEF(central_moments,        6),
   CALLDEF(cg_solver,              9),
   CALLDEF(chol_dcmp,              5),
+  CALLDEF(chol_update,            4),
   CALLDEF(cov_MSSD,               5),
   CALLDEF(cov_weighted,           6),
   CALLDEF(dupl_cols,              2),
@@ -37,7 +39,7 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(norm_minkowski,         5),
   CALLDEF(OLS_cg,                 9),
   CALLDEF(OLS_qr,                10),
-  CALLDEF(OLS_ridge,             20),
+  CALLDEF(OLS_ridge,             21),
   CALLDEF(power_method,           9),
   CALLDEF(seidel_solver,          9),
   CALLDEF(sherman_morrison,       6),
@@ -79,6 +81,8 @@ void R_init_fastmatrix(DllInfo *dll)
   R_RegisterCCallable("fastmatrix", "BLAS1_dot_product",        (DL_FUNC) &BLAS1_dot_product);
   R_RegisterCCallable("fastmatrix", "BLAS1_index_max",          (DL_FUNC) &BLAS1_index_max);
   R_RegisterCCallable("fastmatrix", "BLAS1_norm_two",           (DL_FUNC) &BLAS1_norm_two);
+  R_RegisterCCallable("fastmatrix", "BLAS1_rot",                (DL_FUNC) &BLAS1_rot);
+  R_RegisterCCallable("fastmatrix", "BLAS1_rotg",               (DL_FUNC) &BLAS1_rotg);
   R_RegisterCCallable("fastmatrix", "BLAS1_scale",              (DL_FUNC) &BLAS1_scale);
   R_RegisterCCallable("fastmatrix", "BLAS1_sum_abs",            (DL_FUNC) &BLAS1_sum_abs);
   R_RegisterCCallable("fastmatrix", "BLAS1_swap",               (DL_FUNC) &BLAS1_swap);

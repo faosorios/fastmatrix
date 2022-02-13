@@ -98,6 +98,7 @@ FM_online_center(double *x, int n, int p, double *weights, double *center)
     factor = wts / accum;
     BLAS1_copy(diff, 1, x + i, n, p);
     BLAS1_axpy(-1.0, mean, 1, diff, 1, p);
+    BLAS1_axpy(factor, diff, 1, mean, 1, p);
   }
 
   /* saving results */

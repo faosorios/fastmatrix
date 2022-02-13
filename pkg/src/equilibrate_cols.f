@@ -1,4 +1,4 @@
-c ID: equilibrate.f, last updated 2020-09-03, F.Osorio
+c ID: equilibrate_cols.f, last updated 2020-09-03, F.Osorio
 
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       SUBROUTINE equilibrate_cols(a, lda, n, p, scales, cond, job, info)

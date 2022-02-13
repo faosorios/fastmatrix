@@ -1,4 +1,4 @@
-/* $ID: ridge.c, last updated 2020-12-27, F.Osorio */
+/* $ID: ridge.c, last updated 2022-02-07, F.Osorio */
 
 #include "fastmatrix.h"
 #include "ridge.h"
@@ -8,13 +8,17 @@ static void ridge_default(double, GCVinfo);
 static void ridge_grid(double *, int, double *, GCVinfo, double *);
 static void ridge_GCV(double *, GCVinfo, double);
 static double log_GCV(double, void *);
+static double fnc1(double, double, double, double);
+static double fnc1_dot(double, double, double, double);
+static double fnc1_ddot(double, double, double, double);
+static void ridge_ORP1(double *, GCVinfo, double, int *);
 /* ..end declarations */
 
 void
 OLS_ridge(double *x, int *ldx, int *nrow, int *ncol, double *y, double *coef, double *scale,
   double *fitted, double *resid, double *rss, double *edf, double *pen, double *gcv,
   double *hkb, double *lw, double *lambda, double *lambda_opt, int *ngrid, int *task,
-  double *tolerance)
+  double *tolerance, int *maxiter)
 { /* ridge regression */
   int errcode = 0, job, n = *nrow, p = *ncol;
   double *a, *d, *v, *rhs, s2;
@@ -38,7 +42,7 @@ OLS_ridge(double *x, int *ldx, int *nrow, int *ncol, double *y, double *coef, do
 
   /* HKB and LW estimates */
   for (int j = 0; j < p; j++)
-    a[j]  = rhs[j] / d[j];
+    a[j] = rhs[j] / d[j];
   PEN = FM_norm_sqr(a, 1, p);
   for (int j = 0; j < p; j++)
     a[j] *= d[j];
@@ -71,6 +75,10 @@ OLS_ridge(double *x, int *ldx, int *nrow, int *ncol, double *y, double *coef, do
     case 2: /* GCV */
       ridge_GCV(lambda, pars, *tolerance);
       break;
+    case 3: /* ORP1 */
+      ridge_ORP1(lambda, pars, *tolerance, maxiter);
+      ridge_default(*lambda, pars); /* running with 'optimal' lambda */
+      break;
     default:
       ridge_default(*lambda, pars);
       break;
@@ -91,7 +99,7 @@ OLS_ridge(double *x, int *ldx, int *nrow, int *ncol, double *y, double *coef, do
 
 static void
 ridge_default(double lambda, GCVinfo st)
-{
+{ /* computes ridge estimator (using fixed regulation parameter) */
   int n = st->n, p = st->p;
   double *a, div, edf = 0.0, s2;
 
@@ -123,7 +131,7 @@ ridge_default(double lambda, GCVinfo st)
 
 static void
 ridge_grid(double *lambda, int ngrid, double *gcv, GCVinfo st, double *lambda_opt)
-{
+{ /* select optimal ridge (regulation) parameter over a grid */
   double GCV_min, opt = 0.0;
 
   /* compute GCV criterion over a grid */
@@ -142,7 +150,7 @@ ridge_grid(double *lambda, int ngrid, double *gcv, GCVinfo st, double *lambda_op
 
 static void
 ridge_GCV(double *lambda, GCVinfo st, double tol)
-{
+{ /* select optimal ridge parameter minimizing the GCV criterion */
   double conv, upper_lambda;
   const double phi = 2.0 - GOLDEN;
 
@@ -189,4 +197,59 @@ log_GCV(double lambda, void *pars)
   Free(a);
 
   return val;
+}
+
+/* functions to evaluate the MSE criterion and its derivatives, which are called
+ * by ridge_ORP1 (nested functions are forbidden in ISO C) */
+static double
+fnc1(double alpha, double d2, double s2, double k) {
+  return (d2 * s2 + SQR(k * alpha)) / SQR(d2 + k);
+}
+static double
+fnc1_dot(double alpha, double d2, double s2, double k) {
+  return d2 * (k * SQR(alpha) - s2) / CUBE(d2 + k);
+}
+static double
+fnc1_ddot(double alpha, double d2, double s2, double k) {
+  return d2 * (SQR(alpha) * (d2 - 2.0 * k) + 3.0 * s2) / R_pow_di(d2 + k, 4);
+}
+
+static void
+ridge_ORP1(double *lambda, GCVinfo st, double tol, int *maxit)
+{ /* select optimal ridge parameter minimizing the mean squared estimation (MSE) error */
+  int n = st->n, p = st->p, iter = 0;
+  double check, d2, f1, f1_dot, f1_ddot, k, knew, s2;
+
+  /* compute s2 estimator */
+  s2 = FM_norm_sqr(st->resid, 1, n) / (n - p);
+
+  /* initialization */
+  k = *lambda;
+
+  /* main loop */
+  repeat {
+    f1 = f1_dot = f1_ddot = 0.0;
+    for (int j = 0; j < p; j++) {
+      d2 = SQR((st->d)[j]);
+      f1 += fnc1((st->a)[j], d2, s2, k);
+      f1_dot += fnc1_dot((st->a)[j], d2, s2, k);
+      f1_ddot += fnc1_ddot((st->a)[j], d2, s2, k);
+    }
+
+    knew = k - f1_dot / f1_ddot;
+    check = fabs(knew - k);
+    iter++;
+
+    /* eval convergence */
+    if (check < tol)
+      break; /* successful completion */
+    if (iter >= *maxit)
+      break; /* maximum number of iterations exceeded */
+
+    /* update solution */
+    k = knew;
+  }
+
+  *lambda = knew;
+  *maxit = iter;
 }

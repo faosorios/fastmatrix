@@ -1,4 +1,4 @@
-/* $ID: blas_1.c, last updated 02-14-2021, F.Osorio */
+/* $ID: blas_1.c, last updated 2022-02-10, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -156,6 +156,66 @@ BLAS1_norm_two(double *x, int inc, int n)
   }
 
   return scale * sqrt(ssq);
+}
+
+void
+BLAS1_rot(double *x, int incx, double *y, int incy, int n, double c, double s)
+{ /* applies a plane rotation */
+  double aux;
+
+  /* quick return if possible */
+  if (n <= 0 || incx <= 0 || incy <= 0)
+    return;
+
+  if (incx == 1 && incy == 1) {
+    /* code for increments equal to 1 */
+    for (int i = 0; i < n; i++) {
+      aux  = c * x[i] + s * y[i];
+      y[i] = c * y[i] - s * x[i];
+      x[i] = aux;
+    }
+  } else {
+    /* code for increments not equal to 1 */
+    int ix = OFFSET(n, incx);
+    int iy = OFFSET(n, incy);
+
+    for (int i = 0; i < n; i++) {
+      aux  = c * x[ix] + s * y[iy];
+      y[i] = c * y[iy] - s * x[ix];
+      x[i] = aux;
+      ix += incx;
+      iy += incy;
+    }
+  }
+}
+
+void
+BLAS1_rotg(double *a, double *b, double *c, double *s)
+{ /* construct givens plane rotation */
+  double roe, scale, r, z;
+
+  roe = (fabs(*a) > fabs(*b) ? *a : *b);
+  scale = fabs(*a) + fabs(*b);
+
+  if (scale != 0.0) {
+    r = scale * sqrt(SQR(*a / scale) + SQR(*b / scale));
+    r *= SGN(roe);
+    *c = *a / r;
+    *s = *b / r;
+    z = 1.0;
+    if (fabs(*a) > fabs(*b))
+      z = *s;
+    if (fabs(*b) >= fabs(*a) && *c != 0.0)
+      z = 1.0 / (*c);
+  } else {
+    *c = 1.0;
+    *s = 0.0;
+    r  = 0.0;
+    z  = 0.0;
+  }
+
+  *a = r;
+  *b = z;
 }
 
 void
