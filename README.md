@@ -60,8 +60,8 @@ Latest binaries and sources (development version) for [fastmatrix](https://githu
 Version 0.4 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
 * [fastmatrix_0.4.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.4.tar.gz) - Package sources
-* [fastmatrix_0.3-8196.zip](https://cran.r-project.org/bin/windows/contrib/4.1/fastmatrix_0.3-8196.zip) - Windows binaries (R-release)
-* [fastmatrix_0.3-8196.tgz](https://cran.r-project.org/bin/macosx/contrib/4.1/fastmatrix_0.3-8196.tgz) - Mac OS binaries (R-release)
+* [fastmatrix_0.4.zip](https://cran.r-project.org/bin/windows/contrib/4.1/fastmatrix_0.4.zip) - Windows binaries (R-release)
+* [fastmatrix_0.4.tgz](https://cran.r-project.org/bin/macosx/contrib/4.1/fastmatrix_0.4.tgz) - Mac OS binaries (R-release)
 
 ## Installation instructions
 
