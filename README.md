@@ -48,7 +48,7 @@ Our plan in the near future is the implementation of functions to handle:
 
 ## Reference Manual
 
-* [fastmatrix-manual.pdf](https://github.com/faosorios/fastmatrix/blob/master/man/fastmatrix-manual.pdf)
+* [fastmatrix-manual.pdf](https://cran.r-project.org/web/packages/fastmatrix/fastmatrix.pdf)
 
 ## Resources
 
