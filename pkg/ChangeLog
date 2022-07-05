@@ -1,4 +1,14 @@
-0.4 (Feb 12, 2022)
+0.4-12 (Jul 5, 2022)
+ * Added function to evaluate a real general matrix polynomial.
+ * Added procedure for testing the variance homogeneity of correlated variables.
+ * Function to compute AR(1) and compound symmetry correlation matrices were included.
+ * Several C symbols callable by another packages were added.
+
+0.4-1 (Apr 21, 2022)
+ * Added function to form a symmetric circulant matrix.
+ * Deprecated legacy S constants were fixed.
+
+0.4 (Feb 13, 2022)
  * Added function for rank-1 update to Cholesky factorization.
  * Method "MSE" for optimal selection of ridge parameter was added.
  * Added procedure to equilibrate symmetric matrices.
