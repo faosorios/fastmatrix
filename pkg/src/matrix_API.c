@@ -109,6 +109,13 @@ FM_mult_triangular(double *y, double *a, int lda, int n, double *x, int job)
 }
 
 void
+FM_mult_mat_vec(double *y, double *a, int lda, int n, int p, double *x)
+{ /* performs matrix-vector multiplication, y <- a %*% x */
+  for (int j = 0; j < p; j++)
+    BLAS1_axpy(x[j], a + j * lda, 1, y, 1, n);
+}
+
+void
 FM_mult_mat(double *z, double *x, int ldx, int xrows, int xcols, double *y, int ldy, int yrows, int ycols)
 { /* matrix multiplication of two conformable matrices. z <- x %*% y */
   char *notrans = "N";

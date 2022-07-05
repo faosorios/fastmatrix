@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2022-02-10, F.Osorio */
+/* ID: fastmatrix.h, last updated 2022-07-04, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -24,6 +24,7 @@
 #define DNULLP          (double *) 0
 #define EPS_CONV        1.0e-2
 #define GOLDEN          0.3819660112501051
+#define IZERO(x)        (((x) == 0) ? 1 : 0)
 #define MAX(a,b)        (((a)>(b)) ? (a) : (b))
 #define MIN(a,b)        (((a)<(b)) ? (a) : (b))
 #define OFFSET(n, inc)  (((inc) > 0) ? 0 : ((n) - 1) * (-(inc)))
@@ -53,8 +54,16 @@ void dupl_right_trans(double *, int *, int *, int *, int *, int *, double *, int
 void F77_NAME(symmetrizer_mat)(double *, int *, int *, int *, int *, double *, int *, int *);
 void symmetrizer_prod(double *, int *, int *, int *, double *, int *);
 
+/* other matrix operations */
+double F77_NAME(blinf)(double *, int *, int *, int *, double *, double *, int *);
+double F77_NAME(quadf)(double *, int *, int *, double *, int *);
+double F77_NAME(murrv)(double *, double *, int *, int *, int *, double *, int *);
+
 /* routines for operations on helmert matrices */
 void F77_NAME(helmert_mat)(double *, int *, int *, int *);
+
+/* evaluates a real general matrix polynomial */
+void matrix_polynomial(double *, int *, int *, double *, int *, double *, int *, int *);
 
 /* vector norms */
 void norm_one(double *, int *, int *, double *);
@@ -106,11 +115,16 @@ void OLS_ridge(double *, int *, int *, int *, double *, double *, double *, doub
 void central_moments(double *, int *, double *, double *, double *, double *);
 void cov_weighted(double *, int *, int *, double *, double *, double *);
 void cov_MSSD(double *, int *, int *, double *, double *);
+void cov4th(double *, int *, int *, double *, double *);
 void F77_NAME(median_center)(double *, int *, int *, int *, double *, int *, int *);
 void geometric_mean(double *, int *, double *);
 void mahal_distances(double *, int *, int *, double *, double *, int *, double *);
 void skewness_and_kurtosis(double *, int *, int *, double *, double *, double *, int *);
 void wilson_hilferty_chisq(double *, int *, int *, double *);
+
+/* correlation structures */
+void cor_AR1(double *, int *, double *);
+void cor_CS(double *, int *, double *);
 
 /* sweep operator for symmetric matrices */
 void sweep_operator(double *, int *, int *, int *, int *, int *);
@@ -123,11 +137,13 @@ double brent(double, double, double (*f)(double, void *), void *, double);
 void bezier_smoother(double *, double *, int *, double *, int *, double *, double *);
 void F77_NAME(decasteljau)(double *, double *, int *, double *, double *);
 
-/* utils on matrices */
+/* misc */
+void F77_NAME(circulant_mat)(double *, int *, double *, int *, int *);
 void hadamard_prod(double *, double *, int *, double *);
 void F77_NAME(inner_frobenius)(double *, int *, double *, int *, int *, int *, double *);
 void mat2vech(double *, int *, int *, double *);
 void F77_NAME(pivot_mat)(double *, int *, int *, int *);
+void Psi2Q(double *, double *, int *);
 void whitening_chol(double *, int *, int *, double *);
 
 /* ========================================================================== *
@@ -173,7 +189,12 @@ void BLAS3_syrk(double, double *, int, int, int , char *, char *, double, double
 void BLAS3_trmm(double, double *, int, int, int, char *, char *, char *, char *, double *, int);
 void BLAS3_trsm(double, double *, int, int, int, char *, char *, char *, char *, double *, int);
 
-/*  operations on vectors */
+/* other matrix operations */
+double FM_blinf(double *, int, int, int, double *, double *, int *);
+double FM_quadf(double *, int, int, double *, int *);
+void FM_murrv(double *, double *, int, int, int, double *, int *);
+
+/* operations on vectors */
 double FM_norm_sqr(double *, int, int);
 void FM_normalize(double *, int, int);
 double FM_vecsum(double *, int, int);
@@ -186,6 +207,7 @@ void FM_crossprod(double *, double *, int, int, int, double *, int, int, int);
 void FM_GAXPY(double *, double, double *, int, int, int, double *, double, int);
 double FM_logAbsDet(double *, int, int);
 void FM_mult_mat(double *, double *, int, int, int, double *, int, int, int);
+void FM_mult_mat_vec(double *, double *, int, int, int, double *);
 void FM_mult_triangular(double *, double *, int, int, double *, int);
 void FM_rank1_update(double *, int, int, int, double, double *, double *);
 void FM_scale_mat(double *, int, double, double *, int, int, int);
@@ -221,8 +243,8 @@ void FM_LQ_store_L(double *, int, int, double *, int);
 
 /* matrix inversion and linear solvers */
 void FM_backsolve(double *, int, int, double *, int, int, int *);
-void FM_forwardsolve(double *, int, int, double *, int, int, int *);
 void FM_chol_inverse(double *, int, int, int, int *);
+void FM_forwardsolve(double *, int, int, double *, int, int, int *);
 void FM_invert_mat(double *, int, int, int *);
 void FM_invert_triangular(double *, int, int, int, int *);
 
@@ -242,20 +264,26 @@ void FM_two_product_FMA(double, double, double *, double *);
 void FM_compensated_product(double *, int, double *);
 
 /* descriptive statistics */
+void FM_center_and_Scatter(double *, int, int, double *, double *, double *);
+void FM_cov4th(double *, int, int, double *, double *);
+void FM_cov_MSSD(double *, int, int, double *, double *);
+double FM_find_quantile(double *, int, int);
+void FM_geometric_mean(double *, int, double *);
 void FM_mean_and_var(double *, int, double *, double *);
 void FM_moments(double *, int, double *, double *, double *, double *);
 void FM_online_covariance(double *, double *, int, double *, double *, double *, double *, double *);
-void FM_geometric_mean(double *, int, double *);
 void FM_online_center(double *, int, int, double *, double *);
-void FM_center_and_Scatter(double *, int, int, double *, double *, double *);
 void FM_skewness_and_kurtosis(double *, int, int, double *, double *, double *, int);
-void FM_cov_MSSD(double *, int, int, double *, double *);
-double FM_find_quantile(double *, int, int);
+
+/* correlation structures */
+void FM_cor_AR1(double *, int, double *);
+void FM_cor_CS(double *, int, double *);
 
 /* misc */
 void FM_centering(double *, int, int, double *);
 void FM_cov2cor(double *, int);
 void FM_sherman_morrison(double *, int, int, double *, double *, int);
+void FM_matrix_pol(double *, int, int, double *, int, double *, int, int *);
 
 /* 'DEBUG' routine */
 void FM_print_mat(double *, int, int, int, char *);

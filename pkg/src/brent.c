@@ -1,4 +1,4 @@
-/* $ID: brent.c, last updated 2021-02-06, F.Osorio */
+/* $ID: brent.c, last updated 2022-04-20, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -10,7 +10,7 @@ double brent(double ax, double bx, double (*f)(double, void *), void *info, doub
    * Dover, New York, pp. 79-80 and 188-190. */
   double a = ax, b = bx;
   double d, e, m, p, q, r, t2, u, v, w, x, fu, fv, fw, fx;
-  double eps = DOUBLE_EPS; /* machine epsilon */
+  double eps = DBL_EPSILON; /* machine epsilon */
   double tol1 = eps + 1.0, tol3 = tolerance / 3.0;
 
   /* initialization */

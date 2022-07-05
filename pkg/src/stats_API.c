@@ -211,32 +211,22 @@ FM_cov_MSSD(double *x, int n, int p, double *center, double *Scatter)
   Free(curr); Free(diff); Free(prev);
 }
 
-double
-FM_find_quantile(double *a, int n, int k)
-{ /* for an array with n elements, find the element which would be a[k] if
-   * the array were sorted from smallest to largest (without the need to do
-   * a full sort) */
-   double w, x;
-   int l = 0;
-   int r = n - 1;
-   int i, j;
+void
+FM_cov4th(double *x, int n, int p, double *center, double *cov)
+{ /* distribution-robust (correction factor of the) covariance matrix
+   * (see Section 5 of Harris (1985). Biometrika 72, 103-107) */
+  double accum, dr, ds;
 
-   while (l < r) {
-     x = a[k];
-     i = l;
-     j = r;
-     while (j >= i) {
-       while (a[i] < x) i++;
-       while (x < a[j]) j--;
-       if (i <= j) {
-         w = a[i];
-         a[i++] = a[j];
-         a[j--] = w;
-       }
-     }
-     if (j < k) l = i;
-     if (k < i) r = j;
+  for (int r = 0; r < p; r++) {
+    for (int s = r; s < p; s++) {
+      accum = 0.0;
+      for (int i = 0; i < n; i++) {
+        dr = x[i + r * n] - center[r];
+        ds = x[i + s * n] - center[s];
+        accum += SQR(dr) * SQR(ds);
+      }
+      *(cov + r + s * p) = accum / n;
+      *(cov + s + r * p) = *(cov + r + s * p);
+    }
   }
-
-  return a[k];
 }
