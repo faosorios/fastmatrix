@@ -11,11 +11,12 @@ Yet another R package for matrices. It contains a small set of functions to fast
 
 ## Features
 
-Latest release (Feb 13, 2022) of [fastmatrix](https://github.com/faosorios/fastmatrix) package have implemented the following functions:
+Latest release (Jul 5, 2022) of [fastmatrix](https://github.com/faosorios/fastmatrix) package have implemented the following functions:
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
 * Bezier curve based on n+1 control points.
 * C version of the Kronecker product which is slightly faster than the built in R base.
 * Column-equilibration for rectangular and symmetric matrices.
+* Constructors for AR(1) and compound symmetry correlation matrices.
 * Covariance matrix estimation using the Mean Square Successive (MSSD) method.
 * Estimation of the weighted mean and covariance matrix using an online algorithm (Clarke, 1971).
 * Computation of central moments up to fourth order using an online algorithm (Spicer, 1972).
@@ -23,6 +24,7 @@ Latest release (Feb 13, 2022) of [fastmatrix](https://github.com/faosorios/fastm
 * Gauss-Seidel, Jacobi and conjugate gradients (CG) iterative methods for solving linear systems.
 * Geometric mean using a Fused-Multiply-and-Add (FMA) compensated scheme for accurate computation of floating-point product.
 * Inner products and norms for matrices.
+* Evaluates a real general matrix polynomial.
 * Interface to **C code callable by another C code** from other R packages.
 * LDL decomposition for symmetric real matrices.
 * Lp norms for vectors.
@@ -39,6 +41,7 @@ Latest release (Feb 13, 2022) of [fastmatrix](https://github.com/faosorios/fastm
 * Routine for the computation of the mediancenter (or geometric median) of multivariate data.
 * Sherman-Morrison formula.
 * Sweep operator for symmetric matrices.
+* Test for variance homogeneity of correlated variables (Harris, 1985).
 * vec and vech operators to handle rectangular and square matrices.
 * Whitening transformation.
 * Wilson-Hilferty transformation for chi-squared random variables.
