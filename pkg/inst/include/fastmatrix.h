@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2022-02-10, F.Osorio */
+/* ID: fastmatrix.h, last updated 2022-07-04, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -34,7 +34,12 @@ void BLAS3_syrk(double alpha, double *a, int lda, int n, int k, char *uplo, char
 void BLAS3_trmm(double alpha, double *a, int lda, int nrow, int ncol, char *side, char *uplo, char *trans, char *diag, double *y, int ldy);
 void BLAS3_trsm(double alpha, double *a, int lda, int nrow, int ncol, char *side, char *uplo, char *trans, char *diag, double *y, int ldy);
 
-/*  operations on vectors */
+/* other matrix operations */
+double FM_blinf(double *a, int lda, int n, int p, double *x, double *y, int *info);
+double FM_quadf(double *a, int lda, int n, double *x, int *info);
+void FM_murrv(double *y, double *a, int lda, int n, int p, double *x, int *info);
+
+/* operations on vectors */
 double FM_norm_sqr(double *x, int inc, int n);
 void FM_normalize(double *x, int inc, int n);
 double FM_vecsum(double *x, int inc, int n);
@@ -104,6 +109,7 @@ void FM_compensated_product(double *x, int nobs, double *prod);
 
 /* descriptive statistics */
 void FM_center_and_Scatter(double *x, int n, int p, double *weights, double *center, double *Scatter);
+void FM_cov4th(double *x, int n, int p, double *center, double *cov);
 void FM_cov_MSSD(double *x, int n, int p, double *center, double *Scatter);
 double FM_find_quantile(double *a, int n, int k);
 void FM_geometric_mean(double *x, int nobs, double *mean);
@@ -113,9 +119,14 @@ void FM_online_center(double *x, int n, int p, double *weights, double *center);
 void FM_online_covariance(double *x, double *y, int nobs, double *xbar, double *ybar, double *xvar, double *yvar, double *cov);
 void FM_skewness_and_kurtosis(double *x, int n, int p, double *center, double *Scatter, double *stats, int do_skewness);
 
+/* correlation structures */
+void cor_AR1(double *cor, int *p, double *rho);
+void cor_CS(double *cor, int *p, double *rho);
+
 /* misc */
 void FM_centering(double *x, int n, int p, double *center);
 void FM_cov2cor(double *cov, int p);
+void FM_matrix_pol(double *a, int lda, int n, double *coef, int ncoef, double *b, int ldb, int *info);
 void FM_sherman_morrison(double *a, int lda, int n, double *b, double *d, int inverted);
 
 /* 'DEBUG' routine */
