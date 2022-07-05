@@ -1,6 +1,6 @@
 \name{harris.test}
 \alias{harris.test}
-\title{Test for variance homogeneity of correlated variances}
+\title{Test for variance homogeneity of correlated variables}
 \description{
   Performs large-sample methods for testing equality of \eqn{p \ge 2} correlated variables.
 }
