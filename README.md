@@ -69,7 +69,7 @@ Version 0.4-1 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be fo
 
 ## Installation instructions
 
-To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.4)** from CRAN, start R and enter:
+To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.4-1)** from CRAN, start R and enter:
 ```r
 install.packages("fastmatrix")
 ```
