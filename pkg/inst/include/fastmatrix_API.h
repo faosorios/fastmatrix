@@ -201,31 +201,31 @@ void BLAS3_trsm(double alpha, double *a, int lda, int nrow, int ncol, char *side
 }
 
 /* ========================================================================== *
- * other matrix operations: external API
+ * OMO: external API
  * ========================================================================== */
 
-double FM_blinf(double *a, int lda, int n, int p, double *x, double *y, int *info) {
+double OMO_blinf(double *a, int lda, int n, int p, double *x, double *y) {
   static DBL_FUNC fun = NULL;
   if (fun == NULL) {
-    fun = (DBL_FUNC) R_GetCCallable("fastmatrix", "FM_blinf");
-    if (fun == NULL) Rf_error("cannot find function 'FM_blinf'");
+    fun = (DBL_FUNC) R_GetCCallable("fastmatrix", "OMO_blinf");
+    if (fun == NULL) Rf_error("cannot find function 'OMO_blinf'");
   }
-  return(fun(a, lda, n, p, x, y, info));
+  return(fun(a, lda, n, p, x, y));
 }
 
-double FM_quadf(double *a, int lda, int n, double *x, int *info) {
+double OMO_quadf(double *a, int lda, int n, double *x) {
   static DBL_FUNC fun = NULL;
   if (fun == NULL) {
-    fun = (DBL_FUNC) R_GetCCallable("fastmatrix", "FM_quadf");
-    if (fun == NULL) Rf_error("cannot find function 'FM_quadf'");
+    fun = (DBL_FUNC) R_GetCCallable("fastmatrix", "OMO_quadf");
+    if (fun == NULL) Rf_error("cannot find function 'OMO_quadf'");
   }
-  return(fun(a, lda, n, x, info));
+  return(fun(a, lda, n, x));
 }
 
-void FM_murrv(double *y, double *a, int lda, int n, int p, double *x, int *info) {
+void OMO_murrv(double *y, double *a, int lda, int n, int p, double *x, int *info) {
   static void (*fun)() = NULL;
   if (fun == NULL)
-    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_murrv");
+    fun = (void (*)) R_GetCCallable("fastmatrix", "OMO_murrv");
   fun(y, a, lda, n, p, x, info);
 }
 
