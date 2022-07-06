@@ -59,7 +59,7 @@ static const R_CMethodDef CEntries[]  = {
 
 static const R_FortranMethodDef F77Entries[] = {
   F77DEF(arraymult,              14),
-  F77DEF(blinf,                   7),
+  F77DEF(blinf,                   6),
   F77DEF(bracketprod,            11),
   F77DEF(circulant_mat,           5),
   F77DEF(comm_rows,               3),
@@ -73,7 +73,7 @@ static const R_FortranMethodDef F77Entries[] = {
   F77DEF(median_center,           7),
   F77DEF(murrv,                   7),
   F77DEF(pivot_mat,               4),
-  F77DEF(quadf,                   5),
+  F77DEF(quadf,                   4),
   F77DEF(symmetrizer_mat,         8),
   {NULL, NULL, 0}
 };
@@ -111,6 +111,11 @@ void R_init_fastmatrix(DllInfo *dll)
   R_RegisterCCallable("fastmatrix", "BLAS3_syrk",               (DL_FUNC) &BLAS3_syrk);
   R_RegisterCCallable("fastmatrix", "BLAS3_trmm",               (DL_FUNC) &BLAS3_trmm);
   R_RegisterCCallable("fastmatrix", "BLAS3_trsm",               (DL_FUNC) &BLAS3_trsm);
+
+  /* OMO wrappers callable from other packages */
+  R_RegisterCCallable("fastmatrix", "OMO_blinf",                (DL_FUNC) &OMO_blinf);
+  R_RegisterCCallable("fastmatrix", "OMO_quadf",                (DL_FUNC) &OMO_quadf);
+  R_RegisterCCallable("fastmatrix", "OMO_murrv",                (DL_FUNC) &OMO_murrv);
 
   /* operations on vectors */
   R_RegisterCCallable("fastmatrix", "FM_norm_sqr",              (DL_FUNC) &FM_norm_sqr);

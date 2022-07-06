@@ -5,19 +5,19 @@
 /* other matrix operations wrappers */
 
 double
-FM_blinf(double *a, int lda, int n, int p, double *x, double *y, int *info)
+OMO_blinf(double *a, int lda, int n, int p, double *x, double *y)
 { /* returns the value of t(x) %*% a %*% y */
-  return F77_CALL(blinf)(a, &lda, &n, &p, x, y, info);
+  return F77_CALL(blinf)(a, &lda, &n, &p, x, y);
 }
 
 double
-FM_quadf(double *a, int lda, int n, double *x, int *info)
+OMO_quadf(double *a, int lda, int n, double *x)
 { /* returns the value of t(x) %*% a %*% x */
-  return F77_CALL(quadf)(a, &lda, &n, x, info);
+  return F77_CALL(quadf)(a, &lda, &n, x);
 }
 
 void
-FM_murrv(double *y, double *a, int lda, int n, int p, double *x, int *info)
+OMO_murrv(double *y, double *a, int lda, int n, int p, double *x, int *info)
 { /* computes y <- a %*% x */
   F77_CALL(murrv)(y, a, &lda, &n, &p, x, info);
 }
