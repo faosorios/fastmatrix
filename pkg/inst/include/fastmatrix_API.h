@@ -1,4 +1,4 @@
-/* $ID: fastmatrix_API.h, last updated 2022-07-04, F.Osorio */
+/* $ID: fastmatrix_API.h, last updated 2022-08-01, F.Osorio */
 
 #ifndef FASTMATRIX_API_H
 #define FASTMATRIX_API_H
@@ -741,6 +741,13 @@ void FM_cov2cor(double *cov, int p) {
   if (fun == NULL)
     fun = (void (*)) R_GetCCallable("fastmatrix", "FM_cov2cor");
   fun(cov, p);
+}
+
+void FM_krylov_mat(double *a, int lda, int n, double *b, int m, double *k, int ldk, int *info) {
+  static void (*fun)() = NULL;
+  if (fun == NULL)
+    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_krylov_mat");
+  fun(a, lda, n, b, m, k, ldk, info);
 }
 
 void FM_matrix_pol(double *a, int lda, int n, double *coef, int ncoef, double *b, int ldb, int *info) {

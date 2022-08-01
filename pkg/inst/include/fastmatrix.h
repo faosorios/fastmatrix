@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2022-07-06, F.Osorio */
+/* ID: fastmatrix.h, last updated 2022-08-01, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -126,6 +126,7 @@ void cor_CS(double *cor, int *p, double *rho);
 /* misc */
 void FM_centering(double *x, int n, int p, double *center);
 void FM_cov2cor(double *cov, int p);
+void FM_krylov_mat(double *a, int lda, int n, double *b, int m, double *k, int ldk, int *info);
 void FM_matrix_pol(double *a, int lda, int n, double *coef, int ncoef, double *b, int ldb, int *info);
 void FM_sherman_morrison(double *a, int lda, int n, double *b, double *d, int inverted);
 
