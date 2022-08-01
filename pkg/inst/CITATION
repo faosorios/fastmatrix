@@ -4,10 +4,10 @@ citEntry(entry="Manual",
   title = "Fast computation of some matrices useful in statistics",
   author = personList(as.person("F. Osorio"), as.person("A. Ogueda")),
   year = "2022",
-  note = "R package version 0.4-12",
+  note = "R package version 0.4-124",
   url  = "https://faosorios.github.io/fastmatrix/",
   textVersion =
     paste("Osorio, F., Ogueda, A. (2022).",
       "Fast computation of some matrices useful in statistics.",
-      "R package version 0.4-12.", "URL: https://faosorios.github.io/fastmatrix/")
+      "R package version 0.4-124.", "URL: https://faosorios.github.io/fastmatrix/")
 )
