@@ -36,8 +36,8 @@ cg <- function(a, b, maxiter = 200, tol = 1e-7)
           tol = as.double(tol),
           iter = as.integer(0),
           info = as.integer(0))[c("x","iter","info")]
-  if (z$info > 0)
-    stop(paste("argument ", z$info, " had an illegal value.", sep = ""))
+  if (z$info < 0)
+    stop(paste("argument ", -z$info, " had an illegal value.", sep = ""))
   if (z$iter >= maxiter)
     stop("maximum number of iterations exceeded.")
 
