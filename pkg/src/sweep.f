@@ -1,4 +1,4 @@
-c ID: sweep.f, last updated 2020-08-21, F.Osorio
+c ID: sweep.f, last updated 2022-07-31, F.Osorio
 
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       SUBROUTINE sweepop(a, lda, p, k, reverse, info)
@@ -13,7 +13,7 @@ c             a symmetric matrix. on exit if info = 0, a is the sweeped matrix
 c     lda     (input) INTEGER
 c             lda is the leading dimension of the array a. lda >= max(1,p).
 c     p       (input) INTEGER
-c             p is the order of the matrix. k > 0.
+c             p is the order of the matrix. p > 0.
 c     k       (input) INTEGER
 c             k element of the diagonal which will be sweeped, k > 0.
 c     reverse (input) INTEGER

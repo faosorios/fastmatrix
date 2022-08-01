@@ -1,4 +1,4 @@
-/* ID: cor_struct.c, last updated 2022-06-01, F.Osorio */
+/* ID: cor_struct.c, last updated 2022-07-06, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -24,7 +24,7 @@ FM_cor_AR1(double *cor, int p, double *rho)
   for (int i = 0; i < p; i++) {
     cor[i * (p + 1)] = 1.0;
     for (int j = i + 1; j < p; j++) {
-      pow = fabs(i - j);
+      pow = abs(i - j);
       *(cor + i + j * p) = R_pow_di(*rho, pow);
       *(cor + j + i * p) = *(cor + i + j * p);
     }

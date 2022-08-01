@@ -15,13 +15,13 @@ FM_matrix_pol(double *a, int lda, int n, double *coef, int ncoef, double *b, int
   /* test the input parameters */
   *info = 0;
   if (n < 0) {
-    *info = 3;
+    *info = -3;
   } else if (lda < MAX(1, n)) {
-    *info = 2;
+    *info = -2;
   } else if (ncoef < 0) {
-    *info = 5;
+    *info = -5;
   } else if (ldb < MAX(1, n)) {
-    *info = 7;
+    *info = -7;
   }
   if (*info != 0) return;
 

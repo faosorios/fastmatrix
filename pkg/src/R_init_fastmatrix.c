@@ -1,4 +1,4 @@
-/* $ID: init.c, last updated 2022-07-04, F.Osorio */
+/* $ID: init.c, last updated 2022-08-01, F.Osorio */
 
 #include "fastmatrix.h"
 #include <R_ext/Rdynload.h>
@@ -30,6 +30,7 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(hadamard_prod,          4),
   CALLDEF(jacobi_solver,          9),
   CALLDEF(kronecker_prod,         7),
+  CALLDEF(krylov_mat,             8),
   CALLDEF(lu_dcmp,                5),
   CALLDEF(lu_inverse,             4),
   CALLDEF(lu_solve,               7),
@@ -67,6 +68,7 @@ static const R_FortranMethodDef F77Entries[] = {
   F77DEF(comm_right_mult,        10),
   F77DEF(commutation_mat,         6),
   F77DEF(equilibrate_cols,        8),
+  F77DEF(frank_mat,               4),
   F77DEF(helmert_mat,             4),
   F77DEF(inner_frobenius,         7),
   F77DEF(ldl_dcmp,                5),
@@ -200,6 +202,7 @@ void R_init_fastmatrix(DllInfo *dll)
   /* misc code callable from other packages */
   R_RegisterCCallable("fastmatrix", "FM_centering",             (DL_FUNC) &FM_centering);
   R_RegisterCCallable("fastmatrix", "FM_cov2cor",               (DL_FUNC) &FM_cov2cor);
+  R_RegisterCCallable("fastmatrix", "FM_krylov_mat",            (DL_FUNC) &FM_krylov_mat);
   R_RegisterCCallable("fastmatrix", "FM_matrix_pol",            (DL_FUNC) &FM_matrix_pol);
   R_RegisterCCallable("fastmatrix", "FM_sherman_morrison",      (DL_FUNC) &FM_sherman_morrison);
 

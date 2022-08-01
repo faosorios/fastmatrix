@@ -17,13 +17,13 @@ cg_solver(double *a, int *lda, int *n, double *b, double *x, int *maxiter, doubl
   /* test the input parameters */
   *info = 0;
   if (*n < 0) {
-    *info = 3;
+    *info = -3;
   } else if (*lda < MAX(1, *n)) {
-    *info = 2;
+    *info = -2;
   } else if (*maxiter < 0) {
-    *info = 6;
+    *info = -6;
   } else if (*tol <= 0.0) {
-    *info = 7;
+    *info = -7;
   }
   if (*info != 0) return;
 
