@@ -56,7 +56,6 @@ is.lu(x)
   Anderson. E., Bai, Z., Bischof, C., Blackford, S., Demmel, J., Dongarra, J.,
   Du Croz, J., Greenbaum, A., Hammarling, S., McKenney, A. Sorensen, D. (1999).
   \emph{LAPACK Users' Guide}, 3rd Edition. SIAM.
-  (Available at \url{http://www.netlib.org/lapack/lug/lapack_lug.html}).
 
   Golub, G.H., Van Loan, C.F. (1996).
   \emph{Matrix Computations}, 3rd Edition.

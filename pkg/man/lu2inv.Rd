@@ -19,14 +19,13 @@ lu2inv(x)
   detailed study of the \code{Fortran} code.
 }
 \source{
-  This is an interface to the LAPACK routine \code{DGETRI}. LAPACK is from 
-  \url{https://www.netlib.org/lapack/} and its guide is listed in the references.
+  This is an interface to the LAPACK routine \code{DGETRI}. LAPACK is from
+  \url{https://netlib.org/lapack/} and its guide is listed in the references.
 }
 \references{
   Anderson. E., Bai, Z., Bischof, C., Blackford, S., Demmel, J., Dongarra, J.,
   Du Croz, J., Greenbaum, A., Hammarling, S., McKenney, A. Sorensen, D. (1999).
   \emph{LAPACK Users' Guide}, 3rd Edition. SIAM.
-  (Available at \url{http://www.netlib.org/lapack/lug/lapack_lug.html}).
 
   Golub, G.H., Van Loan, C.F. (1996).
   \emph{Matrix Computations}, 3rd Edition.
