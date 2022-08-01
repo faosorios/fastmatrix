@@ -1,3 +1,8 @@
+0.4-124 (Aug 2, 2022)
+ * Added function to compute the krylov matrix.
+ * Added function to form the Frank matrix.
+ * Issues in C/Fortran code of version 0.4-12 were corrected.
+
 0.4-12 (Jul 5, 2022)
  * Added function to evaluate a real general matrix polynomial.
  * Added procedure for testing the variance homogeneity of correlated variables.
