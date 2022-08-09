@@ -17,7 +17,7 @@ corAR1 <- function(rho, p = 2)
 }
 
 corCS <- function(rho, p = 2)
-{ ## form an AR(1) correlation matrix
+{ ## form an equicorrelation (compound symmetry) matrix
   if ((rho > 1) || (rho < -1))
     stop("'rho' must be in the interval (-1,1)")
   if (p < 2)
