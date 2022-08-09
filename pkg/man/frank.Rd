@@ -13,7 +13,7 @@ frank(n = 1)
 }
 \details{
   A Frank matrix of order \eqn{n} is a square matrix \eqn{\bold{F}_n = (f_{ij})} defined as
-  \deqn{f_{ij} = \left\{ {\begin{array}{*{20}{c}}
+  \deqn{f_{ij} = \left\{ {\begin{array}{ll}
     n - j + 1, & i \le j, \\
     n - j, & i = j + 1, \\
     0, & i \ge j + 2

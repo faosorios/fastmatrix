@@ -14,7 +14,7 @@ kronecker.prod(x, y = x)
 \details{
   Let \eqn{\bold{X}} be an \eqn{m\times n} and \eqn{\bold{Y}} a \eqn{p\times q} matrix.
   The \eqn{mp\times nq} matrix defined by
-  \deqn{\left[{\begin{array}{*{20}{c}}
+  \deqn{\left[{\begin{array}{ccc}
     x_{11}\bold{Y} & \dots & x_{1n}\bold{Y} \\
     \vdots & & \vdots \\
     x_{m1}\bold{Y} & \dots & x_{mn}\bold{Y}

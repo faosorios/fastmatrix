@@ -14,7 +14,7 @@ ldl(x)
   The factorization has the form \eqn{\bold{X} = \bold{LDL}^T}, where \eqn{\bold{D}}
   is a diagonal matrix and \eqn{\bold{L}} is unitary lower triangular.
 
-  The LDL decomposition of \code{x} is returned as a list with components:
+  The LDL decomposition of \eqn{\bold{x}} is returned as a list with components:
   \item{lower}{ the unitary lower triangular factor \eqn{\bold{L}}.}
   \item{d}{ a vector containing the diagonal elements of \eqn{\bold{D}}.}
 }

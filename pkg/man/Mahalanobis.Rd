@@ -14,9 +14,9 @@ Mahalanobis(x, center, cov, inverted = FALSE)
     \emph{inverse} of the covariance matrix.}
 }
 \description{
-  Returns the squared Mahalanobis distance of all rows in \code{x} and the
+  Returns the squared Mahalanobis distance of all rows in \eqn{\bold{x}} and the
   vector \eqn{\bold{\mu}} = \code{center} with respect to \eqn{\bold{\Sigma}} = \code{cov}.
-  This is (for vector \code{x}) defined as
+  This is (for vector \eqn{\bold{x}}) defined as
   \deqn{D^2 = (\bold{x} - \bold{\mu})^T \bold{\Sigma}^{-1} (\bold{x} - \bold{\mu})}
 }
 \details{

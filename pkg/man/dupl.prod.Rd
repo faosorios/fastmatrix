@@ -2,8 +2,8 @@
 \alias{dupl.prod}
 \title{Matrix multiplication envolving the duplication matrix}
 \description{
-  Given the order of a duplication and matrix \code{x}, performs one of the matrix-matrix
-  operations:
+  Given the order of a duplication and a conformable matrix \eqn{\bold{X}}, performs
+  one of the matrix-matrix operations:
   \itemize{
     \item \eqn{\bold{Y} = \bold{DX}}, if \code{side = "left"} and \code{transposed = FALSE}, or
     \item \eqn{\bold{Y} = \bold{D}^T\bold{X}}, if \code{side = "left"} and \code{transposed = TRUE}, or

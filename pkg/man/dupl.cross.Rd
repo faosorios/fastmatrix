@@ -3,9 +3,10 @@
 
 \title{Matrix crossproduct envolving the duplication matrix}
 \description{
-  Given the order of two duplication matrices and matrix \code{x}, this function performs
-  the operation: \eqn{\bold{Y} = \bold{D}_n^T\bold{X}\bold{D}_k}, where \eqn{\bold{D}_n}
-  and \eqn{\bold{D}_k} are duplication matrices of order \eqn{n} and \eqn{k}, respectively.
+  Given the order of two duplication matrices and a conformable matrix \eqn{\bold{X}},
+  this function performs the operation: \eqn{\bold{Y} = \bold{D}_n^T\bold{X}\bold{D}_k},
+  where \eqn{\bold{D}_n} and \eqn{\bold{D}_k} are duplication matrices of order \eqn{n}
+  and \eqn{k}, respectively.
 }
 \usage{
 dupl.cross(n = 1, k = n, x = NULL)

@@ -2,17 +2,17 @@
 \alias{comm.prod}
 \title{Matrix multiplication envolving the commutation matrix}
 \description{
-  Given the row and column dimension of a commutation and matrix \code{x}, performs
-  one of the matrix-matrix operations:
+  Given the row and column dimensions of a commutation matrix \eqn{\bold{K}} of order
+  \eqn{mn} and a conformable matrix \eqn{\bold{x}}, performs one of the matrix-matrix
+  operations:
   \itemize{
     \item \eqn{\bold{Y} = \bold{KX}}, if \code{side = "left"} and \code{transposed = FALSE}, or
     \item \eqn{\bold{Y} = \bold{K}^T\bold{X}}, if \code{side = "left"} and \code{transposed = TRUE}, or
     \item \eqn{\bold{Y} = \bold{XK}}, if \code{side = "right"} and \code{transposed = FALSE}, or
-    \item \eqn{\bold{Y} = \bold{XK}^T}, if \code{side = "right"} and \code{transposed = TRUE},
+    \item \eqn{\bold{Y} = \bold{XK}^T}, if \code{side = "right"} and \code{transposed = TRUE}.
   }
-  where \eqn{\bold{K}} is the commutation matrix of order \eqn{mn}. The main aim of
-  \code{comm.prod} is to do this matrix multiplication \bold{without forming} the
-  commutation matrix.
+  The main aim of \code{comm.prod} is to do this matrix multiplication \bold{without forming}
+  the commutation matrix.
 }
 \usage{
 comm.prod(m = 1, n = m, x = NULL, transposed = FALSE, side = "left")

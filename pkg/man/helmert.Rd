@@ -13,7 +13,7 @@ helmert(n = 1)
 }
 \details{
   A Helmert matrix of order \eqn{n} is a square matrix defined as
-  \deqn{\bold{H}_n = \left[ {\begin{array}{*{20}{c}}
+  \deqn{\bold{H}_n = \left[ {\begin{array}{ccccc}
     1/\sqrt{n} & 1/\sqrt{n} & 1/\sqrt{n} & \dots & 1/\sqrt{n} \\
     1/\sqrt{2} & -1/\sqrt{2} & 0 & \dots & 0 \\
     1/\sqrt{6} & 1/\sqrt{6} & -2/\sqrt{6} & \dots & 0 \\

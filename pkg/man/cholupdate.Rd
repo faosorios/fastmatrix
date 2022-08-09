@@ -9,9 +9,9 @@ cholupdate(r, x)
   \item{x}{ vector defining the rank one update.}
 }
 \description{
-  function \code{chol.update}, where \code{R = chol(A)} is the original Cholesky
+  function \code{cholupdate}, where \code{R = chol(A)} is the original Cholesky
   factorization of \eqn{\bold{A}}, returns the upper triangular Cholesky factor of
-  \eqn{\bold{A} + \bold{xx}^T}, with \code{x} a column vector of appropriate dimension.
+  \eqn{\bold{A} + \bold{xx}^T}, with \eqn{\bold{x}} a column vector of appropriate dimension.
 }
 \references{
   Golub, G.H., Van Loan, C.F. (2013).

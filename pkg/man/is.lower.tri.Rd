@@ -10,7 +10,7 @@ is.lower.tri(x, diag = FALSE)
 is.upper.tri(x, diag = FALSE)
 }
 \arguments{
-  \item{x}{a matrix of other \R object with \code{length(dim(x)) == 2}.}
+  \item{x}{a matrix of other \R object with \code{length(dim(x)) = 2}.}
   \item{diag}{logical. Should the diagonal be included?}
 }
 \value{

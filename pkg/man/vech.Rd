@@ -12,8 +12,8 @@ vech(x)
   \item{x}{ a square matrix.}
 }
 \value{
-  Let \code{x} be a \eqn{n} by \eqn{n} matrix, then \code{vech(x)} is a \eqn{n(n+1)/2}-dimensional
-  vector.
+  Let \eqn{\bold{X}} be a \eqn{n} by \eqn{n} matrix, then \code{vech}(\eqn{\bold{X}})
+  is a \eqn{n(n+1)/2}-dimensional vector.
 }
 \examples{
 x <- matrix(rep(1:10, each = 10), ncol = 10)
