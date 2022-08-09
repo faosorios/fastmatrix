@@ -64,9 +64,6 @@ void F77_NAME(frank_mat)(double *, int *, int *, int *);
 void F77_NAME(helmert_mat)(double *, int *, int *, int *);
 void krylov_mat(double *, int *, int *, double *, int *, double *, int *, int *);
 
-/* evaluates a real general matrix polynomial */
-void matrix_polynomial(double *, int *, int *, double *, int *, double *, int *, int *);
-
 /* vector norms */
 void norm_one(double *, int *, int *, double *);
 void norm_two(double *, int *, int *, double *);
@@ -278,14 +275,13 @@ void FM_online_center(double *, int, int, double *, double *);
 void FM_skewness_and_kurtosis(double *, int, int, double *, double *, double *, int);
 
 /* correlation structures */
-void FM_cor_AR1(double *, int, double *);
-void FM_cor_CS(double *, int, double *);
+void FM_cor_AR1(double *, int, double);
+void FM_cor_CS(double *, int, double);
 
 /* misc */
 void FM_centering(double *, int, int, double *);
 void FM_cov2cor(double *, int);
 void FM_krylov_mat(double *, int, int, double *, int, double *, int, int *);
-void FM_matrix_pol(double *, int, int, double *, int, double *, int, int *);
 void FM_sherman_morrison(double *, int, int, double *, double *, int);
 
 /* 'DEBUG' routine */

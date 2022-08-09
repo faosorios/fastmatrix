@@ -1,4 +1,4 @@
-/* $ID: init.c, last updated 2022-08-01, F.Osorio */
+/* $ID: init.c, last updated 2022-08-09, F.Osorio */
 
 #include "fastmatrix.h"
 #include <R_ext/Rdynload.h>
@@ -37,7 +37,6 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(mahal_distances,        7),
   CALLDEF(mat2vech,               4),
   CALLDEF(matrix_norm,            6),
-  CALLDEF(matrix_polynomial,      8),
   CALLDEF(norm_one,               4),
   CALLDEF(norm_two,               4),
   CALLDEF(norm_inf,               4),
@@ -203,7 +202,6 @@ void R_init_fastmatrix(DllInfo *dll)
   R_RegisterCCallable("fastmatrix", "FM_centering",             (DL_FUNC) &FM_centering);
   R_RegisterCCallable("fastmatrix", "FM_cov2cor",               (DL_FUNC) &FM_cov2cor);
   R_RegisterCCallable("fastmatrix", "FM_krylov_mat",            (DL_FUNC) &FM_krylov_mat);
-  R_RegisterCCallable("fastmatrix", "FM_matrix_pol",            (DL_FUNC) &FM_matrix_pol);
   R_RegisterCCallable("fastmatrix", "FM_sherman_morrison",      (DL_FUNC) &FM_sherman_morrison);
 
   /* 'DEBUG' routine */
