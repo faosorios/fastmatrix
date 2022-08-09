@@ -708,24 +708,6 @@ void FM_skewness_and_kurtosis(double *x, int n, int p, double *center, double *S
 }
 
 /* ========================================================================== *
- * correlation structures: external API
- * ========================================================================== */
-
-void FM_cor_AR1(double *cor, int p, double *rho) {
-  static void (*fun)() = NULL;
-  if (fun == NULL)
-    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_cor_AR1");
-  fun(cor, p, rho);
-}
-
-void FM_cor_CS(double *cor, int p, double *rho) {
-  static void (*fun)() = NULL;
-  if (fun == NULL)
-    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_cor_CS");
-  fun(cor, p, rho);
-}
-
-/* ========================================================================== *
  * Misc: external API
  * ========================================================================== */
 
@@ -748,13 +730,6 @@ void FM_krylov_mat(double *a, int lda, int n, double *b, int m, double *k, int l
   if (fun == NULL)
     fun = (void (*)) R_GetCCallable("fastmatrix", "FM_krylov_mat");
   fun(a, lda, n, b, m, k, ldk, info);
-}
-
-void FM_matrix_pol(double *a, int lda, int n, double *coef, int ncoef, double *b, int ldb, int *info) {
-  static void (*fun)() = NULL;
-  if (fun == NULL)
-    fun = (void (*)) R_GetCCallable("fastmatrix", "FM_matrix_pol");
-  fun(a, lda, n, coef, ncoef, b, ldb, info);
 }
 
 void FM_sherman_morrison(double *a, int lda, int n, double *b, double *d, int inverted) {
