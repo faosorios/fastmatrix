@@ -1,0 +1,1763 @@
+==17447== Memcheck, a memory error detector
+==17447== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==17447== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==17447== Command: /usr/local/lib/R/bin/exec/R --vanilla
+==17447== 
+
+R Under development (unstable) (2022-01-27 r81578) -- "Unsuffered Consequences"
+Copyright (C) 2022 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "fastmatrix"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('fastmatrix')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("Mahalanobis")
+> ### * Mahalanobis
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: Mahalanobis
+> ### Title: Mahalanobis distance
+> ### Aliases: Mahalanobis
+> ### Keywords: multivariate
+> 
+> ### ** Examples
+> 
+> x <- cbind(1:6, 1:3)
+> xbar <- colMeans(x)
+> S <- matrix(c(1,4,4,1), ncol = 2) # is negative definite
+> D2 <- mahalanobis(x, center = xbar, S)
+> all(D2 >= 0) # several distances are negative
+[1] FALSE
+> 
+> ## next command produces the following error:
+> ## Covariance matrix is possibly not positive-definite
+> ## Not run: D2 <- Mahalanobis(x, center = xbar, S)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("array.mult")
+> ### * array.mult
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: array.mult
+> ### Title: Array multiplication
+> ### Aliases: array.mult
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> x <- array(0, dim = c(2,3,3)) # 2 x 3 x 3 array
+> x[,,1] <- c(1,2,2,4,3,6)
+> x[,,2] <- c(2,4,4,8,6,12)
+> x[,,3] <- c(3,6,6,12,9,18)
+> 
+> a <- matrix(1, nrow = 2, ncol = 3)
+> b <- matrix(1, nrow = 3, ncol = 2)
+> 
+> y <- array.mult(a, b, x) # a 2 x 2 x 2 array
+> y
+, , 1
+
+     [,1] [,2]
+[1,]   36   36
+[2,]   72   72
+
+, , 2
+
+     [,1] [,2]
+[1,]   36   36
+[2,]   72   72
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("asSymmetric")
+> ### * asSymmetric
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: asSymmetric
+> ### Title: Force a matrix to be symmetric
+> ### Aliases: asSymmetric
+> ### Keywords: array
+> 
+> ### ** Examples
+> 
+> a <- matrix(1:16, ncol = 4)
+> isSymmetric(a) # FALSE
+[1] FALSE
+> a <- asSymmetric(a) # copy lower triangle into upper triangle
+> 
+> 
+> 
+> cleanEx()
+> nameEx("bezier")
+> ### * bezier
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: bezier
+> ### Title: Computation of Bezier curve
+> ### Aliases: bezier
+> ### Keywords: smooth
+> 
+> ### ** Examples
+> 
+> # a tiny example
+> x <- c(1.0, 0.25, 1.25, 2.5, 4.00, 5.0)
+> y <- c(0.5, 2.00, 3.75, 4.0, 3.25, 1.0)
+> plot(x, y, type = "o")
+> z <- bezier(x, y, ngrid = 50)
+> lines(z$xgrid, z$ygrid, lwd = 2, lty = 2, col = "red")
+> 
+> # other simple example
+> x <- c(4,6,4,5,6,7)
+> y <- 1:6
+> plot(x, y, type = "o")
+> z <- bezier(x, y, ngrid = 50)
+> lines(z$xgrid, z$ygrid, lwd = 2, lty = 2, col = "red")
+> 
+> 
+> 
+> cleanEx()
+> nameEx("bracket.prod")
+> ### * bracket.prod
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: bracket.prod
+> ### Title: Bracket product
+> ### Aliases: bracket.prod
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> x <- array(0, dim = c(2,3,3)) # 2 x 3 x 3 array
+> x[,,1] <- c(1,2,2,4,3,6)
+> x[,,2] <- c(2,4,4,8,6,12)
+> x[,,3] <- c(3,6,6,12,9,18)
+> 
+> a <- matrix(1, nrow = 3, ncol = 2)
+> 
+> y <- bracket.prod(a, x) # a 3 x 3 x 3 array
+> y
+, , 1
+
+     [,1] [,2] [,3]
+[1,]    3    6    9
+[2,]    3    6    9
+[3,]    3    6    9
+
+, , 2
+
+     [,1] [,2] [,3]
+[1,]    6   12   18
+[2,]    6   12   18
+[3,]    6   12   18
+
+, , 3
+
+     [,1] [,2] [,3]
+[1,]    9   18   27
+[2,]    9   18   27
+[3,]    9   18   27
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("cg")
+> ### * cg
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: cg
+> ### Title: Solve linear systems using the conjugate gradients method
+> ### Aliases: cg
+> ### Keywords: algebra array
+> 
+> ### ** Examples
+> 
+> a <- matrix(c(4,3,0,3,4,-1,0,-1,4), ncol = 3)
+> b <- c(24,30,-24)
+> z <- cg(a, b)
+> z # converged in 3 iterations
+[1]  3  4 -5
+attr(,"iterations")
+[1] 3
+> 
+> 
+> 
+> cleanEx()
+> nameEx("cholupdate")
+> ### * cholupdate
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: cholupdate
+> ### Title: Rank 1 update to Cholesky factorization
+> ### Aliases: cholupdate
+> ### Keywords: algebra array
+> 
+> ### ** Examples
+> 
+> a <- matrix(c(1,1,1,1,2,3,1,3,6), ncol = 3)
+> r <- chol(a)
+> x <- c(0,0,1)
+> b <- a + outer(x,x)
+> r1 <- cholupdate(r, x)
+> r1
+     [,1] [,2]     [,3]
+[1,]    1    1 1.000000
+[2,]    0    1 2.000000
+[3,]    0    0 1.414214
+> all(r1 == chol(b)) # TRUE
+[1] TRUE
+> 
+> 
+> 
+> cleanEx()
+> nameEx("circulant")
+> ### * circulant
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: circulant
+> ### Title: Form a symmetric circulant matrix
+> ### Aliases: circulant
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> x <- c(2,3,5,7,11,13)
+> circulant(x)
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    2    3    5    7   11   13
+[2,]    3    5    7   11   13    2
+[3,]    5    7   11   13    2    3
+[4,]    7   11   13    2    3    5
+[5,]   11   13    2    3    5    7
+[6,]   13    2    3    5    7   11
+> 
+> 
+> 
+> cleanEx()
+> nameEx("comm.info")
+> ### * comm.info
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: comm.info
+> ### Title: Compact information to construct the commutation matrix
+> ### Aliases: comm.info
+> ### Keywords: array
+> 
+> ### ** Examples
+> 
+> z <- comm.info(m = 3, n = 2, condensed = FALSE)
+> z # where are the ones in commutation matrix of order '3,2'?
+$row
+[1] 1 3 5 2 4 6
+
+$col
+[1] 1 2 3 4 5 6
+
+$m
+[1] 3
+
+$n
+[1] 2
+
+> 
+> K32 <- commutation(m = 3, n = 2, matrix = TRUE)
+> K32 # only recommended if m and n are very small
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    1    0    0    0    0    0
+[2,]    0    0    0    1    0    0
+[3,]    0    1    0    0    0    0
+[4,]    0    0    0    0    1    0
+[5,]    0    0    1    0    0    0
+[6,]    0    0    0    0    0    1
+> 
+> 
+> 
+> cleanEx()
+> nameEx("comm.prod")
+> ### * comm.prod
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: comm.prod
+> ### Title: Matrix multiplication envolving the commutation matrix
+> ### Aliases: comm.prod
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> K42 <- commutation(m = 4, n = 2, matrix = TRUE)
+> x <- matrix(1:24, ncol = 3)
+> y <- K42 %*% x
+> 
+> z <- comm.prod(m = 4, n = 2, x) # K42 is not stored
+> all(z == y) # matrices y and z are equal!
+[1] TRUE
+> 
+> 
+> 
+> cleanEx()
+> nameEx("commutation")
+> ### * commutation
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: commutation
+> ### Title: Commutation matrix
+> ### Aliases: commutation
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> z <- commutation(m = 100, condensed = TRUE)
+> object.size(z) # 40.6 Kb of storage
+40600 bytes
+> 
+> z <- commutation(m = 100, condensed = FALSE)
+> object.size(z) # 80.7 Kb of storage
+80704 bytes
+> 
+> K100 <- commutation(m = 100, matrix = TRUE) # time: < 2 secs
+==17447== Warning: set address range perms: large range [0x11337040, 0x40e27870) (undefined)
+==17447== Warning: set address range perms: large range [0x59c9d040, 0x71a15470) (undefined)
+==17447== Warning: set address range perms: large range [0x11337028, 0x40e27888) (noaccess)
+==17447== Warning: set address range perms: large range [0x71a16040, 0x8978e470) (undefined)
+> object.size(K100) # 400 Mb of storage, do not request this matrix!
+400000216 bytes
+> 
+> # a small example
+> K32 <- commutation(m = 3, n = 2, matrix = TRUE)
+> a <- matrix(1:6, ncol = 2)
+> v <- K32 %*% vec(a)
+> all(vec(t(a)) == as.vector(v)) # vectors are equal!
+[1] TRUE
+> 
+> 
+> 
+> cleanEx()
+> nameEx("corAR1")
+> ### * corAR1
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: corAR1
+> ### Title: AR(1) Correlation Structure
+> ### Aliases: corAR1
+> ### Keywords: array
+> 
+> ### ** Examples
+> 
+> R <- corAR1(rho = 0.8, p = 5)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("corCS")
+> ### * corCS
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: corCS
+> ### Title: Compound Symmetry Correlation Structure
+> ### Aliases: corCS
+> ### Keywords: array
+> 
+> ### ** Examples
+> 
+> R <- corCS(rho = 0.8, p = 5)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("cov.MSSD")
+> ### * cov.MSSD
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: cov.MSSD
+> ### Title: Mean Square Successive Difference (MSSD) estimator of the
+> ###   covariance matrix
+> ### Aliases: cov.MSSD
+> ### Keywords: multivariate
+> 
+> ### ** Examples
+> 
+> x <- cbind(1:10, c(1:3, 8:5, 8:10))
+> z0 <- cov(x)
+> z0
+         [,1]     [,2]
+[1,] 9.166667 8.055556
+[2,] 8.055556 9.433333
+> z1 <- cov.MSSD(x)
+> z1
+$mean
+[1] 5.5 5.9
+
+$cov
+     [,1]     [,2]
+[1,]  0.5 0.500000
+[2,]  0.5 2.277778
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("cov.weighted")
+> ### * cov.weighted
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: cov.weighted
+> ### Title: Weighted covariance matrices
+> ### Aliases: cov.weighted
+> ### Keywords: multivariate
+> 
+> ### ** Examples
+> 
+> x <- cbind(1:10, c(1:3, 8:5, 8:10))
+> z0 <- cov.weighted(x) # all weights are 1
+> D2 <- Mahalanobis(x, center = z0$mean, cov = z0$cov)
+> p <- ncol(x)
+> wts <- (p + 1) / (1 + D2) # nice weights!
+> z1 <- cov.weighted(x, weights = wts)
+> z1
+$mean
+[1] 5.711658 5.941783
+
+$cov
+         [,1]     [,2]
+[1,] 8.450288 7.733917
+[2,] 7.733917 8.550491
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("dupl.cross")
+> ### * dupl.cross
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: dupl.cross
+> ### Title: Matrix crossproduct envolving the duplication matrix
+> ### Aliases: dupl.cross
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> D2 <- duplication(n = 2, matrix = TRUE)
+> D3 <- duplication(n = 3, matrix = TRUE)
+> x <- matrix(1, nrow = 9, ncol = 4)
+> y <- t(D3) %*% x %*% D2
+> 
+> z <- dupl.cross(n = 3, k = 2, x) # D2 and D3 are not stored
+> all(z == y) # matrices y and z are equal!
+[1] TRUE
+> 
+> x <- matrix(1, nrow = 9, ncol = 9)
+> z <- dupl.cross(n = 3, x = x) # same matrix is used to pre- and post-multiplying x
+> z # print result
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    1    2    2    1    2    1
+[2,]    2    4    4    2    4    2
+[3,]    2    4    4    2    4    2
+[4,]    1    2    2    1    2    1
+[5,]    2    4    4    2    4    2
+[6,]    1    2    2    1    2    1
+> 
+> 
+> 
+> cleanEx()
+> nameEx("dupl.info")
+> ### * dupl.info
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: dupl.info
+> ### Title: Compact information to construct the duplication matrix
+> ### Aliases: dupl.info
+> ### Keywords: array
+> 
+> ### ** Examples
+> 
+> z <- dupl.info(n = 3, condensed = FALSE)
+> z # where are the ones in duplication of order 3?
+$row
+[1] 1 2 3 4 5 6 7 8 9
+
+$col
+[1] 1 2 3 2 4 5 3 5 6
+
+$order
+[1] 3
+
+> 
+> D3 <- duplication(n = 3, matrix = TRUE)
+> D3 # only recommended if n is very small
+      [,1] [,2] [,3] [,4] [,5] [,6]
+ [1,]    1    0    0    0    0    0
+ [2,]    0    1    0    0    0    0
+ [3,]    0    0    1    0    0    0
+ [4,]    0    1    0    0    0    0
+ [5,]    0    0    0    1    0    0
+ [6,]    0    0    0    0    1    0
+ [7,]    0    0    1    0    0    0
+ [8,]    0    0    0    0    1    0
+ [9,]    0    0    0    0    0    1
+> 
+> 
+> 
+> cleanEx()
+> nameEx("dupl.prod")
+> ### * dupl.prod
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: dupl.prod
+> ### Title: Matrix multiplication envolving the duplication matrix
+> ### Aliases: dupl.prod
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> D4 <- duplication(n = 4, matrix = TRUE)
+> x <- matrix(1, nrow = 16, ncol = 2)
+> y <- crossprod(D4, x)
+> 
+> z <- dupl.prod(n = 4, x, transposed = TRUE) # D4 is not stored
+> all(z == y) # matrices y and z are equal!
+[1] TRUE
+> 
+> 
+> 
+> cleanEx()
+> nameEx("duplication")
+> ### * duplication
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: duplication
+> ### Title: Duplication matrix
+> ### Aliases: duplication
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> z <- duplication(n = 100, condensed = TRUE)
+> object.size(z) # 40.5 Kb of storage
+40456 bytes
+> 
+> z <- duplication(n = 100, condensed = FALSE)
+> object.size(z) # 80.6 Kb of storage
+80592 bytes
+> 
+> D100 <- duplication(n = 100, matrix = TRUE)
+==17447== Warning: set address range perms: large range [0x11337040, 0x2947fd70) (undefined)
+==17447== Warning: set address range perms: large range [0x11337028, 0x2947fd88) (noaccess)
+> object.size(D100) # 202 Mb of storage, do not request this matrix!
+202000216 bytes
+> 
+> # a small example
+> D3 <- duplication(n = 3, matrix = TRUE)
+> a <- matrix(c( 1, 2, 3,
++                2, 3, 4,
++                3, 4, 5), nrow = 3)
+> upper <- vech(a)
+> v <- D3 %*% upper
+> all(vec(a) == as.vector(v)) # vectors are equal!
+[1] TRUE
+> 
+> 
+> 
+> cleanEx()
+> nameEx("equilibrate")
+> ### * equilibrate
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: equilibrate
+> ### Title: Equilibration of a rectangular or symmetric matrix
+> ### Aliases: equilibrate
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> x <- matrix(c(1, 1, 1,
++               1, 2, 1,
++               1, 3, 1,
++               1, 1,-1,
++               1, 2,-1,
++               1, 3,-1), ncol = 3, byrow = TRUE)
+> z <- equilibrate(x)
+> apply(z, 2, function(x) sum(x^2)) # all 1
+[1] 1 1 1
+> 
+> xx <- crossprod(x)
+> equilibrate(xx)
+     [,1] [,2] [,3]
+[1,]  1.5 1.50  0.0
+[2,]  1.5 1.75  0.0
+[3,]  0.0 0.00  1.5
+attr(,"scales")
+[1] 0.50 0.25 0.50
+attr(,"condition")
+[1] 2
+> 
+> 
+> 
+> cleanEx()
+> nameEx("frank")
+> ### * frank
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: frank
+> ### Title: Frank matrix
+> ### Aliases: frank
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> F5 <- frank(n = 5)
+> det(F5) # equals 1
+[1] 1
+> 
+> 
+> 
+> cleanEx()
+> nameEx("geomean")
+> ### * geomean
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: geomean
+> ### Title: Geometric mean
+> ### Aliases: geomean
+> ### Keywords: univar
+> 
+> ### ** Examples
+> 
+> set.seed(149)
+> x <- rlnorm(1000)
+> mean(x)    # 1.68169
+[1] 1.681692
+> median(x)  # 0.99663
+[1] 0.9966327
+> geomean(x) # 1.01688
+[1] 1.01688
+> 
+> 
+> 
+> cleanEx()
+> nameEx("hadamard.prod")
+> ### * hadamard.prod
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: hadamard
+> ### Title: Hadamard product of two matrices
+> ### Aliases: hadamard
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> x <- matrix(rep(1:10, times = 5), ncol = 5)
+> y <- matrix(rep(1:5, each = 10), ncol = 5)
+> z <- hadamard(x, y)
+> z
+      [,1] [,2] [,3] [,4] [,5]
+ [1,]    1    2    3    4    5
+ [2,]    2    4    6    8   10
+ [3,]    3    6    9   12   15
+ [4,]    4    8   12   16   20
+ [5,]    5   10   15   20   25
+ [6,]    6   12   18   24   30
+ [7,]    7   14   21   28   35
+ [8,]    8   16   24   32   40
+ [9,]    9   18   27   36   45
+[10,]   10   20   30   40   50
+> 
+> 
+> 
+> cleanEx()
+> nameEx("harris.test")
+> ### * harris.test
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: harris.test
+> ### Title: Test for variance homogeneity of correlated variables
+> ### Aliases: harris.test
+> ### Keywords: htest
+> 
+> ### ** Examples
+> 
+> x <- iris[,1:4]
+> z <- harris.test(x, test = "robust")
+> z
+
+robust Wald test for equality of variances 
+
+Wald statistic = 238.4087, df = 3, p-value = 0
+alternative hypothesis: true variances are not equal.
+
+sample estimate:
+             Sepal.Length Sepal.Width Petal.Length Petal.Width
+Sepal.Length  0.6856935                                       
+Sepal.Width  -0.0424340    0.1899794                          
+Petal.Length  1.2743154   -0.3296564   3.1162779              
+Petal.Width   0.5162707   -0.1216394   1.2956094    0.5810063 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("helmert")
+> ### * helmert
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: helmert
+> ### Title: Helmert matrix
+> ### Aliases: helmert
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> n <- 1000
+> set.seed(149)
+> x <- rnorm(n)
+> 
+> H <- helmert(n)
+> object.size(H) # 7.63 Mb of storage
+8000216 bytes
+> K <- H[2:n,]
+> z <- c(K %*% x)
+> sum(z^2) # 933.1736
+[1] 933.1736
+> 
+> # same that
+> (n - 1) * var(x)
+[1] 933.1736
+> 
+> 
+> 
+> cleanEx()
+> nameEx("is.lower.tri")
+> ### * is.lower.tri
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: is.lower.tri
+> ### Title: Check if a matrix is lower or upper triangular
+> ### Aliases: is.lower.tri is.upper.tri
+> ### Keywords: array
+> 
+> ### ** Examples
+> 
+>   x <- matrix(rnorm(10 * 3), ncol = 3)
+>   R <- chol(crossprod(x))
+> 
+>   is.lower.tri(R)
+[1] FALSE
+>   is.upper.tri(R)
+[1] TRUE
+> 
+> 
+> 
+> cleanEx()
+> nameEx("jacobi")
+> ### * jacobi
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: jacobi
+> ### Title: Solve linear systems using the Jacobi method
+> ### Aliases: jacobi
+> ### Keywords: algebra array
+> 
+> ### ** Examples
+> 
+> a <- matrix(c(5,-3,2,-2,9,-1,3,1,-7), ncol = 3)
+> b <- c(-1,2,3)
+> start <- c(1,1,1)
+> z <- jacobi(a, b, start)
+> z # converged in 15 iterations
+[1]  0.1861199  0.3312303 -0.4227129
+attr(,"iterations")
+[1] 15
+> 
+> 
+> 
+> cleanEx()
+> nameEx("kronecker.prod")
+> ### * kronecker.prod
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: kronecker.prod
+> ### Title: Kronecker product on matrices
+> ### Aliases: kronecker.prod
+> ### Keywords: array
+> 
+> ### ** Examples
+> 
+> # block diagonal matrix:
+> a <- diag(1:3)
+> b <- matrix(1:4, ncol = 2)
+> kronecker.prod(a, b)
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    1    3    0    0    0    0
+[2,]    2    4    0    0    0    0
+[3,]    0    0    2    6    0    0
+[4,]    0    0    4    8    0    0
+[5,]    0    0    0    0    3    9
+[6,]    0    0    0    0    6   12
+> 
+> # examples with vectors
+> ones <- rep(1, 4)
+> y <- 1:3
+> kronecker.prod(ones, y) # 12-dimensional vector
+      [,1]
+ [1,]    1
+ [2,]    2
+ [3,]    3
+ [4,]    1
+ [5,]    2
+ [6,]    3
+ [7,]    1
+ [8,]    2
+ [9,]    3
+[10,]    1
+[11,]    2
+[12,]    3
+> kronecker.prod(ones, t(y)) # 3 x 3 matrix
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    1    2    3
+[3,]    1    2    3
+[4,]    1    2    3
+> 
+> 
+> 
+> cleanEx()
+> nameEx("krylov")
+> ### * krylov
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: krylov
+> ### Title: Computes a Krylov matrix
+> ### Aliases: krylov
+> ### Keywords: array
+> 
+> ### ** Examples
+> 
+> a <- matrix(c(1, 3, 2, -5, 1, 7, 1, 5, -4), ncol = 3, byrow = TRUE)
+> b <- c(1, 1, 1)
+> k <- krylov(a, b, m = 4)
+> k
+     [,1] [,2] [,3] [,4]
+[1,]    1    6   19    6
+[2,]    1    3  -13  -17
+[3,]    1    2   13  -98
+> 
+> 
+> 
+> cleanEx()
+> nameEx("kurtosis")
+> ### * kurtosis
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: kurtosis
+> ### Title: Mardia's multivariate skewness and kurtosis coefficients
+> ### Aliases: kurtosis skewness
+> ### Keywords: multivariate
+> 
+> ### ** Examples
+> 
+> setosa <- iris[1:50,1:4]
+> kurtosis(setosa)
+[1] 26.53766
+attr(,"excess")
+[1] 2.537656
+> skewness(setosa)
+[1] 3.079721
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ldl")
+> ### * ldl
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ldl
+> ### Title: The LDL decomposition
+> ### Aliases: ldl
+> ### Keywords: algebra array
+> 
+> ### ** Examples
+> 
+> a <- matrix(c(2,-1,0,-1,2,-1,0,-1,1), ncol = 3)
+> z <- ldl(a)
+> z # information of LDL factorization
+$lower
+     [,1]       [,2] [,3]
+[1,]  1.0  0.0000000    0
+[2,] -0.5  1.0000000    0
+[3,]  0.0 -0.6666667    1
+
+$d
+[1] 2.0000000 1.5000000 0.3333333
+
+> 
+> # computing det(a)
+> prod(z$d) # product of diagonal elements of D
+[1] 1
+> 
+> # a non-positive-definite matrix
+> m <- matrix(c(5,-5,-5,3), ncol = 2)
+> try(chol(m)) # fails
+Error in chol.default(m) : 
+  the leading minor of order 2 is not positive definite
+> ldl(m)
+$lower
+     [,1] [,2]
+[1,]    1    0
+[2,]   -1    1
+
+$d
+[1]  5 -2
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("lu-methods")
+> ### * lu-methods
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: lu-methods
+> ### Title: Reconstruct the L, U, or X Matrices from an LU object
+> ### Aliases: constructX extractL extractU
+> ### Keywords: algebra array
+> 
+> ### ** Examples
+> 
+> a <- matrix(c(10,-3,5,-7,2,-1,0,6,5), ncol = 3)
+> z <- lu(a)
+> L <- extractL(z)
+> L
+     [,1]  [,2] [,3]
+[1,]  1.0  0.00    0
+[2,]  0.5  1.00    0
+[3,] -0.3 -0.04    1
+> U <- extractU(z)
+> U
+     [,1] [,2] [,3]
+[1,]   10 -7.0  0.0
+[2,]    0  2.5  5.0
+[3,]    0  0.0  6.2
+> X <- constructX(z)
+> all(a == X)
+[1] FALSE
+> 
+> 
+> 
+> cleanEx()
+> nameEx("lu")
+> ### * lu
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: lu
+> ### Title: The LU factorization of a square matrix
+> ### Aliases: lu lu.default solve.lu is.lu
+> ### Keywords: algebra array
+> 
+> ### ** Examples
+> 
+> a <- matrix(c(3,2,6,17,4,18,10,-2,-12), ncol = 3)
+> z <- lu(a)
+> z # information of LU factorization
+$lu
+          [,1]  [,2] [,3]
+[1,] 6.0000000 18.00  -12
+[2,] 0.5000000  8.00   16
+[3,] 0.3333333 -0.25    6
+
+$pivot
+[1] 3 3 3
+
+attr(,"class")
+[1] "lu"
+> 
+> # computing det(a)
+> prod(diag(z$lu)) # product of diagonal elements of U
+[1] 288
+> 
+> # solve linear equations
+> b <- matrix(1:6, ncol = 2)
+> solve(z, b)
+           [,1]       [,2]
+[1,]  1.8541667  4.9583333
+[2,] -0.3541667 -0.9583333
+[3,]  0.1458333  0.5416667
+> 
+> 
+> 
+> cleanEx()
+> nameEx("lu2inv")
+> ### * lu2inv
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: lu2inv
+> ### Title: Inverse from LU factorization
+> ### Aliases: lu2inv
+> ### Keywords: algebra array
+> 
+> ### ** Examples
+> 
+> a <- matrix(c(3,2,6,17,4,18,10,-2,-12), ncol = 3)
+> z <- lu(a)
+> a %*% lu2inv(z)
+              [,1]         [,2]          [,3]
+[1,]  1.000000e+00 4.440892e-16 -2.220446e-16
+[2,] -1.387779e-17 1.000000e+00 -2.775558e-17
+[3,]  0.000000e+00 0.000000e+00  1.000000e+00
+> 
+> 
+> 
+> cleanEx()
+> nameEx("matrix.inner")
+> ### * matrix.inner
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: matrix.inner
+> ### Title: Compute the inner product between two rectangular matrices
+> ### Aliases: matrix.inner
+> ### Keywords: array math
+> 
+> ### ** Examples
+> 
+> x <- matrix(c(1, 1, 1,
++               1, 2, 1,
++               1, 3, 1,
++               1, 1,-1,
++               1, 2,-1,
++               1, 3,-1), ncol = 3, byrow = TRUE)
+> y <- matrix(1, nrow = 6, ncol = 3)
+> matrix.inner(x, y)
+[1] 18
+> 
+> # must be equal
+> matrix.norm(x, type = "Frobenius")^2
+[1] 40
+> matrix.inner(x)
+[1] 40
+> 
+> 
+> 
+> cleanEx()
+> nameEx("matrix.norm")
+> ### * matrix.norm
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: matrix.norm
+> ### Title: Compute the norm of a rectangular matrix
+> ### Aliases: matrix.norm
+> ### Keywords: array math
+> 
+> ### ** Examples
+> 
+> # a tiny example
+> x <- matrix(c(1, 1, 1,
++               1, 2, 1,
++               1, 3, 1,
++               1, 1,-1,
++               1, 2,-1,
++               1, 3,-1), ncol = 3, byrow = TRUE)
+> matrix.norm(x, type = "Frobenius")
+[1] 6.324555
+> matrix.norm(x, type = "1")
+[1] 12
+> matrix.norm(x, type = "Inf")
+[1] 5
+> 
+> # an example not that small
+> n <- 1000
+> x <- .5 * diag(n) + 0.5 * matrix(1, nrow = n, ncol = n)
+> matrix.norm(x, type = "Frobenius")
+[1] 500.7494
+> matrix.norm(x, type = "1")
+[1] 500.5
+> matrix.norm(x, type = "Inf")
+[1] 500.5
+> matrix.norm(x, type = "maximum") # equal to 1
+[1] 1
+> 
+> 
+> 
+> cleanEx()
+> nameEx("mediancenter")
+> ### * mediancenter
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: mediancenter
+> ### Title: Mediancenter
+> ### Aliases: mediancenter
+> ### Keywords: multivariate
+> 
+> ### ** Examples
+> 
+> x <- cbind(1:10, c(1:3, 8:5, 8:10))
+> z <- mediancenter(x)$median # degenerate solution
+> xbar <- colMeans(x)
+> plot(x, xlab = "", ylab = "")
+> points(x = xbar[1], y = xbar[2], pch = 16, col = "red")
+> points(x = z[1], y = z[2], pch = 3, col = "blue", lwd = 2)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("minkowski")
+> ### * minkowski
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: minkowski
+> ### Title: Computes the p-norm of a vector
+> ### Aliases: minkowski
+> ### Keywords: math
+> 
+> ### ** Examples
+> 
+> # a tiny example
+> x <- rnorm(1000)
+> minkowski(x, p = 1)
+[1] 823.5593
+> minkowski(x, p = 1.5)
+[1] 93.46015
+> minkowski(x, p = 2)
+[1] 32.71262
+> minkowski(x, p = Inf)
+[1] 3.810277
+> 
+> x <- x / minkowski(x)
+> minkowski(x, p = 2) # equal to 1
+[1] 1
+> 
+> 
+> 
+> cleanEx()
+> nameEx("moments")
+> ### * moments
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: moments
+> ### Title: Central moments
+> ### Aliases: moments
+> ### Keywords: univar
+> 
+> ### ** Examples
+> 
+> set.seed(149)
+> x <- rnorm(1000)
+> z <- moments(x)
+> z
+$second
+[1] 0.9331736
+
+$third
+[1] 0.1373394
+
+$fourth
+[1] 2.908085
+
+$skewness
+[1] 0.1521247
+
+$kurtosis
+[1] 0.3328298
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ols")
+> ### * ols
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ols
+> ### Title: Fit linear regression model
+> ### Aliases: ols
+> ### Keywords: regression
+> 
+> ### ** Examples
+> 
+> # tiny example of regression
+> y <- c(1, 3, 3, 2, 2, 1)
+> x <- matrix(c(1, 1,
++               2, 1,
++               3, 1,
++               1,-1,
++               2,-1,
++               3,-1), ncol = 2, byrow = TRUE)
+> f0 <- ols(y ~ x) # intercept is included by default
+> f0 # printing results (QR method was used)
+
+Call:
+ols(formula = y ~ x)
+
+Coefficients:
+(Intercept)           x1           x2  
+     1.5000       0.2500       0.3333  
+
+Degrees of freedom: 6 total; 3 residual
+Residual standard error: 1.013794 
+> 
+> f1 <- ols(y ~ x, method = "svd") # using SVD method instead
+> f1
+
+Call:
+ols(formula = y ~ x, method = "svd")
+
+Coefficients:
+(Intercept)           x1           x2  
+     1.5000       0.2500       0.3333  
+
+Degrees of freedom: 6 total; 3 residual
+Residual standard error: 1.013794 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ols.fit-methods")
+> ### * ols.fit-methods
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ols.fit-methods
+> ### Title: Fit a Linear Model
+> ### Aliases: ols.fit.cg ols.fit.chol ols.fit.qr ols.fit.svd ols.fit.sweep
+> ### Keywords: regression array
+> 
+> ### ** Examples
+> 
+> set.seed(151)
+> n <- 100
+> p <- 2
+> x <- matrix(rnorm(n * p), n, p) # no intercept!
+> y <- rnorm(n)
+> z <- ols.fit.chol(x, y)
+> z
+
+Call:
+NULL
+
+Coefficients:
+[1]   0.12786  -0.09306
+
+Degrees of freedom: 100 total; 98 residual
+Residual standard error: 0.9311277 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ols.fit")
+> ### * ols.fit
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ols.fit
+> ### Title: Fitter Functions for Linear Models
+> ### Aliases: ols.fit
+> ### Keywords: regression array
+> 
+> ### ** Examples
+> 
+> set.seed(151)
+> n <- 100
+> p <- 2
+> x <- matrix(rnorm(n * p), n, p) # no intercept!
+> y <- rnorm(n)
+> fm <- ols.fit(x = x, y = y, method = "chol")
+> fm
+
+Call:
+NULL
+
+Coefficients:
+[1]   0.12786  -0.09306
+
+Degrees of freedom: 100 total; 98 residual
+Residual standard error: 0.9311277 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("power.method")
+> ### * power.method
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: power.method
+> ### Title: Power method to approximate dominant eigenvalue and eigenvector
+> ### Aliases: power.method
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> n <- 1000
+> x <- .5 * diag(n) + 0.5 * matrix(1, nrow = n, ncol = n)
+> 
+> # dominant eigenvalue must be (n + 1) / 2
+> z <- power.method(x, only.value = TRUE)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ridge")
+> ### * ridge
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ridge
+> ### Title: Ridge regression
+> ### Aliases: ridge
+> ### Keywords: models
+> 
+> ### ** Examples
+> 
+> z <- ridge(GNP.deflator ~ ., data = longley, lambda = 4, method = "grid")
+> z # ridge regression on a grid over seq(0, 4, length = 200)
+
+Call:
+ridge(formula = GNP.deflator ~ ., data = longley, lambda = 4, 
+    method = "grid")
+
+Coefficients:
+ (Intercept)           GNP    Unemployed  Armed.Forces    Population  
+   0.0001376     0.1747234     0.0193024     0.0073888    -1.1926047  
+        Year      Employed  
+   0.0865564    -0.0502599  
+
+Optimal ridge parameter: 1.3065 
+
+Number of observations: 16 
+Effective number of parameters: 5.3656 
+Scale parameter estimate: 0.8784 
+> 
+> z <- ridge(GNP.deflator ~ ., data = longley)
+> z # ridge parameter selected using GCV (default)
+
+Call:
+ridge(formula = GNP.deflator ~ ., data = longley)
+
+Coefficients:
+ (Intercept)           GNP    Unemployed  Armed.Forces    Population  
+   0.0001378     0.1747776     0.0193061     0.0073851    -1.1933003  
+        Year      Employed  
+   0.0865957    -0.0505122  
+
+Estimated ridge parameter: 1.3039 
+
+Number of observations: 16 
+Effective number of parameters: 5.3664 
+Scale parameter estimate: 0.9976 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("seidel")
+> ### * seidel
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: seidel
+> ### Title: Solve linear systems using the Gauss-Seidel method
+> ### Aliases: seidel
+> ### Keywords: algebra array
+> 
+> ### ** Examples
+> 
+> a <- matrix(c(5,-3,2,-2,9,-1,3,1,-7), ncol = 3)
+> b <- c(-1,2,3)
+> start <- c(1,1,1)
+> z <- seidel(a, b, start)
+> z # converged in 10 iterations
+[1]  0.1861199  0.3312303 -0.4227129
+attr(,"iterations")
+[1] 10
+> 
+> 
+> 
+> cleanEx()
+> nameEx("sherman.morrison")
+> ### * sherman.morrison
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: sherman.morrison
+> ### Title: Sherman-Morrison formula
+> ### Aliases: sherman.morrison
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> n <- 10
+> ones <- rep(1, n)
+> a <- 0.5 * diag(n)
+> z <- sherman.morrison(a, ones, 0.5 * ones)
+> z
+            [,1]       [,2]       [,3]       [,4]       [,5]       [,6]
+ [1,]  1.8181818 -0.1818182 -0.1818182 -0.1818182 -0.1818182 -0.1818182
+ [2,] -0.1818182  1.8181818 -0.1818182 -0.1818182 -0.1818182 -0.1818182
+ [3,] -0.1818182 -0.1818182  1.8181818 -0.1818182 -0.1818182 -0.1818182
+ [4,] -0.1818182 -0.1818182 -0.1818182  1.8181818 -0.1818182 -0.1818182
+ [5,] -0.1818182 -0.1818182 -0.1818182 -0.1818182  1.8181818 -0.1818182
+ [6,] -0.1818182 -0.1818182 -0.1818182 -0.1818182 -0.1818182  1.8181818
+ [7,] -0.1818182 -0.1818182 -0.1818182 -0.1818182 -0.1818182 -0.1818182
+ [8,] -0.1818182 -0.1818182 -0.1818182 -0.1818182 -0.1818182 -0.1818182
+ [9,] -0.1818182 -0.1818182 -0.1818182 -0.1818182 -0.1818182 -0.1818182
+[10,] -0.1818182 -0.1818182 -0.1818182 -0.1818182 -0.1818182 -0.1818182
+            [,7]       [,8]       [,9]      [,10]
+ [1,] -0.1818182 -0.1818182 -0.1818182 -0.1818182
+ [2,] -0.1818182 -0.1818182 -0.1818182 -0.1818182
+ [3,] -0.1818182 -0.1818182 -0.1818182 -0.1818182
+ [4,] -0.1818182 -0.1818182 -0.1818182 -0.1818182
+ [5,] -0.1818182 -0.1818182 -0.1818182 -0.1818182
+ [6,] -0.1818182 -0.1818182 -0.1818182 -0.1818182
+ [7,]  1.8181818 -0.1818182 -0.1818182 -0.1818182
+ [8,] -0.1818182  1.8181818 -0.1818182 -0.1818182
+ [9,] -0.1818182 -0.1818182  1.8181818 -0.1818182
+[10,] -0.1818182 -0.1818182 -0.1818182  1.8181818
+> 
+> 
+> 
+> cleanEx()
+> nameEx("sweep.operator")
+> ### * sweep.operator
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: sweep.operator
+> ### Title: Gauss-Jordan sweep operator for symmetric matrices
+> ### Aliases: sweep.operator
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> # tiny example of regression, last column contains 'y'
+> xy <- matrix(c(1, 1, 1, 1,
++                1, 2, 1, 3,
++                1, 3, 1, 3,
++                1, 1,-1, 2,
++                1, 2,-1, 2,
++                1, 3,-1, 1), ncol = 4, byrow = TRUE)
+> z <- crossprod(xy)
+> z <- sweep.operator(z, k = 1:3)
+> cf <- z[1:3,4] # regression coefficients
+> RSS <- z[4,4]  # residual sum of squares
+> 
+> # an example not that small
+> x <- matrix(rnorm(1000 * 100), ncol = 100)
+> xx <- crossprod(x)
+> z <- sweep.operator(xx, k = 1)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("symm.info")
+> ### * symm.info
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: symm.info
+> ### Title: Compact information to construct the symmetrizer matrix
+> ### Aliases: symm.info
+> ### Keywords: array
+> 
+> ### ** Examples
+> 
+> z <- symm.info(n = 3)
+> z # elements in symmetrizer matrix of order 3
+$row
+ [1] 1 2 3 4 5 6 7 8 9 4 7 2 8 3 6
+
+$col
+ [1] 1 2 3 4 5 6 7 8 9 2 3 4 6 7 8
+
+$val
+ [1] 1.0 0.5 0.5 0.5 1.0 0.5 0.5 0.5 1.0 0.5 0.5 0.5 0.5 0.5 0.5
+
+$order
+[1] 3
+
+> 
+> N3 <- symmetrizer(n = 3, matrix = TRUE)
+> N3 # only recommended if n is very small
+      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9]
+ [1,]    1  0.0  0.0  0.0    0  0.0  0.0  0.0    0
+ [2,]    0  0.5  0.0  0.5    0  0.0  0.0  0.0    0
+ [3,]    0  0.0  0.5  0.0    0  0.0  0.5  0.0    0
+ [4,]    0  0.5  0.0  0.5    0  0.0  0.0  0.0    0
+ [5,]    0  0.0  0.0  0.0    1  0.0  0.0  0.0    0
+ [6,]    0  0.0  0.0  0.0    0  0.5  0.0  0.5    0
+ [7,]    0  0.0  0.5  0.0    0  0.0  0.5  0.0    0
+ [8,]    0  0.0  0.0  0.0    0  0.5  0.0  0.5    0
+ [9,]    0  0.0  0.0  0.0    0  0.0  0.0  0.0    1
+> 
+> 
+> 
+> cleanEx()
+> nameEx("symm.prod")
+> ### * symm.prod
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: symm.prod
+> ### Title: Matrix multiplication envolving the symmetrizer matrix
+> ### Aliases: symm.prod
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> N4 <- symmetrizer(n = 4, matrix = TRUE)
+> x <- matrix(1:32, ncol = 2)
+> y <- N4 %*% x
+> 
+> z <- symm.prod(n = 4, x) # N4 is not stored
+> all(z == y) # matrices y and z are equal!
+[1] TRUE
+> 
+> 
+> 
+> cleanEx()
+> nameEx("symmetrizer")
+> ### * symmetrizer
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: symmetrizer
+> ### Title: Symmetrizer matrix
+> ### Aliases: symmetrizer
+> ### Keywords: array algebra
+> 
+> ### ** Examples
+> 
+> z <- symmetrizer(n = 100)
+> object.size(z) # 319 Kb of storage
+319096 bytes
+> 
+> N100 <- symmetrizer(n = 100, matrix = TRUE) # time: < 2 secs
+==17447== Warning: set address range perms: large range [0x59c9d028, 0x71a15488) (noaccess)
+==17447== Warning: set address range perms: large range [0x71a16028, 0x8978e488) (noaccess)
+==17447== Warning: set address range perms: large range [0x8978f040, 0xb927f870) (undefined)
+==17447== Warning: set address range perms: large range [0x11337040, 0x40e27870) (undefined)
+> object.size(N100) # 800 Mb of storage, do not request this matrix!
+800000216 bytes
+> 
+> # a small example
+> N3 <- symmetrizer(n = 3, matrix = TRUE)
+> a <- matrix(rep(c(2,4,6), each = 3), ncol = 3)
+> a
+     [,1] [,2] [,3]
+[1,]    2    4    6
+[2,]    2    4    6
+[3,]    2    4    6
+> b <- 0.5 * (a + t(a))
+> b
+     [,1] [,2] [,3]
+[1,]    2    3    4
+[2,]    3    4    5
+[3,]    4    5    6
+> v <- N3 %*% vec(a)
+> all(vec(b) == as.vector(v)) # vectors are equal!
+[1] TRUE
+> 
+> 
+> 
+> cleanEx()
+> nameEx("vec")
+> ### * vec
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: vec
+> ### Title: Vectorization of a matrix
+> ### Aliases: vec
+> ### Keywords: array
+> 
+> ### ** Examples
+> 
+> x <- matrix(rep(1:10, each = 10), ncol = 10)
+> x
+      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+ [1,]    1    2    3    4    5    6    7    8    9    10
+ [2,]    1    2    3    4    5    6    7    8    9    10
+ [3,]    1    2    3    4    5    6    7    8    9    10
+ [4,]    1    2    3    4    5    6    7    8    9    10
+ [5,]    1    2    3    4    5    6    7    8    9    10
+ [6,]    1    2    3    4    5    6    7    8    9    10
+ [7,]    1    2    3    4    5    6    7    8    9    10
+ [8,]    1    2    3    4    5    6    7    8    9    10
+ [9,]    1    2    3    4    5    6    7    8    9    10
+[10,]    1    2    3    4    5    6    7    8    9    10
+> y <- vec(x)
+> y
+  [1]  1  1  1  1  1  1  1  1  1  1  2  2  2  2  2  2  2  2  2  2  3  3  3  3  3
+ [26]  3  3  3  3  3  4  4  4  4  4  4  4  4  4  4  5  5  5  5  5  5  5  5  5  5
+ [51]  6  6  6  6  6  6  6  6  6  6  7  7  7  7  7  7  7  7  7  7  8  8  8  8  8
+ [76]  8  8  8  8  8  9  9  9  9  9  9  9  9  9  9 10 10 10 10 10 10 10 10 10 10
+> 
+> 
+> 
+> cleanEx()
+> nameEx("vech")
+> ### * vech
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: vech
+> ### Title: Vectorization the lower triangular part of a square matrix
+> ### Aliases: vech
+> ### Keywords: array
+> 
+> ### ** Examples
+> 
+> x <- matrix(rep(1:10, each = 10), ncol = 10)
+> x
+      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+ [1,]    1    2    3    4    5    6    7    8    9    10
+ [2,]    1    2    3    4    5    6    7    8    9    10
+ [3,]    1    2    3    4    5    6    7    8    9    10
+ [4,]    1    2    3    4    5    6    7    8    9    10
+ [5,]    1    2    3    4    5    6    7    8    9    10
+ [6,]    1    2    3    4    5    6    7    8    9    10
+ [7,]    1    2    3    4    5    6    7    8    9    10
+ [8,]    1    2    3    4    5    6    7    8    9    10
+ [9,]    1    2    3    4    5    6    7    8    9    10
+[10,]    1    2    3    4    5    6    7    8    9    10
+> y <- vech(x)
+> y
+ [1]  1  1  1  1  1  1  1  1  1  1  2  2  2  2  2  2  2  2  2  3  3  3  3  3  3
+[26]  3  3  4  4  4  4  4  4  4  5  5  5  5  5  5  6  6  6  6  6  7  7  7  7  8
+[51]  8  8  9  9 10
+> 
+> 
+> 
+> cleanEx()
+> nameEx("whitening")
+> ### * whitening
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: whitening
+> ### Title: Whitening transformation
+> ### Aliases: whitening
+> ### Keywords: multivariate
+> 
+> ### ** Examples
+> 
+> x <- iris[,1:4]
+> species <- iris[,5]
+> pairs(x, col = species) # plot of Iris
+> 
+> # whitened data
+> z <- whitening(x)
+> pairs(z, col = species) # plot of
+> 
+> 
+> 
+> cleanEx()
+> nameEx("wilson.hilferty")
+> ### * wilson.hilferty
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: wilson.hilferty
+> ### Title: Wilson-Hilferty transformation
+> ### Aliases: wilson.hilferty
+> ### Keywords: multivariate
+> 
+> ### ** Examples
+> 
+> x <- iris[,1:4]
+> z <- wilson.hilferty(x)
+> par(pty = "s")
+> qqnorm(z, main = "Transformed distances Q-Q plot")
+> abline(c(0,1), col = "red", lwd = 2, lty = 2)
+> 
+> 
+> 
+> graphics::par(get("par.postscript", pos = 'CheckExEnv'))
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  12.848 1.228 14.076 0 0 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')
+==17447== 
+==17447== HEAP SUMMARY:
+==17447==     in use at exit: 1,648,933,608 bytes in 10,567 blocks
+==17447==   total heap usage: 31,810 allocs, 21,243 frees, 4,306,751,355 bytes allocated
+==17447== 
+==17447== LEAK SUMMARY:
+==17447==    definitely lost: 24 bytes in 1 blocks
+==17447==    indirectly lost: 0 bytes in 0 blocks
+==17447==      possibly lost: 0 bytes in 0 blocks
+==17447==    still reachable: 1,648,933,584 bytes in 10,566 blocks
+==17447==         suppressed: 0 bytes in 0 blocks
+==17447== Rerun with --leak-check=full to see details of leaked memory
+==17447== 
+==17447== For lists of detected and suppressed errors, rerun with: -s
+==17447== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
