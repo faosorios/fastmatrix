@@ -1,4 +1,4 @@
-## ID: wilson_hilferty.R, last updated 2020-11-24, F.Osorio
+## ID: wilson_hilferty.R, last updated 2022-08-22, F.Osorio
 
 wilson.hilferty <- function(x)
 { # Wilson-Hilferty transformation
@@ -12,8 +12,7 @@ wilson.hilferty <- function(x)
   p <- ncol(x)
 
   z <- cov.weighted(x, weights = rep(1, n))
-  D2 <- Mahalanobis(x, z$mean, z$cov, inverted = FALSE)
-
+  D2 <- Mahalanobis(x, center = z$mean, cov = z$cov, inverted = FALSE)
   z <- .C("wilson_hilferty_chisq",
           distances = as.double(D2),
           n = as.integer(n),

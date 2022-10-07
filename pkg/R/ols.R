@@ -1,4 +1,4 @@
-## ID: ols.R, last updated 2021-02-04, F.Osorio
+## ID: ols.R, last updated 2022-10-06, F.Osorio
 
 ols <-
 function(formula, data, subset, na.action, method = "qr", tol = 1e-7, maxiter = 100,
@@ -54,6 +54,7 @@ function(x, y, method = "qr", tol = 1e-7, maxiter = 100)
                 sweep = ols.fit.sweep(x, y),
                 stop(paste("unimplemented method:", method)))
   fit$contrast <- contr
+  fit$method <- method
   fit
 }
 
@@ -127,13 +128,11 @@ function(x, y, tol = 1e-7, maxiter = 100)
           info = as.integer(0))[c("coef","info")]
 
   speed <- proc.time() - now
-  xx <- crossprod(x)
-  R <- chol(xx)
   fitted <- x %*% z$coef
 	fitted <- fitted[,]
   residuals <- y - fitted
 	z <- list(coefficients = z$coef, residuals = residuals, fitted.values = fitted,
-    RSS = minkowski(residuals)^2, cov.unscaled = chol2inv(R), dims = dx, iter = z$info,
+    RSS = minkowski(residuals)^2, cov.unscaled = NULL, dims = dx, iter = z$info,
     speed = speed)
   names(z$coefficients) <- xn
   class(z) <- "ols"
@@ -322,21 +321,26 @@ summary.ols <- function (object, correlation = FALSE, ...)
   resvar <- RSS / rdf
   if (is.finite(resvar) && resvar < (mean(f)^2 + var(c(f))) * 1e-30) # a few times .Machine$double.eps^2
     warning("essentially perfect fit: summary may be unreliable")
-  p1 <- 1L:p
-  se <- sqrt(diag(z$cov.unscaled) * resvar)
-  est <- z$coefficients
-  tval <- est / se
   ans <- z[c("call", "terms")]
+  if (z$method != "cg") {
+    se <- sqrt(diag(z$cov.unscaled) * resvar)
+    est <- z$coefficients
+    tval <- est / se
+    ans$coefficients <- cbind(Estimate = est, "Std. Error" = se, "t value" = tval,
+                              "Pr(>|t|)" = 2 * pt(abs(tval), rdf, lower.tail = FALSE))
+    ans$cov.unscaled <- z$cov.unscaled
+    if (correlation)
+      ans$correlation <- (ans$cov.unscaled * resvar) / outer(se, se)
+  } else {
+    ans$coefficients <- z$coefficients
+    ans$cov.unscaled <- NULL
+    if (correlation)
+      ans$correlation <- NULL
+  }
   ans$residuals <- r
-  ans$coefficients <- cbind(Estimate = est, "Std. Error" = se, "t value" = tval,
-                             "Pr(>|t|)" = 2 * pt(abs(tval), rdf, lower.tail = FALSE))
-
   ans$sigma <- sqrt(resvar)
   ans$df <- c(p, rdf)
-  ans$cov.unscaled <- z$cov.unscaled
   ans$logLik <- logLik(z)
-  if (correlation)
-    ans$correlation <- (ans$cov.unscaled * resvar) / outer(se, se)
   class(ans) <- "summary.ols"
   ans
 }
