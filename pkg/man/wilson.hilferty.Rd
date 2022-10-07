@@ -25,7 +25,7 @@
   The distribution of chi-square.
   \emph{Proceedings of the National Academy of Sciences of the United States of America} \bold{17}, 684-688.
 }
-\seealso{\code{\link{cov}}, \code{\link{Mahalanobis}}}
+\seealso{\code{\link{Mahalanobis}}}
 \examples{
 x <- iris[,1:4]
 z <- wilson.hilferty(x)
