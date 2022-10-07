@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2022-08-01, F.Osorio */
+/* ID: fastmatrix.h, last updated 2022-08-19, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -120,6 +120,9 @@ void geometric_mean(double *, int *, double *);
 void mahal_distances(double *, int *, int *, double *, double *, int *, double *);
 void skewness_and_kurtosis(double *, int *, int *, double *, double *, double *, int *);
 void wilson_hilferty_chisq(double *, int *, int *, double *);
+
+/* random number generation */
+void mnorm_rand(double *, int *, int *, double *, double *);
 
 /* correlation structures */
 void cor_AR1(double *, int *, double *);
