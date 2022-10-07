@@ -24,7 +24,6 @@ Latest release (Aug 9, 2022) of [fastmatrix](https://github.com/faosorios/fastma
 * Gauss-Seidel, Jacobi and conjugate gradients (CG) iterative methods for solving linear systems.
 * Geometric mean using a Fused-Multiply-and-Add (FMA) compensated scheme for accurate computation of floating-point product.
 * Inner products and norms for matrices.
-* Evaluates a real general matrix polynomial.
 * Interface to **C code callable by another C code** from other R packages.
 * LDL decomposition for symmetric real matrices.
 * Lp norms for vectors.
@@ -35,10 +34,12 @@ Latest release (Aug 9, 2022) of [fastmatrix](https://github.com/faosorios/fastma
 * Operations envolving the symmetrizer matrix, with minimum requirements of storage.
 * Ordinary least-squares (OLS) using several methods: conjugate gradients, Cholesky, QR decomposition, singular value decomposition, and the Sweep operator. This provides an alternative to extend the procedures available in R built-in function 'lm'.
 * Power method to compute the dominant eigenvalue and its associated eigenvector.
+* Random number generation from the multivariate normal (Gaussian) distribution
 * Rank 1 update to Cholesky factorization.
 * Ridge estimation for linear regression.
 * Routines to compute measures of multivariate skewness and kurtosis proposed by Mardia (1970).
 * Routine for the computation of the mediancenter (or geometric median) of multivariate data.
+* Routine to compute a Krylov matrix.
 * Sherman-Morrison formula.
 * Sweep operator for symmetric matrices.
 * Test for variance homogeneity of correlated variables (Harris, 1985).
@@ -51,25 +52,25 @@ Our plan in the near future is the implementation of functions to handle:
 
 ## Reference Manual
 
-* [fastmatrix_0.4-124.pdf](https://github.com/faosorios/fastmatrix/blob/master/man/fastmatrix_0.4-124.pdf)
+* [fastmatrix.pdf](https://cran.r-project.org/web/packages/fastmatrix/fastmatrix.pdf)
 
 ## Resources
 
 Latest binaries and sources (development version) for [fastmatrix](https://github.com/faosorios/fastmatrix) are available here (these are local files):
 
-* [fastmatrix_0.4-124.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.4-124.tar.gz) - Package sources
-* [fastmatrix_0.4-124.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.4-124.zip) - Windows binaries
+* [fastmatrix_0.4-1245.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.4-1245.tar.gz) - Package sources
+* [fastmatrix_0.4-1245.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.4-1245.zip) - Windows binaries
 
-Version 0.4-12 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
+Version 0.4-1245 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
-* [fastmatrix_0.4-12.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.4-12.tar.gz) - Package sources
-* [fastmatrix_0.4-12.zip](https://cran.r-project.org/bin/windows/contrib/4.2/fastmatrix_0.4-12.zip) - Windows binaries (R-release)
-* [fastmatrix_0.4-12.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/fastmatrix_0.4-12.tgz) - MacOS binaries (R-release, arm64)
-* [fastmatrix_0.4-12.tgz](https://cran.r-project.org/bin/macosx/contrib/4.2/fastmatrix_0.4-12.tgz) - MacOS binaries (R-release, x86_64)
+* [fastmatrix_0.4-1245.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.4-1245.tar.gz) - Package sources
+* [fastmatrix_0.4-124.zip](https://cran.r-project.org/bin/windows/contrib/4.2/fastmatrix_0.4-12.zip) - Windows binaries (R-release)
+* [fastmatrix_0.4-124.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/fastmatrix_0.4-12.tgz) - MacOS binaries (R-release, arm64)
+* [fastmatrix_0.4-124.tgz](https://cran.r-project.org/bin/macosx/contrib/4.2/fastmatrix_0.4-12.tgz) - MacOS binaries (R-release, x86_64)
 
 ## Installation instructions
 
-To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.4-12)** from CRAN, start R and enter:
+To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.4-1245)** from CRAN, start R and enter:
 ```r
 install.packages("fastmatrix")
 ```
@@ -99,7 +100,7 @@ Please report any bugs/suggestions/improvements to [Felipe Osorio](http://fosori
 ### To cite the fastmatrix package in publications use:
 
 Osorio, F., Ogueda, A. (2022). fastmatrix: Fast computation of some matrices useful in statistics. 
-R package version 0.4-124. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
+R package version 0.4-1245. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
 
 ## About the Authors
 
