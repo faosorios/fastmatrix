@@ -1,4 +1,12 @@
-0.4-124 (Aug 9, 2022)
+0.4-1245 (Oct 6, 2022)
+ * Added function to random generation of multivariate normal deviates.
+ * Issue related to casts from R_GetCCallable was fixed (pointed out by Prof. Brian
+   Ripley).
+ * Minor clean-ups in R_init_fastmatrix.c
+ * Now summary function for ols objects using "cg" method does not show the standard
+   error.
+
+0.4-124 (Aug 10, 2022)
  * Added function to compute the krylov matrix.
  * Added function to form the Frank matrix.
  * Function matrix.polynomial has been removed from the package.

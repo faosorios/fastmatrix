@@ -13,7 +13,7 @@ export(array.mult, asSymmetric, bezier, bracket.prod, cg, cholupdate, circulant,
        krylov, is.lu, is.lower.tri, is.upper.tri, jacobi, kronecker.prod, ldl, lu,
        lu2inv, Mahalanobis, matrix.inner, matrix.norm, mediancenter, minkowski,
        moments, ols, ols.fit, ols.fit.cg, ols.fit.chol, ols.fit.qr, ols.fit.svd,
-       ols.fit.sweep, power.method, ridge, seidel, sherman.morrison, skewness,
+       ols.fit.sweep, power.method, ridge, rmnorm, seidel, sherman.morrison, skewness,
        sweep.operator, symm.info, symm.prod, symmetrizer, vec, vech, wilson.hilferty,
        whitening)
 
