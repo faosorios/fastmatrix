@@ -65,7 +65,7 @@ Version 0.4-1245 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be
 
 * [fastmatrix_0.4-1245.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.4-1245.tar.gz) - Package sources
 * [fastmatrix_0.4-124.zip](https://cran.r-project.org/bin/windows/contrib/4.2/fastmatrix_0.4-124.zip) - Windows binaries (R-release)
-* [fastmatrix_0.4-124.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/fastmatrix_0.4-124.tgz) - MacOS binaries (R-release, arm64)
+* [fastmatrix_0.4-1245.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/fastmatrix_0.4-1245.tgz) - MacOS binaries (R-release, arm64)
 * [fastmatrix_0.4-124.tgz](https://cran.r-project.org/bin/macosx/contrib/4.2/fastmatrix_0.4-124.tgz) - MacOS binaries (R-release, x86_64)
 
 ## Installation instructions
