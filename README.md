@@ -12,7 +12,7 @@ Yet another R package for matrices. It contains a small set of functions to fast
 
 ## Features
 
-Latest release (Aug 9, 2022) of [fastmatrix](https://github.com/faosorios/fastmatrix) package have implemented the following functions:
+Latest release (Apr 18, 2023) of [fastmatrix](https://github.com/faosorios/fastmatrix) package have implemented the following functions:
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
 * Bezier curve based on n+1 control points.
 * C version of the Kronecker product which is slightly faster than the built in R base.
@@ -64,7 +64,7 @@ Latest binaries and sources (development version) for [fastmatrix](https://githu
 * [fastmatrix_0.5.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5.tgz) - MacOS binaries
 * [fastmatrix_0.5.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5.zip) - Windows binaries
 
-Version 0.4-1245 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
+Version 0.5 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
 * [fastmatrix_0.5.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.5.tar.gz) - Package sources
 * [fastmatrix_0.4-1245.zip](https://cran.r-project.org/bin/windows/contrib/4.2/fastmatrix_0.4-1245.zip) - Windows binaries (R-release)
