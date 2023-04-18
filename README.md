@@ -30,6 +30,7 @@ Latest release (Aug 9, 2022) of [fastmatrix](https://github.com/faosorios/fastma
 * Lp norms for vectors.
 * LU factorization for square matrices.
 * Mahalanobis distances, checking if the covariance is a positive definite matrix.
+* Omnibus test for univariate normality (Jarque-Bera, Doornik-Hansen and Adjusted Lagrange multiplier test).
 * Operations envolving the commutation matrix, with minimum requirements of storage.
 * Operations envolving the duplication matrix, with minimum requirements of storage.
 * Operations envolving the symmetrizer matrix, with minimum requirements of storage.
@@ -59,14 +60,15 @@ Our plan in the near future is the implementation of functions to handle:
 
 Latest binaries and sources (development version) for [fastmatrix](https://github.com/faosorios/fastmatrix) are available here (these are local files):
 
-* [fastmatrix_0.4-1245.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.4-1245.tar.gz) - Package sources
+* [fastmatrix_0.5.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.5.tar.gz) - Package sources
+* [fastmatrix_0.5.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5.tgz) - MacOS binaries
 * [fastmatrix_0.4-1245.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.4-1245.zip) - Windows binaries
 
 Version 0.4-1245 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
-* [fastmatrix_0.4-1245.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.4-1245.tar.gz) - Package sources
+* [fastmatrix_0.5.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.5.tar.gz) - Package sources
 * [fastmatrix_0.4-1245.zip](https://cran.r-project.org/bin/windows/contrib/4.2/fastmatrix_0.4-1245.zip) - Windows binaries (R-release)
-* [fastmatrix_0.4-1245.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/fastmatrix_0.4-1245.tgz) - MacOS binaries (R-release, arm64)
+* [fastmatrix_0.5.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/fastmatrix_0.5.tgz) - MacOS binaries (R-release, arm64)
 * [fastmatrix_0.4-1245.tgz](https://cran.r-project.org/bin/macosx/contrib/4.2/fastmatrix_0.4-1245.tgz) - MacOS binaries (R-release, x86_64)
 
 ## Installation instructions
@@ -100,8 +102,8 @@ Please report any bugs/suggestions/improvements to [Felipe Osorio](http://fosori
 
 ### To cite the fastmatrix package in publications use:
 
-Osorio, F., Ogueda, A. (2022). fastmatrix: Fast computation of some matrices useful in statistics. 
-R package version 0.4-1245. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
+Osorio, F., Ogueda, A. (2023). fastmatrix: Fast computation of some matrices useful in statistics. 
+R package version 0.5. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
 
 ## About the Authors
 
