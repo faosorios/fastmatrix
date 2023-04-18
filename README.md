@@ -61,7 +61,7 @@ Our plan in the near future is the implementation of functions to handle:
 Latest binaries and sources (development version) for [fastmatrix](https://github.com/faosorios/fastmatrix) are available here (these are local files):
 
 * [fastmatrix_0.5.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.5.tar.gz) - Package sources
-* [fastmatrix_0.5.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5.tgz) - MacOS binaries
+* [fastmatrix_0.5.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5.tgz) - MacOS binaries (x86_64)
 * [fastmatrix_0.5.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5.zip) - Windows binaries
 
 Version 0.5 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
