@@ -1,4 +1,4 @@
-/* $ID: fastmatrix_API.h, last updated 2022-10-06, F.Osorio */
+/* $ID: fastmatrix_API.h, last updated 2023-02-24, F.Osorio */
 
 #ifndef FASTMATRIX_API_H
 #define FASTMATRIX_API_H
@@ -481,11 +481,11 @@ void FM_QR_fitted(double *qr, int ldq, int nrow, int ncol, double *qraux, double
   fun(qr, ldq, nrow, ncol, qraux, ymat, ldy, yrow, ycol, job, fitted);
 }
 
-void FM_QR_store_R(double *qr, int ldq, int nrow, int ncol, double *Dest, int ldDest) {
-  static void(*fun)(double *, int, int, int, double *, int) = NULL;
+void FM_QR_store_R(double *qr, int ldq, int ncol, double *Dest, int ldDest) {
+  static void(*fun)(double *, int, int, double *, int) = NULL;
   if (fun == NULL)
-    fun = (void(*)(double *, int, int, int, double *, int)) R_GetCCallable("fastmatrix", "FM_QR_store_R");
-  fun(qr, ldq, nrow, ncol, Dest, ldDest);
+    fun = (void(*)(double *, int, int, double *, int)) R_GetCCallable("fastmatrix", "FM_QR_store_R");
+  fun(qr, ldq, ncol, Dest, ldDest);
 }
 
 void FM_QL_qy(double *ql, int ldq, int nrow, int ncol, double *qlaux, double *ymat, int ldy, int yrow, int ycol, int *info) {

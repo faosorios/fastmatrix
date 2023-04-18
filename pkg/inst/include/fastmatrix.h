@@ -78,7 +78,7 @@ void FM_svd_decomp(double *mat, int ldmat, int nrow, int ncol, double *u, int ld
 void FM_QR_qy(double *qr, int ldq, int nrow, int ncol, double *qraux, double *ymat, int ldy, int yrow, int ycol, int *info);
 void FM_QR_qty(double *qr, int ldq, int nrow, int ncol, double *qraux, double *ymat, int ldy, int yrow, int ycol, int *info);
 void FM_QR_fitted(double *qr, int ldq, int nrow, int ncol, double *qraux, double *ymat, int ldy, int yrow, int ycol, int job, double *fitted);
-void FM_QR_store_R(double *qr, int ldq, int nrow, int ncol, double *Dest, int ldDest);
+void FM_QR_store_R(double *qr, int ldq, int ncol, double *Dest, int ldDest);
 void FM_QL_qy(double *ql, int ldq, int nrow, int ncol, double *qlaux, double *ymat, int ldy, int yrow, int ycol, int *info);
 void FM_QL_qty(double *ql, int ldq, int nrow, int ncol, double *qlaux, double *ymat, int ldy, int yrow, int ycol, int *info);
 void FM_LQ_yq(double *lq, int ldl, int nrow, int ncol, double *lqaux, double *ymat, int ldy, int yrow, int ycol, int *info);
