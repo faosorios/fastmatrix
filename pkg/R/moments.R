@@ -1,7 +1,7 @@
-## ID: moments.R, last updated 2021-03-16, F.Osorio
+## ID: moments.R, last updated 2023-04-17, F.Osorio
 
 moments <- function(x)
-{ ## geometric mean using a compensated product scheme
+{ ## calculates up to fourth central moments
   if (!is.vector(x))
     stop("argument 'x' must be a vector.")
   if (!is.numeric(x))
@@ -16,13 +16,11 @@ moments <- function(x)
           x = as.double(x),
           n = as.integer(n),
           mean = double(1),
-          var = double(1),
+          m2 = double(1),
           m3 = double(1),
-          m4 = double(1))[c("mean","var","m3","m4")]
-  correction <- n / (n - 1)
-  s <- sqrt(correction * z$var)
-  z <- list(second = z$var, third = z$m3, fourth = z$m4, skewness = z$m3 / s^3,
-            kurtosis = z$m4 / s^4 - 3)
+          m4 = double(1))[c("mean","m2","m3","m4")]
+  z <- list(second = z$m2, third = z$m3, fourth = z$m4, skewness = z$m3 / z$m2^(1.5),
+            kurtosis = z$m4 / z$m2^2)
   z
 }
 

@@ -1,4 +1,4 @@
-## ID: power_method.R, last updated 2020-08-22, F.Osorio
+## ID: power_method.R, last updated 2023-02-27, F.Osorio
 
 power.method <- function(x, only.value = FALSE, maxiter = 100, tol = 1e-8)
 { ## power method to approximate dominant eigenvalue and eigenvector
@@ -14,8 +14,6 @@ power.method <- function(x, only.value = FALSE, maxiter = 100, tol = 1e-8)
   p <- dx[2]
   if (n != p)
     stop("argument x is not a square matrix")
-  if (!isSymmetric(x))
-    stop("only implemented for symmetric matrices.")
 
   storage.mode(x) <- "double"
 
@@ -27,7 +25,6 @@ power.method <- function(x, only.value = FALSE, maxiter = 100, tol = 1e-8)
           x = x,
           ldx  = as.integer(n),
           n = as.integer(n),
-          p = as.integer(p),
           vector = as.double(vector),
           value = as.double(0),
           maxiter = as.integer(maxiter),
