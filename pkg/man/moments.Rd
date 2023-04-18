@@ -20,8 +20,7 @@ moments(x)
   \deqn{m_k = \frac{1}{n}\sum_{i=1}^n (x_i - \overline{x})^k.}
   In particular, the second central moment is the variance of the sample. The sample
   skewness and kurtosis are defined, respectively, as
-  \deqn{b_1 = \frac{m_3}{s^3}, \qquad b_2 = \frac{m_4}{s^4} - 3,}
-  where \eqn{s} denotes de standard deviation.
+  \deqn{b_1 = \frac{m_3}{m_2^{3/2}}, \qquad b_2 = \frac{m_4}{m_2^2}.}
 }
 \seealso{
   \code{\link{var}}.
