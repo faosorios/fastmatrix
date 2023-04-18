@@ -1,13 +1,14 @@
 citHeader("To cite fastmatrix in publications use:")
 
-citEntry(entry="Manual",
-  title = "Fast computation of some matrices useful in statistics",
-  author = personList(as.person("F. Osorio"), as.person("A. Ogueda")),
-  year = "2022",
-  note = "R package version 0.4-1245",
-  url  = "https://faosorios.github.io/fastmatrix/",
-  textVersion =
-    paste("Osorio, F., Ogueda, A. (2022).",
-      "Fast computation of some matrices useful in statistics.",
-      "R package version 0.4-1245.", "URL: https://faosorios.github.io/fastmatrix/")
+bibentry(bibtype = "Manual",
+         title = "Fast computation of some matrices useful in statistics",
+         author = c(as.person("F. Osorio"),
+                    as.person("A. Ogueda")),
+         year = "2023",
+         note = "R package version 0.5",
+         url  = "https://faosorios.github.io/fastmatrix/",
+         textVersion =
+          paste("Osorio, F., Ogueda, A. (2023).",
+                "Fast computation of some matrices useful in statistics.",
+                "R package version 0.5.", "URL: https://faosorios.github.io/fastmatrix/")
 )
