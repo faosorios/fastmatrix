@@ -1,3 +1,10 @@
+0.5 (Apr 17, 2023)
+ * Added procedure of Doornik and Hansen, Jarque and Bera and Adjusted Lagrange multiplier 
+   statistics for testing univariate normality based on the standardized third and fourth
+   moments.
+ * Minor modifications of moments() function, definition of the kurtosis coefficient was 
+   corrected.
+
 0.4-1245 (Oct 6, 2022)
  * Added function to random generation of multivariate normal deviates.
  * Issue related to casts from R_GetCCallable was fixed (pointed out by Prof. Brian

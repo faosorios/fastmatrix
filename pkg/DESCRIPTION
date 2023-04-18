@@ -1,18 +1,13 @@
 Package: fastmatrix
 Type: Package
 Title: Fast Computation of some Matrices Useful in Statistics
-Version: 0.4-1245
-Date: 2022-10-06
-Authors@R:
-    c(person(given = "Felipe",
-             family = "Osorio",
-             role = c("aut", "cre"),
-             email = "felipe.osorios@usm.cl",
-             comment = c(ORCID = "0000-0002-4675-5201")),
-      person(given = "Alonso",
-             family = "Ogueda",
-             role = "aut",
-             email = "alonso.ogueda@gmail.com"))
+Version: 0.5
+Date: 2023-04-17
+Authors@R: c(person("Felipe", "Osorio", role = c("aut", "cre"),
+                    email = "felipe.osorios@usm.cl",
+                    comment = c(ORCID = "0000-0002-4675-5201")),
+             person("Alonso", "Ogueda", role = "aut",
+                    email = "aogueda@gmu.edu"))
 Author: Felipe Osorio [aut, cre] (<https://orcid.org/0000-0002-4675-5201>),
         Alonso Ogueda [aut]
 Maintainer: Felipe Osorio <felipe.osorios@usm.cl>
@@ -25,10 +20,11 @@ Description: Small set of functions to fast computation of some matrices and ope
   includes a number of common statistical procedures such as the sweep operator, weighted
   mean and covariance matrix using an online algorithm, linear regression (using Cholesky,
   QR, SVD, sweep operator and conjugate gradients methods), ridge regression (with optimal
-  selection of the ridge parameter considering several procedures), functions to compute
-  the multivariate skewness, kurtosis, Mahalanobis distance (checking the positive
-  defineteness) and the Wilson-Hilferty transformation of chi squared variables. Furthermore,
-  the package provides interfaces to C code callable by another C code from other R packages.
+  selection of the ridge parameter considering several procedures), omnibus tests for 
+  univariate normality, functions to compute the multivariate skewness, kurtosis, the 
+  Mahalanobis distance (checking the positive defineteness), and the Wilson-Hilferty 
+  transformation of chi squared variables. Furthermore, the package provides interfaces 
+  to C code callable by another C code from other R packages.
 Depends: R(>= 3.5.0)
 License: GPL-3
 URL: https://faosorios.github.io/fastmatrix/

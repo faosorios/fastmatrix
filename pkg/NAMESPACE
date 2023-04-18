@@ -9,13 +9,13 @@ importFrom("stats",
 export(array.mult, asSymmetric, bezier, bracket.prod, cg, cholupdate, circulant,
        comm.info, comm.prod, commutation, constructX, corAR1, corCS, cov.MSSD,
        cov.weighted, dupl.cross, dupl.info, dupl.prod, duplication, equilibrate,
-       extractL, extractU, frank, geomean, hadamard, harris.test, helmert, kurtosis,
-       krylov, is.lu, is.lower.tri, is.upper.tri, jacobi, kronecker.prod, ldl, lu,
-       lu2inv, Mahalanobis, matrix.inner, matrix.norm, mediancenter, minkowski,
-       moments, ols, ols.fit, ols.fit.cg, ols.fit.chol, ols.fit.qr, ols.fit.svd,
-       ols.fit.sweep, power.method, ridge, rmnorm, seidel, sherman.morrison, skewness,
-       sweep.operator, symm.info, symm.prod, symmetrizer, vec, vech, wilson.hilferty,
-       whitening)
+       extractL, extractU, frank, geomean, hadamard, harris.test, helmert, 
+       JarqueBera.test, kurtosis, krylov, is.lu, is.lower.tri, is.upper.tri, 
+       jacobi, kronecker.prod, ldl, lu, lu2inv, Mahalanobis, matrix.inner, 
+       matrix.norm, mediancenter, minkowski, moments, ols, ols.fit, ols.fit.cg, 
+       ols.fit.chol, ols.fit.qr, ols.fit.svd, ols.fit.sweep, power.method, 
+       ridge, rmnorm, seidel, sherman.morrison, skewness, sweep.operator, 
+       symm.info, symm.prod, symmetrizer, vec, vech, wilson.hilferty, whitening)
 
 # Exported S3 methods
 export(lu.default, solve.lu)
@@ -25,6 +25,7 @@ S3method(deviance, ols)
 S3method(logLik, ols)
 S3method(lu, default)
 S3method(print, Harris.test)
+S3method(print, JarqueBera.test)
 S3method(print, ols)
 S3method(print, ridge)
 S3method(print, summary.ols)
