@@ -67,7 +67,7 @@ Latest binaries and sources (development version) for [fastmatrix](https://githu
 Version 0.5 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
 * [fastmatrix_0.5.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.5.tar.gz) - Package sources
-* [fastmatrix_0.4-1245.zip](https://cran.r-project.org/bin/windows/contrib/4.2/fastmatrix_0.4-1245.zip) - Windows binaries (R-release)
+* [fastmatrix_0.5.zip](https://cran.r-project.org/bin/windows/contrib/4.2/fastmatrix_0.5.zip) - Windows binaries (R-release)
 * [fastmatrix_0.5.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.2/fastmatrix_0.5.tgz) - MacOS binaries (R-release, arm64)
 * [fastmatrix_0.5.tgz](https://cran.r-project.org/bin/macosx/contrib/4.2/fastmatrix_0.5.tgz) - MacOS binaries (R-release, x86_64)
 
@@ -112,5 +112,3 @@ Felipe Osorio is an Assistant Professor at [Department of Mathematics](http://ww
 
 Alonso Ogueda is a doctorate student of mathematics from the [Mathematical Sciences Department](https://catalog.gmu.edu/colleges-schools/science/mathematical-sciences/), [George Mason University](https://www2.gmu.edu/), USA.
 * Github: [github.com/aoguedao](https://github.com/aoguedao)
-
-
