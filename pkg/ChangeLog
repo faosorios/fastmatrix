@@ -1,11 +1,17 @@
-0.5 (Apr 17, 2023)
+0.5-7 (Oct 11, 2023)
+ * The robust Jarque-Bera test proposed by Gel and Gastwirth was added.
+ * Added functions for random generation of vectors uniformly distributed on the unitary 
+   sphere and in the unitary ball.
+ * Function to compute the scaled condition number has been included.
+
+0.5 (Apr 18, 2023)
  * Added procedure of Doornik and Hansen, Jarque and Bera and Adjusted Lagrange multiplier 
    statistics for testing univariate normality based on the standardized third and fourth
    moments.
  * Minor modifications of moments() function, definition of the kurtosis coefficient was 
    corrected.
 
-0.4-1245 (Oct 6, 2022)
+0.4-1245 (Oct 7, 2022)
  * Added function to random generation of multivariate normal deviates.
  * Issue related to casts from R_GetCCallable was fixed (pointed out by Prof. Brian
    Ripley).

@@ -2,8 +2,8 @@ useDynLib(fastmatrix, .registration = TRUE)
 
 ## from "stats" package:
 importFrom("stats",
-           .getXlevels, coef, complete.cases, cov, cov2cor, logLik, model.matrix,
-           model.response, pchisq, pt, quantile, var)
+           .getXlevels, coef, complete.cases, cov, cov2cor, logLik, median, 
+           model.matrix, model.response, pchisq, pt, quantile, var)
 
 ## Our exports:
 export(array.mult, asSymmetric, bezier, bracket.prod, cg, cholupdate, circulant,
@@ -14,8 +14,9 @@ export(array.mult, asSymmetric, bezier, bracket.prod, cg, cholupdate, circulant,
        jacobi, kronecker.prod, ldl, lu, lu2inv, Mahalanobis, matrix.inner, 
        matrix.norm, mediancenter, minkowski, moments, ols, ols.fit, ols.fit.cg, 
        ols.fit.chol, ols.fit.qr, ols.fit.svd, ols.fit.sweep, power.method, 
-       ridge, rmnorm, seidel, sherman.morrison, skewness, sweep.operator, 
-       symm.info, symm.prod, symmetrizer, vec, vech, wilson.hilferty, whitening)
+       rball, ridge, rmnorm, rsphere, scaled.condition, seidel, sherman.morrison, 
+       skewness, sweep.operator, symm.info, symm.prod, symmetrizer, vec, vech, 
+       wilson.hilferty, whitening)
 
 # Exported S3 methods
 export(lu.default, solve.lu)
