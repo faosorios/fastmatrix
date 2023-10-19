@@ -6,7 +6,7 @@
 }
 \usage{
 ridge(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol = 1e-07,
-  maxiter = 50, na.action, model = FALSE, x = FALSE, y = FALSE, contrasts = NULL, ...)
+  maxiter = 50, na.action, x = FALSE, y = FALSE, contrasts = NULL, ...)
 }
 \arguments{
   \item{formula}{ an object of class \code{"\link{formula}"} (or one that
@@ -35,8 +35,8 @@ ridge(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol = 1e
   Only required if \code{method = "grid"} and \code{lambda} is a scalar.}
   \item{tol}{ tolerance for the optimization of the GCV criterion. Default is \code{1e-7}.}
   \item{maxiter}{ maximum number of iterations. The default is 50.}
-  \item{model, x, y}{ logicals.  If \code{TRUE} the corresponding components of
-    the fit (the model frame, the model matrix, the response) are returned.}
+  \item{x, y}{ logicals.  If \code{TRUE} the corresponding components of
+    the fit (the model matrix, the response) are returned.}
   \item{contrasts}{ an optional list. See the \code{contrasts.arg} of
     \code{\link{model.matrix.default}}.}
   \item{\dots}{ additional arguments to be passed to the low level regression

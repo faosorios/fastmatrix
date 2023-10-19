@@ -1,6 +1,6 @@
 \name{ols.fit}
 \alias{ols.fit}
-\title{Fitter Functions for Linear Models}
+\title{Fitter functions for linear models}
 \usage{
 ols.fit(x, y, method = "qr", tol = 1e-7, maxiter = 100)
 }

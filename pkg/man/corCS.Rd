@@ -1,6 +1,6 @@
 \name{corCS}
 \alias{corCS}
-\title{Compound Symmetry Correlation Structure}
+\title{Compound symmetry correlation structure}
 \usage{
 corCS(rho, p = 2)
 }

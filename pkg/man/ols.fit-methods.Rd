@@ -4,7 +4,7 @@
 \alias{ols.fit.qr}
 \alias{ols.fit.svd}
 \alias{ols.fit.sweep}
-\title{Fit a Linear Model}
+\title{Fit a linear model}
 \usage{
 ols.fit.cg(x, y, tol = 1e-7, maxiter = 100)
 ols.fit.chol(x, y)

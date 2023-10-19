@@ -10,7 +10,7 @@ JarqueBera.test(x, test = "DH")
 \arguments{
   \item{x}{ a numeric vector containing the sample observations.}
   \item{test}{ test statistic to be used. One of "DH" (Doornik-Hansen, the default), "JB" (Jarque-Bera), 
-  "ALM" (Adjusted Lagrange multiplier).}
+  "robust" (robust modification by Gel and Gastwirth), "ALM" (Adjusted Lagrange multiplier).}
 }
 \value{
   A list of class 'JarqueBera.test' with the following elements:
@@ -27,6 +27,10 @@ JarqueBera.test(x, test = "DH")
   Doornik, J.A., Hansen, H. (2008).
   An omnibus test for univariate and multivariate normality.
   \emph{Oxford Bulletin of Economics and Statistics} \bold{70}, 927-939.
+
+  Gel, Y.R., Gastwirth, J.L. (2008).
+  A robust modification of the Jarque-Bera test of normality.
+  \emph{Economics Letters} \bold{99}, 30-32.
 
   Jarque, C.M., Bera, A.K. (1980).
   Efficient tests for normality, homoscedasticity and serial independence of regression residuals.

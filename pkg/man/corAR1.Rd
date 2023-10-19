@@ -1,6 +1,6 @@
 \name{corAR1}
 \alias{corAR1}
-\title{AR(1) Correlation Structure}
+\title{AR(1) correlation structure}
 \usage{
 corAR1(rho, p = 2)
 }

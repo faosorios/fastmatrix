@@ -1,6 +1,6 @@
 \name{rmnorm}
 \alias{rmnorm}
-\title{Multivariate Normal Random Deviates}
+\title{Multivariate normal random deviates}
 \description{
   Random number generation from the multivariate normal (Gaussian) distribution.
 }

@@ -1,6 +1,5 @@
 \name{comm.info}
 \alias{comm.info}
-
 \title{Compact information to construct the commutation matrix}
 \description{
   This function provides the minimum information required to create the commutation matrix.

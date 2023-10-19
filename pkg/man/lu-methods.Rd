@@ -2,7 +2,7 @@
 \alias{constructX}
 \alias{extractL}
 \alias{extractU}
-\title{Reconstruct the L, U, or X Matrices from an LU object}
+\title{Reconstruct the L, U, or X matrices from an LU object}
 \usage{
 constructX(x)
 extractL(x)

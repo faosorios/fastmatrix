@@ -6,7 +6,7 @@
 }
 \usage{
 ols(formula, data, subset, na.action, method = "qr", tol = 1e-7, maxiter = 100,
-  model = FALSE, x = FALSE, y = FALSE, contrasts = NULL, ...)
+  x = FALSE, y = FALSE, contrasts = NULL, ...)
 }
 \arguments{
   \item{formula}{ an object of class \code{"\link{formula}"} (or one that
@@ -29,8 +29,8 @@ ols(formula, data, subset, na.action, method = "qr", tol = 1e-7, maxiter = 100,
     \code{tol = 1e-7}.}
   \item{maxiter}{ The maximum number of iterations for the conjugate gradients (\code{gc})
     method. Defaults to 100.}
-  \item{model, x, y}{ logicals.  If \code{TRUE} the corresponding components of
-    the fit (the model frame, the model matrix, the response) are returned.}
+  \item{x, y}{ logicals.  If \code{TRUE} the corresponding components of
+    the fit (the model matrix, the response) are returned.}
   \item{contrasts}{ an optional list. See the \code{contrasts.arg} of
     \code{\link{model.matrix.default}}.}
   \item{\dots}{ additional arguments (currently disregarded).}
