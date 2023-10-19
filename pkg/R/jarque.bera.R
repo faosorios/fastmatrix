@@ -1,4 +1,4 @@
-## ID: jarque.bera.R, last updated 2023-04-17, F.Osorio
+## ID: jarque.bera.R, last updated 2023-07-23, F.Osorio
 
 JarqueBera.test <-
 function(x, test = "DH")
@@ -41,6 +41,21 @@ function(x, test = "DH")
       stat <- z$stat
       names(stat) <- "Jarque-Bera"
       method <- "Jarque-Bera test"
+    },
+    "robust" = {
+      u <- x - median(x)
+      z <- .C("robust_JB", 
+              x = as.double(x),
+              u = as.double(u),
+              n = as.integer(n),
+              skewness = double(1),
+              kurtosis = double(1),
+              stat = double(1))[c("skewness","kurtosis","stat")]
+      skewness <- z$skewness
+      kurtosis <- z$kurtosis
+      stat <- z$stat
+      names(stat) <- "Robust Jarque-Bera"
+      method <- "Robust Jarque-Bera test"
     },
     "ALM" = {
       z <- .C("urzua_ALM", 

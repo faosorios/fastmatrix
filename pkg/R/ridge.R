@@ -1,15 +1,15 @@
-## ID: ridge.R, last updated 2022-02-07, F.Osorio
+## ID: ridge.R, last updated 2023-06-06, F.Osorio
 
 ridge <-
 function(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol = 1e-07,
-  maxiter = 50, na.action, model = FALSE, x = FALSE, y = FALSE, contrasts = NULL, ...)
+  maxiter = 50, na.action, x = FALSE, y = FALSE, contrasts = NULL, ...)
 { ## ordinary ridge regression
   ret.x <- x
   ret.y <- y
   Call <- match.call()
   mf <- match.call(expand.dots = FALSE)
   mf$lambda <- mf$method <- mf$ngrid <- mf$tol <- mf$maxiter <- NULL
-  mf$model <- mf$x <- mf$y <- mf$contrasts <- mf$... <- NULL
+  mf$x <- mf$y <- mf$contrasts <- mf$... <- NULL
   mf$drop.unused.levels <- TRUE
   mf[[1]] <- as.name("model.frame")
   mf <- eval(mf, parent.frame())
@@ -86,13 +86,12 @@ function(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol =
             LW = z$lw, lambda = z$lambda, optimal = z$opt, iterations = z$maxiter)
   names(z$coefficients) <- xn
   z$call <- Call
+  z$model <- mf
   z$method <- method
   z$na.action <- attr(mf, "na.action")
   z$contrasts <- attr(x, "contrasts")
   z$xlevels <- .getXlevels(Terms, mf)
   z$terms <- Terms
-  if (model)
-    z$model <- mf
   if (ret.y)
     z$y <- y
   if (ret.x)

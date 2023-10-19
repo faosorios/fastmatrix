@@ -1,14 +1,14 @@
-## ID: ols.R, last updated 2022-10-06, F.Osorio
+## ID: ols.R, last updated 2023-06-06, F.Osorio
 
 ols <-
 function(formula, data, subset, na.action, method = "qr", tol = 1e-7, maxiter = 100,
-  model = FALSE, x = FALSE, y = FALSE, contrasts = NULL, ...)
+  x = FALSE, y = FALSE, contrasts = NULL, ...)
 { ## ordinary least-squares fit
   ret.x <- x
   ret.y <- y
   Call <- match.call()
   mf <- match.call(expand.dots = FALSE)
-  mf$method <- mf$tol <- mf$maxiter <- mf$model <- mf$x <- mf$y <- NULL
+  mf$method <- mf$tol <- mf$maxiter <- mf$x <- mf$y <- NULL
   mf$contrasts <- mf$... <- NULL
   mf$drop.unused.levels <- TRUE
   mf[[1]] <- as.name("model.frame")
@@ -22,12 +22,11 @@ function(formula, data, subset, na.action, method = "qr", tol = 1e-7, maxiter = 
 
   # output
   z$call <- Call
+  z$model <- mf
   z$na.action <- attr(mf, "na.action")
   z$contrasts <- attr(x, "contrasts")
   z$xlevels <- .getXlevels(Terms, mf)
   z$terms <- Terms
-  if (model)
-    z$model <- mf
   if (ret.y)
     z$y <- y
   if (ret.x)

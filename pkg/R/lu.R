@@ -25,7 +25,8 @@ lu.default <- function(x)
           ldx = as.integer(n),
           n = as.integer(n),
           p = as.integer(p),
-          pivot = integer(p))[c("lu","pivot")]
+          pivot = integer(p),
+          info = as.integer(0))[c("lu","pivot","info")]
   class(z) <- "lu"
   z
 }
@@ -75,7 +76,12 @@ lu2inv <- function(x)
           x = x,
           ldx = as.integer(ldx),
           p = as.integer(p),
-          pivot = as.integer(pivot))$x
+          pivot = as.integer(pivot),
+          info = as.integer(0))[c("x","info")]
+  if (z$info != 0)
+    warning(paste("lu_inverse gave error code", z$info))
+  
+  z <- z$x
   z
 }
 
@@ -107,7 +113,12 @@ solve.lu <- function(a, b, ...)
           pivot = as.integer(pivot),
           b = b,
           ldb = as.integer(ldb),
-          nrhs = as.integer(nrhs))$b
+          nrhs = as.integer(nrhs),
+          info = as.integer(0))[c("b","info")]
+  if (z$info != 0)
+    warning(paste("lu_solve gave error code", z$info))
+  
+  z <- z$b
   if (nrhs == 1)
     z <- as.vector(z)
   z
