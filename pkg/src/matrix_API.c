@@ -1,4 +1,4 @@
-/* ID: matrix_API.c, last updated 10-14-2021, F.Osorio */
+/* ID: matrix_API.c, last updated 2023-09-14, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -275,6 +275,14 @@ FM_chol_decomp(double *a, int lda, int p, int job, int *info)
 
   uplo = (job) ? "U" : "L";
   F77_CALL(dpotrf)(uplo, &p, a, &lda, info FCONE);
+}
+
+void
+FM_lu_decomp(double *a, int lda, int n, int p, int *pivot, int *info)
+{ /* LU factorization of a real square matrix,
+   * matrix 'a' is overwritten with the result */
+
+  F77_CALL(dgetrf)(&n, &p, a, &lda, pivot, info);
 }
 
 void
@@ -567,6 +575,17 @@ FM_chol_inverse(double *a, int lda, int p, int job, int *info)
 }
 
 void
+FM_lu_inverse(double *a, int lda, int p, int *pivot, int *info)
+{ /* computes the inverse of a matrix using the LU factorization */
+  int lwork = p;
+  double *work;
+
+  work = (double *) Calloc(lwork, double);
+  F77_CALL(dgetri)(&p, a, &lda, pivot, work, &lwork, info);
+  Free(work);
+}
+
+void
 FM_backsolve(double *r, int ldr, int n, double *b, int ldb, int nrhs, int *info)
 { /* backsolve solve triangular systems of the form r %*% x = b, where r
    * is an upper triangular matrix and b is a matrix containing the right-hand
@@ -584,6 +603,14 @@ FM_forwardsolve(double *l, int ldl, int n, double *b, int ldb, int nrhs, int *in
   char *diag = "N", *uplo = "L", *notrans = "N";
 
   F77_CALL(dtrtrs)(uplo, notrans, diag, &n, &nrhs, l, &ldl, b, &ldb, info FCONE FCONE FCONE);
+}
+
+void
+FM_lu_solve(double *a, int lda, int p, int *pivot, double *b, int ldb, int nrhs, int *info)
+{ /* solves a system of linear equations */
+  char *notrans = "N";
+
+  F77_CALL(dgetrs)(notrans, &p, &nrhs, a, &lda, pivot, b, &ldb, info FCONE);
 }
 
 /* DEBUG routine */

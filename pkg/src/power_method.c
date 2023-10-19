@@ -45,7 +45,7 @@ void
 inverse_power(double *a, int *lda, int *p, double *x, double *lambda, int *maxiter, double *tolerance, int *numIter)
 { /* inverse power method to find the smallest eigenvalue and eigenvector */
   double conv, newLambda, *u = NULL, *v = NULL;
-  int iter = 0, n = *p, one = 1, *pivot = NULL;
+  int iter = 0, info = 0, n = *p, one = 1, *pivot = NULL;
 
   u = (double *) Calloc(n, double);
   v = (double *) Calloc(n, double);
@@ -56,12 +56,17 @@ inverse_power(double *a, int *lda, int *p, double *x, double *lambda, int *maxit
   FM_normalize(u, 1, n);
 
   /* perform LU decomposition */
-  lu_dcmp(a, lda, &n, p, pivot);
+  lu_dcmp(a, lda, &n, p, pivot, &info);
+  if (info)
+    error("lu_dcmp gave code %d", info);
 
   /* main loop */
   repeat {
     Memcpy(v, u, n); /* v <- u */
-    lu_solve(a, lda, &n, pivot, v, &n, &one);
+    info = 0;
+    lu_solve(a, lda, &n, pivot, v, &n, &one, &info);
+    if (info)
+      error("lu_solve gave code %d", info);
     FM_normalize(v, 1, n);
     newLambda = OMO_quadf(a, *lda, n, v);
 

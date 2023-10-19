@@ -1,4 +1,4 @@
-/* $ID: R_init_fastmatrix.c, last updated 2022-10-06, F.Osorio */
+/* $ID: R_init_fastmatrix.c, last updated 2023-07-23, F.Osorio */
 
 #include "fastmatrix.h"
 #include <R_ext/Rdynload.h>
@@ -35,13 +35,12 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(jarque_bera,            5),
   CALLDEF(kronecker_prod,         7),
   CALLDEF(krylov_mat,             8),
-  CALLDEF(lu_dcmp,                5),
-  CALLDEF(lu_inverse,             4),
-  CALLDEF(lu_solve,               7),
+  CALLDEF(lu_dcmp,                6),
+  CALLDEF(lu_inverse,             5),
+  CALLDEF(lu_solve,               8),
   CALLDEF(mahal_distances,        7),
   CALLDEF(mat2vech,               4),
   CALLDEF(matrix_norm,            6),
-  CALLDEF(mnorm_rand,             5),
   CALLDEF(norm_one,               4),
   CALLDEF(norm_two,               4),
   CALLDEF(norm_inf,               4),
@@ -51,6 +50,10 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(OLS_ridge,             21),
   CALLDEF(power_method,           8),
   CALLDEF(Psi2Q,                  3),
+  CALLDEF(robust_JB,              6),
+  CALLDEF(rng_ball,               3),
+  CALLDEF(rng_mnorm,              5),
+  CALLDEF(rng_sphere,             3),
   CALLDEF(seidel_solver,          9),
   CALLDEF(sherman_morrison,       6),
   CALLDEF(skewness_and_kurtosis,  7),
@@ -154,6 +157,7 @@ void R_init_fastmatrix(DllInfo *info) {
   FM_REGDEF(FM_sum_upper_tri);
   /* matrix factorizations */
   FM_REGDEF(FM_chol_decomp);
+  FM_REGDEF(FM_lu_decomp);
   FM_REGDEF(FM_QR_decomp);
   FM_REGDEF(FM_QL_decomp);
   FM_REGDEF(FM_LQ_decomp);
@@ -174,6 +178,8 @@ void R_init_fastmatrix(DllInfo *info) {
   FM_REGDEF(FM_chol_inverse);
   FM_REGDEF(FM_invert_mat);
   FM_REGDEF(FM_invert_triangular);
+  FM_REGDEF(FM_lu_inverse);
+  FM_REGDEF(FM_lu_solve);
   /* least square procedures */
   FM_REGDEF(FM_gls_GQR);
   FM_REGDEF(FM_lsfit);

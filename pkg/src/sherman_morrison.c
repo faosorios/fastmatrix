@@ -13,7 +13,7 @@ FM_sherman_morrison(double *a, int lda, int n, double *b, double *d, int inverte
 { /* Sherman–Morrison formula (symbol exported to API) */
   char *notrans = "N", *trans = "T";
   double alpha = -1.0, dot, *u = NULL, *v = NULL;
-  int *pivot = NULL;
+  int info = 0, *pivot = NULL;
 
   /* initializing */
   u = (double *) Calloc(n, double);
@@ -22,8 +22,12 @@ FM_sherman_morrison(double *a, int lda, int n, double *b, double *d, int inverte
 
   /* invert 'a' matrix in-place (if requested) */
   if (!inverted) {
-    lu_dcmp(a, &lda, &n, &n, pivot);
-    lu_inverse(a, &lda, &n, pivot);
+    lu_dcmp(a, &lda, &n, &n, pivot, &info);
+    if (info)
+      error("lu_dcmp gave code %d", info);
+    lu_inverse(a, &lda, &n, pivot, &info);
+    if (info)
+      error("lu_inverse gave code %d", info);
   }
 
   /* updating b and d */

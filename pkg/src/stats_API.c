@@ -1,4 +1,4 @@
-/* ID: stats_API.c, last updated 2021-03-03, F.Osorio */
+/* ID: stats_API.c, last updated 2023-07-23, F.Osorio */
 
 #include "fastmatrix.h"
 

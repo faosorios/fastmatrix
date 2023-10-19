@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2022-08-19, F.Osorio */
+/* ID: fastmatrix.h, last updated 2023-09-14, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -90,9 +90,9 @@ void inverse_power(double *, int *, int *, double *, double *, int *, double *, 
 void sherman_morrison(double *, int *, int *, double *, double *, int *);
 
 /* LU factorization */
-void lu_dcmp(double *, int *, int *, int *, int *);
-void lu_inverse(double *, int *, int *, int *);
-void lu_solve(double *, int *, int *, int *, double *, int *, int *);
+void lu_dcmp(double *, int *, int *, int *, int *, int *);
+void lu_inverse(double *, int *, int *, int *, int *);
+void lu_solve(double *, int *, int *, int *, double *, int *, int *, int *);
 
 /* iterative methods to solve linear systems */
 void cg_solver(double *, int *, int *, double *, double *, int *, double *, int *, int *);
@@ -126,10 +126,13 @@ void wilson_hilferty_chisq(double *, int *, int *, double *);
 /* tests for normality based on the standardized third and fourth moments */
 void doornik_hansen(double *, int *, double *, double *, double *);
 void jarque_bera(double *, int *, double *, double *, double *);
+void robust_JB(double *, double *, int *, double *, double *, double *);
 void urzua_ALM(double *, int *, double *, double *, double *);
 
 /* random number generation */
-void mnorm_rand(double *, int *, int *, double *, double *);
+void rng_mnorm(double *, int *, int *, double *, double *);
+void rng_ball(double *, int *, int *);
+void rng_sphere(double *, int *, int *);
 
 /* correlation structures */
 void cor_AR1(double *, int *, double *);
@@ -234,6 +237,7 @@ double FM_sum_upper_tri(double *, int, int, int);
 
 /* matrix factorizations */
 void FM_chol_decomp(double *, int, int, int, int *);
+void FM_lu_decomp(double *, int, int, int, int *, int *);
 void FM_QR_decomp(double *, int, int, int, double *, int *);
 void FM_QL_decomp(double *, int, int, int, double *, int *);
 void FM_LQ_decomp(double *, int, int, int, double *, int *);
@@ -256,6 +260,8 @@ void FM_chol_inverse(double *, int, int, int, int *);
 void FM_forwardsolve(double *, int, int, double *, int, int, int *);
 void FM_invert_mat(double *, int, int, int *);
 void FM_invert_triangular(double *, int, int, int, int *);
+void FM_lu_inverse(double *, int, int, int *, int *);
+void FM_lu_solve(double *, int, int, int *, double *, int, int, int *);
 
 /* least square procedures */
 void FM_lsfit(double *, int, int, int, double *, int, int, double *, int *);
@@ -282,6 +288,7 @@ void FM_mean_and_var(double *, int, double *, double *);
 void FM_moments(double *, int, double *, double *, double *, double *);
 void FM_online_covariance(double *, double *, int, double *, double *, double *, double *, double *);
 void FM_online_center(double *, int, int, double *, double *);
+void FM_online_mad(double *, int, double *);
 void FM_skewness_and_kurtosis(double *, int, int, double *, double *, double *, int);
 
 /* correlation structures */

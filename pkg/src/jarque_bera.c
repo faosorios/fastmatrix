@@ -1,4 +1,4 @@
-/* ID: jarque_bera.c, last updated 2023-04-17, F.Osorio */
+/* ID: jarque_bera.c, last updated 2023-07-23, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -102,6 +102,32 @@ jarque_bera(double *x, int *nobs, double *skew, double *kurt, double *stat)
 
   /* Jarque-Bera test statistic */
   *stat = ((double) n / 6.) * (SQR(b1) + SQR(b2 - 3.) / 4.);
+}
+
+void
+robust_JB(double *x, double *z, int *nobs, double *skew, double *kurt, double *stat)
+{ /* computes a robust Jarque-Bera test for normality based on the average 
+   * absolute deviation from the sample median (MAAD).
+   * Gel and Gastwirth. Economics Letters 99, 30-32, 2008. 
+   * doi: 10.1016/j.econlet.2007.05.022 */
+  int n = *nobs;
+  double mad, mean, m2, m3, m4, b1, b2, c1 = 6., c2 = 64.;
+
+  /* computes central moments and MAAD */
+  FM_moments(x, n, &mean, &m2, &m3, &m4);
+  mad = BLAS1_sum_abs(z, 1, n) / n;
+  mad /= M_SQRT_2dPI; /* MAAD correction */
+
+  /* skewness and kurtosis */
+  b1 = m3 / CUBE(mad);
+  b2 = m4 / FOURTH(mad);
+
+  /* saving statistics */
+  *skew = b1;
+  *kurt = b2;
+
+  /* Jarque-Bera test statistic */
+  *stat = ((double) n) * (SQR(b1) / c1 + SQR(b2 - 3.) / c2);
 }
 
 void
