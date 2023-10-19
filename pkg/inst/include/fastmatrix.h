@@ -69,6 +69,7 @@ double FM_sum_upper_tri(double *x, int ldx, int p, int job);
 
 /* matrix factorizations */
 void FM_chol_decomp(double *a, int lda, int p, int job, int *info);
+void FM_lu_decomp(double *a, int lda, int n, int p, int *pivot, int *info);
 void FM_QR_decomp(double *mat, int ldmat, int nrow, int ncol, double *qraux, int *info);
 void FM_QL_decomp(double *mat, int ldmat, int nrow, int ncol, double *qlaux, int *info);
 void FM_LQ_decomp(double *mat, int ldmat, int nrow, int ncol, double *lqaux, int *info);
@@ -91,6 +92,8 @@ void FM_forwardsolve(double *l, int ldl, int n, double *b, int ldb, int nrhs, in
 void FM_chol_inverse(double *a, int lda, int p, int job, int *info);
 void FM_invert_mat(double *a, int lda, int n, int *info);
 void FM_invert_triangular(double *a, int lda, int n, int job, int *info);
+void FM_lu_inverse(double *a, int lda, int p, int *pivot, int *info);
+void FM_lu_solve(double *a, int lda, int p, int *pivot, double *b, int ldb, int nrhs, int *info);
 
 /* least square procedures */
 void FM_lsfit(double *x, int ldx, int nrow, int ncol, double *y, int ldy, int nrhs, double *coef, int *info);

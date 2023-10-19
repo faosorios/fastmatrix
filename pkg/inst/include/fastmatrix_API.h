@@ -420,6 +420,13 @@ void FM_chol_decomp(double *a, int lda, int p, int job, int *info) {
   fun(a, lda, p, job, info);
 }
 
+void FM_lu_decomp(double *a, int lda, int n, int p, int *pivot, int *info) {
+  static void(*fun)(double *, int, int, int, int *, int *) = NULL;
+  if (fun == NULL)
+    fun = (void(*)(double *, int, int, int, int *, int *)) R_GetCCallable("fastmatrix", "FM_lu_decomp");
+  fun(a, lda, n, p, pivot, info);
+}
+
 void FM_QR_decomp(double *mat, int ldmat, int nrow, int ncol, double *qraux, int *info) {
   static void(*fun)(double *, int, int, int, double *, int *) = NULL;
   if (fun == NULL)
@@ -568,6 +575,20 @@ void FM_invert_triangular(double *a, int lda, int n, int job, int *info) {
   if (fun == NULL)
     fun = (void(*)(double *, int, int, int, int *)) R_GetCCallable("fastmatrix", "FM_invert_triangular");
   fun(a, lda, n, job, info);
+}
+
+void FM_lu_inverse(double *a, int lda, int p, int *pivot, int *info) {
+  static void(*fun)(double *, int, int, int *, int *) = NULL;
+  if (fun == NULL)
+    fun = (void(*)(double *, int, int, int *, int *)) R_GetCCallable("fastmatrix", "FM_lu_inverse");
+  fun(a, lda, p, pivot, info);
+}
+
+void FM_lu_solve(double *a, int lda, int p, int *pivot, double *b, int ldb, int nrhs, int *info) {
+  static void(*fun)(double *, int, int, int *, double *, int, int, int *) = NULL;
+  if (fun == NULL)
+    fun = (void(*)(double *, int, int, int *, double *, int, int, int *)) R_GetCCallable("fastmatrix", "FM_lu_solve");
+  fun(a, lda, p, pivot, b, ldb, nrhs, info);
 }
 
 /* ========================================================================== *
