@@ -2,6 +2,7 @@
 
 [![CRAN status](http://www.r-pkg.org/badges/version/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
 ![CRAN/METACRAN](https://img.shields.io/cran/l/fastmatrix?color=informational)
+[![india](https://img.shields.io/badge/Support-india-orange)](https://cran.r-project.org/package=india)
 [![L1pack](https://img.shields.io/badge/Support-L1pack-orange)](https://cran.r-project.org/package=L1pack)
 [![MVT](https://img.shields.io/badge/Support-MVT-orange)](https://cran.r-project.org/package=MVT)
 [![SpatialPack](https://img.shields.io/badge/Support-SpatialPack-orange)](https://cran.r-project.org/package=SpatialPack)
