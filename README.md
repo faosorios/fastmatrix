@@ -64,7 +64,7 @@ Latest binaries and sources (development version) for [fastmatrix](https://githu
 
 * [fastmatrix_0.5-7.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.5-7.tar.gz) - Package sources
 * [fastmatrix_0.5-77.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5-77.tgz) - MacOS binaries (arm64)
-* [fastmatrix_0.5-7.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5-7.zip) - Windows binaries
+* [fastmatrix_0.5-77.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5-77.zip) - Windows binaries
 
 Version 0.5-7 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
