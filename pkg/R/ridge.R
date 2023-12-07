@@ -120,10 +120,6 @@ print.ridge <- function(x, digits = max(3L, getOption("digits") - 3L), ...)
          "MSE" = {
            cat("Optimal ridge parameter:", format(round(x$lambda, 4)))
            cat(" (converged in", x$iterations, "iterations)\n")
-         },
-         "MSP" = {
-           cat("Optimal ridge parameter:", format(round(x$lambda, 4)))
-           cat(" (converged in", x$iterations, "iterations)\n")
          })
   cat("\nNumber of observations:", x$dims[1], "\n")
   cat("Effective number of parameters:", format(round(x$edf, 4)), "\n")
