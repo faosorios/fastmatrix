@@ -13,7 +13,7 @@ Yet another R package for matrices. It contains a small set of functions to fast
 
 ## Features
 
-Latest release (Oct 12, 2023) of [fastmatrix](https://github.com/faosorios/fastmatrix) package have implemented the following functions:
+Latest release (Dec 7, 2023) of [fastmatrix](https://github.com/faosorios/fastmatrix) package have implemented the following functions:
 * Array multiplication (see for instance, Appendix A of Wei, 1998).
 * Bezier curve based on n+1 control points.
 * C version of the Kronecker product which is slightly faster than the built in R base.
@@ -31,6 +31,7 @@ Latest release (Oct 12, 2023) of [fastmatrix](https://github.com/faosorios/fastm
 * Lp norms for vectors.
 * LU factorization for square matrices.
 * Mahalanobis distances, checking if the covariance is a positive definite matrix.
+* Modified Cholesky factorization for symmetric but not necessarily positive definite matrices.
 * Omnibus test for univariate normality (Jarque-Bera, Doornik-Hansen and Adjusted Lagrange multiplier test).
 * Operations envolving the commutation matrix, with minimum requirements of storage.
 * Operations envolving the duplication matrix, with minimum requirements of storage.
@@ -62,7 +63,7 @@ Our plan in the near future is the implementation of functions to handle:
 Latest binaries and sources (development version) for [fastmatrix](https://github.com/faosorios/fastmatrix) are available here (these are local files):
 
 * [fastmatrix_0.5-7.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.5-7.tar.gz) - Package sources
-* [fastmatrix_0.5-7.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5-7.tgz) - MacOS binaries (x86_64)
+* [fastmatrix_0.5-77.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5-77.tgz) - MacOS binaries (arm64)
 * [fastmatrix_0.5-7.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5-7.zip) - Windows binaries
 
 Version 0.5-7 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
