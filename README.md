@@ -62,7 +62,7 @@ Our plan in the near future is the implementation of functions to handle:
 
 Latest binaries and sources (development version) for [fastmatrix](https://github.com/faosorios/fastmatrix) are available here (these are local files):
 
-* [fastmatrix_0.5-7.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.5-7.tar.gz) - Package sources
+* [fastmatrix_0.5-77.tar.gz](https://github.com/faosorios/fastmatrix/blob/master/sources/fastmatrix_0.5-77.tar.gz) - Package sources
 * [fastmatrix_0.5-77.tgz](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5-77.tgz) - MacOS binaries (arm64)
 * [fastmatrix_0.5-77.zip](https://github.com/faosorios/fastmatrix/blob/master/binaries/fastmatrix_0.5-77.zip) - Windows binaries
 
