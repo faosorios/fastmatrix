@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2023-09-14, F.Osorio */
+/* ID: fastmatrix.h, last updated 2023-12-06, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -102,6 +102,7 @@ void seidel_solver(double *, int *, int *, double *, double *, int *, double *, 
 /* matrix decompositions and operations */
 void chol_dcmp(double *, int *, int *, int *, int *);
 void chol_update(double *, int *, int *, double *);
+void F77_NAME(mchol_dcmp)(double *, int *, int *, double *, double *, int *);
 void F77_NAME(ldl_dcmp)(double *, int *, int *, double *, int *);
 void svd_dcmp(double *, int *, int *, int *, double *, int *, double *, double *, int *, int *, int *);
 

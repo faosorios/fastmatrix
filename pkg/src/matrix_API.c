@@ -507,7 +507,7 @@ FM_LQ_yqt(double *lq, int ldl, int nrow, int ncol, double *lqaux, double *ymat, 
   lwork = -1;
   F77_CALL(dormlq)(side, trans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, &opt, &lwork, &errcode FCONE FCONE);
   if (errcode != 0)
-    error("DORMLQ in LQ_yqt gave error code %d", info);
+    error("DORMLQ in LQ_yqt gave error code %d", errcode);
 
   /* calling DORMLQ with optimal size of working array */
   lwork = (int) opt;
