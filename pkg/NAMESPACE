@@ -12,11 +12,11 @@ export(array.mult, asSymmetric, bezier, bracket.prod, cg, cholupdate, circulant,
        extractL, extractU, frank, geomean, hadamard, harris.test, helmert, 
        JarqueBera.test, kurtosis, krylov, is.lu, is.lower.tri, is.upper.tri, 
        jacobi, kronecker.prod, ldl, lu, lu2inv, Mahalanobis, matrix.inner, 
-       matrix.norm, mediancenter, minkowski, moments, ols, ols.fit, ols.fit.cg, 
-       ols.fit.chol, ols.fit.qr, ols.fit.svd, ols.fit.sweep, power.method, 
-       rball, ridge, rmnorm, rsphere, scaled.condition, seidel, sherman.morrison, 
-       skewness, sweep.operator, symm.info, symm.prod, symmetrizer, vec, vech, 
-       wilson.hilferty, whitening)
+       matrix.norm, mchol, mediancenter, minkowski, moments, ols, ols.fit, 
+       ols.fit.cg, ols.fit.chol, ols.fit.qr, ols.fit.svd, ols.fit.sweep, 
+       power.method, rball, ridge, rmnorm, rsphere, scaled.condition, seidel, 
+       sherman.morrison, skewness, sweep.operator, symm.info, symm.prod, symmetrizer, 
+       vec, vech, wilson.hilferty, whitening)
 
 # Exported S3 methods
 export(lu.default, solve.lu)
