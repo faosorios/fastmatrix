@@ -1,3 +1,9 @@
+0.5-772 (Jan 16, 2024)
+ * Function to compute the Wilson-Hilferty transformation for chi-squared random variables
+   has been renamed WH.normal
+ * Wilson-Hilferty transformation now allows manipulation of Gamma distributed variates.
+ * API with several Wilson-Hilferty transformations is provided (to support MVT and L1pack).
+
 0.5-77 (Dec 7, 2023)
  * Issue related to an erroneous call to a C function for error handling has been fixed.
  * Function to compute the modified Cholesky factorization was added.

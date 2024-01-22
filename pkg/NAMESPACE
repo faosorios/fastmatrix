@@ -16,7 +16,7 @@ export(array.mult, asSymmetric, bezier, bracket.prod, cg, cholupdate, circulant,
        ols.fit.cg, ols.fit.chol, ols.fit.qr, ols.fit.svd, ols.fit.sweep, 
        power.method, rball, ridge, rmnorm, rsphere, scaled.condition, seidel, 
        sherman.morrison, skewness, sweep.operator, symm.info, symm.prod, symmetrizer, 
-       vec, vech, wilson.hilferty, whitening)
+       vec, vech, WH.normal, whitening, wilson.hilferty)
 
 # Exported S3 methods
 export(lu.default, solve.lu)
