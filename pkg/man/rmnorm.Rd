@@ -52,9 +52,9 @@ plot(y, xlab = "", ylab = "")
 title("bivariate normal sample", font.main = 1)
 
 # QQ-plot of transformed distances
-z <- wilson.hilferty(y)
+z <- WH.normal(y)
 par(pty = "s")
-qqnorm(z, main = "Transformed distances Q-Q plot")
+qqnorm(z, main = "Transformed distances QQ-plot")
 abline(c(0,1), col = "red", lwd = 2, lty = 2)
 }
 \keyword{distribution}
