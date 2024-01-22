@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2023-12-06, F.Osorio */
+/* ID: fastmatrix.h, last updated 2024-01-03, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -122,7 +122,10 @@ void F77_NAME(median_center)(double *, int *, int *, int *, double *, int *, int
 void geometric_mean(double *, int *, double *);
 void mahal_distances(double *, int *, int *, double *, double *, int *, double *);
 void skewness_and_kurtosis(double *, int *, int *, double *, double *, double *, int *);
+
+/* Wilson-Hilferty transformation */
 void wilson_hilferty_chisq(double *, int *, int *, double *);
+void wilson_hilferty_gamma(double *, int *, double *, double *, double *);
 
 /* tests for normality based on the standardized third and fourth moments */
 void doornik_hansen(double *, int *, double *, double *, double *);
@@ -272,8 +275,12 @@ void FM_gls_GQR(double *, int, int, int, double *, double *, double *, int *);
 double FM_pythag(double, double);
 double FM_mahalanobis(double *, int, double *, double *);
 void FM_mahal_distances(double *, int, int, double *, double *, int, double *);
+
+/* Wilson-Hilferty transformation */
 void FM_WH_chisq(double *, int, int, double *);
+void FM_WH_gamma(double *, int, double, double, double *);
 void FM_WH_F(double *, int, int, double, double *);
+void FM_WH_Laplace(double *, int, int, double *);
 
 /* products */
 void FM_two_product_FMA(double, double, double *, double *);

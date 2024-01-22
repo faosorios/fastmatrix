@@ -1,4 +1,4 @@
-/* $ID: R_init_fastmatrix.c, last updated 2023-12-06, F.Osorio */
+/* $ID: R_init_fastmatrix.c, last updated 2024-01-03, F.Osorio */
 
 #include "fastmatrix.h"
 #include <R_ext/Rdynload.h>
@@ -62,6 +62,7 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(symmetrizer_prod,       6),
   CALLDEF(urzua_ALM,              5),
   CALLDEF(wilson_hilferty_chisq,  4),
+  CALLDEF(wilson_hilferty_gamma,  5),
   CALLDEF(whitening_chol,         4),
   {NULL, NULL, 0}
 };
@@ -187,8 +188,11 @@ void R_init_fastmatrix(DllInfo *info) {
   /* distances */
   FM_REGDEF(FM_pythag);
   FM_REGDEF(FM_mahalanobis);
+  /* Wilson-Hilferty transformation */
   FM_REGDEF(FM_WH_chisq);
+  FM_REGDEF(FM_WH_gamma);
   FM_REGDEF(FM_WH_F);
+  FM_REGDEF(FM_WH_Laplace);
   /* products */
   FM_REGDEF(FM_compensated_product);
   FM_REGDEF(FM_two_product_FMA);
