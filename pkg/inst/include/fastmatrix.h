@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2022-08-01, F.Osorio */
+/* ID: fastmatrix.h, last updated 2024-01-03, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -103,8 +103,12 @@ void FM_gls_GQR(double *x, int ldx, int nrow, int ncol, double *y, double *cov, 
 double FM_pythag(double a, double b);
 double FM_mahalanobis(double *x, int p, double *center, double *Root);
 void FM_mahal_distances(double *x, int n, int p, double *center, double *cov, int inverted, double *distances);
+
+/* Wilson-Hilferty transformation */
 void FM_WH_chisq(double *distances, int n, int p, double *z);
+void FM_WH_gamma(double *y, int n, double shape, double scale, double *z);
 void FM_WH_F(double *distances, int n, int p, double eta, double *z);
+void FM_WH_Laplace(double *distances, int n, int p, double *z);
 
 /* products */
 void FM_two_product_FMA(double a, double b, double *x, double *y);

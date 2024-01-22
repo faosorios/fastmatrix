@@ -1,4 +1,4 @@
-/* $ID: fastmatrix_API.h, last updated 2023-02-24, F.Osorio */
+/* $ID: fastmatrix_API.h, last updated 2024-01-03, F.Osorio */
 
 #ifndef FASTMATRIX_API_H
 #define FASTMATRIX_API_H
@@ -636,6 +636,17 @@ void FM_mahal_distances(double *x, int n, int p, double *center, double *cov, in
   fun(x, n, p, center, cov, inverted, distances);
 }
 
+/* ========================================================================== *
+ * Wilson-Hilferty transformation: external API
+ * ========================================================================== */
+
+void FM_WH_gamma(double *y, int n, double shape, double scale, double *z) {
+  static void(*fun)(double *, int, double, double, double *) = NULL;
+  if (fun == NULL)
+    fun = (void(*)(double *, int, double, double, double *)) R_GetCCallable("fastmatrix", "FM_WH_gamma");
+  fun(y, n, shape, scale, z);
+}
+
 void FM_WH_chisq(double *distances, int n, int p, double *z) {
   static void(*fun)(double *, int, int, double *) = NULL;
   if (fun == NULL)
@@ -648,6 +659,13 @@ void FM_WH_F(double *distances, int n, int p, double eta, double *z) {
   if (fun == NULL)
     fun = (void(*)(double *, int, int, double, double *)) R_GetCCallable("fastmatrix", "FM_WH_F");
   fun(distances, n, p, eta, z);
+}
+
+void FM_WH_Laplace(double *distances, int n, int p, double *z) {
+  static void(*fun)(double *, int, int, double *) = NULL;
+  if (fun == NULL)
+    fun = (void(*)(double *, int, int, double *)) R_GetCCallable("fastmatrix", "FM_WH_Laplace");
+  fun(distances, n, p, z);
 }
 
 /* ========================================================================== *
