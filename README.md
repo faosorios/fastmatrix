@@ -19,6 +19,7 @@ Latest release (Dec 7, 2023) of [fastmatrix](https://github.com/faosorios/fastma
 * C version of the Kronecker product which is slightly faster than the built in R base.
 * Column-equilibration for rectangular and symmetric matrices.
 * Constructors for AR(1) and compound symmetry correlation matrices.
+* Constructors for Frank and Helmert matrices.
 * Covariance matrix estimation using the Mean Square Successive (MSSD) method.
 * Estimation of the weighted mean and covariance matrix using an online algorithm (Clarke, 1971).
 * Computation of central moments up to fourth order using an online algorithm (Spicer, 1972).
@@ -26,19 +27,23 @@ Latest release (Dec 7, 2023) of [fastmatrix](https://github.com/faosorios/fastma
 * Gauss-Seidel, Jacobi and conjugate gradients (CG) iterative methods for solving linear systems.
 * Geometric mean using a Fused-Multiply-and-Add (FMA) compensated scheme for accurate computation of floating-point product.
 * Inner products and norms for matrices.
+* Computation of the scaled condition number of a rectangular matrix.
 * Interface to **C code callable by another C code** from other R packages.
 * LDL decomposition for symmetric real matrices.
+* Computation of the modified Cholesky factorization of a real symmetric but not necessarily positive definite matrix.
 * Lp norms for vectors.
 * LU factorization for square matrices.
 * Mahalanobis distances, checking if the covariance is a positive definite matrix.
 * Modified Cholesky factorization for symmetric but not necessarily positive definite matrices.
-* Omnibus test for univariate normality (Jarque-Bera, Doornik-Hansen and Adjusted Lagrange multiplier test).
-* Operations envolving the commutation matrix, with minimum requirements of storage.
-* Operations envolving the duplication matrix, with minimum requirements of storage.
-* Operations envolving the symmetrizer matrix, with minimum requirements of storage.
+* Omnibus test for univariate normality (Jarque-Bera, Doornik-Hansen, Adjusted Lagrange multiplier test and robust version by Gel and Gastwirt, 2008).
+* Operations envolving the **commutation matrix**, with minimum requirements of storage.
+* Operations envolving the **duplication matrix**, with minimum requirements of storage.
+* Operations envolving the **symmetrizer matrix**, with minimum requirements of storage.
 * Ordinary least-squares (OLS) using several methods: conjugate gradients, Cholesky, QR decomposition, singular value decomposition, and the Sweep operator. This provides an alternative to extend the procedures available in R built-in function 'lm'.
 * Power method to compute the dominant eigenvalue and its associated eigenvector.
-* Random number generation from the multivariate normal (Gaussian) distribution
+* Random number generation from the multivariate normal (Gaussian) distribution.
+* Random number generation of uniformly distributed deviates **within** a unitary ball.
+* Random number generation of uniformly distributed deviats located **on** a spherical surface.
 * Rank 1 update to Cholesky factorization.
 * Ridge estimation for linear regression.
 * Routines to compute measures of multivariate skewness and kurtosis proposed by Mardia (1970).
@@ -49,7 +54,7 @@ Latest release (Dec 7, 2023) of [fastmatrix](https://github.com/faosorios/fastma
 * Test for variance homogeneity of correlated variables (Harris, 1985).
 * vec and vech operators to handle rectangular and square matrices.
 * Whitening transformation.
-* Wilson-Hilferty transformation for chi-squared random variables.
+* Wilson-Hilferty transformation for Gamma random variables.
 
 Our plan in the near future is the implementation of functions to handle:
 * Some special matrices and operations arising in numerical analysis.
