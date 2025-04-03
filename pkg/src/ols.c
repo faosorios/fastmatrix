@@ -10,10 +10,10 @@ OLS_cg(double *x, int *ldx, int *nrow, int *ncol, double *y, double *coef, doubl
   double az, z, accum, scale, ssq;
 
   /* initialization */
-  d    = (double *) Calloc(p, double);
-  g    = (double *) Calloc(p, double);
-  h    = (double *) Calloc(p, double);
-  work = (double *) Calloc(n, double);
+  d    = (double *) R_Calloc(p, double);
+  g    = (double *) R_Calloc(p, double);
+  h    = (double *) R_Calloc(p, double);
+  work = (double *) R_Calloc(n, double);
 
   /* warming-up */
   FM_crossprod(g, x, *ldx, n, p, y, n, n, 1);
@@ -88,7 +88,7 @@ OLS_cg(double *x, int *ldx, int *nrow, int *ncol, double *y, double *coef, doubl
   }
   *info = iter;
 
-  Free(d); Free(g); Free(h); Free(work);
+  R_Free(d); R_Free(g); R_Free(h); R_Free(work);
 }
 
 void

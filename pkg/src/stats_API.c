@@ -1,4 +1,4 @@
-/* ID: stats_API.c, last updated 2023-07-23, F.Osorio */
+/* ID: stats_API.c, last updated 2024-09-06, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -86,8 +86,8 @@ FM_online_center(double *x, int n, int p, double *weights, double *center)
   double accum = 0.0, factor = 1.0, wts, *diff, *mean;
 
   /* initialization */
-  diff = (double *) Calloc(p, double);
-  mean = (double *) Calloc(p, double);
+  diff = (double *) R_Calloc(p, double);
+  mean = (double *) R_Calloc(p, double);
   BLAS1_copy(mean, 1, x, n, p);
   accum += weights[0];
 
@@ -104,7 +104,7 @@ FM_online_center(double *x, int n, int p, double *weights, double *center)
   /* saving results */
   BLAS1_copy(center, 1, mean, 1, p);
 
-  Free(diff); Free(mean);
+  R_Free(diff); R_Free(mean);
 }
 
 void
@@ -115,9 +115,9 @@ FM_center_and_Scatter(double *x, int n, int p, double *weights, double *center, 
   double accum = 0.0, factor = 1.0, wts, *diff, *mean, *cov;
 
   /* initialization */
-  diff = (double *) Calloc(p, double);
-  mean = (double *) Calloc(p, double);
-  cov  = (double *) Calloc(p * p, double);
+  diff = (double *) R_Calloc(p, double);
+  mean = (double *) R_Calloc(p, double);
+  cov  = (double *) R_Calloc(p * p, double);
   BLAS1_copy(mean, 1, x, n, p); /* copying 1st observation */
   accum += weights[0];
 
@@ -138,7 +138,18 @@ FM_center_and_Scatter(double *x, int n, int p, double *weights, double *center, 
   factor = 1.0 / (double) n;
   FM_scale_mat(Scatter, p, factor, cov, p, p, p);
 
-  Free(diff); Free(mean); Free(cov);
+  R_Free(diff); R_Free(mean); R_Free(cov);
+}
+
+void
+FM_mediancenter(double *x, int n, int p, double *median, int *iter)
+{ /* computes the mediancenter for a sample of multivariate observations
+   * AS 78: Applied Statistics 23, 1974, 466-470. doi: 10.2307/2347150 */
+  int errcode = 0;
+
+  F77_CALL(median_center)(x, &n, &n, &p, median, iter, &errcode);
+  if (errcode != 0)
+    error("median_center gave error code %d", errcode);
 }
 
 void
@@ -190,9 +201,9 @@ FM_cov_MSSD(double *x, int n, int p, double *center, double *Scatter)
   double *curr, *diff, *prev;
 
   /* initialization */
-  curr = (double *) Calloc(p, double);
-  diff = (double *) Calloc(p, double);
-  prev = (double *) Calloc(p, double);
+  curr = (double *) R_Calloc(p, double);
+  diff = (double *) R_Calloc(p, double);
+  prev = (double *) R_Calloc(p, double);
   BLAS1_copy(center, 1, x, n, p); /* copying 1st observation */
   BLAS1_copy(prev, 1, x, n, p); /* copying again */
 
@@ -208,7 +219,7 @@ FM_cov_MSSD(double *x, int n, int p, double *center, double *Scatter)
     BLAS1_axpy(1.0 / accum, diff, 1, center, 1, p);
   }
 
-  Free(curr); Free(diff); Free(prev);
+  R_Free(curr); R_Free(diff); R_Free(prev);
 }
 
 void

@@ -1,4 +1,4 @@
-/* ID: distance_API.c, last updated 2020-10-17, F.Osorio */
+/* ID: distance_API.c, last updated 2024-09-03, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -37,19 +37,19 @@ FM_mahalanobis(double *x, int p, double *center, double *Root)
   double ans, *z;
 
   /* initialization */
-  z = (double *) Calloc(p, double);
+  z = (double *) R_Calloc(p, double);
 
   /* computation of Mahalanobis distance */
   Memcpy(z, x, p);
   BLAS1_axpy(-1.0, center, 1, z, 1, p);
   FM_forwardsolve(Root, p, p, z, p, 1, &info);
   if (info) {
-    Free(z);
+    R_Free(z);
     error("Covariance matrix is possibly singular");
   }
   ans = FM_norm_sqr(z, 1, p);
 
-  Free(z);
+  R_Free(z);
   return ans;
 }
 
@@ -72,7 +72,7 @@ FM_mahal_distances(double *x, int n, int p, double *center, double *cov, int inv
       error("Covariance matrix is possibly singular");
   }
 
-  z = (double *) Calloc(p, double);
+  z = (double *) R_Calloc(p, double);
   uplo = (job) ? "U" : "L";
 
   /* computation of Mahalanobis distance */
@@ -83,5 +83,5 @@ FM_mahal_distances(double *x, int n, int p, double *center, double *cov, int inv
     distances[i] = FM_norm_sqr(z, 1, p);
   }
 
-  Free(z);
+  R_Free(z);
 }

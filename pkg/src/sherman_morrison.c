@@ -1,4 +1,4 @@
-/* $ID: sherman_morrison.c, last updated 2020-11-18, F.Osorio */
+/* $ID: sherman_morrison.c, last updated 2024-09-03, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -16,9 +16,9 @@ FM_sherman_morrison(double *a, int lda, int n, double *b, double *d, int inverte
   int info = 0, *pivot = NULL;
 
   /* initializing */
-  u = (double *) Calloc(n, double);
-  v = (double *) Calloc(n, double);
-  pivot = (int *) Calloc(n, int);
+  u = (double *) R_Calloc(n, double);
+  v = (double *) R_Calloc(n, double);
+  pivot = (int *) R_Calloc(n, int);
 
   /* invert 'a' matrix in-place (if requested) */
   if (!inverted) {
@@ -39,5 +39,5 @@ FM_sherman_morrison(double *a, int lda, int n, double *b, double *d, int inverte
   alpha /= 1.0 + dot;
   BLAS2_ger(alpha, a, lda, n, n, u, 1, v, 1);
 
-  Free(u); Free(v); Free(pivot);
+  R_Free(u); R_Free(v); R_Free(pivot);
 }

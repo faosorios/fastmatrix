@@ -1,4 +1,4 @@
-/* ID: cov.c, last updated 2022-06-01, F.Osorio */
+/* ID: cov.c, last updated 2024-09-06, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -44,7 +44,7 @@ FM_cov2cor(double *cov, int p)
 { /* scales a 'covariance' matrix into the corresponding correlation matrix */
   double *s;
 
-  s = (double *) Calloc(p, double);
+  s = (double *) R_Calloc(p, double);
 
   for (int i = 0; i < p; i++)
     s[i] = cov[i * (p + 1)];
@@ -56,5 +56,6 @@ FM_cov2cor(double *cov, int p)
       *(cov + j + i * p) = *(cov + i + j * p);
     }
   }
-  Free(s);
+
+  R_Free(s);
 }

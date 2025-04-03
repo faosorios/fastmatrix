@@ -1,4 +1,4 @@
-/* $ID: R_init_fastmatrix.c, last updated 2024-01-03, F.Osorio */
+/* $ID: R_init_fastmatrix.c, last updated 2024-09-05, F.Osorio */
 
 #include "fastmatrix.h"
 #include <R_ext/Rdynload.h>
@@ -203,6 +203,7 @@ void R_init_fastmatrix(DllInfo *info) {
   FM_REGDEF(FM_find_quantile);
   FM_REGDEF(FM_geometric_mean);
   FM_REGDEF(FM_mean_and_var);
+  FM_REGDEF(FM_mediancenter);
   FM_REGDEF(FM_moments);
   FM_REGDEF(FM_online_center);
   FM_REGDEF(FM_online_covariance);

@@ -1,4 +1,4 @@
-/* ID: matrix_API.c, last updated 2023-09-14, F.Osorio */
+/* ID: matrix_API.c, last updated 2024-09-03, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -122,10 +122,10 @@ FM_mult_mat(double *z, double *x, int ldx, int xrows, int xcols, double *y, int 
   double one = 1.0, zero = 0.0, *tmp = NULL;
 
   /* use tmp so z can be either x or y */
-  tmp = (double *) Calloc(xrows * ycols, double);
+  tmp = (double *) R_Calloc(xrows * ycols, double);
   F77_CALL(dgemm)(notrans, notrans, &xrows, &ycols, &xcols, &one, x, &ldx, y, &ldy, &zero, tmp, &xrows FCONE FCONE);
   Memcpy(z, tmp, xrows * ycols);
-  Free(tmp);
+  R_Free(tmp);
 }
 
 void
@@ -135,10 +135,10 @@ FM_crossprod(double *z, double *x, int ldx, int xrows, int xcols, double *y, int
   double one = 1.0, zero = 0.0, *tmp = NULL;
 
   /* use tmp so z can be either x or y */
-  tmp = (double *) Calloc(xcols * ycols, double);
+  tmp = (double *) R_Calloc(xcols * ycols, double);
   F77_CALL(dgemm)(trans, notrans, &xcols, &ycols, &xrows, &one, x, &ldx, y, &ldy, &zero, tmp, &xcols FCONE FCONE);
   Memcpy(z, tmp, xcols * ycols);
-  Free(tmp);
+  R_Free(tmp);
 }
 
 void
@@ -148,10 +148,10 @@ FM_tcrossprod(double *z, double *x, int ldx, int xrows, int xcols, double *y, in
   double one = 1.0, zero = 0.0, *tmp = NULL;
 
   /* use tmp so z can be either x or y */
-  tmp = (double *) Calloc(xrows * yrows, double);
+  tmp = (double *) R_Calloc(xrows * yrows, double);
   F77_CALL(dgemm)(notrans, trans, &xrows, &yrows, &xcols, &one, x, &ldx, y, &ldy, &zero, tmp, &xrows FCONE FCONE);
   Memcpy(z, tmp, xrows * yrows);
-  Free(tmp);
+  R_Free(tmp);
 }
 
 void
@@ -290,10 +290,10 @@ FM_svd_decomp(double *mat, int ldmat, int nrow, int ncol, double *u, int ldu, do
 { /* return the SVD decomposition of a rectangular matrix */
   double *work, *upper;
 
-  work  = (double *) Calloc(nrow, double);
-  upper = (double *) Calloc(ncol, double);
+  work  = (double *) R_Calloc(nrow, double);
+  upper = (double *) R_Calloc(ncol, double);
   F77_CALL(dsvdc)(mat, &ldmat, &nrow, &ncol, d, upper, u, &ldu, v, &ldv, work, &job, info);
-  Free(work); Free(upper);
+  R_Free(work); R_Free(upper);
 }
 
 void
@@ -310,9 +310,9 @@ FM_QR_decomp(double *mat, int ldmat, int nrow, int ncol, double *qraux, int *inf
 
   /* calling DGEQRF with optimal size of working array */
   lwork = (int) opt;
-  work = (double *) Calloc(lwork, double);
+  work = (double *) R_Calloc(lwork, double);
   F77_CALL(dgeqrf)(&nrow, &ncol, mat, &ldmat, qraux, work, &lwork, info);
-  Free(work);
+  R_Free(work);
 }
 
 void
@@ -329,9 +329,9 @@ FM_QL_decomp(double *mat, int ldmat, int nrow, int ncol, double *qlaux, int *inf
 
   /* calling DGEQLF with optimal size of working array */
   lwork = (int) opt;
-  work = (double *) Calloc(lwork, double);
+  work = (double *) R_Calloc(lwork, double);
   F77_CALL(dgeqlf)(&nrow, &ncol, mat, &ldmat, qlaux, work, &lwork, info);
-  Free(work);
+  R_Free(work);
 }
 
 void
@@ -348,9 +348,9 @@ FM_LQ_decomp(double *mat, int ldmat, int nrow, int ncol, double *lqaux, int *inf
 
   /* calling DGEQRF with optimal size of working array */
   lwork = (int) opt;
-  work = (double *) Calloc(lwork, double);
+  work = (double *) R_Calloc(lwork, double);
   F77_CALL(dgelqf)(&nrow, &ncol, mat, &ldmat, lqaux, work, &lwork, info);
-  Free(work);
+  R_Free(work);
 }
 
 /* routines for QR, QL and LQ operations */
@@ -373,9 +373,9 @@ FM_QR_qy(double *qr, int ldq, int nrow, int ncol, double *qraux, double *ymat, i
 
   /* calling DORMQR with optimal size of working array */
   lwork = (int) opt;
-  work = (double *) Calloc(lwork, double);
+  work = (double *) R_Calloc(lwork, double);
   F77_CALL(dormqr)(side, notrans, &yrow, &nrhs, &nrflc, qr, &ldq, qraux, ymat, &ldy, work, &lwork, info FCONE FCONE);
-  Free(work);
+  R_Free(work);
 }
 
 void
@@ -396,9 +396,9 @@ FM_QR_qty(double *qr, int ldq, int nrow, int ncol, double *qraux, double *ymat, 
 
   /* calling DORMQR with optimal size of working array */
   lwork = (int) opt;
-  work = (double *) Calloc(lwork, double);
+  work = (double *) R_Calloc(lwork, double);
   F77_CALL(dormqr)(side, trans, &yrow, &nrhs, &nrflc, qr, &ldq, qraux, ymat, &ldy, work, &lwork, info FCONE FCONE);
-  Free(work);
+  R_Free(work);
 }
 
 void
@@ -442,9 +442,9 @@ FM_QL_qy(double *ql, int ldq, int nrow, int ncol, double *qlaux, double *ymat, i
 
   /* calling DORMQL with optimal size of working array */
   lwork = (int) opt;
-  work = (double *) Calloc(lwork, double);
+  work = (double *) R_Calloc(lwork, double);
   F77_CALL(dormql)(side, notrans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, work, &lwork, info FCONE FCONE);
-  Free(work);
+  R_Free(work);
 }
 
 void
@@ -465,9 +465,9 @@ FM_QL_qty(double *ql, int ldq, int nrow, int ncol, double *qlaux, double *ymat, 
 
   /* calling DORMQL with optimal size of working array */
   lwork = (int) opt;
-  work = (double *) Calloc(lwork, double);
+  work = (double *) R_Calloc(lwork, double);
   F77_CALL(dormql)(side, trans, &yrow, &nrhs, &nrflc, ql, &ldq, qlaux, ymat, &ldy, work, &lwork, info FCONE FCONE);
-  Free(work);
+  R_Free(work);
 }
 
 void
@@ -488,9 +488,9 @@ FM_LQ_yq(double *lq, int ldl, int nrow, int ncol, double *lqaux, double *ymat, i
 
   /* calling DORMLQ with optimal size of working array */
   lwork = (int) opt;
-  work = (double *) Calloc(lwork, double);
+  work = (double *) R_Calloc(lwork, double);
   F77_CALL(dormlq)(side, notrans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, work, &lwork, info FCONE FCONE);
-  Free(work);
+  R_Free(work);
 }
 
 void
@@ -511,9 +511,9 @@ FM_LQ_yqt(double *lq, int ldl, int nrow, int ncol, double *lqaux, double *ymat, 
 
   /* calling DORMLQ with optimal size of working array */
   lwork = (int) opt;
-  work = (double *) Calloc(lwork, double);
+  work = (double *) R_Calloc(lwork, double);
   F77_CALL(dormlq)(side, trans, &yrow, &nrhs, &nrflc, lq, &ldl, lqaux, ymat, &ldy, work, &lwork, info FCONE FCONE);
-  Free(work);
+  R_Free(work);
 }
 
 void
@@ -539,13 +539,13 @@ FM_invert_mat(double *a, int lda, int n, int *info)
 
   /* calling DGELS with optimal size of working array */
   lwork = (int) opt;
-  work  = (double *) Calloc(lwork, double);
-  b     = (double *) Calloc(n * n, double);
+  work  = (double *) R_Calloc(lwork, double);
+  b     = (double *) R_Calloc(n * n, double);
   for (int j = 0; j < n; j++)
     b[j * (n + 1)] = 1.0;
   F77_CALL(dgels)(notrans, &n, &n, &n, a, &lda, b, &n, work, &lwork, info FCONE);
   Memcpy(a, b, n * n);
-  Free(b); Free(work);
+  R_Free(b); R_Free(work);
 }
 
 void
@@ -580,9 +580,9 @@ FM_lu_inverse(double *a, int lda, int p, int *pivot, int *info)
   int lwork = p;
   double *work;
 
-  work = (double *) Calloc(lwork, double);
+  work = (double *) R_Calloc(lwork, double);
   F77_CALL(dgetri)(&p, a, &lda, pivot, work, &lwork, info);
-  Free(work);
+  R_Free(work);
 }
 
 void

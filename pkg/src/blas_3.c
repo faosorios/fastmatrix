@@ -32,7 +32,7 @@ void
 BLAS3_trmm(double alpha, double *a, int lda, int nrow, int ncol, char *side, char *uplo,
   char *trans, char *diag, double *y, int ldy)
 { /* y <- alpha * op(a) %*% y, or y <- alpha * y %*% op(a),
-   * with op(x) = x, or op(x) = t(x), with 'a' upper or lower triangular matrix */
+   * with op(x) = x, or op(x) = t(x), and 'a' upper or lower triangular matrix */
   F77_CALL(dtrmm)(side, uplo, trans, diag, &nrow, &ncol, &alpha, a, &lda, y, &ldy FCONE FCONE FCONE FCONE);
 }
 
@@ -40,7 +40,7 @@ void
 BLAS3_trsm(double alpha, double *a, int lda, int nrow, int ncol, char *side, char *uplo,
   char *trans, char *diag, double *y, int ldy)
 { /* solve triangular systems:
-     solve(op(a), alpha * y), or alpha * y %*% solve(t(a)),
+     solve(op(a), alpha * y), or alpha * y %*% solve(op(a)),
      with 'a' upper or lower triangular matrix, solution is overwritten on 'y' */
   F77_CALL(dtrsm)(side, uplo, trans, diag, &nrow, &ncol, &alpha, a, &lda, y, &ldy FCONE FCONE FCONE FCONE);
 }

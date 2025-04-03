@@ -1,4 +1,4 @@
-/* $ID: power_method.c, last updated 2023-02-25, F.Osorio */
+/* $ID: power_method.c, last updated 2024-09-03, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -9,8 +9,8 @@ power_method(double *a, int *lda, int *p, double *x, double *lambda, int *maxite
   double conv, newLambda, *u = NULL, *v = NULL;
   int iter = 0, n = *p;
 
-  u = (double *) Calloc(n, double);
-  v = (double *) Calloc(n, double);
+  u = (double *) R_Calloc(n, double);
+  v = (double *) R_Calloc(n, double);
 
   /* normalizing initial vector */
   Memcpy(u, x, n); /* u <- x */
@@ -38,7 +38,7 @@ power_method(double *a, int *lda, int *p, double *x, double *lambda, int *maxite
   *lambda = newLambda;
   *numIter = iter;
 
-  Free(u); Free(v);
+  R_Free(u); R_Free(v);
 }
 
 void
@@ -47,9 +47,9 @@ inverse_power(double *a, int *lda, int *p, double *x, double *lambda, int *maxit
   double conv, newLambda, *u = NULL, *v = NULL;
   int iter = 0, info = 0, n = *p, one = 1, *pivot = NULL;
 
-  u = (double *) Calloc(n, double);
-  v = (double *) Calloc(n, double);
-  pivot = (int *) Calloc(n, int);
+  u = (double *) R_Calloc(n, double);
+  v = (double *) R_Calloc(n, double);
+  pivot = (int *) R_Calloc(n, int);
 
   /* normalizing initial vector */
   Memcpy(u, x, n); /* u <- x */
@@ -86,6 +86,6 @@ inverse_power(double *a, int *lda, int *p, double *x, double *lambda, int *maxit
   *lambda = newLambda;
   *numIter = iter;
 
-  Free(u); Free(v); Free(pivot);
+  R_Free(u); R_Free(v); R_Free(pivot);
 }
 

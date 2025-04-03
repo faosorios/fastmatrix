@@ -1,4 +1,4 @@
-/* $ID: norms.c, last updated 10-14-2021, F.Osorio */
+/* $ID: norms.c, last updated 2024-09-03, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -39,7 +39,7 @@ matrix_norm(double *a, int *lda, int *nrow, int *ncol, int *job, double *value)
   switch (*job) {
     case 0:
       task = "I";
-      work = (double *) Calloc(*nrow, double);
+      work = (double *) R_Calloc(*nrow, double);
       break;
     case 1:
       task = "1";
@@ -54,5 +54,5 @@ matrix_norm(double *a, int *lda, int *nrow, int *ncol, int *job, double *value)
 
   *value = F77_CALL(dlange)(task, nrow, ncol, a, lda, work FCONE);
   if (*job == 0)
-    Free(work);
+    R_Free(work);
 }

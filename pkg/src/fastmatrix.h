@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2024-01-03, F.Osorio */
+/* ID: fastmatrix.h, last updated 2024-05-10, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -231,6 +231,9 @@ void FM_setzero(double *, int, int, int);
 double FM_trace(double *, int, int);
 void FM_tcrossprod(double *, double *, int, int, int, double *, int, int, int);
 
+/* Householder reflexion */
+void FM_householder(double *, int, double *);
+
 /* operations on triangular matrices */
 void FM_cpy_lower(double *, int, int, double *, int);
 void FM_cpy_upper(double *, int, int, double *, int);
@@ -293,6 +296,7 @@ void FM_cov_MSSD(double *, int, int, double *, double *);
 double FM_find_quantile(double *, int, int);
 void FM_geometric_mean(double *, int, double *);
 void FM_mean_and_var(double *, int, double *, double *);
+void FM_mediancenter(double *, int, int, double *, int *);
 void FM_moments(double *, int, double *, double *, double *, double *);
 void FM_online_covariance(double *, double *, int, double *, double *, double *, double *, double *);
 void FM_online_center(double *, int, int, double *, double *);

@@ -1,4 +1,4 @@
-/* $ID: ls_API.c, last updated 10-14-2021, F.Osorio */
+/* $ID: ls_API.c, last updated 2024-09-03, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -17,10 +17,10 @@ FM_lsfit(double *x, int ldx, int nrow, int ncol, double *y, int ldy, int nrhs, d
 
   /* calling DGELS with optimal size of working array */
   lwork = (int) opt;
-  work = (double *) Calloc(lwork, double);
+  work = (double *) R_Calloc(lwork, double);
   F77_CALL(dgels)(notrans, &nrow, &ncol, &nrhs, x, &ldx, y, &ldy, work, &lwork, info FCONE);
   FM_copy_mat(coef, ncol, y, ldy, ncol, nrhs);
-  Free(work);
+  R_Free(work);
 }
 
 void
@@ -30,7 +30,7 @@ FM_gls_GQR(double *x, int ldx, int nrow, int ncol, double *y, double *cov, doubl
   double opt, dummy, *work, *b, *u;
 
   /* cholesky factorization of 'cov' */
-  b = (double *) Calloc(nrow * nrow, double);
+  b = (double *) R_Calloc(nrow * nrow, double);
   FM_cpy_lower(cov, nrow, nrow, b, nrow);
   FM_chol_decomp(b, nrow, nrow, job, &errcode);
   if (errcode != 0)
@@ -45,8 +45,8 @@ FM_gls_GQR(double *x, int ldx, int nrow, int ncol, double *y, double *cov, doubl
 
   /* calling DGGGLM with optimal size of working array */
   lwork = (int) opt;
-  work = (double *) Calloc(lwork, double);
-  u = (double *) Calloc(nrow, double);
+  work = (double *) R_Calloc(lwork, double);
+  u = (double *) R_Calloc(nrow, double);
   F77_CALL(dggglm)(&nrow, &ncol, &nrow, x, &ldx, b, &nrow, y, coef, u, work, &lwork, &errcode);
-  Free(b); Free(u); Free(work);
+  R_Free(b); R_Free(u); R_Free(work);
 }

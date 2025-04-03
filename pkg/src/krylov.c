@@ -1,4 +1,4 @@
-/* $ID: krylov, last updated 2022-08-01, F.Osorio */
+/* $ID: krylov, last updated 2024-09-03, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -31,7 +31,7 @@ FM_krylov_mat(double *a, int lda, int n, double *b, int m, double *k, int ldk, i
   if ((n == 0) || (m == 0))
     return;
 
-  work = (double *) Calloc(n, double);
+  work = (double *) R_Calloc(n, double);
   Memcpy(work, b, n);
 
   /* 1st column */
@@ -44,4 +44,6 @@ FM_krylov_mat(double *a, int lda, int n, double *b, int m, double *k, int ldk, i
     Memcpy(k, work, n);
     k += ldk;
   }
+
+  R_Free(work);
 }

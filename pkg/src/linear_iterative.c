@@ -1,4 +1,4 @@
-/* $ID: linear_iterative.c, last updated 10-14-2021, F.Osorio */
+/* $ID: linear_iterative.c, last updated 2024-09-03, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -43,9 +43,9 @@ cg_iter(double *a, int lda, int n, double *b, double *x, int maxiter, double tol
   double accum, az, z, scale, ssq;
 
   /* initialization */
-  h = (double *) Calloc(n, double);
-  q = (double *) Calloc(n, double);
-  r = (double *) Calloc(n, double);
+  h = (double *) R_Calloc(n, double);
+  q = (double *) R_Calloc(n, double);
+  r = (double *) R_Calloc(n, double);
 
   /* warming-up */
   scale = 0.0; ssq = 1.0;
@@ -118,7 +118,7 @@ cg_iter(double *a, int lda, int n, double *b, double *x, int maxiter, double tol
       break; /* maximum number of iterations exceeded */
   }
 
-  Free(h); Free(q); Free(r);
+  R_Free(h); R_Free(q); R_Free(r);
 
   return(iter);
 }
@@ -164,7 +164,7 @@ jacobi_iter(double *a, int lda, int n, double *b, double *x, int maxiter, double
   int iter = 0;
   double accum, az, z, check, scale, ssq, *xnew;
 
-  xnew = (double *) Calloc(n, double);
+  xnew = (double *) R_Calloc(n, double);
 
   /* main loop */
   repeat {
@@ -205,7 +205,7 @@ jacobi_iter(double *a, int lda, int n, double *b, double *x, int maxiter, double
     BLAS1_copy(x, 1, xnew, 1, n);
   }
 
-  Free(xnew);
+  R_Free(xnew);
 
   return iter;
 }
@@ -251,7 +251,7 @@ seidel_iter(double *a, int lda, int n, double *b, double *x, int maxiter, double
   int iter = 0;
   double accum, az, z, check, scale, ssq, *xnew;
 
-  xnew = (double *) Calloc(n, double);
+  xnew = (double *) R_Calloc(n, double);
 
   /* main loop */
   repeat {
@@ -294,7 +294,7 @@ seidel_iter(double *a, int lda, int n, double *b, double *x, int maxiter, double
     BLAS1_copy(x, 1, xnew, 1, n);
   }
 
-  Free(xnew);
+  R_Free(xnew);
 
   return iter;
 }

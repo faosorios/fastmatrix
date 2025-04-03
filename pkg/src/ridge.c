@@ -1,4 +1,4 @@
-/* $ID: ridge.c, last updated 2022-02-07, F.Osorio */
+/* $ID: ridge.c, last updated 2024-09-03, F.Osorio */
 
 #include "fastmatrix.h"
 #include "ridge.h"
@@ -24,11 +24,11 @@ OLS_ridge(double *x, int *ldx, int *nrow, int *ncol, double *y, double *coef, do
   double HKB, LW, PEN;
   GCVinfo pars;
 
-  a    = (double *) Calloc(p, double);
-  d    = (double *) Calloc(p, double);
-  rhs  = (double *) Calloc(p, double);
-  v    = (double *) Calloc(p * p, double);
-  pars = (GCVinfo)  Calloc(1, GCV_info);
+  a    = (double *) R_Calloc(p, double);
+  d    = (double *) R_Calloc(p, double);
+  rhs  = (double *) R_Calloc(p, double);
+  v    = (double *) R_Calloc(p * p, double);
+  pars = (GCVinfo)  R_Calloc(1, GCV_info);
 
   /* SVD of the model matrix */
   job = 21; /* left singular vectors overwite 'x' */
@@ -93,7 +93,7 @@ OLS_ridge(double *x, int *ldx, int *nrow, int *ncol, double *y, double *coef, do
   *lw  = LW;
   *rss = pars->RSS;
 
-  Free(a); Free(d); Free(rhs); Free(v); Free(pars);
+  R_Free(a); R_Free(d); R_Free(rhs); R_Free(v); R_Free(pars);
 }
 
 static void
@@ -102,7 +102,7 @@ ridge_default(double lambda, GCVinfo st)
   int n = st->n, p = st->p;
   double *a, div, edf = 0.0, s2;
 
-  a = (double *) Calloc(p, double);
+  a = (double *) R_Calloc(p, double);
 
   /* compute the coefficients and effective degrees of freedom */
   for (int j = 0; j < p; j++) {
@@ -125,7 +125,7 @@ ridge_default(double lambda, GCVinfo st)
   st->edf = edf;
   st->GCV = s2 / (1.0 - edf / n);
 
-  Free(a);
+  R_Free(a);
 }
 
 static void
@@ -169,7 +169,7 @@ log_GCV(double lambda, void *pars)
   int n = st->n, p = st->p;
   double *a, div, edf = 0.0, s2, val;
 
-  a = (double *) Calloc(p, double);
+  a = (double *) R_Calloc(p, double);
 
   /* compute the coefficients and effective degrees of freedom */
   for (int j = 0; j < p; j++) {
@@ -193,7 +193,7 @@ log_GCV(double lambda, void *pars)
   st->edf = edf;
   st->GCV = val;
 
-  Free(a);
+  R_Free(a);
 
   return val;
 }
@@ -211,7 +211,8 @@ fnc1_ddot(double alpha, double d2, double s2, double k) {
 
 static void
 ridge_ORP1(double *lambda, GCVinfo st, double tol, int *maxit)
-{ /* select optimal ridge parameter minimizing the mean squared estimation (MSE) error */
+{ /* select optimal ridge parameter minimizing the mean squared estimation (MSE) error 
+   * based on AS 223: Applied Statistics 36, 1987, 112-118. doi: 10.2307/2347851 */
   int n = st->n, p = st->p, iter = 0;
   double check, d2, f1_dot, f1_ddot, k, knew, s2;
 

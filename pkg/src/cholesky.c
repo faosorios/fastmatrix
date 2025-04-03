@@ -1,4 +1,4 @@
-/* ID: cholesky.c, last updated 2022-02-10, F.Osorio */
+/* ID: cholesky.c, last updated 2024-09-03, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -17,8 +17,8 @@ chol_update(double *r, int *ldr, int *p, double *x)
   double *c, *s;
 
   /* cosines and sines of transforming rotations */
-  c = (double *) Calloc(n, double);
-  s = (double *) Calloc(n, double);
+  c = (double *) R_Calloc(n, double);
+  s = (double *) R_Calloc(n, double);
 
   /* update upper triangular matrix */
   for (int j = 0; j < n; j++) {
@@ -35,5 +35,5 @@ chol_update(double *r, int *ldr, int *p, double *x)
     BLAS1_rotg((r + j + j * n), &xj, (c + j), (s + j));
   }
 
-  Free(c); Free(s);
+  R_Free(c); R_Free(s);
 }

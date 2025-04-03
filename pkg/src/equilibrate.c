@@ -1,4 +1,4 @@
-/* $ID: equilibrate, last updated 2021-11-10, F.Osorio */
+/* $ID: equilibrate, last updated 2024-09-03, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -17,9 +17,9 @@ equilibrate_sym(double *a, int *lda, int *p, double *scales, double *cond, doubl
   char *task = "U";
   double *work;
 
-  work = (double *) Calloc(2 * *p, double);
+  work = (double *) R_Calloc(2 * *p, double);
   F77_CALL(dsyequb)(task, p, a, lda, scales, cond, largest, work, info FCONE);
-  Free(work);
+  R_Free(work);
 }
 
 void
