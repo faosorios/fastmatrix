@@ -1,4 +1,8 @@
-0.5-772 (Jan 16, 2024)
+0.5-7721 (Sep 6, 2024)
+ * Fortran symbol for computation of mediancenter is now in the API provided by fastmatrix.
+ * Deprecated declarations of Calloc and Free are not longer used in the package.
+
+0.5-772 (Jan 17, 2024)
  * Function to compute the Wilson-Hilferty transformation for chi-squared random variables
    has been renamed WH.normal
  * Wilson-Hilferty transformation now allows manipulation of Gamma distributed variates.
