@@ -21,8 +21,11 @@ cov.weighted(x, weights = rep(1, nrow(x)))
 }
 \details{
   The covariance matrix is divided by the number of observations, which arise for
-  instance, when we use the class of elliptical contoured distributions. This differs
-  from the behaviour of function \code{\link{cov.wt}}.
+  instance, when we use the class of elliptical contoured distributions. Thus,
+  \deqn{W_n = \sum\limits_{i=1}^n w_i, \qquad \overline{\bold{x}}_n = \frac{1}{W_n} 
+    \sum\limits_{i=1}^n w_i\bold{x}_i \qquad \bold{S}_n = \frac{1}{n} \sum\limits_{i=1}^n 
+    w_i (\bold{x}_i - \overline{\bold{x}}_n)(\bold{x}_i - \overline{\bold{x}}_n)^T.}
+  This differs from the behaviour of function \code{\link{cov.wt}}. 
 }
 \seealso{
   \code{\link{cov.wt}}, \code{\link{cov}} and \code{\link{var}}.

@@ -19,7 +19,8 @@ cov.MSSD(x)
 \details{
   This procedure uses the Holmes-Mergen method using the difference between each
   successive pairs of observations also known as Mean Square Successive Method (MSSD)
-  to estimate the covariance matrix.
+  to estimate the covariance matrix, which is given by
+  \deqn{\bold{S}_{HD} = \frac{1}{2(n-1)} \sum\limits_{i=2}^n (\bold{x}_i - \bold{x}_{i-1})(\bold{x}_i - \bold{x}_{i-1})^T.}
 }
 \seealso{
   \code{\link{cov}} and \code{\link{var}}.
