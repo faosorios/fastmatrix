@@ -22,7 +22,7 @@ function(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol =
   p <- dx[2]
   storage.mode(x) <- "double"
   storage.mode(y) <- "double"
-  method <- pmatch(method, c("none", "grid", "GCV", "MSE"))
+  method <- pmatch(method, c("none", "grid", "GCV", "MSE", "HK"))
 
   grid <- length(lambda)
   default <- lambda[1]
