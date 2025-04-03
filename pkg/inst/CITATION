@@ -5,10 +5,10 @@ bibentry(bibtype = "Manual",
          author = c(as.person("F. Osorio"),
                     as.person("A. Ogueda")),
          year = "2024",
-         note = "R package version 0.5-772",
+         note = "R package version 0.5-7721",
          url  = "https://faosorios.github.io/fastmatrix/",
          textVersion =
           paste("Osorio, F., Ogueda, A. (2024).",
                 "Fast computation of some matrices useful in statistics.",
-                "R package version 0.5-772.", "URL: https://faosorios.github.io/fastmatrix/")
+                "R package version 0.5-7721.", "URL: https://faosorios.github.io/fastmatrix/")
 )
