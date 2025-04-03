@@ -1,4 +1,4 @@
-/* $ID: fastmatrix_API.h, last updated 2024-01-03, F.Osorio */
+/* $ID: fastmatrix_API.h, last updated 2024-05-10, F.Osorio */
 
 #ifndef FASTMATRIX_API_H
 #define FASTMATRIX_API_H
@@ -730,6 +730,13 @@ void FM_mean_and_var(double *x, int nobs, double *mean, double *var) {
   if (fun == NULL)
     fun = (void(*)(double *, int, double *, double *)) R_GetCCallable("fastmatrix", "FM_mean_and_var");
   fun(x, nobs, mean, var);
+}
+
+void FM_mediancenter(double *x, int n, int p, double *median, int *iter) {
+  static void(*fun)(double *, int, int, double *, int *) = NULL;
+  if (fun == NULL)
+    fun = (void(*)(double *, int, int, double *, int *)) R_GetCCallable("fastmatrix", "FM_mediancenter");
+  fun(x, n, p, median, iter);
 }
 
 void FM_moments(double *x, int nobs, double *mean, double *s2, double *s3, double *s4) {
