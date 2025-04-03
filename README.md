@@ -1,4 +1,4 @@
-# Fast computation of some matrices useful in statistics
+# fastmatrix: Fast computation of some matrices useful in statistics
 
 [![CRAN status](http://www.r-pkg.org/badges/version/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
 ![CRAN/METACRAN](https://img.shields.io/cran/l/fastmatrix?color=informational)
@@ -102,9 +102,28 @@ Next, you can load the package by using the command: `library(fastmatrix)`
 Please report any bugs/suggestions/improvements to [Felipe Osorio](https://faosorios.github.io/). If you find these routines useful or not then please let me know. Also, acknowledgement of the use of the routines is appreciated.
 
 ### To cite the fastmatrix package in publications use:
+``` r
+citation("fastmatrix")
 
-Osorio, F., Ogueda, A. (2024). fastmatrix: Fast computation of some matrices useful in statistics. 
-R package version 0.5-7721. URL: [faosorios.github.io/fastmatrix](https://faosorios.github.io/fastmatrix/)
+To cite fastmatrix in publications use:
+
+  Osorio, F., Ogueda, A. (2024). Fast computation of some matrices
+  useful in statistics. R package version 0.5-7721. URL:
+  https://faosorios.github.io/fastmatrix/
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {Fast computation of some matrices useful in statistics},
+    author = {F. Osorio and A. Ogueda},
+    year = {2024},
+    note = {R package version 0.5-7721},
+    url = {https://faosorios.github.io/fastmatrix/},
+  }
+```
+## Papers using fastmatrix
+- Guglielmini, S., Claeskens, G. (2025). Asymptotic post-selection inference for regularized graphical models. [Statistics and Computing](https://doi.org/10.1007/s11222-025-10564-3) 35, 36.
+- van Buuren, S. (2023). Evaluation and prediction of individual growth trajectories. [Annals of Human Biology](https://doi.org/10.1080/03014460.2023.2190619) 50, 247–257.
 
 ## About the Authors
 
