@@ -122,6 +122,7 @@ A BibTeX entry for LaTeX users is
   }
 ```
 ## Papers using fastmatrix
+- Ogueda, A., Osorio, F. (2025). Influence diagnostics for ridge regression using the Kullback-Leibler divergence. [Statistical Papers](https://doi.org/10.1007/s00362-025-01701-1) 66, 85.
 - Guglielmini, S., Claeskens, G. (2025). Asymptotic post-selection inference for regularized graphical models. [Statistics and Computing](https://doi.org/10.1007/s11222-025-10564-3) 35, 36.
 - van Buuren, S. (2023). Evaluation and prediction of individual growth trajectories. [Annals of Human Biology](https://doi.org/10.1080/03014460.2023.2190619) 50, 247–257.
 
