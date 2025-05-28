@@ -45,7 +45,7 @@ ridge(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol = 1e
 \details{
   \code{ridge} function fits in linear ridge regression \bold{without} scaling or centering
   the regressors and the response. In addition, If an intercept is present in the model, its
-  coefficient is penalized.)
+  coefficient is penalized.
 }
 \value{
   A list with the following components:
