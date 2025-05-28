@@ -1,3 +1,8 @@
+0.5-9017 (May 27, 2025)
+ * Function for the computation of a square root of a matrix was included.
+ * Added function to form a Hankel matrix.
+ * Added a new function to evaluate a real general matrix polynomial.
+
 0.5-7721 (Sep 6, 2024)
  * Fortran symbol for computation of mediancenter is now in the API provided by fastmatrix.
  * Deprecated declarations of Calloc and Free are not longer used in the package.

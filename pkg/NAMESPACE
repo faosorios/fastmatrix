@@ -6,17 +6,27 @@ importFrom("stats",
            model.matrix, model.response, pchisq, pt, quantile, var)
 
 ## Our exports:
-export(array.mult, asSymmetric, bezier, bracket.prod, cg, cholupdate, circulant,
-       comm.info, comm.prod, commutation, constructX, corAR1, corCS, cov.MSSD,
-       cov.weighted, dupl.cross, dupl.info, dupl.prod, duplication, equilibrate,
-       extractL, extractU, frank, geomean, hadamard, harris.test, helmert, 
-       JarqueBera.test, kurtosis, krylov, is.lu, is.lower.tri, is.upper.tri, 
-       jacobi, kronecker.prod, ldl, lu, lu2inv, Mahalanobis, matrix.inner, 
-       matrix.norm, mchol, mediancenter, minkowski, moments, ols, ols.fit, 
-       ols.fit.cg, ols.fit.chol, ols.fit.qr, ols.fit.svd, ols.fit.sweep, 
-       power.method, rball, ridge, rmnorm, rsphere, scaled.condition, seidel, 
-       sherman.morrison, skewness, sweep.operator, symm.info, symm.prod, symmetrizer, 
-       vec, vech, WH.normal, whitening, wilson.hilferty)
+export(array.mult, asSymmetric, 
+       bezier, bracket.prod,
+       cg, cholupdate, circulant, comm.info, comm.prod, commutation, constructX, corAR1, corCS, cov.MSSD, cov.weighted, 
+       dupl.cross, dupl.info, dupl.prod, duplication, 
+       equilibrate, extractL, extractU, 
+       frank, 
+       geomean, 
+       hadamard, hankel, harris.test, helmert, 
+       JarqueBera.test, 
+       kurtosis, krylov, 
+       is.lu, is.lower.tri, is.upper.tri, 
+       jacobi, 
+       kronecker.prod, 
+       ldl, lu, lu2inv, 
+       Mahalanobis, matrix.inner, matrix.norm, matrix.polynomial, matrix.sqrt, mchol, mediancenter, minkowski, moments, 
+       ols, ols.fit, ols.fit.cg, ols.fit.chol, ols.fit.qr, ols.fit.svd, ols.fit.sweep, 
+       power.method, 
+       rball, ridge, rmnorm, rsphere, 
+       scaled.condition, seidel, sherman.morrison, skewness, sweep.operator, symm.info, symm.prod, symmetrizer, 
+       vec, vech, 
+       WH.normal, whitening, wilson.hilferty)
 
 # Exported S3 methods
 export(lu.default, solve.lu)
