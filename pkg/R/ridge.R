@@ -1,4 +1,4 @@
-## ID: ridge.R, last updated 2023-06-06, F.Osorio
+## ID: ridge.R, last updated 2025-05-18, F.Osorio
 
 ridge <-
 function(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol = 1e-07,
@@ -22,7 +22,7 @@ function(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol =
   p <- dx[2]
   storage.mode(x) <- "double"
   storage.mode(y) <- "double"
-  method <- pmatch(method, c("none", "grid", "GCV", "MSE", "HK"))
+  method <- pmatch(method, c("none", "grid", "GCV", "MSE", "Frechet"))
 
   grid <- length(lambda)
   default <- lambda[1]
@@ -51,6 +51,12 @@ function(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol =
          },
          "MSE" = {
            task <- 3
+           lambda <- default
+           ngrid <- 1
+           gcv <- 0.0
+         },
+         "Frechet" = {
+           task <- 4
            lambda <- default
            ngrid <- 1
            gcv <- 0.0
@@ -119,6 +125,10 @@ print.ridge <- function(x, digits = max(3L, getOption("digits") - 3L), ...)
          },
          "MSE" = {
            cat("Optimal ridge parameter:", format(round(x$lambda, 4)))
+           cat(" (converged in", x$iterations, "iterations)\n")
+         },
+         "Frechet" = {
+           cat("Selected ridge parameter:", format(round(x$lambda, 4)))
            cat(" (converged in", x$iterations, "iterations)\n")
          })
   cat("\nNumber of observations:", x$dims[1], "\n")
