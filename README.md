@@ -18,11 +18,13 @@ Latest release (Sep 06, 2024) of [fastmatrix](https://github.com/faosorios/fastm
 * Bezier curve based on n+1 control points.
 * C version of the Kronecker product which is slightly faster than the built in R base.
 * Column-equilibration for rectangular and symmetric matrices.
+* Computation of a matrix square root using the Newton iteration proposed by Denman and Beavers (1976).
 * Constructors for AR(1) and compound symmetry correlation matrices.
-* Constructors for Frank and Helmert matrices.
+* Constructors for Frank, Hankel and Helmert matrices.
 * Covariance matrix estimation using the Mean Square Successive (MSSD) method.
 * Estimation of the weighted mean and covariance matrix using an online algorithm (Clarke, 1971).
 * Computation of central moments up to fourth order using an online algorithm (Spicer, 1972).
+* Evaluation of a real general matrix polynomial using Horner's scheme.
 * Fast computation of Hadamard product using unrolled loops.
 * Gauss-Seidel, Jacobi and conjugate gradients (CG) iterative methods for solving linear systems.
 * Geometric mean using a Fused-Multiply-and-Add (FMA) compensated scheme for accurate computation of floating-point product.
@@ -65,16 +67,16 @@ Our plan in the near future is the implementation of functions to handle:
 
 ## Resources
 
-Version 0.5-7721 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
+Version 0.5-9017 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
-* [fastmatrix_0.5-7721.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.5-7721.tar.gz) - Package sources
+* [fastmatrix_0.5-9017.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.5-9017.tar.gz) - Package sources
 * [fastmatrix_0.5-7721.zip](https://cran.r-project.org/bin/windows/contrib/4.4/fastmatrix_0.5-7721.zip) - Windows binaries (R-release)
 * [fastmatrix_0.5-7721.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.4/fastmatrix_0.5-7721.tgz) - MacOS binaries (R-release, arm64)
 * [fastmatrix_0.5-7721.tgz](https://cran.r-project.org/bin/macosx/big-sur-x86_64/contrib/4.4/fastmatrix_0.5-7721.tgz) - MacOS binaries (R-release, x86_64)
 
 ## Installation instructions
 
-To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.5-7721)** from CRAN, start R and enter:
+To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.5-9017)** from CRAN, start R and enter:
 ```r
 install.packages("fastmatrix")
 ```
@@ -107,8 +109,8 @@ citation("fastmatrix")
 
 To cite fastmatrix in publications use:
 
-  Osorio, F., Ogueda, A. (2024). Fast computation of some matrices
-  useful in statistics. R package version 0.5-7721. URL:
+  Osorio, F., Ogueda, A. (2025). Fast computation of some matrices
+  useful in statistics. R package version 0.5-9017. URL:
   https://faosorios.github.io/fastmatrix/
 
 A BibTeX entry for LaTeX users is
@@ -116,8 +118,8 @@ A BibTeX entry for LaTeX users is
   @Manual{,
     title = {Fast computation of some matrices useful in statistics},
     author = {F. Osorio and A. Ogueda},
-    year = {2024},
-    note = {R package version 0.5-7721},
+    year = {2025},
+    note = {R package version 0.5-9017},
     url = {https://faosorios.github.io/fastmatrix/},
   }
 ```
