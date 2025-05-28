@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2024-05-10, F.Osorio */
+/* ID: fastmatrix.h, last updated 2025-05-26, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -23,6 +23,7 @@
 #define CUBE(x)         R_pow_di(x, 3)
 #define DNULLP          (double *) 0
 #define EPS_CONV        1.0e-2
+#define EPS_TINY        3.6668528625010358e-11
 #define FOURTH(x)       R_pow_di(x, 4)
 #define GOLDEN          0.3819660112501051
 #define IZERO(x)        (((x) == 0) ? 1 : 0)
@@ -156,10 +157,13 @@ void F77_NAME(decasteljau)(double *, double *, int *, double *, double *);
 /* misc */
 void F77_NAME(circulant_mat)(double *, int *, double *, int *, int *);
 void hadamard_prod(double *, double *, int *, double *);
+void F77_NAME(hankel_mat)(double *, double *, int *, double *, int *, int *);
 void F77_NAME(inner_frobenius)(double *, int *, double *, int *, int *, int *, double *);
 void mat2vech(double *, int *, int *, double *);
+void matrix_polynomial(double *, int *, int *, double *, int *, double *, int *, int *);
 void F77_NAME(pivot_mat)(double *, int *, int *, int *);
 void Psi2Q(double *, double *, int *);
+void sqrt_mat_DB(double *, int *, int *, int *, int *, double *, int *);
 void whitening_chol(double *, int *, int *, double *);
 
 /* ========================================================================== *
@@ -311,6 +315,7 @@ void FM_cor_CS(double *, int, double);
 void FM_centering(double *, int, int, double *);
 void FM_cov2cor(double *, int);
 void FM_krylov_mat(double *, int, int, double *, int, double *, int, int *);
+void FM_polymat(double *, int, int, double *, int, double *, int, int *);
 void FM_sherman_morrison(double *, int, int, double *, double *, int);
 
 /* 'DEBUG' routine */

@@ -1,4 +1,4 @@
-/* $ID: ridge.c, last updated 2024-09-03, F.Osorio */
+/* $ID: ridge.c, last updated 2025-05-18, F.Osorio */
 
 #include "fastmatrix.h"
 #include "ridge.h"
@@ -198,7 +198,7 @@ log_GCV(double lambda, void *pars)
   return val;
 }
 
-/* functions to evaluate the MSE criterion and its derivatives, which are called
+/* functions to evaluate the derivatives of the MSE criterion, which are called
  * by ridge_ORP1 (nested functions are forbidden in ISO C) */
 static double
 fnc1_dot(double alpha, double d2, double s2, double k) {
@@ -211,8 +211,8 @@ fnc1_ddot(double alpha, double d2, double s2, double k) {
 
 static void
 ridge_ORP1(double *lambda, GCVinfo st, double tol, int *maxit)
-{ /* select optimal ridge parameter minimizing the mean squared estimation (MSE) error 
-   * based on AS 223: Applied Statistics 36, 1987, 112-118. doi: 10.2307/2347851 */
+{ /* select optimal ridge parameter minimizing the mean squared estimation (MSE) error
+   * AS 223: Applied Statistics 36, 1987, 112-118. doi: 10.2307/2347851 */
   int n = st->n, p = st->p, iter = 0;
   double check, d2, f1_dot, f1_ddot, k, knew, s2;
 
