@@ -18,7 +18,6 @@ Latest release (May 27, 2025) of [fastmatrix](https://github.com/faosorios/fastm
 * Bezier curve based on n+1 control points.
 * C version of the Kronecker product which is slightly faster than the built in R base.
 * Column-equilibration for rectangular and symmetric matrices.
-* Computation of a matrix square root using the Newton iteration proposed by Denman and Beavers (1976).
 * Constructors for AR(1) and compound symmetry correlation matrices.
 * Constructors for Frank, Hankel and Helmert matrices.
 * Covariance matrix estimation using the Mean Square Successive (MSSD) method.
@@ -36,6 +35,7 @@ Latest release (May 27, 2025) of [fastmatrix](https://github.com/faosorios/fastm
 * Lp norms for vectors.
 * LU factorization for square matrices.
 * Mahalanobis distances, checking if the covariance is a positive definite matrix.
+* Matrix square root using the Newton iteration proposed by Denman and Beavers (1976).
 * Modified Cholesky factorization for symmetric but not necessarily positive definite matrices.
 * Omnibus test for univariate normality (Jarque-Bera, Doornik-Hansen, Adjusted Lagrange multiplier test and robust version by Gel and Gastwirt, 2008).
 * Operations envolving the **commutation matrix**, with minimum requirements of storage.
