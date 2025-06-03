@@ -21,8 +21,8 @@ Latest release (May 27, 2025) of [fastmatrix](https://github.com/faosorios/fastm
 * Constructors for AR(1) and compound symmetry correlation matrices.
 * Constructors for Frank, Hankel and Helmert matrices.
 * Covariance matrix estimation using the Mean Square Successive (MSSD) method.
-* Estimation of the weighted mean and covariance matrix using an online algorithm (Clarke, 1971).
-* Computation of central moments up to fourth order using an online algorithm (Spicer, 1972).
+* Estimation of the weighted mean and covariance matrix using an online algorithm ([Clarke, 1971](https://doi.org/10.2307/2346477)).
+* Computation of central moments up to fourth order using an online algorithm ([Spicer, 1972](https://doi.org/10.2307/2346477)).
 * Evaluation of a real general matrix polynomial using Horner's scheme.
 * Fast computation of Hadamard product using unrolled loops.
 * Gauss-Seidel, Jacobi and conjugate gradients (CG) iterative methods for solving linear systems.
@@ -35,9 +35,9 @@ Latest release (May 27, 2025) of [fastmatrix](https://github.com/faosorios/fastm
 * Lp norms for vectors.
 * LU factorization for square matrices.
 * Mahalanobis distances, checking if the covariance is a positive definite matrix.
-* Matrix square root using the Newton iteration proposed by Denman and Beavers (1976).
+* Matrix square root using the Newton iteration proposed by [Denman and Beavers (1976)](https://doi.org/10.1016/0096-3003(76)90020-5).
 * Modified Cholesky factorization for symmetric but not necessarily positive definite matrices.
-* Omnibus test for univariate normality (Jarque-Bera, Doornik-Hansen, Adjusted Lagrange multiplier test and robust version by Gel and Gastwirt, 2008).
+* Omnibus test for univariate normality (Jarque-Bera, Doornik-Hansen, Adjusted Lagrange multiplier test and robust version by [Gel and Gastwirt, 2008](https://doi.org/10.1016/j.econlet.2007.05.022)).
 * Operations envolving the **commutation matrix**, with minimum requirements of storage.
 * Operations envolving the **duplication matrix**, with minimum requirements of storage.
 * Operations envolving the **symmetrizer matrix**, with minimum requirements of storage.
@@ -48,12 +48,12 @@ Latest release (May 27, 2025) of [fastmatrix](https://github.com/faosorios/fastm
 * Random number generation of uniformly distributed deviats located **on** a spherical surface.
 * Rank 1 update to Cholesky factorization.
 * Ridge estimation for linear regression.
-* Routines to compute measures of multivariate skewness and kurtosis proposed by Mardia (1970).
+* Routines to compute measures of multivariate skewness and kurtosis proposed by [Mardia (1970)](https://doi.org/10.2307/2346576).
 * Routine for the computation of the mediancenter (or geometric median) of multivariate data.
 * Routine to compute a Krylov matrix.
 * Sherman-Morrison formula.
 * Sweep operator for symmetric matrices.
-* Test for variance homogeneity of correlated variables (Harris, 1985).
+* Test for variance homogeneity of correlated variables ([Harris, 1985](https://doi.org/10.1093/biomet/72.1.103)).
 * vec and vech operators to handle rectangular and square matrices.
 * Whitening transformation.
 * Wilson-Hilferty transformation for Gamma random variables.
