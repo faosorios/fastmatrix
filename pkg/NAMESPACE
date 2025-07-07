@@ -3,12 +3,13 @@ useDynLib(fastmatrix, .registration = TRUE)
 ## from "stats" package:
 importFrom("stats",
            .getXlevels, coef, complete.cases, cov, cov2cor, logLik, median, 
-           model.matrix, model.response, pchisq, pt, quantile, var)
+           model.matrix, model.response, na.fail, na.omit, pchisq, pt, qnorm, 
+           quantile, terms, var)
 
 ## Our exports:
 export(array.mult, asSymmetric, 
        bezier, bracket.prod,
-       cg, cholupdate, circulant, comm.info, comm.prod, commutation, constructX, corAR1, corCS, cov.MSSD, cov.weighted, 
+       ccc, cg, cholupdate, circulant, comm.info, comm.prod, commutation, constructX, corAR1, corCS, cov.MSSD, cov.weighted, 
        dupl.cross, dupl.info, dupl.prod, duplication, 
        equilibrate, extractL, extractU, 
        frank, 
@@ -35,6 +36,7 @@ export(lu.default, solve.lu)
 S3method(deviance, ols)
 S3method(logLik, ols)
 S3method(lu, default)
+S3method(print, ccc)
 S3method(print, Harris.test)
 S3method(print, JarqueBera.test)
 S3method(print, ols)

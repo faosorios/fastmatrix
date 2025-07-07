@@ -1,8 +1,8 @@
 Package: fastmatrix
 Type: Package
 Title: Fast Computation of some Matrices Useful in Statistics
-Version: 0.5-9017
-Date: 2025-05-27
+Version: 0.6
+Date: 2025-06-25
 Authors@R: c(person("Felipe", "Osorio", role = c("aut", "cre"),
                     email = "faosorios.stat@gmail.com",
                     comment = c(ORCID = "0000-0002-4675-5201")),
@@ -25,6 +25,6 @@ Description: Small set of functions to fast computation of some matrices and ope
   to C code callable by another C code from other R packages.
 Depends: R(>= 3.5.0)
 License: GPL-3
-URL: https://faosorios.github.io/fastmatrix/
+URL: https://github.com/faosorios/fastmatrix
 NeedsCompilation: yes
 LazyLoad: yes
