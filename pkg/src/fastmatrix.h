@@ -143,6 +143,9 @@ void rng_sphere(double *, int *, int *);
 void cor_AR1(double *, int *, double *);
 void cor_CS(double *, int *, double *);
 
+/* kernel U-statistics for asymptotic variance estimation of CCC */
+void F77_NAME(rhoc_ustat)(double *, double *, int *, double *, double *, double *);
+
 /* sweep operator for symmetric matrices */
 void sweep_operator(double *, int *, int *, int *, int *, int *);
 void F77_NAME(sweepop)(double *, int *, int *, int *, int *, int *);

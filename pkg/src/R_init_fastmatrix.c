@@ -89,6 +89,7 @@ static const R_FortranMethodDef F77Entries[] = {
   F77DEF(murrv,                   7),
   F77DEF(pivot_mat,               4),
   F77DEF(quadf,                   4),
+  F77DEF(rhoc_ustat,              6),
   F77DEF(symmetrizer_mat,         8),
   {NULL, NULL, 0}
 };
