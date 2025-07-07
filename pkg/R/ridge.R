@@ -1,4 +1,4 @@
-## ID: ridge.R, last updated 2025-05-18, F.Osorio
+## ID: ridge.R, last updated 2025-05-29, F.Osorio
 
 ridge <-
 function(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol = 1e-07,
@@ -22,7 +22,7 @@ function(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol =
   p <- dx[2]
   storage.mode(x) <- "double"
   storage.mode(y) <- "double"
-  method <- pmatch(method, c("none", "grid", "GCV", "MSE", "Frechet"))
+  method <- pmatch(method, c("none", "grid", "GCV", "MSE"))
 
   grid <- length(lambda)
   default <- lambda[1]
@@ -51,12 +51,6 @@ function(formula, data, subset, lambda = 1.0, method = "GCV", ngrid = 200, tol =
          },
          "MSE" = {
            task <- 3
-           lambda <- default
-           ngrid <- 1
-           gcv <- 0.0
-         },
-         "Frechet" = {
-           task <- 4
            lambda <- default
            ngrid <- 1
            gcv <- 0.0
