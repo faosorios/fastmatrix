@@ -1,4 +1,4 @@
-/* $ID: fastmatrix_API.h, last updated 2024-05-10, F.Osorio */
+/* $ID: fastmatrix_API.h, last updated 2025-10-14, F.Osorio */
 
 #ifndef FASTMATRIX_API_H
 #define FASTMATRIX_API_H
@@ -446,6 +446,15 @@ void FM_LQ_decomp(double *mat, int ldmat, int nrow, int ncol, double *lqaux, int
   if (fun == NULL)
     fun = (void(*)(double *, int, int, int, double *, int *)) R_GetCCallable("fastmatrix", "FM_LQ_decomp");
   fun(mat, ldmat, nrow, ncol, lqaux, info);
+}
+
+void FM_schur_decomp(double *a, int lda, int n, int task, double *re, double *im, double *v, int ldv, int *info) {
+  static void(*fun)(double *, int, int, int, double *, double *, double *, 
+                    int, int *) = NULL;
+  if (fun == NULL)
+    fun = (void(*)(double *, int, int, int, double *, double *, double *, 
+                   int, int *)) R_GetCCallable("fastmatrix", "FM_schur_decomp");
+  fun(a, lda, n, task, re, im, v, ldv, info);
 }
 
 void FM_svd_decomp(double *mat, int ldmat, int nrow, int ncol, double *u, int ldu, double *d, double *v, int ldv, int job, int *info) {

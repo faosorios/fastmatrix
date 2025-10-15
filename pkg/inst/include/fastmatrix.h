@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2024-05-10, F.Osorio */
+/* ID: fastmatrix.h, last updated 2025-10-14, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -73,6 +73,7 @@ void FM_lu_decomp(double *a, int lda, int n, int p, int *pivot, int *info);
 void FM_QR_decomp(double *mat, int ldmat, int nrow, int ncol, double *qraux, int *info);
 void FM_QL_decomp(double *mat, int ldmat, int nrow, int ncol, double *qlaux, int *info);
 void FM_LQ_decomp(double *mat, int ldmat, int nrow, int ncol, double *lqaux, int *info);
+void FM_schur_decomp(double *a, int lda, int n, int task, double *re, double *im, double *v, int ldv, int *info);
 void FM_svd_decomp(double *mat, int ldmat, int nrow, int ncol, double *u, int ldu, double *d, double *v, int ldv, int job, int *info);
 
 /* QR, QL and LQ operations */
