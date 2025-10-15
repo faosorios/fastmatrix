@@ -1,7 +1,7 @@
 ## ID: condition.R, last updated 2023-10-10, F.Osorio
 
 scaled.condition <- function(x, scales = FALSE)
-{ # scaled condition number
+{ ## scaled condition number
   if (!is.matrix(x))
     stop("supply a matrix-like 'x'")
   if (!is.numeric(x))

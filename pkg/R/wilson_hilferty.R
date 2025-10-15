@@ -1,7 +1,7 @@
 ## ID: wilson_hilferty.R, last updated 2024-01-03, F.Osorio
 
 wilson.hilferty <- function(x, shape, rate = 1)
-{ # Wilson-Hilferty transformation for gamma deviates
+{ ## Wilson-Hilferty transformation for gamma deviates
   if (!is.vector(x))
     stop("'x' must be a vector")
   if (!all(is.finite(x)))
@@ -27,7 +27,7 @@ wilson.hilferty <- function(x, shape, rate = 1)
 }
 
 WH.normal <- function(x)
-{ # Wilson-Hilferty transformation for multivariate normal deviates
+{ ## Wilson-Hilferty transformation for multivariate normal deviates
   if (is.data.frame(x))
     x <- as.matrix(x)
   else if (!is.matrix(x))

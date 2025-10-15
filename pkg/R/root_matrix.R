@@ -1,7 +1,7 @@
-## ID: root_matrix.R, last updated 2025-05-26, F.Osorio
+## ID: root_matrix.R, last updated 2025-10-14, F.Osorio
 
-matrix.sqrt <- function(a, maxiter = 50, tol = 1e-8)
-{ ## rank-1 update to Cholesky factorization
+matrix.sqrt <- function(a, method = "DB", maxiter = 50, tol = 1e-8)
+{ ## square root of a square matrix
   if (is.data.frame(a))
     a <- as.matrix(a)
   if (!is.matrix(a))
@@ -15,17 +15,27 @@ matrix.sqrt <- function(a, maxiter = 50, tol = 1e-8)
   if (n != p)
     stop("argument a is not a square matrix")
   storage.mode(a) <- "double"
+  method <- pmatch(method, c("DB", "schur"))
 
-  z <- .C("sqrt_mat_DB",
-          a = a,
-          lda = as.integer(n),
-          n = as.integer(n),
-          info = as.integer(0),
-          maxiter = as.integer(maxiter),
-          tol = as.double(tol),
-          iterations = as.integer(0))[c("a","iterations")]
-  iterations <- z$iterations
-  z <- z$a
-  attr(z, 'iterations') <- iterations
+   switch(method,
+         "DB" = {
+            z <- .C("sqrt_mat_DB",
+                    a = a,
+                    lda = as.integer(n),
+                    n = as.integer(n),
+                    maxiter = as.integer(maxiter),
+                    tol = as.double(tol),
+                    iterations = as.integer(0))[c("a","iterations")]
+            iterations <- z$iterations
+            z <- z$a
+            attr(z, 'iterations') <- iterations
+         },
+         "schur" = {
+            z <- .C("sqrt_mat_schur",
+                    a = a,
+                    lda = as.integer(n),
+                    n = as.integer(n))
+            z <- z$a
+         })
   z
 }

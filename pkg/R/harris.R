@@ -2,7 +2,9 @@
 
 harris.test <-
 function(x, test = "Wald")
-{
+{ ## Test for variance homogeneity of correlated variables
+  ## Harris, P. (1985). Biometrika 72, 103-107.
+  ## doi: 10.1093/biomet/72.1.103
   z <- as.matrix(x)
   if (!is.numeric(z))
     stop("harris applies only to numerical variables")
@@ -11,10 +13,10 @@ function(x, test = "Wald")
   n <- dz[1]
   p <- dz[2]
 
-  ## sample covariance matrix under normality
+  # sample covariance matrix under normality
   S <- cov(z)
 
-  ## contrast matrix
+  # contrast matrix
   H <- cbind(-1, diag(p - 1))
 
   switch(test,
@@ -89,7 +91,7 @@ function(x, test = "Wald")
   df <- p - 1
   pval <- 1 - pchisq(stat, df = df)
 
-  ## output object
+  # output object
   z <- list(statistic = stat, parameter = df, p.value = pval, estimate = S, method = method)
   class(z) <- "Harris.test"
   z
@@ -97,7 +99,7 @@ function(x, test = "Wald")
 
 print.Harris.test <- function(x, digits = 4, ...)
 {
-  ## local function
+  # local function
   print.symmetric <-
   function(z, digits = digits, ...)
   {

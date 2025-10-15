@@ -3,7 +3,7 @@
 bezier <- function(x, y, ngrid = 200)
 { ## smoothing via Bezier curve
 
-  ## validating arguments
+  # validating arguments
   if (!is.vector(x))
     x <- as.vector(x)
   if (!is.numeric(x))
@@ -13,7 +13,7 @@ bezier <- function(x, y, ngrid = 200)
   if (!is.numeric(y))
     stop("argument y is not a numeric vector")
 
-  ## remove all NAs
+  # remove all NAs
   OK <- complete.cases(x, y)
   x <- x[OK]
   y <- y[OK]

@@ -3,7 +3,7 @@
 matrix.polynomial <- function(a, coef = rep(1, power + 1), power = length(coef))
 { ## evaluates a real general matrix polynomial using a Horner's scheme
 
-  ## validating arguments
+  # validating arguments
   if (is.data.frame(a))
     a <- as.matrix(a)
   if (!is.matrix(a))

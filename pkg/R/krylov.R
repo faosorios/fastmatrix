@@ -3,7 +3,7 @@
 krylov <- function(a, b, m = ncol(a))
 { ## construcs the Krylov matrix based on an n-by-n matrix a and an n-vector b
 
-  ## validating arguments
+  # validating arguments
   if (is.data.frame(a))
     a <- as.matrix(a)
   if (!is.matrix(a))

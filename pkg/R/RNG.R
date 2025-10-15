@@ -2,7 +2,7 @@
 
 rmnorm <-
 function(n = 1, mean = rep(0, nrow(Sigma)), Sigma = diag(length(mean)))
-{ # multivariate normal random generation
+{ ## multivariate normal random generation
   if (n <= 0)
     stop("n must be a positive integer")
   if (length(mean) != nrow(Sigma))
@@ -23,7 +23,7 @@ function(n = 1, mean = rep(0, nrow(Sigma)), Sigma = diag(length(mean)))
 
 rsphere <- 
 function(n = 1, p = 2)
-{ # random vector generation uniformly on the unitary sphere
+{ ## random vector generation uniformly on the unitary sphere
   if (n <= 0)
     stop("n must be a positive integer")
   if (p <= 1)
@@ -41,7 +41,7 @@ function(n = 1, p = 2)
 
 rball <- 
 function(n = 1, p = 2)
-{ # random vector generation uniformly in the unitary ball
+{ ## random vector generation uniformly in the unitary ball
   if (n <= 0)
     stop("n must be a positive integer")
   if (p <= 1)

@@ -1,7 +1,7 @@
 ## ID: whitening.R, last updated 2021-04-04, F.Osorio
 
 whitening <- function(x, Scatter = NULL)
-{ # Cholesky whitening transformation
+{ ## Cholesky whitening transformation
   if (is.data.frame(x))
     x <- as.matrix(x)
   else if (!is.matrix(x))

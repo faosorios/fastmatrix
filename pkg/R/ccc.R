@@ -1,7 +1,7 @@
 ## ID: ccc.R, last updated 2025-06-25, F.Osorio
 
 ccc <- function(x, data, method = "z-transform", level = 0.95, equal.means = FALSE, ustat = TRUE, subset, na.action)
-{ # estimation of the Lin's concordance correlation coefficient
+{ ## estimation of the Lin's concordance correlation coefficient
   Call <- match.call()
   if (missing(x))
     stop("'x' is not supplied")
@@ -38,7 +38,7 @@ ccc <- function(x, data, method = "z-transform", level = 0.95, equal.means = FAL
   if ((level <= 0) || (level >= 1))
     stop("'level' must be in (0,1).")
 
-  ## estimating mean vector and covariance matrix
+  # estimating mean vector and covariance matrix
   ones <- rep(1, n)
   storage.mode(z) <- "double"
   o <- .C("cov_weighted",
@@ -51,14 +51,14 @@ ccc <- function(x, data, method = "z-transform", level = 0.95, equal.means = FAL
   xcov <- matrix(o$cov, nrow = p, ncol = p)
   xbar <- o$mean
   
-  ## restricted estimation
+  # restricted estimation
   if (equal.means) {
     lambda <- sum(solve(xcov, xbar)) / sum(solve(xcov))
     dev <- xbar - rep(lambda, p)
     Sigma <- xcov + outer(dev, dev)
   }
 
-  ## computing CCC
+  # computing CCC
   phi <- xcov[lower.tri(xcov, diag = TRUE)]
   diff  <- xbar[1] - xbar[2]
   ratio <- phi[1] / phi[3]
@@ -80,20 +80,20 @@ ccc <- function(x, data, method = "z-transform", level = 0.95, equal.means = FAL
     var.rho0 <- var.rho0 / (n - 2)
   }
 
-  ## asymptotic variance using normal approximation (correction by Lin, Biometrics 56, pp.325, 2000)
+  # asymptotic variance using normal approximation (correction by Lin, Biometrics 56, pp.325, 2000)
   rel <- rhoc / r
   var.rhoc <- (1 - r^2) * (1 - rhoc^2) + 2 * rhoc * (1 - rhoc) * r * a^2 - 0.5 * rhoc^2 * a^4
   var.rhoc <- var.rhoc * rel^2
   var.rhoc <- var.rhoc / (n - 2)
-  ## z-transformation
+  # z-transformation
   var.z <- var.rhoc / (1 - rhoc^2)^2
 
-  ## estimation using U-statistics (King & Chinchilli, J. Biopharm. Stat. 11, 83-105, 2001;
-  ## Stat. Med. 20, 2131-2147, 2001)
+  # estimation using U-statistics (King & Chinchilli, J. Biopharm. Stat. 11, 83-105, 2001;
+  # Stat. Med. 20, 2131-2147, 2001)
   if (ustat)
     u <- ustat.rhoc(z)
 
-  ## info for Bland & Altman plot
+  # info for Bland & Altman plot
   average <- apply(z, 1, mean)
   diff <- z[,1] - z[,2]
   bland <- list(average = average, difference = diff)
@@ -124,7 +124,7 @@ ccc <- function(x, data, method = "z-transform", level = 0.95, equal.means = FAL
   ci <- c(cf, SE, ci)
   names(ci) <- c(cname, "SE", "lower", "upper")
 
-  ## creating the output object
+  # creating the output object
   out <- list(call = Call, x = z, dims = dz, ccc = rhoc, var.ccc = var.rhoc, accuracy = accu, 
               precision = r, shifts = list(location = a, scale = b), z = atanh(rhoc), 
               var.z = var.z, confint = ci, level = level, center = xbar, cov = xcov, 

@@ -4,7 +4,7 @@ symm.info <- function(n = 1)
 { ## returns compact information to form the symmetrizer matrix of order 'n'
   n <- as.integer(n)
   row <- integer(n^2)
-  ## re-using commutation info
+  # re-using commutation info
   row <- .Fortran("comm_rows",
                   m = as.integer(n),
                   n = as.integer(n),

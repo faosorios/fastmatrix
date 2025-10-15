@@ -2,7 +2,9 @@
 
 JarqueBera.test <-
 function(x, test = "DH")
-{
+{ ## Jarque-Bera test for univariate normality
+  ## Jarque, C.M., Bera, A.K. (1980). Economics Letters 6, 255-259.
+  ## doi: 10.1016/0165-1765(80)90024-5
   if (!is.vector(x))
     stop("argument 'x' must be a vector.")
   if (!is.numeric(x))
