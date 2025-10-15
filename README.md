@@ -48,9 +48,9 @@ Latest release (Oct 14, 2025) of [fastmatrix](https://github.com/faosorios/fastm
 * Lp norms for vectors.
 * LU factorization for square matrices.
 * Mahalanobis distances, checking if the covariance is a positive definite matrix.
-* Matrix square root using the Newton iteration proposed by [Denman and Beavers (1976)](https://doi.org/10.1016/0096-3003(76)90020-5).
+* Matrix square root using the Newton iteration proposed by [Denman and Beavers (1976)](https://doi.org/10.1016/0096-3003(76)90020-5) and the Schur decomposition.
 * Modified Cholesky factorization for symmetric but not necessarily positive definite matrices.
-* Omnibus test for univariate normality (Jarque-Bera, Doornik-Hansen, Adjusted Lagrange multiplier test and robust version by [Gel and Gastwirt, 2008](https://doi.org/10.1016/j.econlet.2007.05.022)).
+* Omnibus test for univariate normality ([Jarque-Bera](https://doi.org/10.1016/0165-1765(80)90024-5), [Doornik-Hansen](https://doi.org/10.1111/j.1468-0084.2008.00537.x), Adjusted Lagrange multiplier test ([Urzua, 1996](https://doi.org/10.1016/S0165-1765(96)00923-8)) and a robust version proposed by [Gel and Gastwirt, 2008](https://doi.org/10.1016/j.econlet.2007.05.022)).
 * Operations envolving the **commutation matrix**, with minimum requirements of storage.
 * Operations envolving the **duplication matrix**, with minimum requirements of storage.
 * Operations envolving the **symmetrizer matrix**, with minimum requirements of storage.
