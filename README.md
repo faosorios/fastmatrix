@@ -62,7 +62,7 @@ Latest release (Oct 14, 2025) of [fastmatrix](https://github.com/faosorios/fastm
 * Rank 1 update to Cholesky factorization.
 * Ridge estimation for linear regression.
 * Routines to compute measures of multivariate skewness and kurtosis proposed by [Mardia (1970)](https://doi.org/10.2307/2346576).
-* Routine for the computation of the mediancenter (or geometric median) of multivariate data.
+* Routine for the computation of the mediancenter (or geometric median) for multivariate data.
 * Routine to compute a Krylov matrix.
 * Sherman-Morrison formula.
 * Sweep operator for symmetric matrices.
