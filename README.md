@@ -9,7 +9,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/faosorios/fastmatrix)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
 
-Yet another R package for matrices. It contains a small set of functions to fast computation of some matrices and operations useful in statistics. **Suggested Extension** by [fastverse](https://fastverse.github.io/fastverse/).
+Yet another R package for matrices. It contains a small set of functions designed to speed up the computation of certain matrix operations that are commonly used in statistics and econometrics. It provides efficient implementations for the computation of several structured matrices, matrix decompositions and statistical procedures, many of which have minimal memory overhead. **Suggested Extension** by [fastverse](https://fastverse.github.io/fastverse/).
 
 ## Resources
 
