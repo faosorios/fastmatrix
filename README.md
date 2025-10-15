@@ -11,9 +11,22 @@
 
 Yet another R package for matrices. It contains a small set of functions to fast computation of some matrices and operations useful in statistics. **Suggested Extension** by [fastverse](https://fastverse.github.io/fastverse/).
 
+## Resources
+
+Version 0.6 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
+
+* [fastmatrix_0.6.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.6.tar.gz) - Package sources
+* [fastmatrix_0.6.zip](https://cran.r-project.org/bin/windows/contrib/4.5/fastmatrix_0.6.zip) - Windows binaries (R-release)
+* [fastmatrix_0.6.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/fastmatrix_0.6.tgz) - MacOS binaries (R-release, arm64)
+* [fastmatrix_0.6.tgz](https://cran.r-project.org/bin/macosx/big-sur-x86_64/contrib/4.5/fastmatrix_0.6.tgz) - MacOS binaries (R-release, x86_64)
+
+## Reference Manual
+
+* [fastmatrix.pdf](https://cran.r-project.org/web/packages/fastmatrix/fastmatrix.pdf)
+
 ## Features
 
-Latest release (May 27, 2025) of [fastmatrix](https://github.com/faosorios/fastmatrix) package have implemented the following functions:
+Latest release (Oct 14, 2025) of [fastmatrix](https://github.com/faosorios/fastmatrix) package have implemented the following functions:
 * Array multiplication (see for instance, Appendix A of [Wei, 1998](https://link.springer.com/book/9789813083295)).
 * Bezier curve based on n+1 control points.
 * C version of the Kronecker product which is slightly faster than the built in R base.
@@ -60,19 +73,6 @@ Latest release (May 27, 2025) of [fastmatrix](https://github.com/faosorios/fastm
 
 Our plan in the near future is the implementation of functions to handle:
 * Some special matrices and operations arising in numerical analysis.
-
-## Reference Manual
-
-* [fastmatrix.pdf](https://cran.r-project.org/web/packages/fastmatrix/fastmatrix.pdf)
-
-## Resources
-
-Version 0.5-9017 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
-
-* [fastmatrix_0.5-9017.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.5-9017.tar.gz) - Package sources
-* [fastmatrix_0.5-9017.zip](https://cran.r-project.org/bin/windows/contrib/4.5/fastmatrix_0.5-9017.zip) - Windows binaries (R-release)
-* [fastmatrix_0.5-9017.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/fastmatrix_0.5-9017.tgz) - MacOS binaries (R-release, arm64)
-* [fastmatrix_0.5-9017.tgz](https://cran.r-project.org/bin/macosx/big-sur-x86_64/contrib/4.5/fastmatrix_0.5-9017.tgz) - MacOS binaries (R-release, x86_64)
 
 ## Installation instructions
 
