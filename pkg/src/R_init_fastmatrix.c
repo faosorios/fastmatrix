@@ -1,4 +1,4 @@
-/* $ID: R_init_fastmatrix.c, last updated 2025-05-25, F.Osorio */
+/* $ID: R_init_fastmatrix.c, last updated 2025-10-13, F.Osorio */
 
 #include "fastmatrix.h"
 #include <R_ext/Rdynload.h>
@@ -57,8 +57,10 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(rng_sphere,             3),
   CALLDEF(seidel_solver,          9),
   CALLDEF(sherman_morrison,       6),
-  CALLDEF(sqrt_mat_DB,            7),
+  CALLDEF(sqrt_mat_DB,            6),
+  CALLDEF(sqrt_mat_schur,         3),
   CALLDEF(skewness_and_kurtosis,  7),
+  CALLDEF(schur_dcmp,             9),
   CALLDEF(svd_dcmp,              11),
   CALLDEF(sweep_operator,         6),
   CALLDEF(symmetrizer_prod,       6),
@@ -79,6 +81,9 @@ static const R_FortranMethodDef F77Entries[] = {
   F77DEF(comm_right_mult,        10),
   F77DEF(commutation_mat,         6),
   F77DEF(equilibrate_cols,        8),
+  F77DEF(floyd_init,              6),
+  F77DEF(floyd_warshall,          5),
+  F77DEF(fnc_parlett,             5),
   F77DEF(frank_mat,               4),
   F77DEF(hankel_mat,              6),
   F77DEF(helmert_mat,             4),
@@ -90,6 +95,8 @@ static const R_FortranMethodDef F77Entries[] = {
   F77DEF(pivot_mat,               4),
   F77DEF(quadf,                   4),
   F77DEF(rhoc_ustat,              6),
+  F77DEF(schur_decomp,           12),
+  F77DEF(sqrt_parlett,            6),
   F77DEF(symmetrizer_mat,         8),
   {NULL, NULL, 0}
 };
@@ -167,6 +174,7 @@ void R_init_fastmatrix(DllInfo *info) {
   FM_REGDEF(FM_QR_decomp);
   FM_REGDEF(FM_QL_decomp);
   FM_REGDEF(FM_LQ_decomp);
+  FM_REGDEF(FM_schur_decomp);
   FM_REGDEF(FM_svd_decomp);
   /* QR, QL and LQ operations */
   FM_REGDEF(FM_QR_qy);

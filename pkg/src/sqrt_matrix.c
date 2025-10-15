@@ -1,9 +1,9 @@
-/* ID: sqrt_matrix.c, last updated 2025-05-26, F.Osorio */
+/* ID: sqrt_matrix.c, last updated 2025-10-14, F.Osorio */
 
 #include "fastmatrix.h"
 
 void
-sqrt_mat_DB(double *a, int *lda, int *n, int *info, int *maxiter, double *tolerance, int *numIter)
+sqrt_mat_DB(double *a, int *lda, int *n, int *maxiter, double *tolerance, int *numIter)
 { /* Newton's method for solving x %*% x = a. where a is an n-by-n 
    * matrix using the Denman & Beavers iteration by
    * Denman & Beavers (1976). Appl. Math. Comput. 2, 63-94 */
@@ -11,13 +11,14 @@ sqrt_mat_DB(double *a, int *lda, int *n, int *info, int *maxiter, double *tolera
   int errcode, iter = 0, job = 1, p = *n;
 
   /* test the input parameters */
-  *info = 0;
+  errcode = 0;
   if (p < 0) {
-    *info = -3;
+    errcode = -3;
   } else if (*lda < MAX(1, p)) {
-    *info = -2;
+    errcode = -2;
   }
-  if (*info != 0) return;
+  if (errcode != 0) 
+    error("sqrt_mat_DB gave error code %d", errcode);
 
   /* quick return if possible */
   if (p == 0)
@@ -77,4 +78,48 @@ sqrt_mat_DB(double *a, int *lda, int *n, int *info, int *maxiter, double *tolera
   *numIter = iter;
 
   R_Free(b), R_Free(diff), R_Free(old), R_Free(x), R_Free(y); 
+}
+
+void
+sqrt_mat_schur(double *a, int *lda, int *n)
+{ /* Schur method for computing a square root of an n-by-n matrix */
+  double *re, *im, *u, *v;
+  int errcode, job = 1, p = *n;
+
+  /* test the input parameters */
+  errcode = 0;
+  if (p < 0) {
+    errcode = -3;
+  } else if (*lda < MAX(1, p)) {
+    errcode = -2;
+  }
+  if (errcode != 0) 
+    error("sqrt_mat_schur gave error code %d", errcode);
+
+  /* quick return if possible */
+  if (p == 0)
+    return;
+
+  /* initialization */
+  re = (double *) R_Calloc(p, double);
+  im = (double *) R_Calloc(p, double);
+  u  = (double *) R_Calloc(p * p, double);
+  v  = (double *) R_Calloc(p * p, double);
+
+  /* compute a Schur decomposition of a */
+  FM_schur_decomp(a, *lda, p, job, re, im, v, p, &errcode);
+  if (errcode != 0)
+    error("DGEES in sqrt_mat_schur gave error code %d", errcode);
+
+  /* compute the square root of the triangular factor */
+  F77_CALL(sqrt_parlett)(a, lda, &p, u, &p, &errcode);
+  if (errcode != 0)
+    error("SQRT_PARLETT in sqrt_mat_schur gave error code %d", errcode);
+
+  /* forming the square root of a */
+  FM_tcrossprod(u, u, p, p, p, v, p, p, p);
+  FM_mult_mat(u, v, p, p, p, u, p, p, p);
+  FM_copy_mat(a, *lda, u, p, p, p);
+
+  R_Free(re), R_Free(im), R_Free(u), R_Free(v);
 }

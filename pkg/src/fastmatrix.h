@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2025-05-26, F.Osorio */
+/* ID: fastmatrix.h, last updated 2025-10-13, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -105,6 +105,8 @@ void chol_dcmp(double *, int *, int *, int *, int *);
 void chol_update(double *, int *, int *, double *);
 void F77_NAME(mchol_dcmp)(double *, int *, int *, double *, double *, int *);
 void F77_NAME(ldl_dcmp)(double *, int *, int *, double *, int *);
+void schur_dcmp(double *, int *, int *, int *, double *, double *, double *, int *, int *);
+void F77_NAME(schur_decomp)(double *, int  *, int *, int *, double *,  double *, double *, int *, double *, int *, int *, int *);
 void svd_dcmp(double *, int *, int *, int *, double *, int *, double *, double *, int *, int *, int *);
 
 /* OLS methods */
@@ -123,6 +125,10 @@ void F77_NAME(median_center)(double *, int *, int *, int *, double *, int *, int
 void geometric_mean(double *, int *, double *);
 void mahal_distances(double *, int *, int *, double *, double *, int *, double *);
 void skewness_and_kurtosis(double *, int *, int *, double *, double *, double *, int *);
+
+/* Floyd-Warshall algorithm for finding shortest paths in a directed graph */
+void F77_NAME(floyd_init)(double *, int *, int *, int *, int *, double *);
+void F77_NAME(floyd_warshall)(double *, int *, int *, int *, int *);
 
 /* Wilson-Hilferty transformation */
 void wilson_hilferty_chisq(double *, int *, int *, double *);
@@ -157,6 +163,12 @@ double brent(double, double, double (*f)(double, void *), void *, double);
 void bezier_smoother(double *, double *, int *, double *, int *, double *, double *);
 void F77_NAME(decasteljau)(double *, double *, int *, double *, double *);
 
+/* matrix functions */
+void F77_NAME(fnc_parlett)(double *, int *, int *, double *, int *);
+void F77_NAME(sqrt_parlett)(double *, int *, int *, double *, int *, int *);
+void sqrt_mat_DB(double *, int *, int *, int *, double *, int *);
+void sqrt_mat_schur(double *, int *, int *);
+
 /* misc */
 void F77_NAME(circulant_mat)(double *, int *, double *, int *, int *);
 void hadamard_prod(double *, double *, int *, double *);
@@ -166,7 +178,6 @@ void mat2vech(double *, int *, int *, double *);
 void matrix_polynomial(double *, int *, int *, double *, int *, double *, int *, int *);
 void F77_NAME(pivot_mat)(double *, int *, int *, int *);
 void Psi2Q(double *, double *, int *);
-void sqrt_mat_DB(double *, int *, int *, int *, int *, double *, int *);
 void whitening_chol(double *, int *, int *, double *);
 
 /* ========================================================================== *
@@ -255,6 +266,7 @@ void FM_lu_decomp(double *, int, int, int, int *, int *);
 void FM_QR_decomp(double *, int, int, int, double *, int *);
 void FM_QL_decomp(double *, int, int, int, double *, int *);
 void FM_LQ_decomp(double *, int, int, int, double *, int *);
+void FM_schur_decomp(double *, int, int, int, double *, double *, double *, int, int *);
 void FM_svd_decomp(double *, int, int, int, double *, int, double *, double *, int, int, int *);
 
 /* QR, QL and LQ operations */
