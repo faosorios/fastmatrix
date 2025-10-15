@@ -37,7 +37,9 @@ Latest release (Oct 14, 2025) of [fastmatrix](https://github.com/faosorios/fastm
 * Estimation of the weighted mean and covariance matrix using an online algorithm ([Clarke, 1971](https://doi.org/10.2307/2346477)).
 * Computation of central moments up to fourth order using an online algorithm ([Spicer, 1972](https://doi.org/10.2307/2346477)).
 * Evaluation of a real general matrix polynomial using Horner's scheme.
+* Evaluation of a matrix function where its argument is an upper triangular matrix by applying a Parlett recurrence.
 * Fast computation of Hadamard product using unrolled loops.
+* Floyd-Warshall algorithm to find all shortest paths (if exist) in a directed graph.
 * Gauss-Seidel, Jacobi and conjugate gradients (CG) iterative methods for solving linear systems.
 * Geometric mean using a Fused-Multiply-and-Add (FMA) compensated scheme for accurate computation of floating-point product.
 * Inner products and norms for matrices.
@@ -64,6 +66,7 @@ Latest release (Oct 14, 2025) of [fastmatrix](https://github.com/faosorios/fastm
 * Routines to compute measures of multivariate skewness and kurtosis proposed by [Mardia (1970)](https://doi.org/10.2307/2346576).
 * Routine for the computation of the mediancenter (or geometric median) for multivariate data.
 * Routine to compute a Krylov matrix.
+* Schur decomposition for a square matrix.
 * Sherman-Morrison formula.
 * Sweep operator for symmetric matrices.
 * Test for variance homogeneity of correlated variables ([Harris, 1985](https://doi.org/10.1093/biomet/72.1.103)).
@@ -76,7 +79,7 @@ Our plan in the near future is the implementation of functions to handle:
 
 ## Installation instructions
 
-To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.5-9017)** from CRAN, start R and enter:
+To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.6)** from CRAN, start R and enter:
 ```r
 install.packages("fastmatrix")
 ```
@@ -110,7 +113,7 @@ citation("fastmatrix")
 To cite fastmatrix in publications use:
 
   Osorio, F., Ogueda, A. (2025). Fast computation of some matrices
-  useful in statistics. R package version 0.5-9017. URL:
+  useful in statistics. R package version 0.6-2. URL:
   https://faosorios.github.io/fastmatrix/
 
 A BibTeX entry for LaTeX users is
@@ -119,7 +122,7 @@ A BibTeX entry for LaTeX users is
     title = {Fast computation of some matrices useful in statistics},
     author = {F. Osorio and A. Ogueda},
     year = {2025},
-    note = {R package version 0.5-9017},
+    note = {R package version 0.6-2},
     url = {https://faosorios.github.io/fastmatrix/},
   }
 ```
