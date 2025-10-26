@@ -13,12 +13,12 @@ Yet another R package for matrices. It contains a small set of functions designe
 
 ## Resources
 
-Version 0.6-2 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
+Version 0.6-4 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
-* [fastmatrix_0.6-2.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.6-2.tar.gz) - Package sources
-* [fastmatrix_0.6.zip](https://cran.r-project.org/bin/windows/contrib/4.5/fastmatrix_0.6.zip) - Windows binaries (R-release)
-* [fastmatrix_0.6.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/fastmatrix_0.6.tgz) - MacOS binaries (R-release, arm64)
-* [fastmatrix_0.6.tgz](https://cran.r-project.org/bin/macosx/big-sur-x86_64/contrib/4.5/fastmatrix_0.6.tgz) - MacOS binaries (R-release, x86_64)
+* [fastmatrix_0.6-4.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.6-4.tar.gz) - Package sources
+* [fastmatrix_0.6-2.zip](https://cran.r-project.org/bin/windows/contrib/4.5/fastmatrix_0.6-2.zip) - Windows binaries (R-release)
+* [fastmatrix_0.6-4.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/fastmatrix_0.6-4.tgz) - MacOS binaries (R-release, arm64)
+* [fastmatrix_0.6-4.tgz](https://cran.r-project.org/bin/macosx/big-sur-x86_64/contrib/4.5/fastmatrix_0.6-4.tgz) - MacOS binaries (R-release, x86_64)
 
 ## Reference Manual
 
@@ -62,6 +62,7 @@ Next, the main functionalities of [fastmatrix](https://github.com/faosorios/fast
   * Computation of central moments up to fourth order using an online algorithm ([Spicer, 1972](https://doi.org/10.2307/2346477)).
   * Geometric mean using a Fused-Multiply-and-Add (FMA) compensated scheme for accurate computation of floating-point product.
   * Mahalanobis distances, checking if the covariance is a positive definite matrix.
+  * Mardia's test for multivariate normality ([Mardia, 1974](https://www.jstor.org/stable/25051892)).
   * Omnibus test for univariate normality ([Jarque-Bera](https://doi.org/10.1016/0165-1765(80)90024-5), [Doornik-Hansen](https://doi.org/10.1111/j.1468-0084.2008.00537.x), Adjusted Lagrange multiplier test ([Urzua, 1996](https://doi.org/10.1016/S0165-1765(96)00923-8)) and a robust version proposed by [Gel and Gastwirt, 2008](https://doi.org/10.1016/j.econlet.2007.05.022)).
   * Ordinary least-squares (OLS) using several methods: conjugate gradients, Cholesky, QR decomposition, singular value decomposition, and the Sweep operator. This provides an alternative to extend the procedures available in R built-in function 'lm'.
   * Ridge estimation for linear regression.
@@ -85,7 +86,7 @@ Our plan in the near future is the implementation of functions to handle:
 
 ## Installation instructions
 
-To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.6-2)** from CRAN, start R and enter:
+To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.6-4)** from CRAN, start R and enter:
 ```r
 install.packages("fastmatrix")
 ```
@@ -119,7 +120,7 @@ citation("fastmatrix")
 To cite fastmatrix in publications use:
 
   Osorio, F., Ogueda, A. (2025). Fast computation of some matrices
-  useful in statistics. R package version 0.6-2. URL:
+  useful in statistics. R package version 0.6-4. URL:
   https://faosorios.github.io/fastmatrix/
 
 A BibTeX entry for LaTeX users is
@@ -128,7 +129,7 @@ A BibTeX entry for LaTeX users is
     title = {Fast computation of some matrices useful in statistics},
     author = {F. Osorio and A. Ogueda},
     year = {2025},
-    note = {R package version 0.6-2},
+    note = {R package version 0.6-4},
     url = {https://faosorios.github.io/fastmatrix/},
   }
 ```
