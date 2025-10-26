@@ -73,8 +73,10 @@ void FM_lu_decomp(double *a, int lda, int n, int p, int *pivot, int *info);
 void FM_QR_decomp(double *mat, int ldmat, int nrow, int ncol, double *qraux, int *info);
 void FM_QL_decomp(double *mat, int ldmat, int nrow, int ncol, double *qlaux, int *info);
 void FM_LQ_decomp(double *mat, int ldmat, int nrow, int ncol, double *lqaux, int *info);
-void FM_schur_decomp(double *a, int lda, int n, int task, double *re, double *im, double *v, int ldv, int *info);
 void FM_svd_decomp(double *mat, int ldmat, int nrow, int ncol, double *u, int ldu, double *d, double *v, int ldv, int job, int *info);
+
+/* Schur decomposition and operations */
+void FM_schur_decomp(double *a, int lda, int n, int task, double *re, double *im, double *v, int ldv, int *info);
 
 /* QR, QL and LQ operations */
 void FM_QR_qy(double *qr, int ldq, int nrow, int ncol, double *qraux, double *ymat, int ldy, int yrow, int ycol, int *info);
