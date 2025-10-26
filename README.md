@@ -2,6 +2,12 @@
 
 [![CRAN status](http://www.r-pkg.org/badges/version/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
 ![CRAN/METACRAN](https://img.shields.io/cran/l/fastmatrix?color=informational)
+![GitHub last commit](https://img.shields.io/github/last-commit/faosorios/fastmatrix)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
+
+Yet another R package for matrices. It contains a small set of functions designed to speed up the computation of certain matrix operations that are commonly used in statistics and econometrics. It provides efficient implementations for the computation of several structured matrices, matrix decompositions and statistical procedures, many of which have minimal memory overhead. **Suggested Extension** by [fastverse](https://fastverse.github.io/fastverse/).
+
+Currently, the fastmatrix package provides support for the following R packages:
 [![fChange](https://img.shields.io/badge/Support-fChange-orange)](https://cran.r-project.org/package=fChange)
 [![india](https://img.shields.io/badge/Support-india-orange)](https://cran.r-project.org/package=india)
 [![L1pack](https://img.shields.io/badge/Support-L1pack-orange)](https://cran.r-project.org/package=L1pack)
@@ -10,10 +16,6 @@
 [![RobRegression](https://img.shields.io/badge/Support-RobRegression-orange)](https://cran.r-project.org/package=RobRegression)
 [![SAGM](https://img.shields.io/badge/Support-SAGM-orange)](https://cran.r-project.org/package=SAGM)
 [![SpatialPack](https://img.shields.io/badge/Support-SpatialPack-orange)](https://cran.r-project.org/package=SpatialPack)
-![GitHub last commit](https://img.shields.io/github/last-commit/faosorios/fastmatrix)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
-
-Yet another R package for matrices. It contains a small set of functions designed to speed up the computation of certain matrix operations that are commonly used in statistics and econometrics. It provides efficient implementations for the computation of several structured matrices, matrix decompositions and statistical procedures, many of which have minimal memory overhead. **Suggested Extension** by [fastverse](https://fastverse.github.io/fastverse/).
 
 ## Resources
 
