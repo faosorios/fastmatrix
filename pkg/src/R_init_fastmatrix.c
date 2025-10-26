@@ -1,4 +1,4 @@
-/* $ID: R_init_fastmatrix.c, last updated 2025-10-13, F.Osorio */
+/* $ID: R_init_fastmatrix.c, last updated 2025-10-15, F.Osorio */
 
 #include "fastmatrix.h"
 #include <R_ext/Rdynload.h>
@@ -39,6 +39,7 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(lu_inverse,             5),
   CALLDEF(lu_solve,               8),
   CALLDEF(mahal_distances,        7),
+  CALLDEF(mardia_stat,            7),
   CALLDEF(mat2vech,               4),
   CALLDEF(matrix_norm,            6),
   CALLDEF(matrix_polynomial,      8),
@@ -81,7 +82,7 @@ static const R_FortranMethodDef F77Entries[] = {
   F77DEF(comm_right_mult,        10),
   F77DEF(commutation_mat,         6),
   F77DEF(equilibrate_cols,        8),
-  F77DEF(floyd_init,              6),
+  F77DEF(floyd_init,              5),
   F77DEF(floyd_warshall,          5),
   F77DEF(fnc_parlett,             5),
   F77DEF(frank_mat,               4),
@@ -95,7 +96,6 @@ static const R_FortranMethodDef F77Entries[] = {
   F77DEF(pivot_mat,               4),
   F77DEF(quadf,                   4),
   F77DEF(rhoc_ustat,              6),
-  F77DEF(schur_decomp,           12),
   F77DEF(sqrt_parlett,            6),
   F77DEF(symmetrizer_mat,         8),
   {NULL, NULL, 0}

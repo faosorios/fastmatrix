@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2025-10-13, F.Osorio */
+/* ID: fastmatrix.h, last updated 2025-10-22, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -105,9 +105,11 @@ void chol_dcmp(double *, int *, int *, int *, int *);
 void chol_update(double *, int *, int *, double *);
 void F77_NAME(mchol_dcmp)(double *, int *, int *, double *, double *, int *);
 void F77_NAME(ldl_dcmp)(double *, int *, int *, double *, int *);
-void schur_dcmp(double *, int *, int *, int *, double *, double *, double *, int *, int *);
-void F77_NAME(schur_decomp)(double *, int  *, int *, int *, double *,  double *, double *, int *, double *, int *, int *, int *);
 void svd_dcmp(double *, int *, int *, int *, double *, int *, double *, double *, int *, int *, int *);
+
+/* Schur decomposition */
+void schur_dcmp(double *, int *, int *, int *, double *, double *, double *, int *, int *);
+void F77_NAME(schur_wrapper)(double *, int *, int *, int *, double *, double *, double *, int *, double *, int *, int *, int *);
 
 /* OLS methods */
 void OLS_cg(double *, int *, int *, int *, double *, double *, double *, int *, int *);
@@ -127,18 +129,21 @@ void mahal_distances(double *, int *, int *, double *, double *, int *, double *
 void skewness_and_kurtosis(double *, int *, int *, double *, double *, double *, int *);
 
 /* Floyd-Warshall algorithm for finding shortest paths in a directed graph */
-void F77_NAME(floyd_init)(double *, int *, int *, int *, int *, double *);
+void F77_NAME(floyd_init)(double *, int *, int *, int *, int *);
 void F77_NAME(floyd_warshall)(double *, int *, int *, int *, int *);
 
 /* Wilson-Hilferty transformation */
 void wilson_hilferty_chisq(double *, int *, int *, double *);
 void wilson_hilferty_gamma(double *, int *, double *, double *, double *);
 
-/* tests for normality based on the standardized third and fourth moments */
+/* univariate tests for normality based on the standardized third and fourth moments */
 void doornik_hansen(double *, int *, double *, double *, double *);
 void jarque_bera(double *, int *, double *, double *, double *);
 void robust_JB(double *, double *, int *, double *, double *, double *);
 void urzua_ALM(double *, int *, double *, double *, double *);
+
+/* Mardia test for normality based on the third and fourth moments */
+void mardia_stat(double *, int *, int *, double *, double *, double *, double *);
 
 /* random number generation */
 void rng_mnorm(double *, int *, int *, double *, double *);

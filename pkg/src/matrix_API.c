@@ -1,4 +1,4 @@
-/* ID: matrix_API.c, last updated 2025-10-13, F.Osorio */
+/* ID: matrix_API.c, last updated 2025-10-23, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -299,19 +299,19 @@ FM_svd_decomp(double *mat, int ldmat, int nrow, int ncol, double *u, int ldu, do
 void
 FM_schur_decomp(double *a, int lda, int n, int task, double *re, double *im, double *v, int ldv, int *info)
 { /* return the Schur decomposition of a nonsymmetric matrix */
-  int errcode = 0, dummy, lwork;
+  int errcode = 0, bwork = 0, lwork;
   double opt, *work;
 
   /* ask for optimal size of work array */
   lwork = -1;
-  F77_CALL(schur_decomp)(a, &lda, &n, &task, re, im, v, &ldv, &opt, &lwork, &dummy, &errcode);
+  F77_CALL(schur_wrapper)(a, &lda, &n, &task, re, im, v, &ldv, &opt, &lwork, &bwork, &errcode);
   if (errcode != 0)
     error("DGEES in Schur decomposition gave error code %d", errcode);
 
   /* calling DGEES with optimal size of working array */
   lwork = (int) opt;
   work = (double *) R_Calloc(lwork, double);
-  F77_CALL(schur_decomp)(a, &lda, &n, &task, re, im, v, &ldv, work, &lwork, &dummy, info);
+  F77_CALL(schur_wrapper)(a, &lda, &n, &task, re, im, v, &ldv, work, &lwork, &bwork, &errcode);
   R_Free(work);
 }
 

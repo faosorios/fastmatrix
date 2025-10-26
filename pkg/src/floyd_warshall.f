@@ -1,9 +1,8 @@
 c ID: floyd_warshall.f, last updated 2025-09-20, F.Osorio
 
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-      SUBROUTINE floyd_init(costs, ldc, paths, ldp, n, BIG)
+      SUBROUTINE floyd_init(costs, ldc, paths, ldp, n)
       INTEGER          ldc, ldp, n
-      DOUBLE PRECISION BIG
       INTEGER          paths(ldp,*)
       DOUBLE PRECISION costs(ldc,*)
 c
@@ -20,8 +19,6 @@ c     ldp     (input) INTEGER
 c             ldp is the leading dimension of paths array. ldp >= max(1,n).
 c     n       (input) INTEGER
 c             number of nodes (order of costs and paths matrices), n > 0.
-c     BIG     (input) DOUBLE PRECISION
-c             a big number for representing large costs.
 c
 c     .. local scalars ..
       INTEGER          i, j
