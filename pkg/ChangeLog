@@ -1,4 +1,9 @@
-0.6-2 (Oct 14, 2025)
+0.6-4 (Oct 23, 2025)
+ * Fixed an issue reported by professor Brian Ripley.
+ * Added procedure introduced by Mardia for testing multivariate normality based on 
+   the multivariate skewness and kurtosis coefficients.
+
+0.6-2 (Oct 15, 2025)
  * The Floyd-Warshall procedure for shortest paths in a directed graph was included.
  * A function to compute the Schur decomposition of a real matrix was added.
  * We have added a function for the evaluation of a matrix function where its argument 

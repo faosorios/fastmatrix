@@ -3,8 +3,8 @@ useDynLib(fastmatrix, .registration = TRUE)
 ## from "stats" package:
 importFrom("stats",
            .getXlevels, coef, complete.cases, cov, cov2cor, logLik, median, 
-           model.matrix, model.response, na.fail, na.omit, pchisq, pt, qnorm, 
-           quantile, terms, var)
+           model.matrix, model.response, na.fail, na.omit, pchisq, pt, pnorm,
+           qnorm, quantile, terms, var)
 
 ## Our exports:
 export(array.mult, asSymmetric, 
@@ -21,7 +21,7 @@ export(array.mult, asSymmetric,
        jacobi, 
        kronecker.prod, 
        ldl, lu, lu2inv, 
-       Mahalanobis, matrix.fun, matrix.inner, matrix.norm, matrix.polynomial, matrix.sqrt, mchol, mediancenter, minkowski, moments, 
+       Mahalanobis, matrix.fun, matrix.inner, matrix.norm, matrix.polynomial, matrix.sqrt, mardia.test, mchol, mediancenter, minkowski, moments, 
        ols, ols.fit, ols.fit.cg, ols.fit.chol, ols.fit.qr, ols.fit.svd, ols.fit.sweep, 
        power.method, 
        rball, ridge, rmnorm, rsphere, 
@@ -39,6 +39,7 @@ S3method(lu, default)
 S3method(print, ccc)
 S3method(print, Harris.test)
 S3method(print, JarqueBera.test)
+S3method(print, Mardia.test)
 S3method(print, ols)
 S3method(print, ridge)
 S3method(print, summary.ols)
