@@ -2,9 +2,13 @@
 
 [![CRAN status](http://www.r-pkg.org/badges/version/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
 ![CRAN/METACRAN](https://img.shields.io/cran/l/fastmatrix?color=informational)
+[![fChange](https://img.shields.io/badge/Support-fChange-orange)](https://cran.r-project.org/package=fChange)
 [![india](https://img.shields.io/badge/Support-india-orange)](https://cran.r-project.org/package=india)
 [![L1pack](https://img.shields.io/badge/Support-L1pack-orange)](https://cran.r-project.org/package=L1pack)
 [![MVT](https://img.shields.io/badge/Support-MVT-orange)](https://cran.r-project.org/package=MVT)
+[![panelSUR](https://img.shields.io/badge/Support-panelSUR-orange)](https://cran.r-project.org/package=panelSUR)
+[![RobRegression](https://img.shields.io/badge/Support-RobRegression-orange)](https://cran.r-project.org/package=RobRegression)
+[![SAGM](https://img.shields.io/badge/Support-SAGM-orange)](https://cran.r-project.org/package=SAGM)
 [![SpatialPack](https://img.shields.io/badge/Support-SpatialPack-orange)](https://cran.r-project.org/package=SpatialPack)
 ![GitHub last commit](https://img.shields.io/github/last-commit/faosorios/fastmatrix)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/fastmatrix)](https://cran.r-project.org/package=fastmatrix)
