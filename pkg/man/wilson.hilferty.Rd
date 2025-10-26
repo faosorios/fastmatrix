@@ -5,7 +5,7 @@
   Returns the Wilson-Hilferty transformation of random variables with Gamma distribution.
 }
 \usage{
-  wilson.hilferty(x, shape, rate = 1)
+wilson.hilferty(x, shape, rate = 1)
 }
 \arguments{
   \item{x}{ a numeric vector containing Gamma distributed deviates.}

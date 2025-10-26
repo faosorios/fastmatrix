@@ -17,7 +17,7 @@ skewness(x)
   \overline{\bold{x}})^T\bold{S}^{-1}(\bold{x}_j - \overline{\bold{x}}))^3,}
   and
   \deqn{b_{2p} = \frac{1}{n}\sum\limits_{i=1}^n ((\bold{x}_i - \overline{\bold{x}})^T
-  \bold{S}^{-1}(\bold{x}_j - \overline{\bold{x}}))^2.}
+  \bold{S}^{-1}(\bold{x}_i - \overline{\bold{x}}))^2.}
 }
 \references{
   Mardia, K.V. (1970).

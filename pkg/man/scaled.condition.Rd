@@ -13,7 +13,7 @@ scaled.condition(x, scales = FALSE)
   the columns of \code{x} should be returned by the function.}
 }
 \value{
-  The columns of a rectangular matrix \code{x} are equilibrated (but not centered), 
+  The columns of a rectangular matrix \eqn{\bold{X}} are equilibrated (but not centered), 
   then the scaled condition number is computed following the guidelines of Belsley (1990).
   If requested, the column scalings are returned as the attribute \code{'scales'}.
 }

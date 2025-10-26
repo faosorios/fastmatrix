@@ -2,8 +2,8 @@
 \alias{hadamard}
 \title{Hadamard product of two matrices}
 \description{
-  This function returns the Hadamard or element-wise product of two matrices \code{x}
-  and \code{y}, that have the same dimensions.
+  This function returns the Hadamard or element-wise product of two matrices \eqn{\bold{X}}
+  and \eqn{\bold{Y}}, that have the same dimensions.
 }
 \usage{
 hadamard(x, y = x)
@@ -13,8 +13,8 @@ hadamard(x, y = x)
   \item{y}{ a numeric matrix or vector.}
 }
 \value{
-  A matrix with the same dimension of \code{x} (and \code{y}) which corresponds to the
-  element-by-element product of the two matrices.
+  A matrix with the same dimension of \eqn{\bold{X}} (and \eqn{\bold{Y}}) which corresponds 
+  to the element-by-element product of the two matrices.
 }
 \references{
   Styan, G.P.H. (1973).

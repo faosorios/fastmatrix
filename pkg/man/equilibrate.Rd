@@ -14,7 +14,7 @@ equilibrate(x, scale = TRUE)
 \value{
   For \code{scale = TRUE}, the equilibrated matrix. The scalings and an approximation
   of the condition number, are returned as attributes \code{"scales"} and \code{"condition"}.
-  If \code{x} is a rectangular matrix, only the columns are equilibrated.
+  If \eqn{\bold{X}} is a rectangular matrix, only the columns are equilibrated.
 }
 \examples{
 x <- matrix(c(1, 1, 1,

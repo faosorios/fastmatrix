@@ -15,9 +15,9 @@ schur(x, vectors = TRUE)
 \details{
   For an \eqn{n \times n}{n-by-n} real matrix \eqn{\bold{A}}, the Schur decomposition 
   is given by,
-  \deqn{\bold{A} = \bold{VMV}^T}
-  where \eqn{\bold{V}} is an orthogonal matrix and \eqn{\bold{M}} is an upper triangular 
-  matrix. The column vectors \eqn{\bold{V}} (if requested) are the Schur vectors of 
+  \deqn{\bold{A} = \bold{QMQ}^T}
+  where \eqn{\bold{Q}} is an orthogonal matrix and \eqn{\bold{M}} is a quasi-upper triangular 
+  matrix. The column vectors \eqn{\bold{Q}} (if requested) are the Schur vectors of 
   \eqn{\bold{A}}, and \eqn{\bold{M}} is the Schur form of \eqn{\bold{A}}.
 
   Unsuccessful results from the underlying LAPACK code will result in an error giving 
@@ -26,12 +26,12 @@ schur(x, vectors = TRUE)
 \value{
   The Schur decomposition of the matrix as computed by LAPACK. The components in
   the returned value correspond directly to the values returned by \code{DGEES}.
-  \item{m}{ a matrix with the same dimensions as \code{x}. The upper triangle contains 
+  \item{m}{ a matrix with the same dimensions as \eqn{\bold{X}}. The upper triangle contains 
     the \eqn{\bold{M}} matrix of the decomposition.}
-  \item{values}{ a vector containing the \eqn{n} eigenvalues of \code{x}, these values 
+  \item{values}{ a vector containing the \eqn{n} eigenvalues of \eqn{\bold{X}}, these values 
     \bold{are not ordered}.}
   \item{vectors}{ an \eqn{n \times n}{n-by-n} matrix whose columns contain the eigenvectors 
-    of \code{x}, only available if it is requested.}
+    of \eqn{\bold{X}}, only available if it is requested.}
 }
 \references{
   Anderson. E., Bai, Z., Bischof, C., Blackford, S., Demmel, J., Dongarra, J.,

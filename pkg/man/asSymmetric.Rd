@@ -2,7 +2,7 @@
 \alias{asSymmetric}
 \title{Force a matrix to be symmetric}
 \description{
-  Force a square matrix \code{x} to be symmetric
+  Force a square matrix \eqn{\bold{X}} to be symmetric
 }
 \usage{
 asSymmetric(x, lower = TRUE)

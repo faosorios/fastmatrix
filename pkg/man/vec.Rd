@@ -5,7 +5,7 @@
   This function returns a vector obtained by stacking the columns of \eqn{\bold{X}}.
 }
 \usage{
-  vec(x)
+vec(x)
 }
 \arguments{
   \item{x}{ a numeric matrix.}

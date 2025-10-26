@@ -2,7 +2,7 @@
 \alias{kronecker.prod}
 \title{Kronecker product on matrices}
 \description{
-  Computes the kronecker product of two matrices, \code{x} and \code{y}.
+  Computes the kronecker product of two matrices, \eqn{\bold{X}} and \eqn{\bold{Y}}.
 }
 \usage{
 kronecker.prod(x, y = x)

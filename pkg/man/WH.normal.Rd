@@ -5,7 +5,7 @@
   Returns the Wilson-Hilferty transformation of random variables with chi-squared distribution.
 }
 \usage{
-  WH.normal(x)
+WH.normal(x)
 }
 \arguments{
   \item{x}{ vector or matrix of data with, say, \eqn{p} columns.}
