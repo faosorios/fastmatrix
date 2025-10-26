@@ -16,7 +16,7 @@ Yet another R package for matrices. It contains a small set of functions designe
 Version 0.6-4 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
 * [fastmatrix_0.6-4.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.6-4.tar.gz) - Package sources
-* [fastmatrix_0.6-2.zip](https://cran.r-project.org/bin/windows/contrib/4.5/fastmatrix_0.6-2.zip) - Windows binaries (R-release)
+* [fastmatrix_0.6-4.zip](https://cran.r-project.org/bin/windows/contrib/4.5/fastmatrix_0.6-4.zip) - Windows binaries (R-release)
 * [fastmatrix_0.6-4.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/fastmatrix_0.6-4.tgz) - MacOS binaries (R-release, arm64)
 * [fastmatrix_0.6-4.tgz](https://cran.r-project.org/bin/macosx/big-sur-x86_64/contrib/4.5/fastmatrix_0.6-4.tgz) - MacOS binaries (R-release, x86_64)
 
