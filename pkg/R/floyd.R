@@ -1,4 +1,4 @@
-## ID: floyd.R, last updated 2025-09-20, F.Osorio
+## ID: floyd.R, last updated 2025-10-15, F.Osorio
 
 floyd <- function(x)
 { ## find the shortest paths in a directed graph
@@ -29,8 +29,7 @@ floyd <- function(x)
                 ldc = as.integer(n), 
                 paths = paths, 
                 ldp = as.integer(n), 
-                n = as.integer(n), 
-                BIG = as.double(BIG))[c("costs","paths")]
+                n = as.integer(n))[c("costs","paths")]
   
   # Floyd-Warshall iterations
   z <- .Fortran("floyd_warshall",
