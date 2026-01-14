@@ -1,3 +1,9 @@
+0.6-6 (Jan 13, 2026)
+ * Added routines to evaluate density, cumulative distribution, quantile functions 
+   and generation of random deviates from the chi distribution.
+ * Added functions to create and apply Householder reflections.
+ * Function to compute a matrix rank-one update is included.
+
 0.6-4 (Oct 23, 2025)
  * Fixed an issue reported by professor Brian Ripley.
  * Added procedure introduced by Mardia for testing multivariate normality based on 
