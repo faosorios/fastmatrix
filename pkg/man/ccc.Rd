@@ -72,9 +72,9 @@ ccc(x, data, method = "z-transform", level = 0.95, equal.means = FALSE,
   A note on the concordance correlation coefficient. 
   \emph{Biometrics} \bold{56}, 324-325.
 
-  Vallejos, R., Osorio, F., Ferrer, C. (2025+).
+  Vallejos, R., Osorio, F., Ferrer, C. (2025).
   A new coefficient to measure agreement between two continuous variables.
-  Working paper.
+  doi: 10.48550/arXiv.2507.07913.
 }
 \examples{
 ## data in Fig.1 from Bland and Altman (1986).
