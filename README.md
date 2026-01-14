@@ -48,6 +48,7 @@ Next, the main functionalities of [fastmatrix](https://github.com/faosorios/fast
   * Evaluation of a matrix function where its argument is an upper triangular matrix by applying a Parlett recurrence.
   * Fast computation of Hadamard (elementwise) product using unrolled loops.
   * Gauss-Seidel, Jacobi and conjugate gradients (CG) iterative methods for solving linear systems.
+  * Householder operations (Householder vector/reflection, and function for applying Householder matrices).
   * Inner products and norms for matrices.
   * Computation of the scaled condition number of a rectangular matrix.
   * LDL decomposition for symmetric real matrices.
@@ -57,6 +58,7 @@ Next, the main functionalities of [fastmatrix](https://github.com/faosorios/fast
   * Matrix square root using the Newton iteration proposed by [Denman and Beavers (1976)](https://doi.org/10.1016/0096-3003(76)90020-5) and the Schur decomposition.
   * Modified Cholesky factorization for symmetric but not necessarily positive definite matrices.
   * Power method to compute the dominant eigenvalue and its associated eigenvector.
+  * Rank-1 update for square matrices.
   * Rank-1 update to Cholesky factorization.
   * Routine to compute a Krylov matrix.
   * Schur decomposition for a square matrix.
