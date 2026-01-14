@@ -20,12 +20,12 @@ Currently, the [fastmatrix](https://github.com/faosorios/fastmatrix) provides su
 
 ## Resources
 
-Version 0.6-4 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
+Version 0.6-6 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
-* [fastmatrix_0.6-4.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.6-4.tar.gz) - Package sources
+* [fastmatrix_0.6-6.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.6-6.tar.gz) - Package sources
 * [fastmatrix_0.6-4.zip](https://cran.r-project.org/bin/windows/contrib/4.5/fastmatrix_0.6-4.zip) - Windows binaries (R-release)
-* [fastmatrix_0.6-4.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/fastmatrix_0.6-4.tgz) - MacOS binaries (R-release, arm64)
-* [fastmatrix_0.6-4.tgz](https://cran.r-project.org/bin/macosx/big-sur-x86_64/contrib/4.5/fastmatrix_0.6-4.tgz) - MacOS binaries (R-release, x86_64)
+* [fastmatrix_0.6-6.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/fastmatrix_0.6-6.tgz) - MacOS binaries (R-release, arm64)
+* [fastmatrix_0.6-6.tgz](https://cran.r-project.org/bin/macosx/big-sur-x86_64/contrib/4.5/fastmatrix_0.6-6.tgz) - MacOS binaries (R-release, x86_64)
 
 ## Reference Manual
 
@@ -82,6 +82,7 @@ Next, the main functionalities of [fastmatrix](https://github.com/faosorios/fast
   * RNG from the multivariate normal (Gaussian) distribution.
   * RNG of uniformly distributed deviates **within** a unitary ball.
   * RNG of uniformly distributed deviats located **on** a spherical surface.
+  * RNG of the chi-distribution ([Monahan, 1987](https://doi.org/10.1145/328512.328522))
 * Miscellaneous:
   * Bezier curve based on n+1 control points.
   * Floyd-Warshall algorithm to find all shortest paths (if exist) in a directed graph.
