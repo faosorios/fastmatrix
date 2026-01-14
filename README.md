@@ -94,7 +94,7 @@ Our plan in the near future is the implementation of functions to handle:
 
 ## Installation instructions
 
-To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.6-4)** from CRAN, start R and enter:
+To install [fastmatrix](https://github.com/faosorios/fastmatrix) **(version 0.6-6)** from CRAN, start R and enter:
 ```r
 install.packages("fastmatrix")
 ```
@@ -127,8 +127,8 @@ citation("fastmatrix")
 
 To cite fastmatrix in publications use:
 
-  Osorio, F., Ogueda, A. (2025). Fast computation of some matrices
-  useful in statistics. R package version 0.6-4. URL:
+  Osorio, F., Ogueda, A. (2026). Fast computation of some matrices
+  useful in statistics. R package version 0.6-6. URL:
   https://faosorios.github.io/fastmatrix/
 
 A BibTeX entry for LaTeX users is
@@ -136,8 +136,8 @@ A BibTeX entry for LaTeX users is
   @Manual{,
     title = {Fast computation of some matrices useful in statistics},
     author = {F. Osorio and A. Ogueda},
-    year = {2025},
-    note = {R package version 0.6-4},
+    year = {2026},
+    note = {R package version 0.6-6},
     url = {https://faosorios.github.io/fastmatrix/},
   }
 ```
