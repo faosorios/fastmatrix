@@ -4,11 +4,11 @@ bibentry(bibtype = "Manual",
          title = "Fast computation of some matrices useful in statistics",
          author = c(as.person("F. Osorio"),
                     as.person("A. Ogueda")),
-         year = "2025",
-         note = "R package version 0.6-4",
+         year = "2026",
+         note = "R package version 0.6-6",
          url  = "https://faosorios.github.io/fastmatrix/",
          textVersion =
-          paste("Osorio, F., Ogueda, A. (2025).",
+          paste("Osorio, F., Ogueda, A. (2026).",
                 "Fast computation of some matrices useful in statistics.",
-                "R package version 0.6-4.", "URL: https://faosorios.github.io/fastmatrix/")
+                "R package version 0.6-6.", "URL: https://faosorios.github.io/fastmatrix/")
 )
