@@ -1,4 +1,4 @@
-## ID: mediancenter.R, last updated 10-16-2021, F.Osorio
+## ID: mediancenter.R, last updated 2021-10-16, F.Osorio
 
 mediancenter <- function(x)
 { ## computes the mediancenter for a sample of multivariate observations
