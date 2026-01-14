@@ -1,4 +1,4 @@
-/* $ID: power_method.c, last updated 2024-09-03, F.Osorio */
+/* $ID: power_method.c, last updated 2026-01-11, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -20,7 +20,7 @@ power_method(double *a, int *lda, int *p, double *x, double *lambda, int *maxite
   repeat {
     BLAS2_gemv(1.0, a, *lda, n, n, notrans, u, 1, 0.0, v, 1);
     FM_normalize(v, 1, n);
-    newLambda = OMO_quadf(a, *lda, n, v);
+    newLambda = FM_quadratic_form(a, *lda, n, v);
 
     iter++;
 
@@ -68,7 +68,7 @@ inverse_power(double *a, int *lda, int *p, double *x, double *lambda, int *maxit
     if (info)
       error("lu_solve gave code %d", info);
     FM_normalize(v, 1, n);
-    newLambda = OMO_quadf(a, *lda, n, v);
+    newLambda = FM_quadratic_form(a, *lda, n, v);
 
     iter++;
 

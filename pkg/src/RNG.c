@@ -1,9 +1,8 @@
-/* $ID: RNG.c, last updated 2023-07-22, F.Osorio */
+/* $ID: RNG.c, last updated 2025-12-18, F.Osorio */
 
 #include "fastmatrix.h"
 
 /* static functions */
-static double chi_rand(double);
 static void mnorm_rand(double *, int, int);
 static void unif_ball_rand(double *, int, int);
 static void unif_sphere_rand(double *, int, int);
@@ -95,62 +94,4 @@ unif_ball_rand(double *y, int n, int p)
     BLAS1_scale(r, y, 1, p);
     y += p;
   } 
-}
-
-void rng_chi(int *n, double *x, double *df, int *ndf)
-{ /* random variates from the chi distribution */
-  int nobs = *n, nd = *ndf;
-
-  GetRNGstate();
-  for (int i = 0; i < nobs; i++)
-    x[i] = chi_rand(df[i % nd]);
-  PutRNGstate();
-}
-
-double
-chi_rand(double df)
-{ /* random number generation from the chi family of distributions with
-   * degrees of freedom parameter df >= 1, using the ratio of uniforms
-   * method as described in:
-   * Monahan, J.F. (1987). ACM Transactions on Mathematical Software 13, 168-172,
-   * Monahan, J.F. (1988). ACM Transactions on Mathematical Software 14, 111. */
-
-  /* Constants : */
-  const static double S_EXP_M05    = 0.60653065971263342426; /* exp(-1/2)      */
-  const static double S_2_EXP_025  = 2.56805083337548278877; /* 2 * exp(1/4)   */
-  const static double S_4_EXP_M135 = 1.03696104258356602834; /* 4 * exp(-1.35) */
-
-  double a, b, c, eta, h, r, u, v, z;
-
-  /* Setup: */
-  eta = sqrt(df - 1.0);
-  a = S_EXP_M05 * (M_SQRT1_2 + eta) / (0.5 + eta);
-  b = -S_EXP_M05 * (1.0 - 0.25 / (SQR(eta) + 1.0));
-  c = MAX(-eta, b);
-
-  repeat {
-    u = unif_rand();
-    v = a + (c - a) * unif_rand();
-    z = v / u;
-
-    /* Immediate rejection */
-    if (z < -eta)
-      continue;
-
-    /* Quick acceptance */
-    r = 2.5 - SQR(z);
-    if (z < 0.0)
-      r += z * SQR(z) / (3.0 * (z + eta));
-    if (u < r / S_2_EXP_025)
-      return z + eta;
-
-    /* Quick rejection */
-    if (SQR(z) > S_4_EXP_M135 / u + 1.4)
-      continue;
-
-    /* Regular test */
-    h = SQR(eta) * log(1.0 + z / eta) - 0.5 * SQR(z) - z * eta;
-    if (2 * log(u) < h)
-      return z + eta;
-  }
 }

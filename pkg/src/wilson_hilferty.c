@@ -58,7 +58,7 @@ FM_WH_Laplace(double *distances, int n, int p, double *z)
   double f, mean, sd, q = 1./3.;
 
   for (int i = 0; i < n; i++) {
-    f = sqrt(*distances++) / (2. * p);
+    f = *distances++ / (2. * p);
     mean = 1. - 1. / (9. * p);
     sd = 1. / sqrt(9. * p);
     *z++ = (R_pow(f, q) - mean) / sd;

@@ -1,4 +1,4 @@
-/* $ID: R_init_fastmatrix.c, last updated 2025-10-15, F.Osorio */
+/* $ID: R_init_fastmatrix.c, last updated 2026-01-13, F.Osorio */
 
 #include "fastmatrix.h"
 #include <R_ext/Rdynload.h>
@@ -19,6 +19,10 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(cov_MSSD,               5),
   CALLDEF(cov_weighted,           6),
   CALLDEF(cov4th,                 5),
+  CALLDEF(d_chi,                  6),
+  CALLDEF(p_chi,                  7),
+  CALLDEF(q_chi,                  7),
+  CALLDEF(r_chi,                  4),
   CALLDEF(doornik_hansen,         5),
   CALLDEF(dupl_cols,              2),
   CALLDEF(dupl_left_mult,         8),
@@ -33,6 +37,10 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(hadamard_prod,          4),
   CALLDEF(jacobi_solver,          9),
   CALLDEF(jarque_bera,            5),
+  CALLDEF(house_vec,              4),
+  CALLDEF(house_mat,              4),
+  CALLDEF(house_prod_vec,         4),
+  CALLDEF(house_prod_mat,         7),
   CALLDEF(kronecker_prod,         7),
   CALLDEF(krylov_mat,             8),
   CALLDEF(lu_dcmp,                6),
@@ -52,6 +60,7 @@ static const R_CMethodDef CEntries[]  = {
   CALLDEF(OLS_ridge,             21),
   CALLDEF(power_method,           8),
   CALLDEF(Psi2Q,                  3),
+  CALLDEF(rank1_update,           7),
   CALLDEF(robust_JB,              6),
   CALLDEF(rng_ball,               3),
   CALLDEF(rng_mnorm,              5),
@@ -74,7 +83,6 @@ static const R_CMethodDef CEntries[]  = {
 
 static const R_FortranMethodDef F77Entries[] = {
   F77DEF(arraymult,              14),
-  F77DEF(blinf,                   6),
   F77DEF(bracketprod,            11),
   F77DEF(circulant_mat,           5),
   F77DEF(comm_rows,               3),
@@ -92,9 +100,7 @@ static const R_FortranMethodDef F77Entries[] = {
   F77DEF(ldl_dcmp,                5),
   F77DEF(mchol_dcmp,              6),
   F77DEF(median_center,           7),
-  F77DEF(murrv,                   7),
   F77DEF(pivot_mat,               4),
-  F77DEF(quadf,                   4),
   F77DEF(rhoc_ustat,              6),
   F77DEF(sqrt_parlett,            6),
   F77DEF(symmetrizer_mat,         8),
@@ -138,10 +144,6 @@ void R_init_fastmatrix(DllInfo *info) {
   FM_REGDEF(BLAS3_syrk);
   FM_REGDEF(BLAS3_trmm);
   FM_REGDEF(BLAS3_trsm);
-  /* OMO wrappers */
-  FM_REGDEF(OMO_blinf);
-  FM_REGDEF(OMO_quadf);
-  FM_REGDEF(OMO_murrv);
   /* operations on vectors */
   FM_REGDEF(FM_norm_sqr);
   FM_REGDEF(FM_normalize);

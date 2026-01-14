@@ -1,4 +1,4 @@
-/* ID: fastmatrix.h, last updated 2025-10-22, F.Osorio */
+/* ID: fastmatrix.h, last updated 2026-01-12, F.Osorio */
 
 #ifndef FASTMATRIX_H
 #define FASTMATRIX_H
@@ -56,13 +56,10 @@ void dupl_right_trans(double *, int *, int *, int *, int *, int *, double *, int
 void F77_NAME(symmetrizer_mat)(double *, int *, int *, int *, int *, double *, int *, int *);
 void symmetrizer_prod(double *, int *, int *, int *, double *, int *);
 
-/* other matrix operations */
-double F77_NAME(blinf)(double *, int *, int *, int *, double *, double *);
-double F77_NAME(quadf)(double *, int *, int *, double *);
-double F77_NAME(murrv)(double *, double *, int *, int *, int *, double *, int *);
-
 /* constructors of special matrices */
+void F77_NAME(circulant_mat)(double *, int *, double *, int *, int *);
 void F77_NAME(frank_mat)(double *, int *, int *, int *);
+void F77_NAME(hankel_mat)(double *, double *, int *, double *, int *, int *);
 void F77_NAME(helmert_mat)(double *, int *, int *, int *);
 void krylov_mat(double *, int *, int *, double *, int *, double *, int *, int *);
 
@@ -71,8 +68,11 @@ void norm_one(double *, int *, int *, double *);
 void norm_two(double *, int *, int *, double *);
 void norm_inf(double *, int *, int *, double *);
 void norm_minkowski(double *, int *, int *, double *, double *);
-void matrix_norm(double *, int *, int *, int *, int *, double *);
 double F77_NAME(minkowski)(int *, double *, int *, double *);
+
+/* matrix norm and inner product */
+void matrix_norm(double *, int *, int *, int *, int *, double *);
+void F77_NAME(inner_frobenius)(double *, int *, double *, int *, int *, int *, double *);
 
 /* equilibration of matrices */
 void F77_NAME(equilibrate_cols)(double *, int *, int *, int *, double *, double *, int *, int *);
@@ -80,8 +80,15 @@ void equilibrate_pd(double *, int *, int *, double *, double *, double *, int *)
 void equilibrate_sym(double *, int *, int *, double *, double *, double *, int *);
 void equilibrating_sym(double *, int *, double *);
 
-/* kronecker product */
+/* Householder transformations */
+void house_vec(double *, int *, double *, double *);
+void house_mat(double *, double *, int *, double *);
+void house_prod_vec(double *, int *, double *, double *);
+void house_prod_mat(double *, int *, int *, int *, int *, double *, double *);
+
+/* kronecker and hadamard product */
 void kronecker_prod(double *, int *, int *, double *, int *, int *, double *);
+void hadamard_prod(double *, double *, int *, double *);
 
 /* power method */
 void power_method(double *, int *, int *, double *, double *, int *, double *, int *);
@@ -111,6 +118,10 @@ void svd_dcmp(double *, int *, int *, int *, double *, int *, double *, double *
 void schur_dcmp(double *, int *, int *, int *, double *, double *, double *, int *, int *);
 void F77_NAME(schur_wrapper)(double *, int *, int *, int *, double *, double *, double *, int *, double *, int *, int *, int *);
 
+/* Floyd-Warshall algorithm for finding shortest paths in a directed graph */
+void F77_NAME(floyd_init)(double *, int *, int *, int *, int *);
+void F77_NAME(floyd_warshall)(double *, int *, int *, int *, int *);
+
 /* OLS methods */
 void OLS_cg(double *, int *, int *, int *, double *, double *, double *, int *, int *);
 void OLS_qr(double *, int *, int *, int *, double *, double *, double *, double *, double *, double *);
@@ -127,10 +138,6 @@ void F77_NAME(median_center)(double *, int *, int *, int *, double *, int *, int
 void geometric_mean(double *, int *, double *);
 void mahal_distances(double *, int *, int *, double *, double *, int *, double *);
 void skewness_and_kurtosis(double *, int *, int *, double *, double *, double *, int *);
-
-/* Floyd-Warshall algorithm for finding shortest paths in a directed graph */
-void F77_NAME(floyd_init)(double *, int *, int *, int *, int *);
-void F77_NAME(floyd_warshall)(double *, int *, int *, int *, int *);
 
 /* Wilson-Hilferty transformation */
 void wilson_hilferty_chisq(double *, int *, int *, double *);
@@ -149,6 +156,12 @@ void mardia_stat(double *, int *, int *, double *, double *, double *, double *)
 void rng_mnorm(double *, int *, int *, double *, double *);
 void rng_ball(double *, int *, int *);
 void rng_sphere(double *, int *, int *);
+
+/* dpqr-functions for the chi distribution */
+void d_chi(int *, double *, double *, double *, int *, int *);
+void p_chi(int *, double *, double *, double *, int *, int *, int *);
+void q_chi(int *, double *, double *, double *, int *, int *, int *);
+void r_chi(int *, double *, double *, int *);
 
 /* correlation structures */
 void cor_AR1(double *, int *, double *);
@@ -175,14 +188,11 @@ void sqrt_mat_DB(double *, int *, int *, int *, double *, int *);
 void sqrt_mat_schur(double *, int *, int *);
 
 /* misc */
-void F77_NAME(circulant_mat)(double *, int *, double *, int *, int *);
-void hadamard_prod(double *, double *, int *, double *);
-void F77_NAME(hankel_mat)(double *, double *, int *, double *, int *, int *);
-void F77_NAME(inner_frobenius)(double *, int *, double *, int *, int *, int *, double *);
 void mat2vech(double *, int *, int *, double *);
 void matrix_polynomial(double *, int *, int *, double *, int *, double *, int *, int *);
 void F77_NAME(pivot_mat)(double *, int *, int *, int *);
 void Psi2Q(double *, double *, int *);
+void rank1_update(double *, int *, int *, int *, double *, double *, double *);
 void whitening_chol(double *, int *, int *, double *);
 
 /* ========================================================================== *
@@ -228,11 +238,6 @@ void BLAS3_syrk(double, double *, int, int, int , char *, char *, double, double
 void BLAS3_trmm(double, double *, int, int, int, char *, char *, char *, char *, double *, int);
 void BLAS3_trsm(double, double *, int, int, int, char *, char *, char *, char *, double *, int);
 
-/* other matrix operations */
-double OMO_blinf(double *, int, int, int, double *, double *);
-double OMO_quadf(double *, int, int, double *);
-void OMO_murrv(double *, double *, int, int, int, double *, int *);
-
 /* operations on vectors */
 double FM_norm_sqr(double *, int, int);
 void FM_normalize(double *, int, int);
@@ -254,8 +259,11 @@ void FM_setzero(double *, int, int, int);
 double FM_trace(double *, int, int);
 void FM_tcrossprod(double *, double *, int, int, int, double *, int, int, int);
 
-/* Householder reflexion */
-void FM_householder(double *, int, double *);
+/* Householder transformations */
+double FM_house(double *, int, double *);
+void FM_householder_mat(double *, double, int, double *);
+void FM_householder_vec(double *, int, double *, double);
+void FM_householder_prod(double *, int, int, int, int, double *, double);
 
 /* operations on triangular matrices */
 void FM_cpy_lower(double *, int, int, double *, int);
@@ -264,6 +272,14 @@ void FM_cpy_lower2upper(double *, int, int, double *);
 void FM_cpy_upper2lower(double *, int, int, double *);
 double FM_sum_lower_tri(double *, int, int, int);
 double FM_sum_upper_tri(double *, int, int, int);
+
+/* operations on diagonal matrices */
+void FM_diag_plus_rank1(double *, int, int, double *, double, double *);
+
+/* other matrix operations */
+double FM_bilinear_form(double *, int, int, int, double *, double *);
+double FM_quadratic_form(double *, int, int, double *);
+void FM_murrv(double *, double *, int, int, int, double *, int *);
 
 /* matrix factorizations */
 void FM_chol_decomp(double *, int, int, int, int *);

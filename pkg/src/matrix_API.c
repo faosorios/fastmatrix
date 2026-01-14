@@ -1,4 +1,4 @@
-/* ID: matrix_API.c, last updated 2025-10-23, F.Osorio */
+/* ID: matrix_API.c, last updated 2026-01-12, F.Osorio */
 
 #include "fastmatrix.h"
 
@@ -260,6 +260,77 @@ FM_sum_lower_tri(double *x, int ldx, int p, int job)
   }
 
   return accum;
+}
+
+/* other matrix operations */
+
+double 
+FM_bilinear_form(double *a, int lda, int n, int p, double *x, double *y)
+{ /* this function computes the bilinear form, t(x) %*% A %*% y */
+  char *notrans = "N";
+  double value = 0.0, *z;
+
+  /* quick return if possible */
+  if (n <= 0) 
+    return 0.0;
+  if (p <= 0)
+    return 0.0;
+  if (lda < (n > 1 ? n : 1)) 
+    return 0.0;
+
+  /* start operations */
+  z = (double *) R_Calloc(n, double);
+  BLAS2_gemv(1.0, a, lda, n, p, notrans, y, 1, 0.0, z, 1);
+  value = BLAS1_dot_product(x, 1, z, 1, n);
+  R_Free(z);
+
+  return value;
+}
+
+double 
+FM_quadratic_form(double *a, int lda, int n, double *x)
+{ /* this function computes the quadratic form, t(x) %*% A %*% x */
+  char *notrans = "N";
+  double value = 0.0, *z;
+
+  /* quick return if possible */
+  if (n <= 0) 
+    return 0.0;
+  if (lda < (n > 1 ? n : 1)) 
+    return 0.0;
+
+  /* start operations */
+  z = (double *) R_Calloc(n, double);
+  BLAS2_gemv(1.0, a, lda, n, n, notrans, x, 1, 0.0, z, 1);
+  value = BLAS1_dot_product(x, 1, z, 1, n);
+  R_Free(z);
+
+  return value;
+}
+
+void 
+FM_murrv(double *y, double *a, int lda, int n, int p, double *x, int *info)
+{ /* multiplies a real rectangular matrix by a vector, y = a %*% x */
+  char *notrans = "N";
+
+  *info = 0;
+  /* quick return if possible */
+  if ((n == 0) || (p == 0)) 
+    return;
+
+  /* test the input parameters */
+  if (n < 0) {
+    *info = -4;
+  } else if (p < 0) {
+    *info = -5;
+  } else if (lda < (n > 1 ? n : 1)) {
+    *info = -3;
+  }
+  if (*info != 0)
+    return;
+
+  /* y <- 1.0 * a %*% x + 0.0 * y */
+  BLAS2_gemv(1.0, a, lda, n, p, notrans, x, 1, 0.0, y, 1);
 }
 
 /* routines for matrix decompositions */
