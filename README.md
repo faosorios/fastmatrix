@@ -33,7 +33,7 @@ Version 0.6-6 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be fo
 
 ## Features
 
-Next, the main functionalities of [fastmatrix](https://github.com/faosorios/fastmatrix) (latest release, version 0.6-2, Oct 14, 2025):
+Next, the main functionalities of [fastmatrix](https://github.com/faosorios/fastmatrix) (latest release, version 0.6-6, Jan 14, 2026):
 * Structured matrices:
   * Constructors for AR(1) and compound symmetry correlation matrices.
   * Constructors for Frank, Hankel and Helmert matrices.
