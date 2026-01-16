@@ -23,7 +23,7 @@ Currently, the [fastmatrix](https://github.com/faosorios/fastmatrix) provides su
 Version 0.6-6 of [fastmatrix](https://github.com/faosorios/fastmatrix) can be found at the [CRAN package repository](https://cran.r-project.org/package=fastmatrix):
 
 * [fastmatrix_0.6-6.tar.gz](https://cran.r-project.org/src/contrib/fastmatrix_0.6-6.tar.gz) - Package sources
-* [fastmatrix_0.6-4.zip](https://cran.r-project.org/bin/windows/contrib/4.5/fastmatrix_0.6-4.zip) - Windows binaries (R-release)
+* [fastmatrix_0.6-6.zip](https://cran.r-project.org/bin/windows/contrib/4.5/fastmatrix_0.6-6.zip) - Windows binaries (R-release)
 * [fastmatrix_0.6-6.tgz](https://cran.r-project.org/bin/macosx/big-sur-arm64/contrib/4.5/fastmatrix_0.6-6.tgz) - MacOS binaries (R-release, arm64)
 * [fastmatrix_0.6-6.tgz](https://cran.r-project.org/bin/macosx/big-sur-x86_64/contrib/4.5/fastmatrix_0.6-6.tgz) - MacOS binaries (R-release, x86_64)
 
