@@ -9,6 +9,7 @@ Yet another R package for matrices. It contains a small set of functions designe
 
 Currently, the [fastmatrix](https://github.com/faosorios/fastmatrix) provides support for the following R packages:
 
+[![BCFM](https://img.shields.io/badge/Support-BCFM-orange)](https://cran.r-project.org/package=BCFM)
 [![fChange](https://img.shields.io/badge/Support-fChange-orange)](https://cran.r-project.org/package=fChange)
 [![india](https://img.shields.io/badge/Support-india-orange)](https://cran.r-project.org/package=india)
 [![L1pack](https://img.shields.io/badge/Support-L1pack-orange)](https://cran.r-project.org/package=L1pack)
